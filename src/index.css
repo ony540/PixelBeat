@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@font-face {
+  font-family: "DungGeunMo";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_six@1.2/DungGeunMo.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "NeoDunggeunmoPro-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/NeoDunggeunmoPro-Regular.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@layer base {
+  html,
+  body {
+    font-family: "NeoDunggeunmoPro-Regular", "DungGeunMo", "AppleSDGothicNeo",
+      "Noto Sans KR", sans-serif;
+    font-size: 18px;
+    background-color: black;
+    color: white;
+  }
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  * {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+  }
+}
