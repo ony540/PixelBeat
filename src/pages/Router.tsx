@@ -1,11 +1,14 @@
-import { createBrowserRouter } from "react-router-dom";
-import type { RouteObject } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
+import { RouteObject } from "react-router-dom";
 import { ErrorComponent } from "@/components";
-// import { Layout, Entry } from "@/pages"; // 왜 안돼지?
-import { Layout } from "./Layout";
-import { Entry } from "./Entry";
+import { Layout, Entry, Recommend } from "@/pages";
+import { ReactNode } from "react";
 
-const generateRoute = (path, component, children?): RouteObject => {
+const generateRoute = (
+  path: string,
+  component: ReactNode,
+  children?: RouteObject[]
+): RouteObject => {
   return {
     path: path,
     element: component,
@@ -19,7 +22,11 @@ export const routes = [
     path: "/",
     element: <Layout />,
     errorElement: <ErrorComponent />,
-    children: [generateRoute("/", <Entry />)],
+    children: [
+      generateRoute("/", <Entry />),
+      generateRoute("/recommend", <Recommend />),
+      generateRoute("/recommend/:id", <Recommend />),
+    ],
   },
 ];
 
