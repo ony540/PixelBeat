@@ -2,8 +2,8 @@
 name: "✅ FEATURE"
 about: 'Feature: 작업 사항을 입력해주세요.'
 title: ''
-labels: 기능 추가
-assignees: dotory0829
+labels: ''
+assignees: ''
 
 ---
 
