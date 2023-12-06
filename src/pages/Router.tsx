@@ -1,9 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import type { RouteObject } from "react-router-dom";
 import { ErrorComponent } from "@/components";
-// import { Layout, Entry } from "@/pages"; // 왜 안돼지?
+// import { Layout, Entry } from "@/index"; 
 import { Layout } from "./Layout";
 import { Entry } from "./Entry";
+import { Bill } from "./Bill";
 
 const generateRoute = (path, component, children?): RouteObject => {
   return {
@@ -19,7 +20,7 @@ export const routes = [
     path: "/",
     element: <Layout />,
     errorElement: <ErrorComponent />,
-    children: [generateRoute("/", <Entry />)],
+    children: [generateRoute("/", <Entry />), generateRoute("/bill", <Bill />)],
   },
 ];
 
