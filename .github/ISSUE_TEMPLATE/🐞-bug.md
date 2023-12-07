@@ -2,8 +2,8 @@
 name: "\U0001F41E BUG"
 about: BUG 발생 시 작성해주세요.
 title: ''
-labels: bug, help wanted, question
-assignees: dotory0829
+labels: ''
+assignees: ''
 
 ---
 

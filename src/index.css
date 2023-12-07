@@ -21,10 +21,14 @@
   body {
     font-family: "NeoDunggeunmoPro-Regular", "DungGeunMo", "AppleSDGothicNeo",
       "Noto Sans KR", sans-serif;
-    font-size: 18px;
+    font-size: 16px;
     background-color: black;
     color: white;
+    @media screen and (min-width: 720px) {
+      font-size: 22px;
+    }
   }
+
   ::-webkit-scrollbar {
     display: none;
   }
@@ -34,5 +38,56 @@
     padding: 0;
     margin: 0;
     text-decoration: none;
+  }
+}
+
+/* CUSTOM */
+
+.genre-selector-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  aspect-ratio: 1 / 2;
+  row-gap: 10px;
+  column-gap: 16px;
+  padding: 12px;
+
+  @media screen and (min-width: 390px) and (max-width: 720px) {
+    grid-template-columns: repeat(3, minmax(110px, 3fr));
+    row-gap: 16px;
+    column-gap: 12px;
+  }
+}
+
+.recommend-btn {
+  background-color: theme(colors.mainGreen);
+  color: theme(colors.mainBlack);
+  width: 100%;
+  height: 56px;
+  max-width: calc(100% - 40px);
+  border-radius: 8px;
+  position: sticky;
+  bottom: 10px;
+  font-size: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.selected-genre {
+  color: theme(colors.mainGreen);
+}
+
+.icon-absolute-top {
+  top: 30%;
+  @media screen and (min-width: 390px) and (max-width: 720px) {
+    top: 20%;
+  }
+}
+
+.text-absolute-bottom {
+  bottom: 20%;
+  @media screen and (min-width: 390px) and (max-width: 720px) {
+    bottom: 10%;
   }
 }
