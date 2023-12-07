@@ -9,7 +9,7 @@ export const LoginBtn = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <rect width="100%" height="100%" rx="19" fill="#57FF57" />
+      <rect width="356" height="56" rx="19" fill="#57FF57" />
       <rect
         x="5.71484"
         y="1.9043"

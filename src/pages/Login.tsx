@@ -1,8 +1,13 @@
 import { EmailBtn, LoginBtn, SpotifyHover } from "@/assets";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export const Login = () => {
   const [isHovered, setIsHovered] = useState(false);
+  const navigate = useNavigate();
+  const signUp = () => {
+    navigate("/signup");
+  };
 
   return (
     <>
@@ -25,7 +30,7 @@ export const Login = () => {
         </button>
       </div>
       <div className="flex justify-center pb-10">
-        <button className="pr-12">이메일로 회원가입</button>|
+        <button onClick={signUp} className="pr-12">이메일로 회원가입</button>|
         <button className="pl-12">문의하기</button>
       </div>
     </>
