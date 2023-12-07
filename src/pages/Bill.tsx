@@ -3,6 +3,7 @@ import { CirclePlayButton, Clock } from '@/assets'
 import { BillGraph, StandardButton } from '@/components'
 import barcodeImg from '@/assets/imgs/barcode.png'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
+import { msToMinutesAndSeconds, shareData } from '@/utils'
 
 const data = {
   artists: [
@@ -42,46 +43,24 @@ const data = {
   is_local: false
 }
 
-export const Bill: React.FC<BillProps> = () => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  const navigate = useNavigate();
+export const Bill = () => {
+  const navigate = useNavigate()
 
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000);
+  const handleClickToLoginButton = () => {
+    navigate('/login')
+  }
 
-    return () => clearInterval(intervalId);
-  }, []);
+  const handleClickShareButton = () => {
+    // 배포 후 수정(data타입으로 수정)
+    const shareLink = 'YOUR_SHARE_LINK'
+    shareData({ url: shareLink })
+  }
 
-  const formatTime = (date: Date) => {
-    const options: Intl.DateTimeFormatOptions = {
-      hour: "numeric",
-      minute: "numeric",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
+  const handleClickPreviewPlayButton = (data: any) => {
+    //프리뷰 음악 재생하기
+    console.log(data)
+  }
 
-    return new Intl.DateTimeFormat("kr-ko", options).format(date);
-  };
-
-  const handleClick = () => {
-    navigate("/");
-  };
-
-  const handleShareClick = () => {
-    // Replace 'YOUR_SHARE_LINK' with the actual link you want to share
-    const shareLink = 'YOUR_SHARE_LINK';
-
-    navigator.clipboard.writeText(shareLink)
-      .then(() => {
-        alert("링크가 클립보드에 복사되었습니다.");
-      })
-      .catch((err) => {
-        console.error('복사에 실패하였습니다.', err);
-      });
-  };
   {
     return (
       <>
@@ -118,10 +97,8 @@ export const Bill: React.FC<BillProps> = () => {
                 {data.preview_url && (
                   <button
                     className="hidden group-hover:block mr-18"
-                    onClick={() =>
-                      handleClickPreviewPlayButton(data.preview_url)
-                    }>
                     <CirclePlayButton />
+                    onClick={() => handleClickPreviewPlayButton(data)}>
                   </button>
                 )}
 
