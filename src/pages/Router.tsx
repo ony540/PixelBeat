@@ -1,7 +1,7 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import { RouteObject } from "react-router-dom";
 import { ErrorComponent } from "@/components";
-import { Layout, Entry, Recommend } from "@/pages";
+import { Layout, Entry, Recommend, Login, SignUp } from "@/pages";
 import { ReactNode } from "react";
 
 const generateRoute = (
@@ -26,6 +26,8 @@ export const routes = [
       generateRoute("/", <Entry />),
       generateRoute("/recommend", <Recommend />),
       generateRoute("/recommend/:id", <Recommend />),
+      generateRoute("/login",<Login />),
+      generateRoute("/signup", <SignUp />)
     ],
   },
 ];

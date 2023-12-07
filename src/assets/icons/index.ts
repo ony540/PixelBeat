@@ -17,3 +17,6 @@ export * from "./RnB";
 export * from "./Rock";
 export * from "./WorkOut";
 export * from "./PixelBorder";
+export * from "./LoginBtn";
+export * from "./EmailBtn";
+export * from "./SpotifyHover";
