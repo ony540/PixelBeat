@@ -59,10 +59,11 @@ export const Bill: React.FC<BillProps> = () => {
         <div className="bg-white w-[354px] text-mainBlack text-center text-5xl flex flex-col justify-between">
           <div>
             PIXEL BEAT
-            <div className="flex justify-center pb-12">
-              <Graph /> {/* 사용자 음악성향 그래프를 불러오는 컴포넌트 부분 */}
-            </div>
-            <DotLine />
+          <div
+            className="my-0 ml-[14%] w-260 mt-[-20px] mb-[-18px] bg-no-repeat bg-[51.5%_54%] bg-[length:156px]"
+            style={{ backgroundImage: `url(${graphBgImg})` }}>
+            {/* 데이터 내려주기 */}
+            <BillGraph />
           </div>
           <div className="flex justify-between text-base mx-5">
             <div className="content-between flex items-center">
