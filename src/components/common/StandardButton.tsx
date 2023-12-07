@@ -159,7 +159,7 @@ export const StandardButton = ({
           fill="black"
         />
       </svg>
-      <span className="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-40%] w-full text-mainBlack text-20">
+      <span className="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-40%] w-full text-mainBlack">
         {text}
       </span>
     </button>

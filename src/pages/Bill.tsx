@@ -125,7 +125,7 @@ export const Bill = () => {
             className="mx-auto mt-24 mb-5"
           />
         </div>
-        <div className="w-356 mx-auto">
+        <div className="w-356 mx-auto  text-20">
           <StandardButton
             text={'다른 영수증 구경하기'}
             onClick={handleClickToLoginButton}
