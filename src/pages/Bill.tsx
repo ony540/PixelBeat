@@ -1,16 +1,46 @@
-import React, { useState, useEffect } from "react";
-import {
-  BillFoot,
-  BillHead,
-  Graph,
-  DotLine,
-  Clock,
-  Barcord,
-  PlayButton,
-} from "@/img/index";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom'
+import { CirclePlayButton, Clock } from '@/assets'
+import { BillGraph, StandardButton } from '@/components'
+import barcodeImg from '@/assets/imgs/barcode.png'
+import graphBgImg from '@/assets/imgs/graphBackground.png'
 
-interface BillProps {}
+const data = {
+  artists: [
+    {
+      name: '뉴진스',
+      popularity: 0,
+      type: 'artist',
+      uri: 'string'
+    }
+  ],
+  available_markets: ['string'],
+  disc_number: 0,
+  duration_ms: 0,
+  explicit: false,
+  external_ids: {
+    isrc: 'string',
+    ean: 'string',
+    upc: 'string'
+  },
+  external_urls: {
+    spotify: 'string'
+  },
+  href: 'string',
+  id: 'string',
+  is_playable: false,
+  linked_from: {},
+  restrictions: {
+    reason: 'string'
+  },
+  name: '노래제목한글',
+  popularity: 0,
+  preview_url:
+    'https://p.scdn.co/mp3-preview/dab062e2cc708a2680ce84953a3581c5a679a230?cid=dd3b7e313f5148db8e93b498352200a7',
+  track_number: 0,
+  type: 'track',
+  uri: 'string',
+  is_local: false
+}
 
 export const Bill: React.FC<BillProps> = () => {
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -54,104 +84,83 @@ export const Bill: React.FC<BillProps> = () => {
   };
   {
     return (
-      <div className=" fixed left-1/2 top-8 h-screen transform -translate-x-1/2 px-5">
-        <BillHead />
-        <div className="bg-white w-[354px] text-mainBlack text-center text-5xl flex flex-col justify-between">
-          <div>
-            PIXEL BEAT
+      <>
+        <div className="bg-white w-354 text-mainBlack text-center mx-auto mt-42 mb-50 bill-background-side">
+          <h1 className="text-52 leading-none">PIXEL BEAT</h1>
           <div
-            className="my-0 ml-[14%] w-260 mt-[-20px] mb-[-18px] bg-no-repeat bg-[51.5%_54%] bg-[length:156px]"
+            className="my-0 ml-[14%] w-260 mt-[-20px] mb-[-18px] bg-no-repeat bg-[52.7%_54%] bg-[length:140px]"
             style={{ backgroundImage: `url(${graphBgImg})` }}>
             {/* 데이터 내려주기 */}
             <BillGraph />
           </div>
-          <div className="flex justify-between text-base mx-5">
-            <div className="content-between flex items-center">
-              #&nbsp;&nbsp;Song
-            </div>
-            <div className="mt-1">
+          <div className="flex justify-between items-center mx-16 text-16 border-y-2 border-dashed border-mainBlack h-34 ">
+            <span>
+              <span className="ml-12 mr-26">#</span>
+              Song
+            </span>
+
+            <i className="mr-12">
               <Clock />
-            </div>
+            </i>
           </div>
-          <DotLine />
-          <div className=" flex mx-5 text-sm justify-between my-3 hover:z-0">
-            01 {/* 추천 순서 */}
-            <div className="text-start text-[18px] h-7 w-[180px] leading-2 truncate">
-                9와 4분의3 승강장에서 {/* 노래? 앨범? 제목 */}
-              <div className="text-[12px] leading-3 text-start">
-                NewJeans {/* 가수 이름 */}
+          <div className="my-6">
+            {/* 데이터 맵돌릴 노래목록 */}
+            <div className="group mx-16 h-48 text-left text-16 flex items-center justify-between hover:bg-bgGray hover:cursor-pointer">
+              <div className="flex items-center">
+                <span className="ml-8 mr-22">{String(1).padStart(2, '0')}</span>
+                <div className="leading-[1.2] inline-block">
+                  <h3>{data.name}</h3>
+                  <p className="self-end text-14">{data.artists[0].name}</p>
+                </div>
+              </div>
+
+              <div className="pr-3 flex">
+                {data.preview_url && (
+                  <button
+                    className="hidden group-hover:block mr-18"
+                    onClick={() =>
+                      handleClickPreviewPlayButton(data.preview_url)
+                    }>
+                    <CirclePlayButton />
+                  </button>
+                )}
+
+                <p className="mt-4">
+                  {msToMinutesAndSeconds(data.duration_ms)}
+                </p>
               </div>
             </div>
-            <button className="-z-50">
-              <PlayButton />
-            </button>
-            3:00 {/* 노래 시간 */}
           </div>
-          <div className=" flex mx-5 text-sm justify-between my-3 hover:z-0">
-            01 {/* 추천 순서 */}
-            <div className="text-start text-[18px] h-7 w-[180px] leading-2 truncate">
-                9와 4분의3 승강장에서 {/* 노래? 앨범? 제목 */}
-              <div className="text-[12px] leading-3 text-start">
-                NewJeans {/* 가수 이름 */}
-              </div>
+
+          <div className=" mx-16 py-8 border-y-2 border-dashed border-mainBlack text-14">
+            <time className="block w-full text-left">
+              생성날짜 및 시간(수정해야함)
+            </time>
+            <div className="flex justify-between w-full">
+              <p>www.pixelBeat.com</p>
+              <p>provided by spotify</p>
             </div>
-            <button className="-z-50">
-              <PlayButton />
-            </button>
-            3:00 {/* 노래 시간 */}
           </div>
-          <div className=" flex mx-5 text-sm justify-between my-3 hover:z-0">
-            01 {/* 추천 순서 */}
-            <div className="text-start text-[18px] h-7 w-[180px] leading-2 truncate">
-                9와 4분의3 승강장에서 {/* 노래? 앨범? 제목 */}
-              <div className="text-[12px] leading-3 text-start">
-                NewJeans {/* 가수 이름 */}
-              </div>
-            </div>
-            <button className="-z-50">
-              <PlayButton />
-            </button>
-            3:00 {/* 노래 시간 */}
-          </div>
-          <div className=" flex mx-5 text-sm justify-between my-3 hover:z-0">
-            01 {/* 추천 순서 */}
-            <div className="text-start text-[18px] h-7 w-[180px] leading-2 truncate">
-                Attention {/* 노래? 앨범? 제목 */}
-              <div className="text-[12px] leading-3 text-start">
-                NewJeans {/* 가수 이름 */}
-              </div>
-            </div>
-            <button className="-z-50">
-              <PlayButton />
-            </button>
-            3:00 {/* 노래 시간 */}
-          </div>
-          <DotLine />
-          <div className="mx-5 my-3 text-sm flex justify-start">
-            {formatTime(currentTime)}
-          </div>
-          <div className="text-sm mx-5 flex justify-between">
-            www.pixelBeat.com
-            <div className="justify-end mb-3">provided by spotify</div>
-          </div>
-          <DotLine />
-          <div className="my-5 mx-11">
-            <Barcord />
-          </div>
+          <img
+            loading="lazy"
+            src={barcodeImg}
+            alt="바코드 이미지"
+            className="mx-auto mt-24 mb-5"
+          />
         </div>
-        <BillFoot />
-        <div className="flex flex-col items-center">
-          <button
-            onClick={handleClick}
-            className="bg-mainGreen w-[356px] h-14 rounded-lg text-black mt-2"
-          >
-            다른 영수증 구경하기
-          </button>
-          <button onClick={handleShareClick} className="flex-none bg-mainYellow w-[356px] h-14 rounded-lg text-black mt-2">
-            공유하기
-          </button>
+        <div className="w-356 mx-auto">
+          <StandardButton
+            text={'다른 영수증 구경하기'}
+            onClick={handleClickToLoginButton}
+          />
+          <StandardButton
+            text={'공유하기'}
+            onClick={handleClickShareButton}
+            fillColor="#FFFF57"
+            propsClass="mx-auto mt-12 mb-42"
+          />
         </div>
-      </div>
-    );
+      </>
+    )
   }
-};
+}
