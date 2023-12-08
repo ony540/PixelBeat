@@ -1,13 +1,12 @@
 export const Indie = () => {
-  const size = 60;
+  const size = 60
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 44 44"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <path
         d="M43.1236 8.2168H41.0752V34.9139H43.1236V8.2168Z"
         fill="currentColor"
@@ -56,7 +55,10 @@ export const Indie = () => {
         d="M41.0781 6.16748H2.06348V8.21592H41.0781V6.16748Z"
         fill="currentColor"
       />
-      <path d="M2.06191 8.2168H0V34.9139H2.06191V8.2168Z" fill="currentColor" />
+      <path
+        d="M2.06191 8.2168H0V34.9139H2.06191V8.2168Z"
+        fill="currentColor"
+      />
     </svg>
-  );
-};
+  )
+}

@@ -1,20 +1,21 @@
 export const StandardPixelBorder = ({
   propsClass,
-  onClick,
+  onClick
 }: {
-  propsClass?: string;
-  onClick?: any;
+  propsClass?: string
+  onClick?: any
 }) => {
   return (
-    <div className={`${propsClass}`} onClick={onClick}>
+    <div
+      className={`${propsClass}`}
+      onClick={onClick}>
       <svg
         width="100%"
         height="80"
         viewBox="0 0 350 71"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
-      >
+        preserveAspectRatio="none">
         <rect
           x="3.85645"
           y="1.30273"
@@ -120,9 +121,25 @@ export const StandardPixelBorder = ({
           transform="rotate(180 350 65.4004)"
           fill="currentColor"
         />
-        <rect x="5.98291" width="338.034" height="2" fill="currentColor" />
-        <rect x="6" y="69" width="340" height="2" fill="currentColor" />
-        <rect y="7" width="2" height="57" fill="currentColor" />
+        <rect
+          x="5.98291"
+          width="338.034"
+          height="2"
+          fill="currentColor"
+        />
+        <rect
+          x="6"
+          y="69"
+          width="340"
+          height="2"
+          fill="currentColor"
+        />
+        <rect
+          y="7"
+          width="2"
+          height="57"
+          fill="currentColor"
+        />
         <rect
           width="2"
           height="58"
@@ -131,5 +148,5 @@ export const StandardPixelBorder = ({
         />
       </svg>
     </div>
-  );
-};
+  )
+}

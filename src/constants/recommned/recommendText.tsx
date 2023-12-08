@@ -16,29 +16,29 @@ import {
   Pop,
   RnB,
   Rock,
-  WorkOut,
-} from "@/assets";
+  WorkOut
+} from '@/assets'
 
 export const FAVORITE_GENRE_TEXT = [
-  "R&B",
-  "어쿠스틱",
-  "애니메이션",
-  "블루스",
-  "CHILL",
-  "클래식",
-  "댄스",
-  "EDM",
-  "힙합",
-  "인디",
-  "재즈",
-  "어린이",
-  "영화",
-  "팝",
-  "ROCK",
-  "J-POP",
-  "K-POP",
-  "WORK-OUT",
-];
+  'R&B',
+  '어쿠스틱',
+  '애니메이션',
+  '블루스',
+  'CHILL',
+  '클래식',
+  '댄스',
+  'EDM',
+  '힙합',
+  '인디',
+  '재즈',
+  '어린이',
+  '영화',
+  '팝',
+  'ROCK',
+  'J-POP',
+  'K-POP',
+  'WORK-OUT'
+]
 
 export const FAVORITE_GENRE_ICON_MAPPING = {
   어쿠스틱: <Acoustic />,
@@ -51,12 +51,12 @@ export const FAVORITE_GENRE_ICON_MAPPING = {
   힙합: <Hiphop />,
   인디: <Indie />,
   재즈: <Jazz />,
-  "J-POP": <Jpop />,
+  'J-POP': <Jpop />,
   어린이: <Kid />,
-  "K-POP": <Kpop />,
+  'K-POP': <Kpop />,
   영화: <Movie />,
   팝: <Pop />,
-  "R&B": <RnB />,
+  'R&B': <RnB />,
   ROCK: <Rock />,
-  "WORK-OUT": <WorkOut />,
-};
+  'WORK-OUT': <WorkOut />
+}

@@ -1,23 +1,23 @@
-import { tokenInstance } from "./axios";
+import { tokenInstance } from './axios'
 
-const SPOTIFY_CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-const SPOTIFY_CLIENT_SECRET = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
+const SPOTIFY_CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID
+const SPOTIFY_CLIENT_SECRET = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET
 
 const requestData = {
-  grant_type: "client_credentials",
+  grant_type: 'client_credentials',
   client_id: SPOTIFY_CLIENT_ID,
-  client_secret: SPOTIFY_CLIENT_SECRET,
-};
+  client_secret: SPOTIFY_CLIENT_SECRET
+}
 
 export const getNonMemberToken = async () => {
   try {
     const response = await tokenInstance.post(
-      "token",
+      'token',
       new URLSearchParams(requestData)
-    );
-    const data = await response.data;
-    return data.access_token;
+    )
+    const data = await response.data
+    return data.access_token
   } catch (error: any) {
-    console.error(error);
+    console.error(error)
   }
-};
+}

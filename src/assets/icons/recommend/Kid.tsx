@@ -1,16 +1,30 @@
 export const Kid = () => {
-  const size = 60;
+  const size = 60
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 40 40"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect x="33.6841" width="3.15789" height="2.10526" fill="currentColor" />
-      <rect x="31.5791" width="2.10526" height="2.10526" fill="currentColor" />
-      <rect x="29.4736" width="2.10526" height="2.10526" fill="currentColor" />
+      xmlns="http://www.w3.org/2000/svg">
+      <rect
+        x="33.6841"
+        width="3.15789"
+        height="2.10526"
+        fill="currentColor"
+      />
+      <rect
+        x="31.5791"
+        width="2.10526"
+        height="2.10526"
+        fill="currentColor"
+      />
+      <rect
+        x="29.4736"
+        width="2.10526"
+        height="2.10526"
+        fill="currentColor"
+      />
       <rect
         x="36.8423"
         y="2.10522"
@@ -291,7 +305,12 @@ export const Kid = () => {
         height="2.10526"
         fill="currentColor"
       />
-      <rect y="8.42114" width="2.10526" height="2.10526" fill="currentColor" />
+      <rect
+        y="8.42114"
+        width="2.10526"
+        height="2.10526"
+        fill="currentColor"
+      />
       <rect
         x="1.05273"
         y="4.21045"
@@ -299,7 +318,12 @@ export const Kid = () => {
         height="2.10526"
         fill="currentColor"
       />
-      <rect y="6.31567" width="2.10526" height="2.10526" fill="currentColor" />
+      <rect
+        y="6.31567"
+        width="2.10526"
+        height="2.10526"
+        fill="currentColor"
+      />
       <rect
         x="2.10547"
         y="2.10522"
@@ -307,11 +331,36 @@ export const Kid = () => {
         height="2.10526"
         fill="currentColor"
       />
-      <rect x="3.15771" width="2.10526" height="2.10526" fill="currentColor" />
-      <rect x="4.21045" width="2.10526" height="2.10526" fill="currentColor" />
-      <rect x="6.31592" width="2.10526" height="2.10526" fill="currentColor" />
-      <rect x="8.4209" width="2.10526" height="2.10526" fill="currentColor" />
-      <rect x="10.5264" width="2.10526" height="2.10526" fill="currentColor" />
+      <rect
+        x="3.15771"
+        width="2.10526"
+        height="2.10526"
+        fill="currentColor"
+      />
+      <rect
+        x="4.21045"
+        width="2.10526"
+        height="2.10526"
+        fill="currentColor"
+      />
+      <rect
+        x="6.31592"
+        width="2.10526"
+        height="2.10526"
+        fill="currentColor"
+      />
+      <rect
+        x="8.4209"
+        width="2.10526"
+        height="2.10526"
+        fill="currentColor"
+      />
+      <rect
+        x="10.5264"
+        width="2.10526"
+        height="2.10526"
+        fill="currentColor"
+      />
       <rect
         x="12.6313"
         y="1.05273"
@@ -361,7 +410,12 @@ export const Kid = () => {
         height="2.10526"
         fill="currentColor"
       />
-      <rect x="27.3687" width="2.10526" height="2.10526" fill="currentColor" />
+      <rect
+        x="27.3687"
+        width="2.10526"
+        height="2.10526"
+        fill="currentColor"
+      />
       <rect
         x="17.8945"
         y="30.5264"
@@ -423,5 +477,5 @@ export const Kid = () => {
         fill="currentColor"
       />
     </svg>
-  );
-};
+  )
+}

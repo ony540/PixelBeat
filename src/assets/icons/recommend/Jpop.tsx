@@ -1,13 +1,12 @@
 export const Jpop = () => {
-  const size = 60;
+  const size = 60
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 44 46"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <rect
         x="22.6216"
         y="41.0269"
@@ -834,7 +833,12 @@ export const Jpop = () => {
         height="1.24324"
         fill="currentColor"
       />
-      <rect x="13.9185" width="1.24324" height="1.24324" fill="currentColor" />
+      <rect
+        x="13.9185"
+        width="1.24324"
+        height="1.24324"
+        fill="currentColor"
+      />
       <rect
         x="13.9185"
         y="1.24341"
@@ -842,11 +846,36 @@ export const Jpop = () => {
         height="1.24324"
         fill="currentColor"
       />
-      <rect x="15.1621" width="1.24324" height="1.24324" fill="currentColor" />
-      <rect x="16.4053" width="1.24324" height="1.24324" fill="currentColor" />
-      <rect x="17.6484" width="1.24324" height="1.24324" fill="currentColor" />
-      <rect x="18.8921" width="1.24324" height="1.24324" fill="currentColor" />
-      <rect x="20.1348" width="1.24324" height="1.24324" fill="currentColor" />
+      <rect
+        x="15.1621"
+        width="1.24324"
+        height="1.24324"
+        fill="currentColor"
+      />
+      <rect
+        x="16.4053"
+        width="1.24324"
+        height="1.24324"
+        fill="currentColor"
+      />
+      <rect
+        x="17.6484"
+        width="1.24324"
+        height="1.24324"
+        fill="currentColor"
+      />
+      <rect
+        x="18.8921"
+        width="1.24324"
+        height="1.24324"
+        fill="currentColor"
+      />
+      <rect
+        x="20.1348"
+        width="1.24324"
+        height="1.24324"
+        fill="currentColor"
+      />
       <rect
         x="18.8921"
         y="1.24341"
@@ -1884,5 +1913,5 @@ export const Jpop = () => {
         fill="currentColor"
       />
     </svg>
-  );
-};
+  )
+}

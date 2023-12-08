@@ -1,9 +1,9 @@
 export const StandardVertex = ({
   propsClass,
-  fillColor,
+  fillColor
 }: {
-  propsClass?: string;
-  fillColor?: string;
+  propsClass?: string
+  fillColor?: string
 }) => {
   return (
     <div className={propsClass}>
@@ -12,18 +12,20 @@ export const StandardVertex = ({
         height="100%"
         viewBox="0 0 48 48"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+        xmlns="http://www.w3.org/2000/svg">
         <mask
           id="mask0_880_19881"
-          style={{ maskType: "alpha" }}
+          style={{ maskType: 'alpha' }}
           maskUnits="userSpaceOnUse"
           x="0"
           y="0"
           width="48"
-          height="48"
-        >
-          <rect width="48" height="48" fill="#D9D9D9" />
+          height="48">
+          <rect
+            width="48"
+            height="48"
+            fill="#D9D9D9"
+          />
         </mask>
         <g mask="url(#mask0_880_19881)">
           <rect
@@ -33,7 +35,13 @@ export const StandardVertex = ({
             height="3.91006"
             fill={fillColor || 'black'}
           />
-          <rect x="-1" y="-1" width="4" height="3" fill={fillColor || 'black'} />
+          <rect
+            x="-1"
+            y="-1"
+            width="4"
+            height="3"
+            fill={fillColor || 'black'}
+          />
           <rect
             x="-0.714355"
             y="0.607422"
@@ -122,5 +130,5 @@ export const StandardVertex = ({
         </g>
       </svg>
     </div>
-  );
-};
+  )
+}

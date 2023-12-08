@@ -1,2 +1,2 @@
-export * from "./client";
-export * from "./tableAccessApis";
+export * from './client'
+export * from './tableAccessApis'
