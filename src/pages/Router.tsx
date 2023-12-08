@@ -1,8 +1,8 @@
-import { Navigate, createBrowserRouter } from "react-router-dom";
-import { RouteObject } from "react-router-dom";
-import { ErrorComponent } from "@/components";
-import { Layout, Entry, Recommend } from "@/pages";
-import { ReactNode } from "react";
+import { createBrowserRouter } from 'react-router-dom'
+import { RouteObject } from 'react-router-dom'
+import { ErrorComponent } from '@/components'
+import { Layout, Entry, Recommend, Bill } from '@/pages'
+import { ReactNode } from 'react'
 
 const generateRoute = (
   path: string,
@@ -13,21 +13,22 @@ const generateRoute = (
     path: path,
     element: component,
     errorElement: <ErrorComponent />,
-    children: children,
-  };
-};
+    children: children
+  }
+}
 
 export const routes = [
   {
-    path: "/",
+    path: '/',
     element: <Layout />,
     errorElement: <ErrorComponent />,
     children: [
-      generateRoute("/", <Entry />),
-      generateRoute("/recommend", <Recommend />),
-      generateRoute("/recommend/:id", <Recommend />),
-    ],
-  },
-];
+      generateRoute('/', <Entry />),
+      generateRoute('/recommend', <Recommend />),
+      generateRoute('/recommend/:id', <Recommend />),
+      generateRoute('/bill', <Bill />)
+    ]
+  }
+]
 
-export const router = createBrowserRouter(routes);
+export const router = createBrowserRouter(routes)
