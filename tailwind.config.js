@@ -28,7 +28,8 @@ export default {
         mainCyan: '#57FFFF',
         mainYellow: '#FFFF57',
         mainGreen: '#57FF57',
-        bgGray: '#E6E6E6'
+        bgGray: '#E6E6E6',
+        mainGray: '#C3C3C3'
       },
       screen: {
         customSc: { min: '390px', max: '720px' }

@@ -1,4 +1,5 @@
 export * from './ArtistSelector'
+export * from './ArtistItem'
 export * from './GenreSelector'
 export * from './GenreItem'
-export * from './SongSelector'
+export * from './TrackSelector'

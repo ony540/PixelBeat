@@ -1,4 +1,5 @@
 import { PixelBorder } from "@/assets";
+import { GENRE_CATEGORY } from "@/constants";
 import { FAVORITE_GENRE_ICON_MAPPING } from "@/constants/recommned";
 
 interface GenreItemProps {
@@ -9,8 +10,8 @@ interface GenreItemProps {
 
 export const GenreItem = ({ item, onClick, isSelected }: GenreItemProps) => (
   <div
-    onClick={() => onClick(item)}
-    className={`relative cursor-pointer ${isSelected ? "selected-genre" : ""}`}
+    onClick={() => onClick(GENRE_CATEGORY[item])}
+    className={`relative cursor-pointer ${isSelected ? "selected-item" : ""}`}
   >
     <PixelBorder />
     <div className="absolute left-[50%] translate-x-[-50%] icon-absolute-top">

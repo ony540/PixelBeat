@@ -3,30 +3,40 @@ export const StandardButton = ({
   propsClass,
   onClick,
   fillColor,
-  height
+  height,
+  disabled,
 }: {
-  text: string
-  onClick: () => any
-  propsClass?: string
-  fillColor?: string
-  height?: number
+  text: string;
+  onClick: () => any;
+  propsClass?: string;
+  fillColor?: string;
+  height?: number | string;
+  disabled?: any;
 }) => {
   return (
     <button
       type="button"
-      className={propsClass ? `${propsClass} block relative` : 'block relative'}
-      onClick={onClick}>
+      disabled={disabled}
+      className={
+        propsClass
+          ? `${propsClass} block relative w-full`
+          : "block relative w-full"
+      }
+      onClick={onClick}
+    >
       <svg
         width="100%"
         height={height || 56}
         viewBox="0 0 356 56"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg">
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none"
+      >
         <rect
           width="100%"
           height="100%"
           rx="19"
-          fill={fillColor || '#57FF57'}
+          fill={disabled ? fillColor || "#C3C3C3" : fillColor || "#57FF57"}
         />
         <rect
           x="5.71436"
@@ -49,12 +59,7 @@ export const StandardButton = ({
           height="5.71429"
           fill="black"
         />
-        <rect
-          y="9.52344"
-          width="3.80952"
-          height="1.90476"
-          fill="black"
-        />
+        <rect y="9.52344" width="3.80952" height="1.90476" fill="black" />
         <rect
           width="3.80952"
           height="3.80952"
@@ -133,25 +138,9 @@ export const StandardButton = ({
           transform="rotate(180 356.524 46.4756)"
           fill="black"
         />
-        <rect
-          x="8"
-          width="339"
-          height="3"
-          fill="black"
-        />
-        <rect
-          x="8"
-          y="54"
-          width="339"
-          height="2"
-          fill="black"
-        />
-        <rect
-          y="11.4287"
-          width="3.80952"
-          height="33.1429"
-          fill="black"
-        />
+        <rect x="8" width="339" height="3" fill="black" />
+        <rect x="8" y="54" width="339" height="2" fill="black" />
+        <rect y="11.4287" width="3.80952" height="33.1429" fill="black" />
         <rect
           width="3.80952"
           height="33.1429"
@@ -163,5 +152,5 @@ export const StandardButton = ({
         {text}
       </span>
     </button>
-  )
-}
+  );
+};
