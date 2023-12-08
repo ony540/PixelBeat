@@ -1,22 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import InputField from "./InputField";
 import debounce from "@/utils/debounce";
 import { Next } from "@/assets";
 
-
 export const SignUpForm = () => {
-
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,16}$/;
-
-
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[~@$!%*?&])[A-Za-z\d~@$!%*?&]{6,16}$/;
 
   const [formState, setFormState] = useState({
     email: "",
     password: "",
     passwordConfirm: "",
   });
+
   const [validationErrors, setValidationErrors] = useState({
     email: false,
     password: false,
@@ -29,6 +25,7 @@ export const SignUpForm = () => {
   const togglePasswordHidden = () => {
     setIsPasswordHidden(!isPasswordHidden);
   };
+
   const toggleConfirmPasswordHidden = () => {
     setIsConfirmPasswordHidden(!isConfirmPasswordHidden);
   };
@@ -62,16 +59,23 @@ export const SignUpForm = () => {
       [name]: value,
     });
   };
-  const handleDebounceInput = debounce(handleInput, 500); ///필요없어도 될듯
 
-  function buttonText(): any {
-    throw new Error("Function not implemented.");
-  }
+  const handleDebounceInput = debounce(handleInput, 500);
+  const isSubmitDisabled = () => {
+    return (
+      formState.email === "" ||
+      formState.password === "" ||
+      formState.passwordConfirm === "" ||
+      validationErrors.email ||
+      validationErrors.password ||
+      validationErrors.passwordConfirm
+    );
+  };
 
   return (
     <form
       className="flex flex-col gap-8 mt-8 justify-center items-center py-6"
-      onSubmit={(e) => e.preventDefault()} // 이 부분은 수정해야 할 것으로 보입니다.
+      onSubmit={(e) => e.preventDefault()}
     >
       <InputField
         name="email"
@@ -83,6 +87,8 @@ export const SignUpForm = () => {
         isValid={!validationErrors.email && formState.email !== ""}
         passMessage=" 사용가능한 이메일입니다."
         failMessage="올바른 이메일 형식이 아닙니다."
+        isPasswordHidden={false}
+        togglePasswordHidden={() => {}}
       />
       <InputField
         name="password"
@@ -93,7 +99,7 @@ export const SignUpForm = () => {
         onChange={handleDebounceInput}
         isValid={!validationErrors.password && formState.password !== ""}
         passMessage="사용가능한 계정 비밀번호입니다."
-        failMessage="비밀번호는 영문, 숫자, 특수기호를 포함하여 6자~16자로 입력해주세요."
+        failMessage="영문, 숫자, 특수기호를 포함하여 6자~16자로 입력해주세요."
         isPasswordHidden={isPasswordHidden}
         togglePasswordHidden={togglePasswordHidden}
       />
@@ -112,9 +118,13 @@ export const SignUpForm = () => {
         isPasswordHidden={isConfirmPasswordHidden}
         togglePasswordHidden={toggleConfirmPasswordHidden}
       />
-        <Link to="/" className="flex justify-center pt-24">
-          <Next />
-        </Link>
+      <button
+        type="submit"
+        disabled={isSubmitDisabled()}
+        className="flex justify-center pt-24"
+      >
+        <Next />
+      </button>
     </form>
   );
 };

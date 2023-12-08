@@ -25,6 +25,8 @@ export default function InputField({
   isValid,
   passMessage,
   failMessage,
+  isPasswordHidden,
+  togglePasswordHidden,
 }) {
 
   const hasValue =
