@@ -7,9 +7,9 @@ function Message({ text, isValid }) {
   }
 
   const messageText = isValid ? (
-    <span className="text-green-600 text-xs">{text}</span>
+    <span className="text-mainGreen text-xs">{text}</span>
   ) : (
-    <span className="text-red-500 text-xs">{text}</span>
+    <span className="text-mainRed text-xs">{text}</span>
   );
 
   return <div className="message">{messageText}</div>;
@@ -26,6 +26,7 @@ export default function InputField({
   passMessage,
   failMessage,
 }) {
+
   const hasValue =
     defaultValue !== undefined && defaultValue !== null && defaultValue !== "";
 
@@ -47,7 +48,7 @@ export default function InputField({
         placeholder={placeholder}
         defaultValue={defaultValue}
         onChange={onChange}
-        className={`border-b-5 w-[450px] bg-mainBlack p-4 hover:border-mainGreen focus:border-mainGreen ${
+        className={`border-b-2 w-[520px] bg-mainBlack p-4 hover:border-mainGreen focus:border-mainGreen ${
           isValid ? "focus:border-mainGreen" : "focus:border-mainRed"
         }`}
       />
@@ -55,7 +56,7 @@ export default function InputField({
         <div
           onClick={() => {
             toggleIconHidden();
-            const inputElement = document.getElementById(name);
+            const inputElement = document.getElementById(name); //useref 참조하기
             if (type === "password") {
               const inputElement = document.getElementById(
                 name

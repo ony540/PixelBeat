@@ -8,20 +8,16 @@ import { Next } from "@/assets";
 export const SignUpForm = () => {
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,16}$/;
+  const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,16}$/;
 
 
 
   const [formState, setFormState] = useState({
-    name: "",
-    username: "",
     email: "",
     password: "",
     passwordConfirm: "",
   });
   const [validationErrors, setValidationErrors] = useState({
-    name: false,
-    username: false,
     email: false,
     password: false,
     passwordConfirm: false,
@@ -66,7 +62,7 @@ export const SignUpForm = () => {
       [name]: value,
     });
   };
-  const handleDebounceInput = debounce(handleInput, 500);
+  const handleDebounceInput = debounce(handleInput, 500); ///필요없어도 될듯
 
   function buttonText(): any {
     throw new Error("Function not implemented.");
@@ -87,8 +83,6 @@ export const SignUpForm = () => {
         isValid={!validationErrors.email && formState.email !== ""}
         passMessage=" 사용가능한 이메일입니다."
         failMessage="올바른 이메일 형식이 아닙니다."
-        isPasswordHidden={false}
-        togglePasswordHidden={() => {}} // 이 부분은 수정해야 할 것으로 보입니다.
       />
       <InputField
         name="password"
@@ -99,7 +93,7 @@ export const SignUpForm = () => {
         onChange={handleDebounceInput}
         isValid={!validationErrors.password && formState.password !== ""}
         passMessage="사용가능한 계정 비밀번호입니다."
-        failMessage="비밀번호는 영문, 숫자를 포함하여 6자~16자로 입력해주세요."
+        failMessage="비밀번호는 영문, 숫자, 특수기호를 포함하여 6자~16자로 입력해주세요."
         isPasswordHidden={isPasswordHidden}
         togglePasswordHidden={togglePasswordHidden}
       />
