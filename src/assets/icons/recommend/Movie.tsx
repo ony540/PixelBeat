@@ -1,13 +1,12 @@
 export const Movie = () => {
-  const size = 60;
+  const size = 60
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 42 42"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <rect
         x="32.4546"
         y="21"
@@ -120,7 +119,12 @@ export const Movie = () => {
         height="1.90909"
         fill="currentColor"
       />
-      <rect x="24.8184" width="1.90909" height="1.90909" fill="currentColor" />
+      <rect
+        x="24.8184"
+        width="1.90909"
+        height="1.90909"
+        fill="currentColor"
+      />
       <rect
         x="19.0908"
         y="1.90918"
@@ -135,7 +139,12 @@ export const Movie = () => {
         height="1.90909"
         fill="currentColor"
       />
-      <rect x="22.9092" width="1.90909" height="1.90909" fill="currentColor" />
+      <rect
+        x="22.9092"
+        width="1.90909"
+        height="1.90909"
+        fill="currentColor"
+      />
       <rect
         x="17.1816"
         y="1.90918"
@@ -220,7 +229,12 @@ export const Movie = () => {
         height="1.90909"
         fill="currentColor"
       />
-      <rect y="13.3635" width="1.90909" height="1.90909" fill="currentColor" />
+      <rect
+        y="13.3635"
+        width="1.90909"
+        height="1.90909"
+        fill="currentColor"
+      />
       <rect
         x="1.90918"
         y="15.2727"
@@ -740,5 +754,5 @@ export const Movie = () => {
         fill="currentColor"
       />
     </svg>
-  );
-};
+  )
+}

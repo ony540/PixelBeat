@@ -43,40 +43,19 @@
 }
 
 /* CUSTOM */
-
 .genre-selector-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  aspect-ratio: 1 / 2;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   row-gap: 10px;
   column-gap: 16px;
-  padding: 12px;
+  padding: 0 50px 20px;
 
   @media screen and (min-width: 390px) and (max-width: 720px) {
-    grid-template-columns: repeat(3, minmax(110px, 3fr));
+    padding: 0 30px 20px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     row-gap: 16px;
     column-gap: 12px;
   }
-}
-
-.recommend-btn {
-  background-color: theme(colors.mainGreen);
-  color: theme(colors.mainBlack);
-  width: 100%;
-  height: 56px;
-  max-width: calc(100% - 40px);
-  border-radius: 8px;
-  position: sticky;
-  bottom: 10px;
-  font-size: 28px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 0 auto;
-}
-
-.selected-genre {
-  color: theme(colors.mainGreen);
 }
 
 .icon-absolute-top {
@@ -89,7 +68,40 @@
 .text-absolute-bottom {
   bottom: 20%;
   @media screen and (min-width: 390px) and (max-width: 720px) {
-    bottom: 10%;
+    bottom: 5%;
+  }
+}
+
+.standard-button-container {
+  background-color: theme(colors.mainBlack);
+  width: calc(100% - 70px);
+  @media screen and (min-width: 390px) and (max-width: 720px) {
+    width: 100%;
+    padding: 0 20px;
+  }
+}
+
+/* 추천 로직 아이템 선택시 */
+.selected-item {
+  color: theme(colors.mainGreen);
+}
+
+/* Text Flow */
+.text-flow-on-hover {
+  white-space: nowrap;
+  width: inherit;
+}
+
+.text-flow-on-hover:hover {
+  animation: textFlow 5s linear infinite;
+}
+
+@keyframes textFlow {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
 

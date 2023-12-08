@@ -3,30 +3,38 @@ export const StandardButton = ({
   propsClass,
   onClick,
   fillColor,
-  height
+  height,
+  disabled
 }: {
   text: string
   onClick: () => any
   propsClass?: string
   fillColor?: string
-  height?: number
+  height?: number | string
+  disabled?: any
 }) => {
   return (
     <button
       type="button"
-      className={propsClass ? `${propsClass} block relative` : 'block relative'}
+      disabled={disabled}
+      className={
+        propsClass
+          ? `${propsClass} block relative w-full`
+          : 'block relative w-full'
+      }
       onClick={onClick}>
       <svg
         width="100%"
         height={height || 56}
         viewBox="0 0 356 56"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg">
+        xmlns="http://www.w3.org/2000/svg"
+        preserveAspectRatio="none">
         <rect
           width="100%"
           height="100%"
           rx="19"
-          fill={fillColor || '#57FF57'}
+          fill={disabled ? fillColor || '#C3C3C3' : fillColor || '#57FF57'}
         />
         <rect
           x="5.71436"

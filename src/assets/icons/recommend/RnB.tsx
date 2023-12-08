@@ -1,13 +1,12 @@
 export const RnB = () => {
-  const size = 60;
+  const size = 60
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 53 53"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <path
         d="M51.7578 26.5C51.7578 40.4495 40.4495 51.7578 26.5 51.7578C12.5505 51.7578 1.24219 40.4495 1.24219 26.5C1.24219 12.5505 12.5505 1.24219 26.5 1.24219C40.4495 1.24219 51.7578 12.5505 51.7578 26.5Z"
         fill="currentColor"
@@ -194,9 +193,24 @@ export const RnB = () => {
         height="1.65625"
         fill="currentColor"
       />
-      <rect y="26.5" width="1.65625" height="1.65625" fill="currentColor" />
-      <rect y="28.1565" width="1.65625" height="1.65625" fill="currentColor" />
-      <rect y="29.8123" width="1.65625" height="1.65625" fill="currentColor" />
+      <rect
+        y="26.5"
+        width="1.65625"
+        height="1.65625"
+        fill="currentColor"
+      />
+      <rect
+        y="28.1565"
+        width="1.65625"
+        height="1.65625"
+        fill="currentColor"
+      />
+      <rect
+        y="29.8123"
+        width="1.65625"
+        height="1.65625"
+        fill="currentColor"
+      />
       <rect
         x="1.65625"
         y="31.4688"
@@ -415,9 +429,24 @@ export const RnB = () => {
         height="1.65625"
         fill="currentColor"
       />
-      <rect y="21.5312" width="1.65625" height="1.65625" fill="currentColor" />
-      <rect y="23.1877" width="1.65625" height="1.65625" fill="currentColor" />
-      <rect y="24.8435" width="1.65625" height="1.65625" fill="currentColor" />
+      <rect
+        y="21.5312"
+        width="1.65625"
+        height="1.65625"
+        fill="currentColor"
+      />
+      <rect
+        y="23.1877"
+        width="1.65625"
+        height="1.65625"
+        fill="currentColor"
+      />
+      <rect
+        y="24.8435"
+        width="1.65625"
+        height="1.65625"
+        fill="currentColor"
+      />
       <rect
         x="9.9375"
         y="6.625"
@@ -446,10 +475,30 @@ export const RnB = () => {
         height="1.85315"
         fill="currentColor"
       />
-      <rect x="21.5312" width="1.65625" height="1.65625" fill="currentColor" />
-      <rect x="23.1875" width="1.65625" height="1.65625" fill="currentColor" />
-      <rect x="24.8438" width="1.65625" height="1.65625" fill="currentColor" />
-      <rect x="26.5" width="1.65625" height="1.65625" fill="currentColor" />
+      <rect
+        x="21.5312"
+        width="1.65625"
+        height="1.65625"
+        fill="currentColor"
+      />
+      <rect
+        x="23.1875"
+        width="1.65625"
+        height="1.65625"
+        fill="currentColor"
+      />
+      <rect
+        x="24.8438"
+        width="1.65625"
+        height="1.65625"
+        fill="currentColor"
+      />
+      <rect
+        x="26.5"
+        width="1.65625"
+        height="1.65625"
+        fill="currentColor"
+      />
       <rect
         x="33.125"
         y="1.65649"
@@ -555,8 +604,18 @@ export const RnB = () => {
         height="1.65625"
         fill="currentColor"
       />
-      <rect x="28.1562" width="1.65625" height="1.65625" fill="currentColor" />
-      <rect x="27.0557" width="4.44755" height="2.96503" fill="currentColor" />
+      <rect
+        x="28.1562"
+        width="1.65625"
+        height="1.65625"
+        fill="currentColor"
+      />
+      <rect
+        x="27.0557"
+        width="4.44755"
+        height="2.96503"
+        fill="currentColor"
+      />
       <rect
         x="31.4688"
         y="1.65649"
@@ -599,8 +658,14 @@ export const RnB = () => {
         height="1.65625"
         fill="currentColor"
       />
-      <path d="M6.30078 42.9929H7.7833V44.8461H6.30078V42.9929Z" fill="black" />
-      <path d="M10.3774 46.3286H11.86V48.1818H10.3774V46.3286Z" fill="black" />
+      <path
+        d="M6.30078 42.9929H7.7833V44.8461H6.30078V42.9929Z"
+        fill="black"
+      />
+      <path
+        d="M10.3774 46.3286H11.86V48.1818H10.3774V46.3286Z"
+        fill="black"
+      />
       <path
         d="M15.1958 49.6643H16.6783V51.5175H15.1958V49.6643Z"
         fill="black"
@@ -637,7 +702,10 @@ export const RnB = () => {
         d="M46.3286 9.26587H48.5524V11.4896H46.3286V9.26587Z"
         fill="black"
       />
-      <path d="M49.6646 14.8252H51.8883V17.049H49.6646V14.8252Z" fill="black" />
+      <path
+        d="M49.6646 14.8252H51.8883V17.049H49.6646V14.8252Z"
+        fill="black"
+      />
       <rect
         x="20.7905"
         y="2.56616"
@@ -4286,5 +4354,5 @@ export const RnB = () => {
         fill="black"
       />
     </svg>
-  );
-};
+  )
+}

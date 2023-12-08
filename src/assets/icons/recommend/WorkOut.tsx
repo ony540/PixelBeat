@@ -1,13 +1,12 @@
 export const WorkOut = () => {
-  const size = 65;
+  const size = 65
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 61 61"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <rect
         x="24.9238"
         y="9.26685"
@@ -1289,5 +1288,5 @@ export const WorkOut = () => {
         fill="currentColor"
       />
     </svg>
-  );
-};
+  )
+}

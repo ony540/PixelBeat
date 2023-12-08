@@ -37,7 +37,8 @@
       "constants/*": ["src/constants/*"],
       "utils/*": ["src/utils/*"],
       "chat/*": ["src/components/chat/*"],
-      "hooks/*": ["src/hooks/*"]
+      "hooks/*": ["src/hooks/*"],
+      "supabase/*": ["src/api/supabase/*"]
     }
   },
   "include": [

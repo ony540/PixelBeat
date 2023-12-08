@@ -1,8 +1,10 @@
 export const PixelBorder = () => {
   return (
-    <svg 
-    className=" relative"
-    viewBox="0 0 110 132" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      className=" relative"
+      viewBox="0 0 110 132"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg">
       <rect
         x="3.85645"
         y="1.30347"
@@ -24,7 +26,12 @@ export const PixelBorder = () => {
         height="3.91006"
         fill="currentColor"
       />
-      <rect y="6.51685" width="2.57084" height="1.30335" fill="currentColor" />
+      <rect
+        y="6.51685"
+        width="2.57084"
+        height="1.30335"
+        fill="currentColor"
+      />
       <rect
         width="2.57084"
         height="2.60671"
@@ -103,7 +110,12 @@ export const PixelBorder = () => {
         transform="rotate(180 109.679 125.483)"
         fill="currentColor"
       />
-      <rect x="5.39893" width="98.5276" height="2.05278" fill="currentColor" />
+      <rect
+        x="5.39893"
+        width="98.5276"
+        height="2.05278"
+        fill="currentColor"
+      />
       <rect
         x="5.39893"
         y="130.631"
@@ -111,7 +123,12 @@ export const PixelBorder = () => {
         height="1.36852"
         fill="currentColor"
       />
-      <rect y="7.52686" width="2.02454" height="116.946" fill="currentColor" />
+      <rect
+        y="7.52686"
+        width="2.02454"
+        height="116.946"
+        fill="currentColor"
+      />
       <rect
         width="2.02454"
         height="118.315"
@@ -119,5 +136,5 @@ export const PixelBorder = () => {
         fill="currentColor"
       />
     </svg>
-  );
-};
+  )
+}

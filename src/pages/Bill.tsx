@@ -97,8 +97,8 @@ export const Bill = () => {
                 {data.preview_url && (
                   <button
                     className="hidden group-hover:block mr-18"
-                    <CirclePlayButton />
                     onClick={() => handleClickPreviewPlayButton(data)}>
+                    <CirclePlayButton />
                   </button>
                 )}
 

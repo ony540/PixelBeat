@@ -1,13 +1,12 @@
 export const Dance = () => {
-  const size = 60;
+  const size = 60
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 48 48"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_716_3360)">
         <path
           d="M44.5728 11.4375H42.2778V15.9975H44.5728V11.4375Z"
@@ -25,7 +24,10 @@ export const Dance = () => {
           d="M28.5676 34.2826H33.1426V32.0026H35.4226V6.8626H37.7026V4.5676H35.4226V2.2876H33.1426V25.1476H28.5676V27.4276H26.2876V32.0026H28.5676V34.2826Z"
           fill="black"
         />
-        <path d="M21.713 22.8525H19.418V27.4275H21.713V22.8525Z" fill="black" />
+        <path
+          d="M21.713 22.8525H19.418V27.4275H21.713V22.8525Z"
+          fill="black"
+        />
         <path
           d="M19.4177 20.5725H17.1377V22.8525H19.4177V20.5725Z"
           fill="black"
@@ -73,9 +75,13 @@ export const Dance = () => {
       </g>
       <defs>
         <clipPath id="clip0_716_3360">
-          <rect width="48" height="48" fill="currentColor" />
+          <rect
+            width="48"
+            height="48"
+            fill="currentColor"
+          />
         </clipPath>
       </defs>
     </svg>
-  );
-};
+  )
+}
