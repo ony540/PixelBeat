@@ -1,13 +1,12 @@
 export const Jazz = () => {
-  const size = 60;
+  const size = 60
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 48 45"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <rect
         x="46.1885"
         y="1.81128"
@@ -15,12 +14,42 @@ export const Jazz = () => {
         height="1.81132"
         fill="currentColor"
       />
-      <rect x="40.7549" width="1.81132" height="1.81132" fill="currentColor" />
-      <rect x="38.9434" width="1.81132" height="1.81132" fill="currentColor" />
-      <rect x="42.5659" width="1.81132" height="1.81132" fill="currentColor" />
-      <rect x="44.3774" width="1.81132" height="1.81132" fill="currentColor" />
-      <rect x="37.1323" width="1.81132" height="1.81132" fill="currentColor" />
-      <rect x="35.3208" width="1.81132" height="1.81132" fill="currentColor" />
+      <rect
+        x="40.7549"
+        width="1.81132"
+        height="1.81132"
+        fill="currentColor"
+      />
+      <rect
+        x="38.9434"
+        width="1.81132"
+        height="1.81132"
+        fill="currentColor"
+      />
+      <rect
+        x="42.5659"
+        width="1.81132"
+        height="1.81132"
+        fill="currentColor"
+      />
+      <rect
+        x="44.3774"
+        width="1.81132"
+        height="1.81132"
+        fill="currentColor"
+      />
+      <rect
+        x="37.1323"
+        width="1.81132"
+        height="1.81132"
+        fill="currentColor"
+      />
+      <rect
+        x="35.3208"
+        width="1.81132"
+        height="1.81132"
+        fill="currentColor"
+      />
       <rect
         x="31.6982"
         y="1.81128"
@@ -294,7 +323,12 @@ export const Jazz = () => {
         height="1.81132"
         fill="currentColor"
       />
-      <rect y="23.5474" width="1.81132" height="1.81132" fill="currentColor" />
+      <rect
+        y="23.5474"
+        width="1.81132"
+        height="1.81132"
+        fill="currentColor"
+      />
       <rect
         x="1.81152"
         y="25.3584"
@@ -611,5 +645,5 @@ export const Jazz = () => {
         fill="currentColor"
       />
     </svg>
-  );
-};
+  )
+}

@@ -1,13 +1,12 @@
 export const Hiphop = () => {
-  const size = 60;
+  const size = 60
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 44 44"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <rect
         x="4.6377"
         y="27.1831"
@@ -396,38 +395,230 @@ export const Hiphop = () => {
         transform="rotate(-14.9307 36.8457 8.24536)"
         fill="currentColor"
       />
-      <rect x="6" y="31.7908" width="2" height="2" fill="currentColor" />
-      <rect x="5" y="31.7908" width="2" height="2" fill="currentColor" />
-      <rect x="5" y="33.7908" width="2" height="2" fill="currentColor" />
-      <rect x="4" y="34.7908" width="2" height="2" fill="currentColor" />
-      <rect x="8" y="35.7908" width="2" height="2" fill="currentColor" />
-      <rect x="16" y="33.7908" width="2" height="2" fill="currentColor" />
-      <rect x="20" y="31.7908" width="2" height="2" fill="currentColor" />
-      <rect x="24" y="35.7908" width="2" height="2" fill="currentColor" />
-      <rect x="24" y="37.7908" width="2" height="2" fill="currentColor" />
-      <rect x="26" y="39.7908" width="2" height="2" fill="currentColor" />
-      <rect x="36" y="35.7908" width="2" height="2" fill="currentColor" />
-      <rect x="34" y="37.7908" width="2" height="2" fill="currentColor" />
-      <rect x="32" y="39.7908" width="2" height="2" fill="currentColor" />
-      <rect x="38" y="35.7908" width="2" height="2" fill="currentColor" />
-      <rect x="38" y="37.7908" width="2" height="2" fill="currentColor" />
-      <rect x="32" y="41.7908" width="2" height="2" fill="currentColor" />
-      <rect x="30" y="41.7908" width="2" height="2" fill="currentColor" />
-      <rect x="34" y="39.7908" width="2" height="2" fill="currentColor" />
-      <rect x="28" y="41.7908" width="2" height="2" fill="currentColor" />
-      <rect x="24" y="39.7908" width="2" height="2" fill="currentColor" />
-      <rect x="26" y="41.7908" width="2" height="2" fill="currentColor" />
-      <rect x="22" y="35.7908" width="2" height="2" fill="currentColor" />
-      <rect x="22" y="33.7908" width="2" height="2" fill="currentColor" />
-      <rect x="20" y="33.7908" width="2" height="2" fill="currentColor" />
-      <rect x="18" y="33.7908" width="2" height="2" fill="currentColor" />
-      <rect x="16" y="35.7908" width="2" height="2" fill="currentColor" />
-      <rect x="14" y="35.7908" width="2" height="2" fill="currentColor" />
-      <rect x="12" y="37.7908" width="2" height="2" fill="currentColor" />
-      <rect x="8" y="37.7908" width="2" height="2" fill="currentColor" />
-      <rect x="10" y="37.7908" width="2" height="2" fill="currentColor" />
-      <rect x="14" y="37.7908" width="2" height="2" fill="currentColor" />
-      <rect x="6" y="35.7908" width="2" height="2" fill="currentColor" />
+      <rect
+        x="6"
+        y="31.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="5"
+        y="31.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="5"
+        y="33.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="4"
+        y="34.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="8"
+        y="35.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="16"
+        y="33.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="20"
+        y="31.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="24"
+        y="35.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="24"
+        y="37.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="26"
+        y="39.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="36"
+        y="35.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="34"
+        y="37.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="32"
+        y="39.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="38"
+        y="35.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="38"
+        y="37.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="32"
+        y="41.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="30"
+        y="41.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="34"
+        y="39.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="28"
+        y="41.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="24"
+        y="39.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="26"
+        y="41.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="22"
+        y="35.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="22"
+        y="33.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="20"
+        y="33.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="18"
+        y="33.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="16"
+        y="35.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="14"
+        y="35.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="12"
+        y="37.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="8"
+        y="37.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="10"
+        y="37.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="14"
+        y="37.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
+      <rect
+        x="6"
+        y="35.7908"
+        width="2"
+        height="2"
+        fill="currentColor"
+      />
     </svg>
-  );
-};
+  )
+}

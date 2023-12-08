@@ -1,4 +1,4 @@
-import { ERROR_TEXTS } from "@/constants";
+import { ERROR_TEXTS } from '@/constants'
 
 export const ErrorComponent = () => {
   return (
@@ -8,5 +8,5 @@ export const ErrorComponent = () => {
       <div>{ERROR_TEXTS.errorText}</div>
       <footer>{ERROR_TEXTS.returnText}</footer>
     </div>
-  );
-};
+  )
+}

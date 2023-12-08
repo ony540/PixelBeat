@@ -1,3 +1,5 @@
+
+import { Bill } from '@/pages'
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import { RouteObject } from "react-router-dom";
 import { ErrorComponent } from "@/components";
@@ -13,13 +15,13 @@ const generateRoute = (
     path: path,
     element: component,
     errorElement: <ErrorComponent />,
-    children: children,
-  };
-};
+    children: children
+  }
+}
 
 export const routes = [
   {
-    path: "/",
+    path: '/',
     element: <Layout />,
     errorElement: <ErrorComponent />,
     children: [
@@ -33,4 +35,4 @@ export const routes = [
   },
 ];
 
-export const router = createBrowserRouter(routes);
+export const router = createBrowserRouter(routes)

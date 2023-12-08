@@ -1,17 +1,36 @@
 export const Pop = () => {
-  const size = 65;
+  const size = 65
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 62 58"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
-      <rect x="52.8149" width="2.2963" height="2.2963" fill="currentColor" />
-      <rect x="55.1113" width="2.2963" height="2.2963" fill="currentColor" />
-      <rect x="57.4072" width="2.2963" height="2.2963" fill="currentColor" />
-      <rect x="59.7036" width="2.2963" height="2.2963" fill="currentColor" />
+      xmlns="http://www.w3.org/2000/svg">
+      <rect
+        x="52.8149"
+        width="2.2963"
+        height="2.2963"
+        fill="currentColor"
+      />
+      <rect
+        x="55.1113"
+        width="2.2963"
+        height="2.2963"
+        fill="currentColor"
+      />
+      <rect
+        x="57.4072"
+        width="2.2963"
+        height="2.2963"
+        fill="currentColor"
+      />
+      <rect
+        x="59.7036"
+        width="2.2963"
+        height="2.2963"
+        fill="currentColor"
+      />
       <rect
         x="59.7036"
         y="2.29639"
@@ -369,7 +388,12 @@ export const Pop = () => {
         height="2.2963"
         fill="currentColor"
       />
-      <rect y="34.4446" width="2.2963" height="2.2963" fill="currentColor" />
+      <rect
+        y="34.4446"
+        width="2.2963"
+        height="2.2963"
+        fill="currentColor"
+      />
       <rect
         x="2.29639"
         y="32.1482"
@@ -560,5 +584,5 @@ export const Pop = () => {
         fill="currentColor"
       />
     </svg>
-  );
-};
+  )
+}

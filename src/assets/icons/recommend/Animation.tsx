@@ -1,13 +1,12 @@
 export const Animation = () => {
-  const size = 60;
+  const size = 60
   return (
     <svg
       width={size}
       height={size}
       viewBox="0 0 48 48"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-    >
+      xmlns="http://www.w3.org/2000/svg">
       <path
         d="M41.1374 9.13501H38.8574V25.14H41.1374V9.13501Z"
         fill="currentColor"
@@ -73,5 +72,5 @@ export const Animation = () => {
         fill="currentColor"
       />
     </svg>
-  );
-};
+  )
+}
