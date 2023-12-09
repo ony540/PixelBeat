@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { RouteObject } from 'react-router-dom'
 import { ErrorComponent } from '@/components'
-import { Layout, Entry, Recommend, Bill } from '@/pages'
+import { Layout, Entry, Recommend, Bill, Home } from '@/pages'
 import { ReactNode } from 'react'
 
 const generateRoute = (
@@ -24,6 +24,7 @@ export const routes = [
     errorElement: <ErrorComponent />,
     children: [
       generateRoute('/', <Entry />),
+      generateRoute('/home', <Home />),
       generateRoute('/recommend', <Recommend />),
       generateRoute('/recommend/:id', <Recommend />),
       generateRoute('/bill', <Bill />)

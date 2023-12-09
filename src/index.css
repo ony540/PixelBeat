@@ -89,7 +89,7 @@
 /* Text Flow */
 .text-flow-on-hover {
   white-space: nowrap;
-  width: inherit;
+  /* width: inherit; */
 }
 
 .text-flow-on-hover:hover {

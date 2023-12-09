@@ -1,6 +1,6 @@
 import { create, useStore } from 'zustand'
 
-const MAX_LIMIT = 6
+const MAX_LIMIT = 5
 
 export interface RecommendStoreType {
   genre: string[]
@@ -9,9 +9,18 @@ export interface RecommendStoreType {
 }
 
 const initialStore: RecommendStoreType = {
-  genre: [],
-  artist: [],
-  track: []
+  // test
+  genre: ['r-n-b'],
+  artist: ['1Xyo4u8uXC1ZmMpatF05PJ'],
+  track: [
+    '7MXVkk9YMctZqd1Srtv4MB',
+    '7CyPwkp0oE8Ro9Dd5CUDjW',
+    '2LBqCSwhJGcFQeTHMVGwy3'
+  ]
+  // track: ['7MXVkk9YMctZqd1Srtv4MB']
+  // genre: [],
+  // artist: [],
+  // track: [],
 }
 
 const updateSelection = (

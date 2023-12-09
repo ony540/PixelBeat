@@ -9,6 +9,7 @@ import {
 } from 'chart.js'
 import { MAX_BPM, MIN_BPM } from '@/constants'
 import { useEffect, useRef } from 'react'
+import { BillChartOption } from '.'
 
 ChartJS.register(
   RadialLinearScale,
@@ -19,87 +20,49 @@ ChartJS.register(
   Legend
 )
 
-// 해당 순서로 데이터 불러오기
-const trackData = {
-  acousticness: 0.00242,
-  energy: 0.842,
-  valence: 0.428,
-  danceability: 0.585,
-  tempo: 118.211
-}
+export const BillGraph = ({ averageAnalysis }: { averageAnalysis?: any }) => {
+  if (!averageAnalysis) {
+    return <p>Loading...</p>
+  }
 
-// tempo 값을 BPM 범위로 정규화
-const normalizedTempo = (trackData.tempo - MIN_BPM) / (MAX_BPM - MIN_BPM)
-
-export const data = {
-  labels: Object.keys(trackData),
-  datasets: [
-    {
-      data: Object.values(trackData).map((value, index) =>
-        index === Object.keys(trackData).indexOf('tempo')
-          ? normalizedTempo
-          : value
-      ),
-      backgroundColor: 'rgba(87, 255, 87, 0.85)',
-      borderColor: '#57FF57',
-      borderWidth: 1,
-      strokeColor: '#000',
-      pointRadius: 0
-    }
-  ]
-}
-
-const options = {
-  plugins: {
-    legend: {
-      display: false
-    }
-  },
-  legend: {
-    pointLabels: {
-      fontColor: 'white'
-    }
-  },
-  scales: {
-    r: {
-      grid: {
-        color: '#000'
-      },
-      angleLines: {
-        color: '#000'
-      },
-      ticks: {
-        display: false,
-        count: 4
-      },
-      pointLabels: {
-        font: {
-          size: 16,
-          family:
-            'NeoDunggeunmoPro-Regular, DungGeunMo, AppleSDGothicNeo, sans-serif'
-        },
-        color: '#000'
-      }
-    }
-  },
-  responsive: true,
-  elements: {}
-}
-
-export const BillGraph = () => {
   const chartRef = useRef<HTMLCanvasElement | null>(null)
 
   useEffect(() => {
-    if (chartRef.current) {
-      const ctx: CanvasRenderingContext2D = chartRef.current.getContext('2d')!
+    if (!chartRef.current || !averageAnalysis) return
 
-      new ChartJS(ctx, {
-        type: 'radar',
-        data: data,
-        options: options
-      })
+    /** tempo 값을 BPM 범위로 정규화 */
+    const normalizedTempo =
+      (averageAnalysis.tempo - MIN_BPM) / (MAX_BPM - MIN_BPM)
+
+    const data = {
+      labels: Object.keys(averageAnalysis),
+      datasets: [
+        {
+          data: Object.values(averageAnalysis).map((value, index) =>
+            index === Object.keys(averageAnalysis).indexOf('tempo')
+              ? normalizedTempo
+              : value
+          ),
+          backgroundColor: 'rgba(87, 255, 87, 0.85)',
+          borderColor: '#57FF57',
+          borderWidth: 1,
+          strokeColor: '#000',
+          pointRadius: 0
+        }
+      ]
     }
-  }, [chartRef, data, options])
+
+    const ctx: CanvasRenderingContext2D = chartRef.current.getContext('2d')!
+    const chartInstance = new ChartJS(ctx, {
+      type: 'radar',
+      data: data,
+      options: BillChartOption
+    })
+
+    return () => {
+      chartInstance.destroy()
+    }
+  }, [averageAnalysis])
 
   return (
     <canvas
