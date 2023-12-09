@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 
 export const Entry = () => {
   const navigate = useNavigate()
+
   const moveToRecomend = () => {
     navigate('/recommend/genre')
   }
