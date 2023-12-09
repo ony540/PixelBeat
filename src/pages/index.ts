@@ -9,4 +9,4 @@ export * from "pages/Layout";
 export * from "pages/Recommend";
 export * from "pages/Login";
 export * from "pages/SignUp";
-export * from "@/pages/MakeProfile";
+export * from "pages/MakeProfile";

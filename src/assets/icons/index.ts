@@ -8,4 +8,3 @@ export * from "./EmailBtn";
 export * from "./SpotifyHover";
 export * from "./Eye";
 export * from "./CloseEye";
-export * from "./Next";

@@ -8,6 +8,9 @@ export const Login = () => {
   const signUp = () => {
     navigate("/signup");
   };
+  const emaillogin = () => {
+    navigate("/emaillogin");
+  };
 
   return (
     <>
@@ -25,7 +28,7 @@ export const Login = () => {
         </div>
       </div>
       <div className="flex justify-center items-center pb-10">
-        <button>
+        <button onClick={emaillogin}>
           <EmailBtn />
         </button>
       </div>

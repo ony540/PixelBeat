@@ -122,3 +122,25 @@
   bottom: -15px;
   transform: rotate(180deg);
 }
+
+.profile {
+  display: block;
+  content: '';
+  position: relative;
+  background: url('./assets/imgs/Profile.png') center / contain;
+  width: 100%;
+  height: 116px;
+  background-repeat: no-repeat;
+  margin-top: 28px;
+}
+.select {
+  background: url('./assets/imgs/SelectImg.png') center / contain;
+  width: 100%;
+  height: 36px;
+  display: block;
+  content: '';
+  position: absolute;
+  background-repeat: no-repeat;
+  top: 100px;
+  left: 60px;
+}

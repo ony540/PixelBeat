@@ -50,9 +50,7 @@ export default function InputField({
         placeholder={placeholder}
         defaultValue={defaultValue}
         onChange={onChange}
-        className={`border-b-2 w-[520px] bg-mainBlack p-4 hover:border-mainGreen focus:border-mainGreen ${
-          isValid ? "focus:border-mainGreen" : "focus:border-mainRed"
-        }`}
+        className={`border-b-2 w-[520px] bg-mainBlack p-4 focus:border-mainGreen`}
       />
       {type === "password" && (
         <div

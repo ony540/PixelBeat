@@ -5,6 +5,7 @@ import { RouteObject } from "react-router-dom";
 import { ErrorComponent } from "@/components";
 import { Layout, Entry, Recommend, Login, SignUp, MakeProfile } from "@/pages";
 import { ReactNode } from "react";
+import { EmailLogin } from './EmailLogin';
 
 const generateRoute = (
   path: string,
@@ -30,7 +31,8 @@ export const routes = [
       generateRoute("/recommend/:id", <Recommend />),
       generateRoute("/login",<Login />),
       generateRoute("/signup", <SignUp />),
-      generateRoute("/makeprofile", <MakeProfile />)
+      generateRoute("/makeprofile", <MakeProfile />),
+      generateRoute("/emaillogin", <EmailLogin />)
     ],
   },
 ];
