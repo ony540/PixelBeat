@@ -1,50 +1,72 @@
 import { useNavigate } from 'react-router-dom'
-import { CirclePlayButton, Clock } from '@/assets'
-import { BillGraph, StandardButton } from '@/components'
+import { Clock } from '@/assets'
+import { BillGraph, BillItem, StandardButton } from '@/components'
 import barcodeImg from '@/assets/imgs/barcode.png'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
-import { msToMinutesAndSeconds, shareData } from '@/utils'
+import { getRandomArray, shareData } from '@/utils'
+import { useRecommendStore } from '@/zustand'
+import { useEffect, useState } from 'react'
+import { getRecommendations, getTracksAudioFeatures } from '@/api/recommendApis'
 
-const data = {
-  artists: [
-    {
-      name: '뉴진스',
-      popularity: 0,
-      type: 'artist',
-      uri: 'string'
-    }
-  ],
-  available_markets: ['string'],
-  disc_number: 0,
-  duration_ms: 0,
-  explicit: false,
-  external_ids: {
-    isrc: 'string',
-    ean: 'string',
-    upc: 'string'
-  },
-  external_urls: {
-    spotify: 'string'
-  },
-  href: 'string',
-  id: 'string',
-  is_playable: false,
-  linked_from: {},
-  restrictions: {
-    reason: 'string'
-  },
-  name: '노래제목한글',
-  popularity: 0,
-  preview_url:
-    'https://p.scdn.co/mp3-preview/dab062e2cc708a2680ce84953a3581c5a679a230?cid=dd3b7e313f5148db8e93b498352200a7',
-  track_number: 0,
-  type: 'track',
-  uri: 'string',
-  is_local: false
+interface TrackAnalysis {
+  acousticness: number
+  energy: number
+  valence: number
+  danceability: number
+  tempo: number
+}
+
+const initialAnalysisObject: TrackAnalysis = {
+  acousticness: 0,
+  energy: 0,
+  valence: 0,
+  danceability: 0,
+  tempo: 0
 }
 
 export const Bill = () => {
   const navigate = useNavigate()
+  const { initialStore }: any = useRecommendStore()
+  const { artist, genre, track } = initialStore
+  const [responseTracks, setResponseTracks] = useState<any>([])
+  const [analysisList, setAnalysis] = useState<any>([])
+  const numberOfObject = analysisList.length
+
+  const reduceAnalysisList: TrackAnalysis = analysisList.reduce(
+    (acc: TrackAnalysis, cur: TrackAnalysis) => {
+      for (const key in acc) {
+        acc[key] += cur[key]
+      }
+      return acc
+    },
+    {
+      ...initialAnalysisObject
+    }
+  )
+
+  const averageAnalysis = Object.fromEntries(
+    Object.entries(reduceAnalysisList).map(([key, value]) => [
+      key,
+      value / numberOfObject
+    ])
+  )
+
+  useEffect(() => {
+    const fetchresponseTracks = async () => {
+      const getTrackAnalysis = await getTracksAudioFeatures(track)
+
+      const result = await getRecommendations(
+        getRandomArray(artist),
+        getRandomArray(genre),
+        track[0]
+      )
+
+      setResponseTracks(result)
+      setAnalysis(getTrackAnalysis)
+    }
+
+    fetchresponseTracks()
+  }, [])
 
   const handleClickToLoginButton = () => {
     navigate('/login')
@@ -70,8 +92,9 @@ export const Bill = () => {
             className="my-0 ml-[14%] w-260 mt-[-20px] mb-[-18px] bg-no-repeat bg-[52.7%_54%] bg-[length:140px]"
             style={{ backgroundImage: `url(${graphBgImg})` }}>
             {/* 데이터 내려주기 */}
-            <BillGraph />
+            <BillGraph averageAnalysis={averageAnalysis} />
           </div>
+
           <div className="flex justify-between items-center mx-16 text-16 border-y-2 border-dashed border-mainBlack h-34 ">
             <span>
               <span className="ml-12 mr-26">#</span>
@@ -82,42 +105,33 @@ export const Bill = () => {
               <Clock />
             </i>
           </div>
-          <div className="my-6">
-            {/* 데이터 맵돌릴 노래목록 */}
-            <div className="group mx-16 h-48 text-left text-16 flex items-center justify-between hover:bg-bgGray hover:cursor-pointer">
-              <div className="flex items-center">
-                <span className="ml-8 mr-22">{String(1).padStart(2, '0')}</span>
-                <div className="leading-[1.2] inline-block">
-                  <h3>{data.name}</h3>
-                  <p className="self-end text-14">{data.artists[0].name}</p>
-                </div>
-              </div>
 
-              <div className="pr-3 flex">
-                {data.preview_url && (
-                  <button
-                    className="hidden group-hover:block mr-18"
-                    onClick={() => handleClickPreviewPlayButton(data)}>
-                    <CirclePlayButton />
-                  </button>
-                )}
+          <section className="data-section">
+            <div className="my-6">
+              {responseTracks &&
+                responseTracks.map((tracks, idx) => (
+                  <BillItem
+                    key={tracks.id}
+                    id={tracks.id}
+                    trackNumber={idx}
+                    tracks={tracks}
+                    onClick={handleClickPreviewPlayButton}
+                  />
+                ))}
+            </div>
+          </section>
 
-                <p className="mt-4">
-                  {msToMinutesAndSeconds(data.duration_ms)}
-                </p>
+          <section className="bill-bottom-section">
+            <div className=" mx-16 py-8 border-y-2 border-dashed border-mainBlack text-14">
+              <time className="block w-full text-left">
+                생성날짜 및 시간(수정해야함)
+              </time>
+              <div className="flex justify-between w-full">
+                <p>www.pixelBeat.com</p>
+                <p>provided by spotify</p>
               </div>
             </div>
-          </div>
-
-          <div className=" mx-16 py-8 border-y-2 border-dashed border-mainBlack text-14">
-            <time className="block w-full text-left">
-              생성날짜 및 시간(수정해야함)
-            </time>
-            <div className="flex justify-between w-full">
-              <p>www.pixelBeat.com</p>
-              <p>provided by spotify</p>
-            </div>
-          </div>
+          </section>
           <img
             loading="lazy"
             src={barcodeImg}
@@ -125,18 +139,21 @@ export const Bill = () => {
             className="mx-auto mt-24 mb-5"
           />
         </div>
-        <div className="w-356 mx-auto  text-20">
-          <StandardButton
-            text={'다른 영수증 구경하기'}
-            onClick={handleClickToLoginButton}
-          />
-          <StandardButton
-            text={'공유하기'}
-            onClick={handleClickShareButton}
-            fillColor="#FFFF57"
-            propsClass="mx-auto mt-12 mb-42"
-          />
-        </div>
+
+        <section className="button-section">
+          <div className="w-356 mx-auto  text-20">
+            <StandardButton
+              text={'다른 영수증 구경하기'}
+              onClick={handleClickToLoginButton}
+            />
+            <StandardButton
+              text={'공유하기'}
+              onClick={handleClickShareButton}
+              fillColor="#FFFF57"
+              propsClass="mx-auto mt-12 mb-42"
+            />
+          </div>
+        </section>
       </>
     )
   }

@@ -1,11 +1,9 @@
-
-import { Bill } from '@/pages'
 import { Navigate, createBrowserRouter } from "react-router-dom";
-import { RouteObject } from "react-router-dom";
-import { ErrorComponent } from "@/components";
-import { Layout, Entry, Recommend, Login, SignUp, MakeProfile } from "@/pages";
 import { ReactNode } from "react";
 import { EmailLogin } from './EmailLogin';
+import { RouteObject } from 'react-router-dom'
+import { ErrorComponent } from '@/components'
+import { Layout, Entry, Recommend, Bill, Home, Login, SignUp, MakeProfile } from '@/pages'
 
 const generateRoute = (
   path: string,
@@ -32,7 +30,9 @@ export const routes = [
       generateRoute("/login",<Login />),
       generateRoute("/signup", <SignUp />),
       generateRoute("/makeprofile", <MakeProfile />),
-      generateRoute("/emaillogin", <EmailLogin />)
+      generateRoute("/emaillogin", <EmailLogin />),
+      generateRoute('/home', <Home />),
+      generateRoute('/bill', <Bill />),
     ],
   },
 ];

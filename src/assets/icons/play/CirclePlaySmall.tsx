@@ -1,4 +1,4 @@
-export const CirclePlayButton = () => {
+export const CirclePlaySmall = () => {
   return (
     <svg
       width="18"
