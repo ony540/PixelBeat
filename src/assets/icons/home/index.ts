@@ -1,0 +1,5 @@
+export * from './HomeIcon'
+export * from './MyPlaylistIcon'
+export * from './ProfileIcon'
+export * from './SearchIcon'
+export * from './MenuIcon'

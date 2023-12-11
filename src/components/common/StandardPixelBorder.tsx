@@ -1,9 +1,11 @@
 export const StandardPixelBorder = ({
   propsClass,
-  onClick
+  onClick,
+  isHeight
 }: {
   propsClass?: string
   onClick?: any
+  isHeight?: string | number
 }) => {
   return (
     <div
@@ -11,7 +13,7 @@ export const StandardPixelBorder = ({
       onClick={onClick}>
       <svg
         width="100%"
-        height="80"
+        height={`${isHeight ? isHeight : '80'} `}
         viewBox="0 0 350 71"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

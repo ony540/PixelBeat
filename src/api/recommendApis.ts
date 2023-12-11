@@ -65,3 +65,18 @@ export const getTracksAudioFeatures = async (tracksId: string) => {
     console.error(error)
   }
 }
+
+export const getPlaylistTop50 = async (playlist_id: string) => {
+  try {
+    const response = await baseInstance(`playlists/${playlist_id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('non-member-token')}`
+      }
+    })
+    const data = response.data
+    const trackList = data.tracks.items
+    return { trackList }
+  } catch (error) {
+    console.error(error)
+  }
+}

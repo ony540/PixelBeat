@@ -12,8 +12,7 @@ export const GenreSelector = () => {
     <>
       <h1 className="text-40 grid place-items-center">좋아하는 음악 장르</h1>
       <h2 className="text-20 grid place-items-center mb-20">(최대 5개)</h2>
-
-      <div className="genre-selector-container text-xl">
+      <div className="genre-selector-container">
         {FAVORITE_GENRE_TEXT.map(item => (
           <GenreItem
             key={item}

@@ -2,7 +2,7 @@ import { Outlet } from 'react-router-dom'
 
 export const Layout = () => {
   return (
-    <div className="h-screen overflow-y-auto min-w-[390px] max-w-[720px] m-0 mx-auto border-[5px] border-mainGreen">
+    <div className="layout-screen-width outline outline-mainBlue">
       <Outlet />
     </div>
   )
