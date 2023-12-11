@@ -2,7 +2,7 @@ import { SignUpForm } from "@/components/SignUp";
 import React from "react";
 import { useNavigate } from "react-router-dom";
 
-export const SignUp = () => {
+export const SignUpEmail = () => {
   const navigate = useNavigate();
   const Login = () => {
     navigate("/login");

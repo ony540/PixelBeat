@@ -1,10 +1,10 @@
-import { MusicRepo } from '@/components'
+import { MusicBill } from '@/components'
 import React from 'react'
 
-export const MyMusicRepo = () => {
+export const MyMusicBill = () => {
   return (
     <div className='flex justify-center'>
-      <MusicRepo/>
+      <MusicBill/>
     </div>
   )
 }

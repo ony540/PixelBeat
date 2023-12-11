@@ -1,7 +1,7 @@
 import { ProfileForm } from '@/components/Profile'
 import React from 'react'
 
-export const MakeProfile = () => {
+export const ProfileEdit = () => {
   return (
     <>
       <h1 className="text-center text-24 font-normal pt-52">프로필 설정</h1>

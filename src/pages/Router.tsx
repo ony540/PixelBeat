@@ -1,9 +1,8 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
-import { EmailLogin } from './EmailLogin';
 import { RouteObject } from 'react-router-dom'
 import { ErrorComponent } from '@/components'
 import { ReactNode } from 'react'
-import { Layout, Entry, Recommend, Bill, Home, Login, SignUp, MakeProfile, MyMusic, MyMusicRepo, Search } from '@/pages'
+import { Layout, Entry, Recommend, Bill, Home, Login, LoginEmail, SignUpEmail, ProfileEdit, MyMusicMain, MyMusicBill, MyMusicBillId, Search } from '@/pages'
 
 const generateRoute = (
   path: string,
@@ -27,17 +26,18 @@ export const routes = [
       generateRoute("/", <Entry />),
       generateRoute("/recommend", <Recommend />),
       generateRoute("/recommend/:id", <Recommend />),
-      generateRoute("/login",<Login />),
-      generateRoute("/signup", <SignUp />),
-      generateRoute("/makeprofile", <MakeProfile />),
-      generateRoute("/emaillogin", <EmailLogin />),
+      generateRoute("/login", <Login />),
+      generateRoute("/signup/email", <SignUpEmail />),
+      generateRoute("/profile/edit", <ProfileEdit />),
+      generateRoute("/login/email", <LoginEmail />),
       generateRoute('/home', <Home />),
       generateRoute('/recommend', <Recommend />),
       generateRoute('/recommend/:id', <Recommend />),
       generateRoute('/search', <Search />),
       generateRoute('/bill/:id', <Bill />),
-      generateRoute('/mymusic', <MyMusic />),
-      generateRoute('/mymusicrepo', <MyMusicRepo />),
+      generateRoute('/mymusic/main', <MyMusicMain />),
+      generateRoute('/mymusic/bill/:billid', <MyMusicBillId />),
+      generateRoute('/mymusic/bill', <MyMusicBill />),
     ]
   }
 ]

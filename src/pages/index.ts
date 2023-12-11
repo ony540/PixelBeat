@@ -8,9 +8,11 @@ export * from "pages/Entry";
 export * from "pages/Layout";
 export * from "pages/Recommend";
 export * from "pages/Login";
-export * from "pages/SignUp";
-export * from "pages/MakeProfile";
+export * from "pages/SignUpEmail";
+export * from "@/pages/ProfileEdit";
 export * from 'pages/Home'
-export * from 'pages/MyMusic'
-export * from 'pages/MyMusicRepo'
+export * from '@/pages/MyMusicMain'
+export * from '@/pages/MyMusicBillId'
 export * from 'pages/Search'
+export * from 'pages/LoginEmail'
+export * from 'pages/MyMusicBill'

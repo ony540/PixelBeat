@@ -1,7 +1,7 @@
 import { SignInForm } from '@/components'
 import React from 'react'
 
-export const EmailLogin = () => {
+export const LoginEmail = () => {
   return (
     <>
     <div className="my-56 text-center text-24">로그인</div>
