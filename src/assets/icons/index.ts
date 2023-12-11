@@ -1,6 +1,6 @@
 export * from './recommend'
+export * from './play'
 export * from './PixelBorder'
 export * from './Clock'
-export * from './play'
 export * from './home'
 export * from './Xbutton'

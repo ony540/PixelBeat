@@ -27,8 +27,8 @@ export const routes = [
       generateRoute('/home', <Home />),
       generateRoute('/recommend', <Recommend />),
       generateRoute('/recommend/:id', <Recommend />),
-      generateRoute('/bill', <Bill />),
       generateRoute('/search', <Search />),
+      generateRoute('/bill/:id', <Bill />)
     ]
   }
 ]

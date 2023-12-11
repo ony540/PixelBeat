@@ -1,27 +1,41 @@
 import { getArtistId } from '@/api'
 import { getArtistInfo } from '@/api/recommendApis'
-import { recommendStore } from '@/zustand'
+import { useRecommendStore } from '@/zustand'
 import { useEffect, useState } from 'react'
 import { ArtistItem } from '..'
+import { useQuery } from '@tanstack/react-query'
 
 export const ArtistSelector = () => {
-  const { initialStore }: any = recommendStore()
-  const genreStore: string[] = initialStore.genre
-  const selectArtist = recommendStore((state: any) => state.selectArtist)
-  const artistIdStore: string[] = initialStore.artist
-  const [artists, setArtists] = useState<any[]>([])
-
+  const selectArtist = useRecommendStore(state => state.selectArtist)
+  const initialStore = useRecommendStore(state => state.initialStore)
+  const genreStore = initialStore.genre
+  const artistIdStore = initialStore.artist
+  const [selectedArtistIds, setSelectedArtistIds] = useState<any>(null)
   const isArtistSelected = (artistId: string) =>
     artistIdStore.includes(artistId)
 
-  useEffect(() => {
-    const getArtistIdBySupabase = async (params: string[]) => {
-      const artistIds = await getArtistId(params)
+  //Supabase로부터 아티스트 ID 가져오기
+  const {
+    data: artistIdsfromSupabase,
+    isLoading: isartistIdsfromSupabaseLoading
+  } = useQuery({
+    queryKey: ['artistIdsfromSupabase', genreStore],
+    queryFn: () => getArtistId(genreStore),
+    enabled: !!genreStore
+  })
 
-      if (params.length < 3) {
+  //선택된 아티스트 ID로 Spotify 정보 가져오기
+  const { data: artistInfoBySpotify } = useQuery({
+    queryKey: ['detailData', selectedArtistIds],
+    queryFn: () => getArtistInfo(selectedArtistIds),
+    enabled: !!selectedArtistIds
+  })
+
+  useEffect(() => {
+    const getSelectedArtistIds = artistIds => {
+      if (genreStore.length < 3) {
         return artistIds?.map(item => item.artist_id) || []
       }
-
       const artistsByGenre: { [key: string]: string[] } = {}
       artistIds?.forEach(item => {
         const genre = item.genre
@@ -33,25 +47,27 @@ export const ArtistSelector = () => {
       Object.values(artistsByGenre).forEach(artists => {
         selectedArtists.push(...artists.slice(0, 6))
       })
-
       return selectedArtists
     }
-
-    const fetchData = async () => {
-      const selectedArtistIds = await getArtistIdBySupabase(genreStore)
-      const getArtistInfoBySpotify = await getArtistInfo(selectedArtistIds)
-      setArtists(getArtistInfoBySpotify)
+    if (artistIdsfromSupabase) {
+      const selectedArtist = getSelectedArtistIds(artistIdsfromSupabase)
+      setSelectedArtistIds(selectedArtist)
     }
+  }, [artistIdsfromSupabase])
 
-    fetchData()
-  }, [genreStore])
+  if (isartistIdsfromSupabaseLoading || !artistInfoBySpotify)
+    return <div className="mx-auto my-0 w-[330px]">loading...</div>
 
   return (
     <div>
-      <h1 className="text-40 grid place-items-center">좋아하는 가수</h1>
-      <h2 className="text-20 grid place-items-center mb-20">(최대 5개)</h2>
-      {artists &&
-        artists.map(artist => (
+      <h1 className="text-22 desktop:text-40 mt-42 grid place-items-center">
+        좋아하는 가수
+      </h1>
+      <h2 className="text-14 desktop:text-20 grid place-items-center mb-20">
+        (최대 5개)
+      </h2>
+      {artistInfoBySpotify &&
+        artistInfoBySpotify.map(artist => (
           <ArtistItem
             key={artist.id}
             artist={artist}
@@ -59,11 +75,6 @@ export const ArtistSelector = () => {
             onClick={selectArtist}
           />
         ))}
-      {!artists && (
-        <div className="mx-auto my-0 w-[330px]">
-          먼저 장르를 선택하고 오세요...
-        </div>
-      )}
     </div>
   )
 }

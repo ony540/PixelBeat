@@ -1,72 +1,34 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Clock } from '@/assets'
 import { BillGraph, BillItem, StandardButton } from '@/components'
 import barcodeImg from '@/assets/imgs/barcode.png'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
-import { getRandomArray, shareData } from '@/utils'
-import { useRecommendStore } from '@/zustand'
-import { useEffect, useState } from 'react'
-import { getRecommendations, getTracksAudioFeatures } from '@/api/recommendApis'
-
-interface TrackAnalysis {
-  acousticness: number
-  energy: number
-  valence: number
-  danceability: number
-  tempo: number
-}
-
-const initialAnalysisObject: TrackAnalysis = {
-  acousticness: 0,
-  energy: 0,
-  valence: 0,
-  danceability: 0,
-  tempo: 0
-}
+import { formatDateTime, shareData } from '@/utils'
+import { useNowPlayStore } from '@/zustand'
+import { Track, TrackList } from '@/types'
+import { useQuery } from '@tanstack/react-query'
+import { getBill } from '@/api'
+import { useEffect } from 'react'
 
 export const Bill = () => {
+  const { id: currentPath } = useParams<string>()
   const navigate = useNavigate()
-  const { initialStore }: any = useRecommendStore()
-  const { artist, genre, track } = initialStore
-  const [responseTracks, setResponseTracks] = useState<any>([])
-  const [analysisList, setAnalysis] = useState<any>([])
-  const numberOfObject = analysisList.length
+  const setNowPlayList = useNowPlayStore(state => state.setNowPlayList)
+  const currentTrack = useNowPlayStore(state => state.currentTrack)
+  const setCurrentTrack = useNowPlayStore(state => state.setCurrentTrack)
 
-  const reduceAnalysisList: TrackAnalysis = analysisList.reduce(
-    (acc: TrackAnalysis, cur: TrackAnalysis) => {
-      for (const key in acc) {
-        acc[key] += cur[key]
-      }
-      return acc
-    },
-    {
-      ...initialAnalysisObject
-    }
-  )
-
-  const averageAnalysis = Object.fromEntries(
-    Object.entries(reduceAnalysisList).map(([key, value]) => [
-      key,
-      value / numberOfObject
-    ])
-  )
+  const { data, isLoading } = useQuery<TrackList | Error, Error, TrackList>({
+    queryKey: ['bill', currentPath],
+    queryFn: () => getBill(currentPath!),
+    enabled: !!currentPath
+  })
 
   useEffect(() => {
-    const fetchresponseTracks = async () => {
-      const getTrackAnalysis = await getTracksAudioFeatures(track)
-
-      const result = await getRecommendations(
-        getRandomArray(artist),
-        getRandomArray(genre),
-        track[0]
-      )
-
-      setResponseTracks(result)
-      setAnalysis(getTrackAnalysis)
+    if (data) {
+      setNowPlayList(data.tracks.filter(track => track.preview_url))
     }
+  }, [data])
 
-    fetchresponseTracks()
-  }, [])
 
   const handleClickToLoginButton = () => {
     navigate('/login')
@@ -89,10 +51,10 @@ export const Bill = () => {
         <div className="bg-white w-354 text-mainBlack text-center mx-auto mt-42 mb-50 bill-background-side">
           <h1 className="text-52 leading-none">PIXEL BEAT</h1>
           <div
-            className="my-0 ml-[14%] w-260 mt-[-20px] mb-[-18px] bg-no-repeat bg-[52.7%_54%] bg-[length:140px]"
+            className="my-0 mx-auto w-270 mt-[-20px] mb-[-18px] bg-no-repeat bg-[55.6%_54%] bg-[length:136px]"
             style={{ backgroundImage: `url(${graphBgImg})` }}>
             {/* 데이터 내려주기 */}
-            <BillGraph averageAnalysis={averageAnalysis} />
+            <BillGraph analysisList={data?.analysis} />
           </div>
 
           <div className="flex justify-between items-center mx-16 text-16 border-y-2 border-dashed border-mainBlack h-34 ">
@@ -106,25 +68,26 @@ export const Bill = () => {
             </i>
           </div>
 
-          <section className="data-section">
-            <div className="my-6">
-              {responseTracks &&
-                responseTracks.map((tracks, idx) => (
+          <section className="data-section my-6">
+            <ul>
+              {data!.tracks &&
+                data!.tracks.map((track, idx) => (
                   <BillItem
-                    key={tracks.id}
-                    id={tracks.id}
+                    key={track.id}
                     trackNumber={idx}
-                    tracks={tracks}
-                    onClick={handleClickPreviewPlayButton}
+                    track={track}
+                    onClickPlayButton={() =>
+                      handleClickPreviewPlayButton(track)
+                    }
                   />
                 ))}
-            </div>
+            </ul>
           </section>
 
           <section className="bill-bottom-section">
             <div className=" mx-16 py-8 border-y-2 border-dashed border-mainBlack text-14">
               <time className="block w-full text-left">
-                생성날짜 및 시간(수정해야함)
+                {formatDateTime(data?.created_at!)}
               </time>
               <div className="flex justify-between w-full">
                 <p>www.pixelBeat.com</p>
@@ -140,19 +103,17 @@ export const Bill = () => {
           />
         </div>
 
-        <section className="button-section">
-          <div className="w-356 mx-auto  text-20">
-            <StandardButton
-              text={'다른 영수증 구경하기'}
-              onClick={handleClickToLoginButton}
-            />
-            <StandardButton
-              text={'공유하기'}
-              onClick={handleClickShareButton}
-              fillColor="#FFFF57"
-              propsClass="mx-auto mt-12 mb-42"
-            />
-          </div>
+        <section className="button-section w-356 mx-auto text-20">
+          <StandardButton
+            text={'다른 영수증 구경하기'}
+            onClick={handleClickToLoginButton}
+          />
+          <StandardButton
+            text={'공유하기'}
+            onClick={handleClickShareButton}
+            fillColor="#FFFF57"
+            propsClass="mx-auto mt-12 mb-42"
+          />
         </section>
       </>
     )

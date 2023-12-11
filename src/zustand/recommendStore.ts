@@ -1,4 +1,4 @@
-import { create, useStore } from 'zustand'
+import { create } from 'zustand'
 
 const MAX_LIMIT = 5
 
@@ -9,17 +9,16 @@ export interface RecommendStoreType {
 }
 
 const initialStore: RecommendStoreType = {
-  // test
-  genre: ['r-n-b'],
-  artist: ['1Xyo4u8uXC1ZmMpatF05PJ'],
-  track: [
-    '7MXVkk9YMctZqd1Srtv4MB',
-    '7CyPwkp0oE8Ro9Dd5CUDjW',
-    '2LBqCSwhJGcFQeTHMVGwy3'
-  ]
-  // genre: [],
-  // artist: [],
-  // track: [],
+  genre: [],
+  artist: [],
+  track: []
+}
+
+type RecommendStore = {
+  initialStore: RecommendStoreType
+  selectGenre: (selectedGenre: string) => void
+  selectArtist: (selectedArtistId: string) => void
+  selectTrack: (selectedTrackId: string) => void
 }
 
 const updateSelection = (
@@ -34,7 +33,7 @@ const updateSelection = (
   return updatedSelection
 }
 
-export const recommendStore = create(set => ({
+export const useRecommendStore = create<RecommendStore>(set => ({
   initialStore,
   selectGenre: (selectedGenre: string) =>
     set(state => ({
@@ -70,5 +69,3 @@ export const recommendStore = create(set => ({
       }
     }))
 }))
-
-export const useRecommendStore = () => useStore(recommendStore)
