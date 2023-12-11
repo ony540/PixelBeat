@@ -2,16 +2,16 @@ import {
   Banner,
   Header,
   NavBar,
-  SimilarUser,
+  SimilarUserList,
   TopTrackList
 } from '@/components/home'
 
 export const Home = () => {
   return (
-    <div>
+    <div className="relative h-screen overflow-y-auto">
       <Header />
       <Banner />
-      <SimilarUser />
+      <SimilarUserList />
       <TopTrackList />
       <NavBar />
     </div>

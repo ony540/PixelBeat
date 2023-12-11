@@ -46,10 +46,11 @@ export const Recommend = () => {
 
   return (
     <div>
+      <h1>{window.innerWidth.toString()}</h1>
       {currentPath === 'genre' && <GenreSelector />}
       {currentPath === 'artist' && <ArtistSelector />}
       {currentPath === 'track' && <TrackSelector />}
-      <div className="sticky bottom-0 mx-auto my-0 text-30 standard-button-container ">
+      <div className="sticky bottom-0 mx-auto my-0 text-30 px-10 bg-black">
         <StandardButton
           height={70}
           text={renderButtonText()}

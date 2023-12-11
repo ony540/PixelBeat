@@ -31,8 +31,9 @@ export default {
         bgGray: '#E6E6E6',
         mainGray: '#C3C3C3'
       },
-      screen: {
-        customSc: { min: '390px', max: '720px' }
+      screens: {
+        mobile: '390px',
+        desktop: '720px'
       }
     }
   },

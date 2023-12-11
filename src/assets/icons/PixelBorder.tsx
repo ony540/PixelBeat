@@ -1,7 +1,7 @@
 export const PixelBorder = () => {
   return (
     <svg
-      className=" relative"
+      className="relative"
       viewBox="0 0 110 132"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">

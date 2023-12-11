@@ -17,7 +17,6 @@ const initialStore: RecommendStoreType = {
     '7CyPwkp0oE8Ro9Dd5CUDjW',
     '2LBqCSwhJGcFQeTHMVGwy3'
   ]
-  // track: ['7MXVkk9YMctZqd1Srtv4MB']
   // genre: [],
   // artist: [],
   // track: [],

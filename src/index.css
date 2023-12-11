@@ -42,42 +42,70 @@
   }
 }
 
-/* CUSTOM */
-.genre-selector-container {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  row-gap: 10px;
-  column-gap: 16px;
-  padding: 0 50px 20px;
+@layer components {
+  .layout-screen-width {
+    @apply mx-auto h-screen overflow-y-auto;
 
-  @media screen and (min-width: 390px) and (max-width: 720px) {
-    padding: 0 30px 20px;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    row-gap: 16px;
-    column-gap: 12px;
+    @screen mobile {
+      max-width: theme('screens.mobile');
+    }
+
+    @screen desktop {
+      max-width: theme('screens.desktop');
+    }
   }
-}
 
-.icon-absolute-top {
-  top: 30%;
-  @media screen and (min-width: 390px) and (max-width: 720px) {
-    top: 20%;
+  .genre-selector-container {
+    @apply grid grid-cols-3 gap-x-10 gap-y-16 p-20;
   }
-}
 
-.text-absolute-bottom {
-  bottom: 20%;
-  @media screen and (min-width: 390px) and (max-width: 720px) {
-    bottom: 5%;
+  .genre-icon-size {
+    @apply w-60 h-60;
+
+    @screen mobile {
+      width: 60px;
+      height: 60px;
+    }
+
+    @screen desktop {
+      width: 110px;
+      height: 110px;
+    }
   }
-}
 
-.standard-button-container {
-  background-color: theme(colors.mainBlack);
-  width: calc(100% - 70px);
-  @media screen and (min-width: 390px) and (max-width: 720px) {
-    width: 100%;
-    padding: 0 20px;
+  .genre-icon-position {
+    @apply absolute left-[50%] translate-x-[-50%];
+
+    @screen mobile {
+      position: absolute;
+      top: 30px;
+    }
+
+    @screen desktop {
+      position: absolute;
+      top: 50px;
+    }
+  }
+
+  .genre-text-size {
+    @apply absolute left-[50%] translate-x-[-50%] whitespace-nowrap;
+
+    @screen mobile {
+      font-size: 16px;
+      bottom: 15px;
+    }
+    @screen desktop {
+      font-size: 32px;
+      bottom: 30px;
+    }
+  }
+
+  .top-track-grid {
+    @apply grid grid-flow-col grid-rows-4 gap-y-10 gap-x-10  overflow-x-scroll;
+  }
+
+  .search-item-hover {
+    @apply bg-mainWhite text-mainBlack
   }
 }
 
