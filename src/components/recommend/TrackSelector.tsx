@@ -1,36 +1,37 @@
 import { getArtistTracks } from '@/api/recommendApis'
-import { recommendStore } from '@/zustand'
-import { useEffect, useState } from 'react'
+import { useRecommendStore } from '@/zustand'
 import { TrackItem } from '..'
+import { useQuery } from '@tanstack/react-query'
 
 export const TrackSelector = () => {
-  const { initialStore }: any = recommendStore()
-  const artistIdStore: string[] = initialStore.artist
-  const TrackIdStore: string[] = initialStore.track
-  const [tracks, setTracks] = useState<any>([])
-  const selectTrack = recommendStore((state: any) => state.selectTrack)
+  const initialStore = useRecommendStore(state => state.initialStore)
+  const artistIdStore = initialStore.artist
+  const TrackIdStore = initialStore.track
+  const selectTrack = useRecommendStore(state => state.selectTrack)
   const isSelectedTrack = (trackId: string) => TrackIdStore.includes(trackId)
 
-  useEffect(() => {
-    const fetchData = async () => {
+  const { data: tracks, isLoading } = useQuery({
+    queryKey: ['artistTracks', artistIdStore],
+    queryFn: async () => {
       const promises = artistIdStore.map(async item => {
         return getArtistTracks(item)
       })
       const results = await Promise.all(promises)
-      const combinedSongList = results.reduce(
-        (acc, curr) => acc.concat(curr),
-        []
-      )
-      setTracks(combinedSongList)
-    }
+      return results.flat()
+    },
+    enabled: !!artistIdStore
+  })
 
-    fetchData()
-  }, [])
+  if (isLoading) return <>loading...</>
 
   return (
     <div>
-      <h1 className="text-40 grid place-items-center">좋아하는 노래</h1>
-      <h2 className="text-20 grid place-items-center mb-20">(최대 5개)</h2>
+      <h1 className="text-22 desktop:text-40 mt-42 grid place-items-center">
+        좋아하는 노래
+      </h1>
+      <h2 className="text-14 desktop:text-20 grid place-items-center mb-20">
+        (최대 5개)
+      </h2>
       {tracks &&
         tracks.map((track: any) => (
           <TrackItem

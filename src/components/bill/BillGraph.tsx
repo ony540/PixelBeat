@@ -10,6 +10,7 @@ import {
 import { MAX_BPM, MIN_BPM } from '@/constants'
 import { useEffect, useRef } from 'react'
 import { BillChartOption } from '.'
+import { TrackAnalysis } from '@/types'
 
 ChartJS.register(
   RadialLinearScale,
@@ -20,28 +21,45 @@ ChartJS.register(
   Legend
 )
 
-export const BillGraph = ({ averageAnalysis }: { averageAnalysis?: any }) => {
-  if (!averageAnalysis) {
+export const initialAnalysisObject: TrackAnalysis = {
+  acousticness: 0,
+  energy: 0,
+  valence: 0,
+  danceability: 0,
+  tempo: 0
+}
+
+export const BillGraph = ({ analysisList }) => {
+  const chartRef = useRef<HTMLCanvasElement | null>(null)
+
+  if (!analysisList) {
     return <p>Loading...</p>
   }
 
-  const chartRef = useRef<HTMLCanvasElement | null>(null)
-
   useEffect(() => {
-    if (!chartRef.current || !averageAnalysis) return
+    if (!chartRef.current || !analysisList) return
 
     /** tempo 값을 BPM 범위로 정규화 */
-    const normalizedTempo =
-      (averageAnalysis.tempo - MIN_BPM) / (MAX_BPM - MIN_BPM)
+    const normalizedTempo = (analysisList.tempo - MIN_BPM) / (MAX_BPM - MIN_BPM)
+
+    const sortedKeys = [
+      'danceability',
+      'energy',
+      'brightness',
+      'acousticness',
+      'tempo'
+    ]
 
     const data = {
-      labels: Object.keys(averageAnalysis),
+      labels: sortedKeys,
       datasets: [
         {
-          data: Object.values(averageAnalysis).map((value, index) =>
-            index === Object.keys(averageAnalysis).indexOf('tempo')
+          data: sortedKeys.map(key =>
+            key === 'tempo'
               ? normalizedTempo
-              : value
+              : key === 'brightness'
+                ? analysisList['valence']
+                : analysisList[key]
           ),
           backgroundColor: 'rgba(87, 255, 87, 0.85)',
           borderColor: '#57FF57',
@@ -62,7 +80,7 @@ export const BillGraph = ({ averageAnalysis }: { averageAnalysis?: any }) => {
     return () => {
       chartInstance.destroy()
     }
-  }, [averageAnalysis])
+  }, [analysisList])
 
   return (
     <canvas

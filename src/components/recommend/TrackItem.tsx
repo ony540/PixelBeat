@@ -25,7 +25,7 @@ export const TrackItem = ({ id, onClick, track, isSelected }) => (
       className={`absolute top-12 whitespace-nowrap mobile:left-100 desktop:left-130 mobile:w-[250px] desktop:w-[500px] overflow-hidden ${
         isSelected ? 'selected-item' : ''
       }`}>
-      <div className={`${track.name.length >= 40 ? 'text-flow-on-hover' : ''}`}>
+      <div className={`${track.name.length >= 38 ? 'text-flow-on-hover' : ''}`}>
         <p>{track.name}</p>
       </div>
     </div>
