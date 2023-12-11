@@ -26,7 +26,7 @@ export const SearchResultTrackItem = ({ tracks }: { tracks?: any }) => {
               key={item.id}>
               <div className="border-1 my-4 flex items-center gap-10">
                 <img
-                  className="mobile:w-50 mobile:h-51 mr-4"
+                  className="mobile:w-50 mobile:h-51 mr-4 desktop:w-65 desktop:h-66"
                   src={item.album.images[0].url}
                   alt={`${item.name}.img`}
                 />

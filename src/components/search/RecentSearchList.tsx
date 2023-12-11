@@ -22,7 +22,7 @@ export const RecentSearchList = () => {
   }
 
   return (
-    <div className="absolute mobile:top-70 desktop:top-100 z-30 p-4 rounded mobile:w-[350px] desktop:w-[680px] bg-mainBlack">
+    <div className="absolute top-70 z-30 p-4 rounded mobile:w-[350px] desktop:w-[680px] bg-mainBlack">
       <div className="text-white mb-5 pt-4 px-8">최근 검색 기록</div>
 
       {decodedRecentSearchList.length > 0 ? (

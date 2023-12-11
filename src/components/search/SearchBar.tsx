@@ -56,12 +56,11 @@ export const SearchBar = () => {
   return (
     <div className="relative py-20">
       <StandardPixelBorder
-        propsClass="absolute w-full mobile:h-50 desktop:h-80 cureor-pointer"
+        propsClass="absolute w-full h-50 cureor-pointer"
         isHeight={'100%'}
       />
 
       <SearchIcon
-        isDesktop={true}
         isAbsolute={true}
         onClick={handleInputToggle}
       />
@@ -72,7 +71,7 @@ export const SearchBar = () => {
           onChange={onChangeInput}
           ref={inputRef}
           type="text"
-          className="absolute w-[70%] mobile:top-30 mobile:left-20 mobile:h-30 desktop:h-60 outline-none bg-mainBlack text-mainWhite"
+          className="absolute w-[70%] mobile:top-30 mobile:left-20 h-30 outline-none bg-mainBlack text-mainWhite"
         />
       )}
 

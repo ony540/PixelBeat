@@ -11,10 +11,6 @@ export const searchItem = async (query: string | string[]) => {
       }
     )
     const data = response.data
-    // 앨범: 앨범
-    // track: 노래
-    // 플리: 플리 (유저 선곡이듯)
-    // 아티스트: ㅇㅇ
     const { artists, tracks } = data
     return {
       artists,

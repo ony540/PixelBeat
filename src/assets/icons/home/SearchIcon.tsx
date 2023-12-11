@@ -1,19 +1,16 @@
 export const SearchIcon = ({
   isAbsolute,
-  onClick,
-  isDesktop
+  onClick
 }: {
   isAbsolute?: boolean
   onClick?: () => void
-  isDesktop?: boolean
 }) => {
   return (
     <svg
       onClick={onClick}
       className={`cursor-pointer 
-      mobile:w-24 mobile:h-24 ${isDesktop ? 'desktop:w-48 desktop:h-48 desktop:top-35 desktop:right-20' : ''}
-      ${isAbsolute && 'absolute'} mobile:right-15 mobile:top-32 
-      `}
+      w-24 h-24 
+      ${isAbsolute && 'absolute'} mobile:right-15 mobile:top-32 `}
       viewBox="0 0 24 24"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg">
@@ -26,6 +23,3 @@ export const SearchIcon = ({
     </svg>
   )
 }
-
-// 서치바던 네비게이션에서 사용하던 모바일일때는 항상 크기는 24
-// 서치바의 경우 데스크탑이 되면 크기가 48로 늘어나야함

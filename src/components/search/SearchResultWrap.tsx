@@ -18,13 +18,13 @@ export const SearchResultWrap = () => {
     <>
       {isLoading && <p>로딩중...</p>}
       {data && (
-        <div className="relative mobile:mt-50 desktop:mt-100">
+        <div className="relative mt-58">
           <SearchResultTrackItem tracks={data?.tracks} />
         </div>
       )}
 
       {data && (
-        <div className="relative mt-50">
+        <div className="relative mt-28">
           <SearchResultArtistItem artists={data.artists} />
         </div>
       )}
