@@ -11,13 +11,13 @@ interface GenreItemProps {
 export const GenreItem = ({ item, onClick, isSelected }: GenreItemProps) => (
   <div
     onClick={() => onClick(GENRE_CATEGORY[item])}
-    className={`relative cursor-pointer ${isSelected ? 'selected-item' : ''}`}>
-    <PixelBorder />
-    <div className="absolute left-[50%] translate-x-[-50%] icon-absolute-top">
-      {FAVORITE_GENRE_ICON_MAPPING[item]}
-    </div>
-    <div className="absolute left-[50%] translate-x-[-50%] text-absolute-bottom whitespace-nowrap">
-      {item}
+    className={`cursor-pointer ${isSelected ? 'selected-item' : ''}`}>
+    <div className="relative">
+      <div className="absolute genre-icon-position">
+        {FAVORITE_GENRE_ICON_MAPPING[item]}
+      </div>
+      <PixelBorder />
+      <div className="absolute genre-text-size">{item}</div>
     </div>
   </div>
 )

@@ -13,3 +13,4 @@ export * from "pages/MakeProfile";
 export * from 'pages/Home'
 export * from 'pages/MyMusic'
 export * from 'pages/MyMusicRepo'
+export * from 'pages/Search'

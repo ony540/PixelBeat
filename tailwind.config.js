@@ -3,6 +3,7 @@ const px0_10 = { ...Array.from(Array(11)).map((_, i) => `${i}px`) }
 const px0_100 = { ...Array.from(Array(101)).map((_, i) => `${i}px`) }
 const px0_300 = { ...Array.from(Array(301)).map((_, i) => `${i}px`) }
 const px0_500 = { ...Array.from(Array(501)).map((_, i) => `${i}px`) }
+const px0_800 = { ...Array.from(Array(801)).map((_, i) => `${i}px`) }
 
 export default {
   content: [
@@ -18,6 +19,7 @@ export default {
       lineHeight: px0_100,
       minWidth: px0_300,
       minHeight: px0_300,
+      maxWidth: px0_800,
       spacing: px0_500,
       colors: {
         mainBlack: '#000',
@@ -29,10 +31,12 @@ export default {
         mainYellow: '#FFFF57',
         mainGreen: '#57FF57',
         bgGray: '#E6E6E6',
-        mainGray: '#C3C3C3'
+        mainGray: '#C3C3C3',
+        mainGray200: '#9C9C9C'
       },
-      screen: {
-        customSc: { min: '390px', max: '720px' }
+      screens: {
+        mobile: '390px',
+        desktop: '720px'
       }
     }
   },

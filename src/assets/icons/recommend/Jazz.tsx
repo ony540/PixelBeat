@@ -1,9 +1,10 @@
 export const Jazz = () => {
-  const size = 60
+  // const size = 60
   return (
     <svg
-      width={size}
-      height={size}
+      className="genre-icon-size"
+      // width={size}
+      // height={size}
       viewBox="0 0 48 45"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">

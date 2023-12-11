@@ -10,17 +10,14 @@ export const ArtistItem = ({ artist, isSelected, onClick }) => (
         loading="lazy"
         src={artist.images[0].url}
         alt={artist.name}
-        className="w-48 h-48 absolute left-[12%] top-[20%] cursor-pointer"
+        className="w-48 h-48 absolute top-16 mobile:left-32 desktop:left-62 cursor-pointer"
       />
-
-      <StandardVertex propsClass="h-48 absolute left-[12%] top-[20%]" />
+      <StandardVertex propsClass="w-48 h-48 top-16 absolute mobile:left-32 desktop:left-62" />
       <StandardPixelBorder
-        propsClass={`w-[86%] mx-auto my-0 cursor-pointer ${
-          isSelected ? 'selected-item' : ''
-        }`}
+        propsClass={`px-20 cursor-pointer ${isSelected ? 'selected-item' : ''}`}
       />
       <div
-        className={`absolute left-[28%] top-[30%] ${
+        className={`absolute mobile:left-100 desktop:left-130 top-24 ${
           isSelected ? 'selected-item' : ''
         } text-xl cursor-pointer`}>
         {artist.name}
