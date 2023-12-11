@@ -102,11 +102,11 @@ export const Recommend = () => {
   if (isRecommendedTracksLoading || isUploadingTrackList) return <h1>로딩중</h1>
 
   return (
-    <div>
+    <div className="desktop:px-60">
       {currentPath === 'genre' && <GenreSelector />}
       {currentPath === 'artist' && <ArtistSelector />}
       {currentPath === 'track' && <TrackSelector />}
-      <div className="sticky bottom-0 mx-auto my-0 text-30 px-10 bg-black">
+      <div className="sticky bottom-0 mx-auto my-0 text-30 px-10 py-10 bg-black">
         <StandardButton
           height={70}
           text={renderButtonText()}

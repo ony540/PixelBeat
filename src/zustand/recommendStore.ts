@@ -9,17 +9,9 @@ export interface RecommendStoreType {
 }
 
 const initialStore: RecommendStoreType = {
-  // test
-  genre: ['r-n-b'],
-  artist: ['1Xyo4u8uXC1ZmMpatF05PJ'],
-  track: [
-    '7MXVkk9YMctZqd1Srtv4MB',
-    '7CyPwkp0oE8Ro9Dd5CUDjW',
-    '2LBqCSwhJGcFQeTHMVGwy3'
-  ]
-  // genre: [],
-  // artist: [],
-  // track: [],
+  genre: [],
+  artist: [],
+  track: []
 }
 
 type RecommendStore = {
