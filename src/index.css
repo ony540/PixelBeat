@@ -144,3 +144,125 @@
   top: 100px;
   left: 60px;
 }
+
+.inputText {
+  width: 520px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media screen and (min-width: 390px) and (max-width: 720px) {
+  .inputText {
+    width: 320px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .inputText {
+    width: 320px;
+  }
+}
+
+.loginText {
+  width: 520px;
+}
+
+@media screen and (min-width: 390px) and (max-width: 720px) {
+  .loginText {
+    width: 320px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .loginText {
+    width: 320px;
+  }
+}
+
+@media screen and (min-width: 390px) and (max-width: 720px) {
+  .container {
+    width: 320px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .container {
+    width: 320px;
+  }
+}
+.musicListGreen {
+  background: url(./assets/imgs/musicListGreen.png);
+}
+.musicList {
+  background: url(./assets/imgs/musicList.png);
+}
+.album {
+  background: url(./assets/imgs/album.png) center / contain;
+
+}
+.more {
+  background: url(./assets/imgs/more.png) center / contain;
+}
+
+@media screen and (min-width: 390px) and (max-width: 720px) {
+  .more {
+    left: 130px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .more {
+    left: 130px;
+  }
+}
+
+.moreCircle {
+  transform: rotate(180deg);
+}
+
+@media screen and (min-width: 390px) and (max-width: 720px) {
+  .moreCircle {
+    left: 130px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .moreCircle {
+    left: 130px;
+  }
+}
+
+.listMenu {
+  background: url(./assets/imgs/listmenu.png) center / contain;
+}
+@media screen and (min-width: 390px) and (max-width: 720px) {
+  .listMenu {
+    left: 66px;
+    z-index: 1;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .listMenu {
+    left: 66px;
+    z-index: 1;
+  }
+}
+
+@media screen and (min-width: 390px) and (max-width: 720px) {
+  .musicList {
+    z-index: 2;
+  }
+
+  .musicListGreen {
+    z-index: 2; /* 더 높은 Z-index 값을 지정 */
+  }
+
+}
+
+@media screen and (max-width: 390px) {
+  .musicListGreen {
+    z-index: 2; /* 더 높은 Z-index 값을 지정 */
+  }
+}

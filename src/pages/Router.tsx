@@ -3,7 +3,7 @@ import { ReactNode } from "react";
 import { EmailLogin } from './EmailLogin';
 import { RouteObject } from 'react-router-dom'
 import { ErrorComponent } from '@/components'
-import { Layout, Entry, Recommend, Bill, Home, Login, SignUp, MakeProfile } from '@/pages'
+import { Layout, Entry, Recommend, Bill, Home, Login, SignUp, MakeProfile, MyMusic, MyMusicRepo } from '@/pages'
 
 const generateRoute = (
   path: string,
@@ -33,6 +33,9 @@ export const routes = [
       generateRoute("/emaillogin", <EmailLogin />),
       generateRoute('/home', <Home />),
       generateRoute('/bill', <Bill />),
+      generateRoute('/mymusic', <MyMusic />),
+      generateRoute('/mymusicrepo', <MyMusicRepo />),
+
     ],
   },
 ];
