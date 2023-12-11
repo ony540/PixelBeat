@@ -5,6 +5,7 @@ import barcodeImg from '@/assets/imgs/barcode.png'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
 import { formatDateTime, shareData } from '@/utils'
 import { useNowPlayStore } from '@/zustand'
+import { PlayBar } from '@/components/common/PlayBar'
 import { Track, TrackList } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { getBill } from '@/api'
@@ -29,6 +30,9 @@ export const Bill = () => {
     }
   }, [data])
 
+  const handleClickPreviewPlayButton = (track: Track) => {
+    setCurrentTrack(track)
+  }
 
   const handleClickToLoginButton = () => {
     navigate('/login')
@@ -40,10 +44,7 @@ export const Bill = () => {
     shareData({ url: shareLink })
   }
 
-  const handleClickPreviewPlayButton = (data: any) => {
-    //프리뷰 음악 재생하기
-    console.log(data)
-  }
+  if (isLoading) return <>loading...</>
 
   {
     return (
@@ -115,6 +116,7 @@ export const Bill = () => {
             propsClass="mx-auto mt-12 mb-42"
           />
         </section>
+        {currentTrack && <PlayBar />}
       </>
     )
   }
