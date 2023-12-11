@@ -117,9 +117,10 @@
 /* Text Flow */
 .text-flow-on-hover {
   white-space: nowrap;
-  /* width: inherit; */
 }
-
+.group:hover .text-flow-on-hover {
+  animation: textFlow 5s linear infinite;
+}
 .text-flow-on-hover:hover {
   animation: textFlow 5s linear infinite;
 }
