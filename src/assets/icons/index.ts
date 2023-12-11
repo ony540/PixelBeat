@@ -2,7 +2,6 @@ export * from './recommend'
 export * from './PixelBorder'
 export * from './Clock'
 export * from './play'
-export * from './CirclePlayButton'
 export * from "./PixelBorder";
 export * from "./LoginBtn";
 export * from "./EmailBtn";

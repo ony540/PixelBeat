@@ -9,9 +9,9 @@ export const SignUp = () => {
   };
   return (
     <>
-      <div className="my-56 text-center text-28">이메일로 회원가입</div>
+      <div className="my-56 text-center text-24">이메일로 회원가입</div>
       <SignUpForm/>
-      <div className="flex justify-center py-10">
+      <div className="flex justify-center py-10 text-14">
         <button className="pr-12">로그인</button>|
         <button onClick={Login} className="pl-12">이전으로 돌아가기</button>
       </div>

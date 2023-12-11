@@ -9,10 +9,10 @@ export const InputField = ({ type, name, id, placeholder, value, onChange }) => 
   }
 
   return (
-    <div className="pt-32 flex flex-col gap-4 relative">
+    <div className="pt-32 flex flex-col gap-4 relative ">
       <label
         htmlFor={id}
-        className=" text-mainWhite">
+        className=" text-mainWhite text-16">
         {name === 'email' ? '이메일' : name === 'password' ? '비밀번호' : ''}
       </label>
       <input
@@ -22,12 +22,12 @@ export const InputField = ({ type, name, id, placeholder, value, onChange }) => 
         placeholder={placeholder}
         defaultValue={value}
         onChange={onChange}
-        className="border-b-2 w-[520px] bg-mainBlack p-4 focus:border-mainGreen"
+        className="border-b-2 w-[520px] loginText bg-mainBlack p-4 focus:border-mainGreen text-16"
       />
       {type === 'password' && (
         <button
           type="button"
-          className=" absolute right-10 top-76 text-gray-500"
+          className=" absolute right-10 top-66 text-gray-500"
           onClick={togglePasswordHidden}>
           {isPasswordHidden ? <Eye /> : <CloseEye />}
         </button>

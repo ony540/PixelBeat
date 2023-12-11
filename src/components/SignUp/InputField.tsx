@@ -40,7 +40,7 @@ export default function InputField({
 
   return (
     <div className="pt-32 flex flex-col gap-4 relative">
-      <label htmlFor={name} className=" text-mainWhite">
+      <label htmlFor={name} className="text-16 text-mainWhite">
         {label}
       </label>
       <input
@@ -50,7 +50,7 @@ export default function InputField({
         placeholder={placeholder}
         defaultValue={defaultValue}
         onChange={onChange}
-        className={`border-b-2 w-[520px] bg-mainBlack p-4 focus:border-mainGreen`}
+        className={`border-b-2 w-[520px] bg-mainBlack p-4 focus:border-mainGreen text-16 inputText`}
       />
       {type === "password" && (
         <div
@@ -66,7 +66,7 @@ export default function InputField({
               }
             }
           }}
-          className=" absolute right-10 top-76 text-gray-500"
+          className=" absolute right-10 top-66 text-gray-500"
         >
           {isIconHidden ? <CloseEye /> : <Eye />}
         </div>

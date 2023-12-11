@@ -2,7 +2,7 @@ import  {InputField}  from './InputField';
 
 export const InputSection = ({ formState, handleInput }) => {
   return (
-    <div className='flex flex-col gap-8 mt-8 justify-center items-center py-6'>
+    <div className='flex flex-col gap-8 mt-8 justify-center items-center py-6 '>
     <InputField
       type="email"
       name="email"

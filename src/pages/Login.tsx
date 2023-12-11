@@ -14,7 +14,7 @@ export const Login = () => {
 
   return (
     <>
-      <div className="text-center pt-100 pb-[320px] text-56">Pixel Beat</div>
+      <div className="text-center pt-100 pb-[320px] text-28">Pixel Beat</div>
       <div className="flex justify-center h-110 items-center py-10">
         <div
           className="relative items-center"
@@ -33,8 +33,8 @@ export const Login = () => {
         </button>
       </div>
       <div className="flex justify-center pb-10">
-        <button onClick={signUp} className="pr-12">이메일로 회원가입</button>|
-        <button className="pl-12">문의하기</button>
+        <button onClick={signUp} className="pr-12 text-16">이메일로 회원가입</button>|
+        <button className="pl-12 text-16">문의하기</button>
       </div>
     </>
   );

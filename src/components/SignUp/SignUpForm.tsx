@@ -80,7 +80,7 @@ export const SignUpForm = () => {
 
   return (
     <form
-      className="flex flex-col gap-8 mt-8 justify-center items-center py-6"
+      className="flex flex-col gap-8 mt-8 justify-center items-center py-6 truncate"
       onSubmit={e => e.preventDefault()}>
       <InputField
         name="email"
@@ -129,7 +129,7 @@ export const SignUpForm = () => {
           text={'다 음'}
           onClick={MakeProFile}
           disabled={isSubmitDisabled()}
-          fillColor={isSubmitDisabled() ? undefined : '#57FF57'} // 일치하지 않을 때는 undefined, 일치할 때는 '#57FF57'로 설정합니다.
+          fillColor={isSubmitDisabled() ? undefined : '#57FF57'}
         />
       </button>
     </form>
