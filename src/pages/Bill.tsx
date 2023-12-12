@@ -54,7 +54,6 @@ export const Bill = () => {
           <div
             className="my-0 mx-auto w-270 mt-[-20px] mb-[-18px] bg-no-repeat bg-[55.6%_54%] bg-[length:136px]"
             style={{ backgroundImage: `url(${graphBgImg})` }}>
-            {/* 데이터 내려주기 */}
             <BillGraph analysisList={data?.analysis} />
           </div>
 

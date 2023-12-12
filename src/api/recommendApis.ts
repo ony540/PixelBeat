@@ -15,7 +15,7 @@ export const getArtistInfo = async (artist_id: any) => {
   }
 }
 
-export const getArtistTracks = async (artist_id: any) => {
+export const getArtistTopTracks = async (artist_id: any) => {
   try {
     const response = await baseInstance(
       `artists/${artist_id}/top-tracks?market=KR`,
@@ -76,6 +76,56 @@ export const getPlaylistTop50 = async (playlist_id: string) => {
     const data = response.data
     const trackList = data.tracks.items
     return { trackList }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const getArtistAlbums = async (artist_id: string) => {
+  try {
+    const response = await baseInstance(
+      `artists/${artist_id}/albums?market=KR`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('non-member-token')}`
+        }
+      }
+    )
+    const data = response.data
+    const albumList = data.items
+    return { albumList }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const getRelatedArtists = async (artist_id: string) => {
+  try {
+    const response = await baseInstance(
+      `artists/${artist_id}/related-artists`,
+      {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('non-member-token')}`
+        }
+      }
+    )
+    const data = response.data
+    const artists = data.artists
+    return { artists }
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const getAlbum = async (album_id: string) => {
+  try {
+    const response = await baseInstance(`albums/${album_id}/?market=KR`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('non-member-token')}`
+      }
+    })
+    const data = response.data
+    return data
   } catch (error) {
     console.error(error)
   }

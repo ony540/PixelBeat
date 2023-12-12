@@ -7,7 +7,7 @@ export const SearchResultWrap = () => {
   const [query] = useSearchParams()
   const queryValue = query.get('q') as string
 
-  const { isLoading, data, isError, error } = useQuery({
+  const { isLoading, data } = useQuery({
     queryKey: ['search', queryValue],
     queryFn: () =>
       queryValue ? searchItem(queryValue) : Promise.resolve(null),
