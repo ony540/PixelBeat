@@ -194,9 +194,6 @@
 .more {
   background: url(./assets/imgs/more.png) center / contain;
 }
-.moreCircle {
-  transform: rotate(180deg);
-}
 .listMenu {
   background: url(./assets/imgs/listmenu.png) center / contain;
 }
