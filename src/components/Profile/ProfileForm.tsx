@@ -57,7 +57,7 @@ export const ProfileForm = () => {
   }
 
   const makeProfile = () => {
-    navigate('/emaillogin')
+    navigate('/login/email')
   }
 
   return (

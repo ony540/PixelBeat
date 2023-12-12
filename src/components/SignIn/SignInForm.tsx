@@ -51,7 +51,7 @@ export const SignInForm = () => {
           handleInput={handleInput}
         />
       </form>
-      <button className="sticky bottom-0 mx-auto ml-30 my-10 text-30 standard-button-container ">
+      <button className="sticky bottom-0 mx-auto pl-30 my-10 text-30 left-100 standard-button-container">
         <StandardButton
           height={70}
           text={'다 음'}
