@@ -1,7 +1,6 @@
+import { Header, NavBar } from '@/components'
 import {
   Banner,
-  Header,
-  NavBar,
   SimilarUserList,
   TopTrackList
 } from '@/components/home'

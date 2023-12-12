@@ -1,7 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { RouteObject } from 'react-router-dom'
 import { ErrorComponent } from '@/components'
-import { Layout, Entry, Recommend, Bill, Home, Search } from '@/pages'
+import {
+  Layout,
+  Entry,
+  Recommend,
+  Bill,
+  Home,
+  Search,
+  Artist,
+  Album
+} from '@/pages'
 import { ReactNode } from 'react'
 
 const generateRoute = (
@@ -28,6 +37,8 @@ export const routes = [
       generateRoute('/recommend', <Recommend />),
       generateRoute('/recommend/:id', <Recommend />),
       generateRoute('/search', <Search />),
+      generateRoute('/artist/:id', <Artist />),
+      generateRoute('/album/:id', <Album />),
       generateRoute('/bill/:id', <Bill />)
     ]
   }

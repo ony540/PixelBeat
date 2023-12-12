@@ -1,31 +1,21 @@
 import { MenuIcon } from '@/assets'
 import { useNavigate } from 'react-router-dom'
 
-export const SearchResultArtistItem = ({ artists }) => {
+export const RelatedArtist = ({ artist_relatedArtistracks }) => {
   const navigate = useNavigate()
-  if (!artists || artists.items.length === 0) {
-    return (
-      <div className="relative mt-22">
-        <MenuIcon />
-        <h1 className="absolute text-mainBlack top-3 mobile:left-50 desktop:top-15 desktop:left-100">
-          가수
-        </h1>
-        <h1>No Item</h1>
-      </div>
-    )
-  }
 
   return (
-    <>
+    <div className="mobile:px-20 desktop:px-60 mt-27 relative mb-80">
       <MenuIcon />
-      <h1 className="absolute text-mainBlack mobile:top-4 left-40 desktop:top-5 desktop:left-80">
-        가수
+      <h1 className="absolute text-mainBlack mobile:top-4 mobile:left-60 desktop:top-5 desktop:left-130">
+        관련 가수
       </h1>
+
       <div className="relative desktop:px-3 mobile:px-1">
         <div className="overflow-x-auto">
           <div className="flex">
-            {artists &&
-              artists.items.map(item => (
+            {artist_relatedArtistracks &&
+              artist_relatedArtistracks.artists.map(item => (
                 <div
                   className="my-4 mx-2 flex flex-col items-center mobile:w-150 mobile:h-176"
                   key={item.id}>
@@ -44,8 +34,8 @@ export const SearchResultArtistItem = ({ artists }) => {
                     )}
                   </div>
                   <div
-                    onClick={() => navigate(`/artist/${item.id}`)}
-                    className="bg-mainGray whitespace-nowrap w-full  text-center text-mainBlack cursor-pointer hover:underline">
+                    className="bg-mainGray whitespace-nowrap w-full  text-center text-mainBlack cursor-pointer hover:underline"
+                    onClick={() => navigate(`/artist/${item.id}`)}>
                     {item.name.length >= 10
                       ? item.name.slice(0, 7) + '...'
                       : item.name}
@@ -55,6 +45,6 @@ export const SearchResultArtistItem = ({ artists }) => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }
