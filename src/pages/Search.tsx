@@ -1,4 +1,4 @@
-import { NavBar } from '@/components/home'
+import { NavBar } from '@/components'
 import { SearchBar, SearchResultWrap } from '@/components/search'
 
 export const Search = () => {

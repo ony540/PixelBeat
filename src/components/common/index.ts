@@ -1,3 +1,5 @@
 export * from './StandardButton'
 export * from './StandardPixelBorder'
 export * from './StandardVertex'
+export * from './Header'
+export * from './NavBar'

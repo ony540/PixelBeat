@@ -1,7 +1,7 @@
 import { getAlbum } from '@/api/recommendApis'
+import { Header, NavBar } from '@/components'
 import { AlbumList } from '@/components/album'
 import { AlbumArtistInfo } from '@/components/album/AlbumArtistInfo'
-import { Header, NavBar } from '@/components/home'
 import { useQuery } from '@tanstack/react-query'
 
 import { useParams } from 'react-router-dom'

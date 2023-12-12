@@ -4,10 +4,9 @@ import {
   getArtistTopTracks,
   getRelatedArtists
 } from '@/api/recommendApis'
-import { ErrorComponent } from '@/components'
+import { ErrorComponent, Header, NavBar } from '@/components'
 import { ArtistImage, ArtistTopTrack, RelatedArtist } from '@/components/artist'
 import ArtistAlbumList from '@/components/artist/ArtistAlbumList'
-import { Header, NavBar } from '@/components/home'
 import { useQueries } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
@@ -51,9 +50,9 @@ export const Artist = () => {
       <div>
         <Header />
         <ArtistImage artist_info={results[0].data} />
-        <ArtistAlbumList artist_albums={results[1].data} /> 
-        <ArtistTopTrack artist_topTracks={results[2].data} /> 
-        <RelatedArtist artist_relatedArtistracks={results[3].data} /> 
+        <ArtistAlbumList artist_albums={results[1].data} />
+        <ArtistTopTrack artist_topTracks={results[2].data} />
+        <RelatedArtist artist_relatedArtistracks={results[3].data} />
         <NavBar />
       </div>
     )
