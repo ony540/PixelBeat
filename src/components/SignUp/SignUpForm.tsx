@@ -75,7 +75,7 @@ export const SignUpForm = () => {
     )
   }
   const MakeProFile = () => {
-    navigate('/makeprofile')
+    navigate('/profile/edit')
   }
 
   return (

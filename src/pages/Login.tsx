@@ -6,10 +6,10 @@ export const Login = () => {
   const [isHovered, setIsHovered] = useState(false);
   const navigate = useNavigate();
   const signUp = () => {
-    navigate("/signup");
+    navigate("/signup/email");
   };
   const emaillogin = () => {
-    navigate("/emaillogin");
+    navigate("/login/email");
   };
 
   return (

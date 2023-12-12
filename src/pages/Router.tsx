@@ -14,7 +14,7 @@ import {
 } from '@/pages'
 
 import { ReactNode } from 'react'
-import { Layout, Entry, Recommend, Bill, Home, Login, LoginEmail, SignUpEmail, ProfileEdit, MyMusicMain, MyMusicBill, MyMusicBillId, Search } from '@/pages'
+import { Layout, Entry, Recommend, Bill, Home, Login, LoginEmail, SignUpEmail, ProfileEdit, MyMusicMain, MyMusicBill, MyMusicBillId, Search, Artist, Album } from '@/pages'
 
 const generateRoute = (
   path: string,
