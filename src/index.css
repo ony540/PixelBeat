@@ -109,6 +109,13 @@
   }
 }
 
+.flex-col-container {
+  display: flex;
+  overflow-x: auto; /* Enable horizontal scrolling */
+  max-width: 100%; /* Ensure it doesn't overflow the parent container */
+  height: 176px; /* Set a fixed height for the container */
+}
+
 /* 추천 로직 아이템 선택시 */
 .selected-item {
   color: theme(colors.mainGreen);

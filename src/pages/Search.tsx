@@ -1,10 +1,10 @@
-import { NavBar } from '@/components/home'
+import { NavBar } from '@/components'
 import { SearchBar, SearchResultWrap } from '@/components/search'
 
 export const Search = () => {
   return (
     <>
-      <div className="relative h-screen overflow-y-auto px-20">
+      <div className="relative h-screen overflow-y-auto mobile:px-20 desktop:px-60">
         <SearchBar />
         <SearchResultWrap />
       </div>

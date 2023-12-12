@@ -1,4 +1,4 @@
-import { getArtistTracks } from '@/api/recommendApis'
+import { getArtistTopTracks } from '@/api/recommendApis'
 import { useRecommendStore } from '@/zustand'
 import { TrackItem } from '..'
 import { useQuery } from '@tanstack/react-query'
@@ -14,7 +14,7 @@ export const TrackSelector = () => {
     queryKey: ['artistTracks', artistIdStore],
     queryFn: async () => {
       const promises = artistIdStore.map(async item => {
-        return getArtistTracks(item)
+        return getArtistTopTracks(item)
       })
       const results = await Promise.all(promises)
       return results.flat()
