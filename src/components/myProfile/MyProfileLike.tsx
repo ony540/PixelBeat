@@ -18,7 +18,7 @@ export const MyProfileLike = () => {
           <button onClick={goToMyBill}>
             <MyBillNon />
           </button>
-          <button onClick={goToLike}>
+          <button className='pl-1' onClick={goToLike}>
             <BillHeartLike />
           </button>
         </div>

@@ -1,5 +1,4 @@
 import { ProfileForm } from '@/components/Profile'
-import React from 'react'
 
 export const ProfileEdit = () => {
   return (

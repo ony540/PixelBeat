@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 export const MoreCircle = () => {
   const [isHovered, setIsHovered] = useState(false);
