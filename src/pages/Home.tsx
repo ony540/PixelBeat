@@ -1,9 +1,5 @@
-import { Header, NavBar } from '@/components'
-import {
-  Banner,
-  SimilarUserList,
-  TopTrackList
-} from '@/components/home'
+import { Header, NavBar, PlayBar } from '@/components'
+import { Banner, SimilarUserList, TopTrackList } from '@/components/home'
 
 export const Home = () => {
   return (
