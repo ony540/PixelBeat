@@ -1,13 +1,19 @@
 import { useState } from 'react'
-import { MenuIcon } from '@/assets'
+import { MenuIcon, MoreButton } from '@/assets'
 import { useNavigate } from 'react-router-dom'
+import { useModal } from '@/hooks'
 
 export const ArtistTopTrack = ({ artist_topTracks }) => {
+  const { openModal } = useModal()
   const navigate = useNavigate()
   const [visibleTracks, setVisibleTracks] = useState(5)
 
   const loadMore = () => {
     setVisibleTracks(prevVisibleTracks => prevVisibleTracks + 5)
+  }
+
+  const handleBottomSheet = () => {
+    openModal('')
   }
 
   return (
@@ -30,7 +36,7 @@ export const ArtistTopTrack = ({ artist_topTracks }) => {
                   src={item.album.images[1].url || ''}
                   alt={`${item.name}.img`}
                 />
-
+                <MoreButton onClick={handleBottomSheet} />
                 <div className="flex flex-col overflow-hidden">
                   <span
                     className={

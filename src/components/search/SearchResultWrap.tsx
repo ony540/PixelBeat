@@ -2,6 +2,8 @@ import { SearchResultTrackItem, SearchResultArtistItem } from '.'
 import { searchItem } from '@/api'
 import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
+import { BottomSheet } from '..'
+import Portal from '@/utils/portal'
 
 export const SearchResultWrap = () => {
   const [query] = useSearchParams()
@@ -28,6 +30,10 @@ export const SearchResultWrap = () => {
           <SearchResultArtistItem artists={data.artists} />
         </div>
       )}
+
+      <Portal>
+        <BottomSheet />
+      </Portal>
     </>
   )
 }

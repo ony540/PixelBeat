@@ -1,8 +1,16 @@
-import { MenuIcon } from '@/assets'
+import { MenuIcon, MoreButton } from '@/assets'
+import { useModal } from '@/hooks'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 export const SearchResultTrackItem = ({ tracks }: { tracks?: any }) => {
   const navigate = useNavigate()
+  const [visibleTracks, setVisibleTracks] = useState(3)
+  const { openModal } = useModal()
+
+  const loadMore = () => {
+    setVisibleTracks(prevVisibleTracks => prevVisibleTracks + 3)
+  }
 
   const moveToTrackId = (trackId: string) => {
     navigate(`/artist/${trackId}`)
@@ -19,22 +27,31 @@ export const SearchResultTrackItem = ({ tracks }: { tracks?: any }) => {
       </div>
     )
   }
+
+  const handlePortal = () => {
+    openModal('')
+  }
+
   return (
     <>
       <MenuIcon />
-      <h1 className="absolute text-mainBlack mobile:top-4 left-40 desktop:top-5 desktop:left-80">
+      <h1
+        className="absolute text-mainBlack left-40 
+                    mobile:top-4 
+                    desktop:top-5 desktop:left-80">
         음악
       </h1>
       <div className="relative desktop:px-3 mobile:px-1">
         {tracks &&
-          tracks.items.slice(0, 4).map(item => (
+          tracks.items.slice(0, visibleTracks).map(item => (
             <div
               className="relative"
               key={item.id}>
               <div className="border-1 my-4 flex items-center gap-10 ">
                 <img
                   onClick={() => navigate(`/album/${item.album.id}`)}
-                  className="mobile:w-50 mobile:h-51 mr-4 desktop:w-65 desktop:h-66 cursor-pointer"
+                  className="mobile:w-50 mobile:h-51 mr-4 
+                             desktop:w-65 desktop:h-66 cursor-pointer"
                   src={item.album.images[1].url}
                   alt={`${item.name}.img`}
                 />
@@ -47,9 +64,17 @@ export const SearchResultTrackItem = ({ tracks }: { tracks?: any }) => {
                     {item.artists[0].name}
                   </span>
                 </div>
+                <MoreButton onClick={handlePortal} />
               </div>
             </div>
           ))}
+        {visibleTracks < tracks.items.length && (
+          <button
+            className="border-1 w-full hover:underline"
+            onClick={loadMore}>
+            더보기
+          </button>
+        )}
       </div>
     </>
   )

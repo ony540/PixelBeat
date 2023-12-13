@@ -158,3 +158,59 @@
   bottom: -15px;
   transform: rotate(180deg);
 }
+
+/* 포탈 관련 스타일링 */
+@keyframes fadeOut {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: translateY(100vh);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.open {
+  animation: fadeIn 0.3s ease-in;
+}
+
+.closing {
+  animation: fadeOut 0.4s ease-in;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOutOpacity {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.portal-background {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.portal-background-open {
+  animation: fadeInOpacity 0.3s ease-in;
+}
+
+.portal-background-closing {
+  animation: fadeOutOpacity 0.4s ease-in;
+}
