@@ -1,6 +1,7 @@
 export const StandardButton = ({
   text,
   propsClass,
+  height,
   onClick,
   fillColor,
   disabled
@@ -24,7 +25,7 @@ export const StandardButton = ({
       onClick={onClick}>
       <svg
         width="100%"
-        height={56}
+        height={height || 56}
         viewBox="0 0 356 56"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

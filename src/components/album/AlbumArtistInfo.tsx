@@ -1,4 +1,5 @@
 import { StandardVertex } from '..'
+import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 
 export const AlbumArtistInfo = ({ album_data }) => {
   if (!album_data) {
@@ -37,7 +38,7 @@ export const AlbumArtistInfo = ({ album_data }) => {
         />
         <img
           className={` ${mobileImageSize} ${desktopImageSize}`}
-          src={images[0].url}
+          src={images[0].url || defaultAlbumImg}
           alt={name + 'image'}
         />
       </div>

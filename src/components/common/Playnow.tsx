@@ -11,6 +11,7 @@ import { Header, ProgressBar, StandardVertex } from '@/components'
 import { useModal } from '@/hooks/useModal'
 import { useNowPlayStore } from '@/zustand'
 import { useState } from 'react'
+import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 
 export const Playnow = ({
   playAndPauseNowPlay,
@@ -54,7 +55,7 @@ export const Playnow = ({
         {/* 앨범이미지 */}
         <div className="relative min-w-224 w-[36vh] mx-auto aspect-square">
           <img
-            src={currentTrack!.album.images[0].url}
+            src={currentTrack!.album.images[0].url || defaultAlbumImg}
             alt={currentTrack!.album.name}
           />
           <StandardVertex propsClass="min-w-224 w-[36.2vh] aspect-square absolute top-0" />
