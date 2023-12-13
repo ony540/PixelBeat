@@ -21,7 +21,7 @@ export const SearchResultArtistItem = ({ artists }) => {
       <h1 className="absolute text-mainBlack mobile:top-4 left-40 desktop:top-5 desktop:left-80">
         가수
       </h1>
-      <div className="relative desktop:px-3 mobile:px-1">
+      <div className="relative desktop:px-3 mobile:px-1 mb-100">
         <div className="overflow-x-auto">
           <div className="flex">
             {artists &&

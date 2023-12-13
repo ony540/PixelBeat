@@ -4,9 +4,10 @@ import {
   getArtistTopTracks,
   getRelatedArtists
 } from '@/api/recommendApis'
-import { ErrorComponent, Header, NavBar } from '@/components'
+import { BottomSheet, ErrorComponent, Header, NavBar } from '@/components'
 import { ArtistImage, ArtistTopTrack, RelatedArtist } from '@/components/artist'
 import ArtistAlbumList from '@/components/artist/ArtistAlbumList'
+import Portal from '@/utils/portal'
 import { useQueries } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
@@ -54,6 +55,10 @@ export const Artist = () => {
         <ArtistTopTrack artist_topTracks={results[2].data} />
         <RelatedArtist artist_relatedArtistracks={results[3].data} />
         <NavBar />
+
+        <Portal>
+          <BottomSheet />
+        </Portal>
       </div>
     )
   }
