@@ -1,4 +1,4 @@
-import { getArtistTopTracks } from '@/api/recommendApis'
+import { getArtistTopTracks } from '@/api'
 import { useRecommendStore } from '@/zustand'
 import { TrackItem } from '..'
 import { useQuery } from '@tanstack/react-query'

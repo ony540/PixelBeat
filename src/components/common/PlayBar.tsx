@@ -6,6 +6,7 @@ import { useNowPlayStore } from '@/zustand/nowPlayStore'
 import { useEffect } from 'react'
 import { Playnow } from './Playnow'
 import { useNavigate } from 'react-router-dom'
+import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 
 export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
   const navigate = useNavigate()
@@ -83,7 +84,7 @@ export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
             onClick={handleClickAlbum}
             className="relative mr-8 cursor-pointer shrink-0">
             <img
-              src={album.images[2].url}
+              src={album.images[2].url || defaultAlbumImg}
               alt={album.name}
               className="w-48 h-48"
             />

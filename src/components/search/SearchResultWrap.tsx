@@ -4,16 +4,25 @@ import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { BottomSheet } from '..'
 import Portal from '@/utils/portal'
+import { Artist, Track } from '@/types'
 
+export interface SearchedData {
+  tracks: Track[]
+  artists: Artist
+}
 export const SearchResultWrap = () => {
   const [query] = useSearchParams()
   const queryValue = query.get('q') as string
 
-  const { isLoading, data } = useQuery({
+  const { isLoading, data } = useQuery<
+    SearchedData | Error,
+    Error,
+    SearchedData
+  >({
     queryKey: ['search', queryValue],
-    queryFn: () =>
-      queryValue ? searchItem(queryValue) : Promise.resolve(null),
-    refetchOnMount: false
+    queryFn: () => searchItem(queryValue),
+    refetchOnMount: false,
+    enabled: !!queryValue
   })
 
   return (

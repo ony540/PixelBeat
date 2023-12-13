@@ -1,12 +1,13 @@
-export const RectangleVertax = () => {
+export const RectangleVertax = ({ height }: { height?: string }) => {
   return (
     <svg
-      className="absolute z-0"
-      width="150"
-      height="176"
+      className="absolute"
+      width="100%"
+      height={height || '176'}
       viewBox="0 0 150 176"
       fill="none"
-      xmlns="http://www.w3.org/2000/svg">
+      xmlns="http://www.w3.org/2000/svg"
+      preserveAspectRatio="none">
       <mask
         id="mask0_1093_20084"
         style={{ maskType: 'alpha' }}
