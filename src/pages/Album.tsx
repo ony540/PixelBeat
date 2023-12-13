@@ -1,4 +1,4 @@
-import { getAlbum } from '@/api/recommendApis'
+import { getAlbum } from '@/api'
 import { Header, NavBar } from '@/components'
 import { AlbumList } from '@/components/album'
 import { AlbumArtistInfo } from '@/components/album/AlbumArtistInfo'

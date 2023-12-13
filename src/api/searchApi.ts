@@ -1,6 +1,9 @@
+import { SearchedData } from '@/components/search'
 import { baseInstance } from './axios'
 
-export const searchItem = async (query: string | string[]) => {
+export const searchItem = async (
+  query: string | string[]
+): Promise<SearchedData | Error> => {
   try {
     const response = await baseInstance(
       `search?q=${query}&type=artist,album,playlist,track`,
@@ -15,8 +18,9 @@ export const searchItem = async (query: string | string[]) => {
     return {
       artists,
       tracks
-    }
+    } as SearchedData
   } catch (error) {
     console.error(error)
+    return error as Error
   }
 }
