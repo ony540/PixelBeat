@@ -151,6 +151,23 @@
   bottom: -15px;
   transform: rotate(180deg);
 }
+.profile-bill-background-side:before,
+.profile-bill-background-side:after {
+  display: block;
+  content: '';
+  position: relative;
+  width: 100%;
+  background: url('./assets/imgs/ProfileBill.png') center / contain;
+  height: 17px;
+}
+.profile-bill-background-side:before {
+  top: -15px;
+  height: 16px;
+}
+.profile-bill-background-side:after {
+  bottom: -15px;
+  transform: rotate(180deg);
+}
 
 .profile {
   display: block;
@@ -228,6 +245,10 @@
     width: 150px;
     font-size: 16px;
   }
+  .profileBill {
+    margin-left: 6px;
+    margin-right: 6px;
+  }
 }
 
 @media screen and (max-width: 390px) {
@@ -256,5 +277,9 @@
   .musicTitle {
     width: 150px;
     font-size: 14px;
+  }
+  .profileBill {
+    margin-left: 6px;
+    margin-right: 6px;
   }
 }

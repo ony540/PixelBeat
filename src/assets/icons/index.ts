@@ -12,3 +12,4 @@ export * from "./CloseEye";
 export * from "./moreCircle";
 export * from './home'
 export * from './Xbutton'
+export * from './profile'

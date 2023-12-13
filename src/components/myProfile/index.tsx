@@ -1,1 +1,3 @@
-export * from './myProfileInfo'
+export * from './MyProfileInfo'
+export * from './MyProfileBill'
+export * from './MyProfileLike'
