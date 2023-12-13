@@ -1,4 +1,3 @@
-//store
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
@@ -19,7 +18,7 @@ type ModalStore = {
   setModalType: (modalType: string) => void
 }
 
-export const modalPlayStore = set => ({
+export const modalStore = set => ({
   ...initialStore,
   //show값 지정
   setIsShow: (bool: boolean) =>
@@ -28,11 +27,11 @@ export const modalPlayStore = set => ({
       isShow: bool
     })),
   //modalType값 지정
-  setModalType: (modalType: any) =>
+  setModalType: (modalType: string) =>
     set(state => ({
       ...state,
       modalType: modalType
     }))
 })
 
-export const useModalPlayStore = create(devtools(modalPlayStore))
+export const useModalStore = create(devtools(modalStore))

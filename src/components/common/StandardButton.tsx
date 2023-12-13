@@ -3,7 +3,6 @@ export const StandardButton = ({
   propsClass,
   onClick,
   fillColor,
-  height,
   disabled
 }: {
   text: string
@@ -25,7 +24,7 @@ export const StandardButton = ({
       onClick={onClick}>
       <svg
         width="100%"
-        height={height || 56}
+        height={56}
         viewBox="0 0 356 56"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

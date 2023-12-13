@@ -1,5 +1,6 @@
 import { NowPlayList, Track, user_id } from '@/types'
 import { create } from 'zustand'
+import { devtools } from 'zustand/middleware'
 
 const initialStore: NowPlayList = {
   owner: undefined,
@@ -26,7 +27,7 @@ type NowPlayStore = {
   setNowPlayList: (tracklist: Track[]) => void
 }
 
-export const useNowPlayStore = create<NowPlayStore>(set => ({
+export const nowPlayStore = set => ({
   ...initialStore,
   //owner 지정
   setOwner: (userId: string) =>
@@ -36,18 +37,18 @@ export const useNowPlayStore = create<NowPlayStore>(set => ({
     })),
 
   //현재 재생트랙 지정
-  setCurrentTrack: (track: Track) =>
+  setCurrentTrack: (track: Track | null) =>
     set(state => ({
       ...state,
       currentTrack: track
     })),
 
   //재생 및 정지
-  toggleIsPlaying: () =>
+  setIsPlaying: (isPlaying: boolean) =>
     set(state => {
       return {
         ...state,
-        isPlaying: !state.isPlaying
+        isPlaying: isPlaying
       }
     }),
   setPlayingPosition: playingPosition =>
@@ -86,4 +87,6 @@ export const useNowPlayStore = create<NowPlayStore>(set => ({
   reset: () => {
     set(initialStore)
   }
-}))
+})
+
+export const useNowPlayStore = create(devtools(nowPlayStore))
