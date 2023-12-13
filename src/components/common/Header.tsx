@@ -1,4 +1,4 @@
-import { ArrowDown } from '@/assets'
+import { ArrowDown, MoreButton } from '@/assets'
 
 type HeaderProps = {
   onClick?: () => void
@@ -22,6 +22,19 @@ const PlayNowHeader = ({ onClick }: HeaderProps) => {
   )
 }
 
+const ProfileHeader = ({ onClick }: HeaderProps) => {
+  return (
+    <header className='flex bg-mainGreen h-55 relative px-60 justify-between'>
+      <button onClick={onClick} type='button' className='rotate-90 ml-18 mt-6'>
+        <ArrowDown fill='black' />
+      </button>
+      <button className='relative top-0 right-15'>
+        <MoreButton fill='black' />
+      </button>
+    </header>
+  )
+}
+
 export const Header = ({
   type = 'home',
   onClick
@@ -34,7 +47,8 @@ export const Header = ({
       return <HomeHeader />
     case 'playnow':
       return <PlayNowHeader onClick={onClick} />
-
+    case 'profile':
+      return <ProfileHeader onClick={onClick} />
     default:
       return null
   }

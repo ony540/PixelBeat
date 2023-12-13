@@ -1,5 +1,5 @@
 import { Eye, CloseEye } from "@/assets";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 function Message({ text, isValid }) {
   if (!text || text === "") {
@@ -28,15 +28,20 @@ export default function InputField({
   isPasswordHidden,
   togglePasswordHidden,
 }) {
-
   const hasValue =
     defaultValue !== undefined && defaultValue !== null && defaultValue !== "";
 
   const [isIconHidden, setIsIconHidden] = useState(true);
 
+  const inputRef = useRef(null);
+
   const toggleIconHidden = () => {
-    setIsIconHidden(!isIconHidden);
-  };
+    setIsIconHidden((prevIsIconHidden) => !prevIsIconHidden);
+    const inputElement:any = inputRef.current;
+    if (type === "password" && inputElement instanceof HTMLInputElement) {
+      inputElement.type = isIconHidden ? "text" : "password";
+    }
+  };  
 
   return (
     <div className="pt-32 flex flex-col gap-4 relative">
@@ -44,6 +49,7 @@ export default function InputField({
         {label}
       </label>
       <input
+        ref={inputRef}
         type={type}
         name={name}
         id={name}
@@ -54,19 +60,8 @@ export default function InputField({
       />
       {type === "password" && (
         <div
-          onClick={() => {
-            toggleIconHidden();
-            const inputElement = document.getElementById(name); //useref 참조하기
-            if (type === "password") {
-              const inputElement = document.getElementById(
-                name
-              ) as HTMLInputElement | null;
-              if (inputElement) {
-                inputElement.type = isIconHidden ? "text" : "password";
-              }
-            }
-          }}
-          className=" absolute right-10 top-66 text-gray-500"
+          onClick={toggleIconHidden}
+          className="absolute right-10 top-66 text-gray-500"
         >
           {isIconHidden ? <CloseEye /> : <Eye />}
         </div>

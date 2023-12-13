@@ -169,21 +169,22 @@
   bottom: -15px;
   transform: rotate(180deg);
 }
-.profile-bill-background-side:before,
-.profile-bill-background-side:after {
+.profileBill:before,
+.profileBill:after {
   display: block;
   content: '';
   position: relative;
   width: 100%;
   background: url('./assets/imgs/ProfileBill.png') center / contain;
   height: 17px;
+  background-repeat: no-repeat;
 }
-.profile-bill-background-side:before {
-  top: -15px;
+.profileBill:before {
+  top: -5px;
   height: 16px;
 }
-.profile-bill-background-side:after {
-  bottom: -15px;
+.profileBill:after {
+  bottom: -5px;
   transform: rotate(180deg);
 }
 
@@ -323,6 +324,7 @@
   .profileBill {
     margin-left: 6px;
     margin-right: 6px;
+    background-repeat: no-repeat;
   }
 }
 

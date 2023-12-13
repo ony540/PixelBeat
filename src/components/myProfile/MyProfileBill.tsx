@@ -11,7 +11,7 @@ export const MyProfileBill = () => {
     navigate('/profile/:id/profile')
   }
   return (
-    <div className='pt-24'>
+    <div className='desktop:px-60 pt-24'>
       <div className="flex flex-row ml-20">
         <button onClick={goToMyBill}>
           <MyBill />

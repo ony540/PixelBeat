@@ -36,7 +36,7 @@ export const ArtistTopTrack = ({ artist_topTracks }) => {
                   src={item.album.images[1].url || ''}
                   alt={`${item.name}.img`}
                 />
-                <MoreButton onClick={handleBottomSheet} />
+                <MoreButton fill='white' onClick={handleBottomSheet} />
                 <div className="flex flex-col overflow-hidden">
                   <span
                     className={

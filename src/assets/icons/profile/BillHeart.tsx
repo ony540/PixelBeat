@@ -4,7 +4,7 @@ export const BillHeart = () => {
     <svg
       width="172"
       height="39"
-      viewBox="0 0 172 39"
+      viewBox="1 0 172 39"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
       <mask
