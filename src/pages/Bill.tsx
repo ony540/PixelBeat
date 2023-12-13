@@ -10,6 +10,7 @@ import { Track, TrackList } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { getBill } from '@/api'
 import { useEffect } from 'react'
+import Portal from '@/utils/portal'
 
 export const Bill = () => {
   const { id: currentPath } = useParams<string>()
@@ -35,7 +36,7 @@ export const Bill = () => {
   }
 
   const handleClickToLoginButton = () => {
-    navigate('/login')
+    navigate('/entry')
   }
 
   const handleClickShareButton = () => {
@@ -54,7 +55,6 @@ export const Bill = () => {
           <div
             className="my-0 mx-auto w-270 mt-[-20px] mb-[-18px] bg-no-repeat bg-[55.6%_54%] bg-[length:136px]"
             style={{ backgroundImage: `url(${graphBgImg})` }}>
-            {/* 데이터 내려주기 */}
             <BillGraph analysisList={data?.analysis} />
           </div>
 
@@ -103,7 +103,6 @@ export const Bill = () => {
             className="mx-auto mt-24 mb-5"
           />
         </div>
-
         <section className="button-section w-356 mx-auto text-20">
           <StandardButton
             text={'다른 영수증 구경하기'}
@@ -116,7 +115,7 @@ export const Bill = () => {
             propsClass="mx-auto mt-12 mb-42"
           />
         </section>
-        {currentTrack && <PlayBar />}
+        <Portal>{currentTrack && <PlayBar propsClass="bottom-0" />}</Portal>
       </>
     )
   }

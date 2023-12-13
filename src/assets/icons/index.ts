@@ -13,3 +13,7 @@ export * from "./moreCircle";
 export * from './home'
 export * from './Xbutton'
 export * from './profile'
+export * from './ArrowDown'
+export * from './RectangleVertax'
+export * from './MoreButton'
+export * from './BottomSheetTop'
