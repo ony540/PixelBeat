@@ -1,13 +1,22 @@
 import { BillHeart, MyBill, Heart } from '@/assets'
+import { useNavigate } from 'react-router-dom'
+
 
 export const MyProfileBill = () => {
+  const navigate = useNavigate()
+  const goToLike = () => {
+    navigate('/profile/:id/profilelike')
+  }
+  const goToMyBill = () => {
+    navigate('/profile/:id/profile')
+  }
   return (
     <div className='pt-24'>
       <div className="flex flex-row ml-20">
-        <button className="">
+        <button onClick={goToMyBill}>
           <MyBill />
         </button>
-        <button className="">
+        <button onClick={goToLike}>
           <BillHeart />
         </button>
       </div>

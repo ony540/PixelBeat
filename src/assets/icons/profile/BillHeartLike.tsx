@@ -1,4 +1,4 @@
-import React, { CSSProperties } from 'react';
+import { CSSProperties } from 'react';
 
 export const BillHeartLike = () => {
   const svgStyle: CSSProperties = { mixBlendMode: 'darken' };
