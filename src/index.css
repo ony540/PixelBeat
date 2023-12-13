@@ -159,6 +159,7 @@
   transform: rotate(180deg);
 }
 
+
 /* 포탈 관련 스타일링 */
 @keyframes fadeOut {
   0% {
@@ -213,4 +214,110 @@
 
 .portal-background-closing {
   animation: fadeOutOpacity 0.4s ease-in;
+
+.profile {
+  display: block;
+  content: '';
+  position: relative;
+  background: url('./assets/imgs/Profile.png') center / contain;
+  width: 100%;
+  height: 116px;
+  background-repeat: no-repeat;
+  margin-top: 28px;
+}
+.select {
+  background: url('./assets/imgs/SelectImg.png') center / contain;
+  width: 100%;
+  height: 36px;
+  display: block;
+  content: '';
+  position: absolute;
+  background-repeat: no-repeat;
+  top: 100px;
+  left: 60px;
+}
+.inputText {
+  width: 520px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.loginText {
+  width: 520px;
+}
+.musicListGreen {
+  background: url(./assets/imgs/musicListGreen.png);
+}
+.musicList {
+  background: url(./assets/imgs/musicList.png);
+}
+.album {
+  background: url(./assets/imgs/album.png) center / contain;
+}
+.more {
+  background: url(./assets/imgs/more.png) center / contain;
+}
+.listMenu {
+  background: url(./assets/imgs/listmenu.png) center / contain;
+}
+
+@media screen and (min-width: 390px) and (max-width: 720px) {
+  .inputText {
+    width: 320px;
+  }
+  .loginText {
+    width: 320px;
+  }
+  .container {
+    width: 320px;
+  }
+  .more {
+    left: 64px;
+  }
+  .moreCircle {
+    left: 120px;
+  }
+  .listMenu {
+    left: 66px;
+    z-index: 1;
+  }
+  .musicList {
+    z-index: 2;
+  }
+  .musicListGreen {
+    z-index: 2;
+  }
+  .musicTitle {
+    width: 150px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 390px) {
+  .inputText {
+    width: 320px;
+  }
+  .loginText {
+    width: 320px;
+  }
+  .container {
+    width: 320px;
+  }
+  .more {
+    left: 84px;
+  }
+  .moreCircle {
+    left: 120px;
+  }
+  .listMenu {
+    left: 66px;
+    z-index: 1;
+  }
+  .musicListGreen {
+    z-index: 2;
+  }
+  .musicTitle {
+    width: 150px;
+    font-size: 14px;
+  }
 }

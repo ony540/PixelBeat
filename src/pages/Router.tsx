@@ -1,6 +1,7 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import { RouteObject } from 'react-router-dom'
 import { ErrorComponent } from '@/components'
+
 import {
   Layout,
   Entry,
@@ -11,7 +12,9 @@ import {
   Artist,
   Album
 } from '@/pages'
+
 import { ReactNode } from 'react'
+import { Layout, Entry, Recommend, Bill, Home, Login, LoginEmail, SignUpEmail, ProfileEdit, MyMusicMain, MyMusicBill, MyMusicBillId, Search, Artist, Album } from '@/pages'
 
 const generateRoute = (
   path: string,
@@ -32,11 +35,20 @@ export const routes = [
     element: <Layout />,
     errorElement: <ErrorComponent />,
     children: [
-      generateRoute('/', <Entry />),
+      generateRoute("/", <Entry />),
+      generateRoute("/recommend", <Recommend />),
+      generateRoute("/recommend/:id", <Recommend />),
+      generateRoute("/login", <Login />),
+      generateRoute("/signup/email", <SignUpEmail />),
+      generateRoute("/profile/edit", <ProfileEdit />),
+      generateRoute("/login/email", <LoginEmail />),
       generateRoute('/home', <Home />),
       generateRoute('/recommend', <Recommend />),
       generateRoute('/recommend/:id', <Recommend />),
       generateRoute('/search', <Search />),
+      generateRoute('/mymusic/main', <MyMusicMain />),
+      generateRoute('/mymusic/bill/:billid', <MyMusicBillId />),
+      generateRoute('/mymusic/bill', <MyMusicBill />),
       generateRoute('/artist/:id', <Artist />),
       generateRoute('/album/:id', <Album />),
       generateRoute('/bill/:id', <Bill />)

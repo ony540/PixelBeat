@@ -1,4 +1,7 @@
 export * from './ErrorComponent'
 export * from './recommend'
 export * from './common'
+export * from './SignUp'
 export * from './bill'
+export * from './SignIn'
+export * from './MyMusic'

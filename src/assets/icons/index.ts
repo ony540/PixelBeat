@@ -2,6 +2,14 @@ export * from './recommend'
 export * from './play'
 export * from './PixelBorder'
 export * from './Clock'
+export * from './play'
+export * from "./PixelBorder";
+export * from "./LoginBtn";
+export * from "./EmailBtn";
+export * from "./SpotifyHover";
+export * from "./Eye";
+export * from "./CloseEye";
+export * from "./moreCircle";
 export * from './home'
 export * from './Xbutton'
 export * from './RectangleVertax'
