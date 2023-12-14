@@ -326,6 +326,13 @@
     margin-right: 6px;
     background-repeat: no-repeat;
   }
+  .headerArrow {
+    margin-left: -40px;
+  }
+  .headerMore {
+    right: -52px;
+    top: -8px;
+  }
 }
 
 @media screen and (max-width: 390px) {
@@ -358,6 +365,13 @@
   .profileBill {
     margin-left: 6px;
     margin-right: 6px;
+  }
+  .headerArrow {
+    margin-left: -40px;
+  }
+  .headerMore {
+    right: -52px;
+    top: -8px;
   }
 }
 

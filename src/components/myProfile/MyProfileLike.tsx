@@ -25,7 +25,7 @@ export const MyProfileLike = () => {
     })
   }
   return (
-    <div className='pb-80'>
+    <div className="pb-80">
       <Header type="profile" />
       <MyProfileInfo />
       <div className="desktop:px-60 pt-24">
@@ -39,14 +39,24 @@ export const MyProfileLike = () => {
         </div>
         <div className="mx-20 border h-auto flex flex-wrap">
           <div className="profileBill ml-78 bg-mainWhite w-162 mb-10 mt-30 text-mainBlack text-center">
-            <h1 className="text-14">누군가 영수증 #1</h1>{' '}
+          <h1
+              className="text-14 w-140 m-auto text-center"
+              style={{
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                display: '-webkit-box',
+                WebkitBoxOrient: 'vertical',
+                WebkitLineClamp: 2
+              }}>
+              누군가 영수증 #1 죄송합니다 죄송합니다 죄송합니다 죄송합니다 죄송합니다
+            </h1>{' '}
             {/* 좋아요한 영수증이나 나의 영수증 */}
             <img
               className="bg-mainGray w-124 h-124 mx-19 mt-8"
               src=""
               alt=""
             />
-            <div className="flex justify-between border-mainBlack border-y mx-11 mt-12 border-dashed text-12 text-start">
+            <div className="flex justify-between h-26 leading-25 border-mainBlack border-y mx-11 mt-12 border-dashed text-12 text-start">
               <div>8곡 • 10:38</div>{' '}
               {/* 플리에 들어있는곡 수 + 곡들의 시간 총합 */}
               <button onClick={() => toggleLike(0)}>
@@ -55,14 +65,24 @@ export const MyProfileLike = () => {
             </div>
           </div>
           <div className="profileBill ml-78 bg-mainWhite w-162 mb-10 mt-30 text-mainBlack text-center">
-            <h1 className="text-14">누군가 영수증 #1</h1>{' '}
+            <h1
+              className="text-14 w-140 m-auto text-center"
+              style={{
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                display: '-webkit-box',
+                WebkitBoxOrient: 'vertical',
+                WebkitLineClamp: 2
+              }}>
+              누군가 영수증 #1 죄송합니다 죄송합니다 죄송합니다 죄송합니다 죄송합니다
+            </h1>{' '}
             {/* 좋아요한 영수증이나 나의 영수증 */}
             <img
               className="bg-mainGray w-124 h-124 mx-19 mt-8"
               src=""
               alt=""
             />
-            <div className="flex justify-between border-mainBlack border-y mx-11 mt-12 border-dashed text-12 text-start">
+            <div className="flex justify-between h-26 leading-25 border-mainBlack border-y mx-11 mt-12 border-dashed text-12 text-start">
               <div>8곡 • 10:38</div>{' '}
               {/* 플리에 들어있는곡 수 + 곡들의 시간 총합 */}
               <button onClick={() => toggleLike(1)}>

@@ -25,10 +25,10 @@ const PlayNowHeader = ({ onClick }: HeaderProps) => {
 const ProfileHeader = ({ onClick }: HeaderProps) => {
   return (
     <header className='flex bg-mainGreen h-55 relative px-60 justify-between'>
-      <button onClick={onClick} type='button' className='rotate-90 ml-18 mt-6'>
+      <button onClick={onClick} type='button' className='headerArrow rotate-90 ml-18 mt-6'>
         <ArrowDown fill='black' />
       </button>
-      <button onClick={onClick} type='button' className='relative top-0 right-15'>
+      <button onClick={onClick} type='button' className='headerMore relative top-0 right-15'>
         <MoreButton fill='black' />
       </button>
     </header>
