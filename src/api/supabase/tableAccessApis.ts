@@ -1,6 +1,7 @@
 // genre_artist_id_table 접근 관련 api
-import { supabase } from '@/api/supabase'
+
 import { TrackList } from '@/types'
+import { supabase } from '.'
 
 export const getArtistId = async (genres: string[]) => {
   try {

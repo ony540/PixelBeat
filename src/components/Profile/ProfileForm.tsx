@@ -1,59 +1,51 @@
-import React, { useState } from 'react'
-import debounce from '@/utils/debounce'
+import { ChangeEvent, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { StandardButton } from '@/components'
-import InputField from '../SignUp/InputField'
+import defaultImage from '../../assets/imgs/Profile.png'
+import { ImageUploadForm, ProfileInputField } from '.'
 
 export const ProfileForm = () => {
-  const nickNameRegex = /^[가-힣a-zA-Z0-9_-]{3,16}$/
-  const introductionRegex = /^[가-힣a-zA-Z0-9\s\.\,\!\?\-]{1,30}$/
   const navigate = useNavigate()
-
+  const [selectedImage, setSelectedImage] = useState(defaultImage)
   const [formState, setFormState] = useState({
-    nickName: '',
-    introduction: ''
+    userName: '',
+    userIntroduction: ''
   })
-
   const [validationErrors, setValidationErrors] = useState({
-    nickName: '',
-    introduction: ''
+    userName: ''
   })
 
-  const handleInput = e => {
-    const { name, value } = e.target
+  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0]
 
-    let isValid
-
-    switch (name) {
-      case 'nickName':
-        isValid = nickNameRegex.test(value)
-        break
-      case 'introduction':
-        isValid = introductionRegex.test(value)
-        break
-      default:
-        return
+    if (file) {
+      setSelectedImage(URL.createObjectURL(file))
+    } else {
+      setSelectedImage(defaultImage)
     }
-
-    setValidationErrors({
-      ...validationErrors,
-      [name]: !isValid
-    })
-
-    setFormState({
-      ...formState,
-      [name]: value
-    })
   }
 
-  const handleDebounceInput = debounce(handleInput, 300)
+  const handleTextChange = e => {
+    const { name, value } = e.target
+
+    setFormState(prev => ({
+      ...prev,
+      [name]: value
+    }))
+
+    const isUserNameValid = value.trim() !== ''
+
+    setValidationErrors(prev => ({
+      ...prev,
+      [name]: isUserNameValid
+    }))
+  }
+
   const isSubmitDisabled = () => {
-    return (
-      formState.nickName === '' ||
-      formState.introduction === '' ||
-      validationErrors.nickName ||
-      validationErrors.introduction
-    )
+    const isEmpty = Object.keys(formState).some(check => check === '')
+    const isValidationError = validationErrors.userName === ''
+
+    return isEmpty || isValidationError
   }
 
   const makeProfile = () => {
@@ -62,46 +54,37 @@ export const ProfileForm = () => {
 
   return (
     <form
-      className="flex flex-col gap-8 mt-8 justify-center items-center py-6"
+      className="flex flex-col mobile:gap-20 desktop:gap-30 mt-8 justify-center items-center"
       onSubmit={e => e.preventDefault()}>
-      <InputField
-        name="nickName"
+      <ImageUploadForm
+        onChange={handleImageChange}
+        selectedImage={selectedImage}
+      />
+      <ProfileInputField
+        name={'userName'}
         label="닉네임"
-        defaultValue={formState.nickName}
+        value={formState.userName}
         placeholder="픽셀비트"
-        type="nickName"
-        onChange={handleDebounceInput}
-        isValid={!validationErrors.nickName && formState.nickName !== ''}
-        passMessage=""
-        failMessage="닉네임은 필수 값입니다."
-        isPasswordHidden={undefined}
-        togglePasswordHidden={undefined}
+        onChange={handleTextChange}
+        valiationCheck={validationErrors.userName}
       />
-      <InputField
-        name="introduction"
+      <ProfileInputField
+        name={'userIntroduction'}
         label="자기소개"
-        defaultValue={formState.introduction}
+        value={formState.userIntroduction}
         placeholder="자기소개를 적어주세요"
-        type="introduction"
-        onChange={handleDebounceInput}
-        isValid={
-          !validationErrors.introduction && formState.introduction !== ''
-        }
-        passMessage=""
-        failMessage=""
-        isPasswordHidden={undefined}
-        togglePasswordHidden={undefined}
+        onChange={handleTextChange}
       />
-      <button className="sticky bottom-0 mx-auto my-22 text-30 standard-button-container">
-        <StandardButton
-          height={70}
-          text={'완 료'}
-          onClick={makeProfile}
-          disabled={isSubmitDisabled()}
-          fillColor={isSubmitDisabled() ? undefined : '#57FF57'}
-        />
-      </button>
+
+      <StandardButton
+        type="submit"
+        propsClass="mx-auto mt-22 w-full
+                    mobile:h-56 
+                    desktop:h-60 "
+        text={'완료'}
+        disabled={isSubmitDisabled()}
+        fillColor={isSubmitDisabled() ? '' : '#57FF57'}
+      />
     </form>
   )
 }
-  
