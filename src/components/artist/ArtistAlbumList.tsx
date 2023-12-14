@@ -1,6 +1,6 @@
 import { RectangleVertax } from '@/assets'
 import { useNavigate } from 'react-router-dom'
-import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
+import defaultAlbumImg from '@/assets/imgs/default_album_artist.png'
 
 const ArtistAlbumList = ({ artist_albums }) => {
   const navigate = useNavigate()
@@ -12,19 +12,15 @@ const ArtistAlbumList = ({ artist_albums }) => {
             <div
               onClick={() => navigate(`/album/${album.id}`)}
               key={album.id}
-              className="flex-col mobile:w-150 mobile:h-176 flex-shrink-0 bg-mainGray cursor-pointer">
+              className="flex-col mobile:w-150 mobile:h-176 flex-shrink-0 bg-mainGray cursor-pointer relative">
               <RectangleVertax />
-              {album.images && album.images.length > 0 ? (
+              {album.images && album.images.length > 0 && (
                 <img
                   loading="lazy"
                   className={`w-150 h-150 cursor-pointer`}
                   src={album.images[1].url || defaultAlbumImg}
                   alt={`${album.name}.img`}
                 />
-              ) : (
-                <div className="mobile:w-150 mobile:h-156 grid place-items-center">
-                  No Image
-                </div>
               )}
               <p className="w-150 h-26 text-center text-mainBlack desktop:text-16">
                 {album.name.length >= 15

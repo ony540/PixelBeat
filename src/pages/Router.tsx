@@ -18,9 +18,9 @@ import {
   Album,
   RecommendEntry,
   Entry,
+  BillFromSpotify,
   Profile
 } from '@/pages'
-// import { BillFromSpotify } from './BillFromSpotify'
 
 const generateRoute = (
   path: string,
@@ -57,7 +57,7 @@ export const routes = [
       generateRoute('/profile/:id/profile', <Profile />),
       generateRoute('/profile/:id/profilelike', <MyProfileLike />),
       generateRoute('/bill/:id', <Bill />),
-      // generateRoute('/bill/playlist/:id', <BillFromSpotify />)
+      generateRoute('/bill/playlist/:id', <BillFromSpotify />)
     ]
   }
 ]

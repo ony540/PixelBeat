@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { MenuIcon, MoreButton } from '@/assets'
+import { MenuIcon, MoreIcon } from '@/assets'
 import { useNavigate } from 'react-router-dom'
 import { useModal } from '@/hooks'
 import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
@@ -23,13 +23,13 @@ export const ArtistTopTrack = ({ artist_topTracks }) => {
       <h1 className="absolute text-mainBlack mobile:top-4 mobile:left-60 desktop:top-5 desktop:left-130">
         인기 트랙
       </h1>
-      <div className="relative desktop:px-3 mobile:px-1">
-        {artist_topTracks &&
-          artist_topTracks.slice(0, visibleTracks).map(item => (
-            <div
-              className="relative desktop:my-6"
-              key={item.id}>
-              <div className="border-1 my-4 flex items-center gap-10">
+      <div className="relative desktop:pl-3 mobile:px-1 mt-6">
+        <div className="border-b-1">
+          {artist_topTracks &&
+            artist_topTracks.slice(0, visibleTracks).map(item => (
+              <div
+                className="border-1 border-b-0 flex items-center gap-10"
+                key={item.id}>
                 <img
                   loading="lazy"
                   onClick={() => navigate(`/album/${item.album.id}`)}
@@ -37,7 +37,12 @@ export const ArtistTopTrack = ({ artist_topTracks }) => {
                   src={item.album.images[1].url || defaultAlbumImg}
                   alt={`${item.name}.img`}
                 />
-                <MoreButton fill='white' onClick={handleBottomSheet} />
+                <button
+                  type="button"
+                  className="absolute right-10"
+                  onClick={handleBottomSheet}>
+                  <MoreIcon />
+                </button>
                 <div className="flex flex-col overflow-hidden">
                   <span
                     className={
@@ -48,8 +53,8 @@ export const ArtistTopTrack = ({ artist_topTracks }) => {
                   <span>{item.artists[0].name}</span>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+        </div>
         {visibleTracks < artist_topTracks.length && (
           <button
             className="border-1 w-full hover:underline"

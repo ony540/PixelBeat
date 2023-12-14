@@ -27,9 +27,9 @@ export const SearchResultArtistItem = ({ artists }) => {
             {artists &&
               artists.items.map(item => (
                 <div
-                  className="my-4 mx-2 flex flex-col items-center mobile:w-150 mobile:h-176"
+                  className="my-6 mr-8 flex flex-col items-center mobile:w-150 mobile:h-176"
                   key={item.id}>
-                  <div className="mobile:w-150 mobile:h-156 border-1 overflow-y-hidden">
+                  <div className="mobile:w-150 border-[1.4px] border-b-0  mobile:h-156 overflow-y-hidden">
                     {item.images && item.images.length > 0 ? (
                       <img
                         loading="lazy"

@@ -88,7 +88,7 @@ export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
               alt={album.name}
               className="w-48 h-48"
             />
-            <StandardVertex propsClass="h-48 absolute top-0" />
+            <StandardVertex propsClass="h-48 absolute top-0 text-black" />
           </div>
 
           <div className="leading-[1.1] flex-1 basis-196 cursor-pointer overflow-hidden">

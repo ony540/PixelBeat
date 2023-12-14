@@ -1,3 +1,4 @@
+import { getAllTracksDuration, msToMinutesAndSeconds } from '@/utils'
 import { StandardVertex } from '..'
 import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 
@@ -9,24 +10,8 @@ export const AlbumArtistInfo = ({ album_data }) => {
   const { id, name, artists, release_date, total_tracks, images, tracks } =
     album_data
 
-  const convertMillisecondsToMinutesAndSeconds = milliseconds => {
-    const totalSeconds = milliseconds / 1000
-    const minutes = Math.floor(totalSeconds / 60)
-    const seconds = Math.floor(totalSeconds % 60)
-    return { minutes, seconds }
-  }
-
-  const formatTime = (minutes, seconds) => {
-    return ` ${minutes}분 ${seconds}초`
-  }
-
-  const allTrackDuration = tracks.items.reduce(
-    (acc, currentItem) => acc + currentItem.duration_ms,
-    0
-  )
-
-  const { minutes, seconds } =
-    convertMillisecondsToMinutesAndSeconds(allTrackDuration)
+  const allTrackDuration = getAllTracksDuration({ tracks: tracks.items })
+  const { minutes, seconds } = msToMinutesAndSeconds(allTrackDuration)
 
   const mobileImageSize = 'mobile:w-198 mobile:h-198'
   const desktopImageSize = 'desktop:w-300 desktop:h-300'
@@ -37,7 +22,7 @@ export const AlbumArtistInfo = ({ album_data }) => {
       key={id}>
       <div className="flex justify-center relative">
         <StandardVertex
-          propsClass={`absolute ${mobileImageSize} ${desktopImageSize}`}
+          propsClass={`absolute text-black ${mobileImageSize} ${desktopImageSize}`}
         />
         <img
           className={` ${mobileImageSize} ${desktopImageSize}`}
@@ -56,7 +41,7 @@ export const AlbumArtistInfo = ({ album_data }) => {
         <h2 className="absolute mobile:text-14 mobile:top-70 desktop:left-0 desktop:text-24 desktop:top-90">
           <p>
             {artists[0].name} • {release_date.split('-')[0]} • {total_tracks}곡,
-            {formatTime(minutes, seconds)}
+            {` ${minutes}분 ${seconds}초`}
           </p>
         </h2>
       </div>

@@ -3,12 +3,17 @@ import { StandardPixelBorder, StandardVertex } from '@/components'
 import { Track } from '@/types'
 import { useNowPlayStore } from '@/zustand'
 import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
+import { useNavigate } from 'react-router-dom'
 
 export const TopTrackItem = ({ tracks }) => {
+  const navigate = useNavigate()
   const setCurrentTrack = useNowPlayStore(state => state.setCurrentTrack)
 
   const handleClickPlayButton = (track: Track) => {
     setCurrentTrack(track)
+  }
+  const handleClickAlbum = (id: string) => {
+    navigate(`/album/${id}`)
   }
 
   return (
@@ -26,9 +31,10 @@ export const TopTrackItem = ({ tracks }) => {
                   : defaultAlbumImg
               }
               loading="lazy"
-              className="absolute w-48 h-48 left-10 top-9"
+              className="absolute w-48 h-48 left-10 top-9 z-10 cursor-pointer"
+              onClick={() => handleClickAlbum(item.track.album.id)}
             />
-            <StandardVertex propsClass="absolute w-48 h-48 left-10 top-9" />
+            <StandardVertex propsClass="text-black absolute w-48 h-48 left-10 top-9" />
             <p className="absolute top-20 left-59 desktop:left-62 w-30 text-center">
               {idx + 1}
             </p>
