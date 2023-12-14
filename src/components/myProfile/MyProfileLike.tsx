@@ -38,7 +38,7 @@ export const MyProfileLike = () => {
           </button>
         </div>
         <div className="mx-20 border h-auto flex flex-wrap">
-          <div className="profileBill ml-78 bg-mainWhite w-162 mb-10 mt-30 text-mainBlack text-center">
+          <div className="profileBill ml-78 bg-mainWhite w-162 mb-10 mt-30 text-mainBlack text-center leading-tight">
           <h1
               className="text-14 w-140 m-auto text-center"
               style={{
@@ -48,7 +48,7 @@ export const MyProfileLike = () => {
                 WebkitBoxOrient: 'vertical',
                 WebkitLineClamp: 2
               }}>
-              누군가 영수증 #1 죄송합니다 죄송합니다 죄송합니다 죄송합니다 죄송합니다
+                옥지의 영수증 #1
             </h1>{' '}
             {/* 좋아요한 영수증이나 나의 영수증 */}
             <img
@@ -64,7 +64,7 @@ export const MyProfileLike = () => {
               </button>
             </div>
           </div>
-          <div className="profileBill ml-78 bg-mainWhite w-162 mb-10 mt-30 text-mainBlack text-center">
+          <div className="profileBill ml-78 bg-mainWhite w-162 mb-10 mt-30 text-mainBlack text-center leading-tight">
             <h1
               className="text-14 w-140 m-auto text-center"
               style={{
@@ -74,7 +74,7 @@ export const MyProfileLike = () => {
                 WebkitBoxOrient: 'vertical',
                 WebkitLineClamp: 2
               }}>
-              누군가 영수증 #1 죄송합니다 죄송합니다 죄송합니다 죄송합니다 죄송합니다
+              좋아요의 영수증 #1
             </h1>{' '}
             {/* 좋아요한 영수증이나 나의 영수증 */}
             <img
