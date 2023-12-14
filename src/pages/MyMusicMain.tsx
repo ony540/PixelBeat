@@ -2,7 +2,7 @@ import { MusicList } from '@/components'
 
 export const MyMusicMain = () => {
   return (
-    <div className='flex justify-center'>
+    <div className="flex justify-center">
       <MusicList />
     </div>
   )

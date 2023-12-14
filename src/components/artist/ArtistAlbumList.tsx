@@ -1,5 +1,6 @@
 import { RectangleVertax } from '@/assets'
 import { useNavigate } from 'react-router-dom'
+import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 
 const ArtistAlbumList = ({ artist_albums }) => {
   const navigate = useNavigate()
@@ -17,7 +18,7 @@ const ArtistAlbumList = ({ artist_albums }) => {
                 <img
                   loading="lazy"
                   className={`w-150 h-150 cursor-pointer`}
-                  src={album.images[1].url}
+                  src={album.images[1].url || defaultAlbumImg}
                   alt={`${album.name}.img`}
                 />
               ) : (

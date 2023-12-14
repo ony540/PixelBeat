@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { MenuIcon, MoreButton } from '@/assets'
 import { useNavigate } from 'react-router-dom'
 import { useModal } from '@/hooks'
+import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 
 export const ArtistTopTrack = ({ artist_topTracks }) => {
   const { openModal } = useModal()
@@ -33,7 +34,7 @@ export const ArtistTopTrack = ({ artist_topTracks }) => {
                   loading="lazy"
                   onClick={() => navigate(`/album/${item.album.id}`)}
                   className="mobile:w-50 mobile:h-51 mr-4 desktop:w-65 desktop:h-66 cursor-pointer"
-                  src={item.album.images[1].url || ''}
+                  src={item.album.images[1].url || defaultAlbumImg}
                   alt={`${item.name}.img`}
                 />
                 <MoreButton fill='white' onClick={handleBottomSheet} />

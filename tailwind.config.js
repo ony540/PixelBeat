@@ -32,7 +32,8 @@ export default {
         mainGreen: '#57FF57',
         bgGray: '#E6E6E6',
         mainGray: '#C3C3C3',
-        mainGray200: '#9C9C9C'
+        mainGray200: '#9C9C9C',
+        mainBlackOpacity: '#00000099'
       },
       screens: {
         mobile: '390px',

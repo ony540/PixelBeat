@@ -3,7 +3,7 @@ import {
   getArtistInfo,
   getArtistTopTracks,
   getRelatedArtists
-} from '@/api/recommendApis'
+} from '@/api'
 import { BottomSheet, ErrorComponent, Header, NavBar } from '@/components'
 import { ArtistImage, ArtistTopTrack, RelatedArtist } from '@/components/artist'
 import ArtistAlbumList from '@/components/artist/ArtistAlbumList'

@@ -11,7 +11,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { TrackAnalysis } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { getRandomArray } from '@/utils'
-import { getRecommendations, getTracksAudioFeatures } from '@/api/recommendApis'
+import { getRecommendations, getTracksAudioFeatures } from '@/api'
 import { uploadBill } from '@/api'
 
 type ValidParams = 'genre' | 'artist' | 'track'

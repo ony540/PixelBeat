@@ -1,4 +1,5 @@
 import { StandardVertex } from '..'
+import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 
 export const ArtistImage = ({ artist_info }) => {
   const imageSizeClass = 'mobile:w-198 mobile:h-198 desktop:w-300 desktop:h-300'
@@ -10,18 +11,13 @@ export const ArtistImage = ({ artist_info }) => {
           <div key={artist.id}>
             <div className="flex justify-center relative">
               <StandardVertex propsClass={`absolute ${imageSizeClass}`} />
-              {artist.images && artist.images.length > 0 ? (
-                <img
-                  loading="lazy"
-                  className={`${imageSizeClass}`}
-                  src={artist.images[1].url}
-                  alt={`${artist.name}.img`}
-                />
-              ) : (
-                <div className="mobile:w-150 mobile:h-156 grid place-items-center">
-                  No Image
-                </div>
-              )}
+
+              <img
+                loading="lazy"
+                className={`${imageSizeClass}`}
+                src={artist.images[1].url || defaultAlbumImg}
+                alt={`${artist.name}.img`}
+              />
             </div>
             <div className="relative w-full desktop:h-120 mobile:h-90 overflow-hidden">
               <h1

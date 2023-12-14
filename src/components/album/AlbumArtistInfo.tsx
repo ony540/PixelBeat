@@ -1,4 +1,5 @@
 import { StandardVertex } from '..'
+import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 
 export const AlbumArtistInfo = ({ album_data }) => {
   if (!album_data) {
@@ -14,15 +15,18 @@ export const AlbumArtistInfo = ({ album_data }) => {
     const seconds = Math.floor(totalSeconds % 60)
     return { minutes, seconds }
   }
-  
+
   const formatTime = (minutes, seconds) => {
     return ` ${minutes}분 ${seconds}초`
   }
 
-  const firstTrackDuration = tracks.items[0].duration_ms
+  const allTrackDuration = tracks.items.reduce(
+    (acc, currentItem) => acc + currentItem.duration_ms,
+    0
+  )
 
   const { minutes, seconds } =
-    convertMillisecondsToMinutesAndSeconds(firstTrackDuration)
+    convertMillisecondsToMinutesAndSeconds(allTrackDuration)
 
   const mobileImageSize = 'mobile:w-198 mobile:h-198'
   const desktopImageSize = 'desktop:w-300 desktop:h-300'
@@ -37,7 +41,7 @@ export const AlbumArtistInfo = ({ album_data }) => {
         />
         <img
           className={` ${mobileImageSize} ${desktopImageSize}`}
-          src={images[0].url}
+          src={images[0].url || defaultAlbumImg}
           alt={name + 'image'}
         />
       </div>

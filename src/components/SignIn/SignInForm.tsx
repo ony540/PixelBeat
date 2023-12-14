@@ -1,65 +1,46 @@
-import { useState, useCallback } from 'react'
+import { useState } from 'react'
 import { InputSection } from './InputSection'
-import debounce from '@/utils/debounce'
 import { useNavigate } from 'react-router-dom'
 import { StandardButton } from '@/components'
 
 export const SignInForm = () => {
-  const handleSignIn = async e => {
-    e.preventDefault()
-  }
-
   const navigate = useNavigate()
   const [formState, setFormState] = useState({
     email: '',
     password: ''
   })
 
-  const [validationErrors, setValidationErrors] = useState({
-    email: false,
-    password: false,
-    passwordConfirm: false
-  })
+  const handleSignIn = async e => {
+    e.preventDefault()
+  }
 
-  const handleInput = useCallback(
-    debounce(e => {
-      const { name, value } = e.target
-      setFormState(prevFormState => ({
-        ...prevFormState,
-        [name]: value
-      }))
-    }, 400),
-    []
-  )
-  const isSubmitDisabled = () => {
-    return (
-      formState.email === '' ||
-      formState.password === '' ||
-      validationErrors.email ||
-      validationErrors.password
-    )
+  const handleInput = e => {
+    const { name, value } = e.target
+    setFormState(prev => ({
+      ...prev,
+      [name]: value
+    }))
   }
-  const GoToMain = () => {
-    navigate('/main')
-  }
+
+  const isSubmitDisabled = () => !formState.email || !formState.password
 
   return (
-    <>
+    <div className="mobile:px-20 desktop:px-60">
       <form onSubmit={handleSignIn}>
         <InputSection
           formState={formState}
           handleInput={handleInput}
         />
-      </form>
-      <button className="sticky bottom-0 mx-auto pl-30 my-10 text-30 left-100 standard-button-container">
         <StandardButton
-          height={70}
-          text={'다 음'}
-          onClick={GoToMain}
+          type="submit"
+          propsClass="mx-auto mt-22 w-full
+                    mobile:h-56 
+                    desktop:h-60 "
+          text={'다음'}
           disabled={isSubmitDisabled()}
-          fillColor={isSubmitDisabled() ? undefined : '#57FF57'}
+          fillColor={isSubmitDisabled() ? '' : '#57FF57'}
         />
-      </button>
-    </>
+      </form>
+    </div>
   )
 }

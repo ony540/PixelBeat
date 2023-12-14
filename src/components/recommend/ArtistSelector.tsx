@@ -1,5 +1,4 @@
-import { getArtistId } from '@/api'
-import { getArtistInfo } from '@/api/recommendApis'
+import { getArtistId, getArtistInfo } from '@/api'
 import { useRecommendStore } from '@/zustand'
 import { useEffect, useState } from 'react'
 import { ArtistItem } from '..'

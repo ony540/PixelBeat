@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
+
 export const AlbumList = ({ album_list }) => {
   const navigate = useNavigate()
   const [visibleTracks, setVisibleTracks] = useState(5)
@@ -23,7 +25,7 @@ export const AlbumList = ({ album_list }) => {
               <div className="border-1 my-4 flex items-center gap-10">
                 <img
                   className="mobile:w-50 mobile:h-51 mr-4 desktop:w-65 desktop:h-66"
-                  src={album_list.images[1].url}
+                  src={album_list.images[1].url || defaultAlbumImg}
                   alt={`${item.name}.img`}
                 />
                 <div className="flex flex-col overflow-hidden">
