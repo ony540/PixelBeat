@@ -1,2 +1,3 @@
-export * from './InputField'
+export * from './SignupInputField'
 export * from './SignUpForm'
+export * from './ValidationErrorMessage'

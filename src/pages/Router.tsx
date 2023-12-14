@@ -7,8 +7,8 @@ import {
   Recommend,
   Bill,
   Home,
-  LoginEmail,
-  SignUpEmail,
+  SigninWithEmail,
+  SignupWithEmail,
   ProfileEdit,
   MyMusicMain,
   MyMusicBill,
@@ -19,7 +19,7 @@ import {
   RecommendEntry,
   Entry
 } from '@/pages'
-import { BillFromSpotify } from './BillFromSpotify'
+// import { BillFromSpotify } from './BillFromSpotify'
 
 const generateRoute = (
   path: string,
@@ -43,9 +43,9 @@ export const routes = [
       generateRoute('/recommend', <RecommendEntry />),
       generateRoute('/recommend/:id', <Recommend />),
       generateRoute('/entry', <Entry />),
-      generateRoute('/signup/email', <SignUpEmail />),
+      generateRoute('/signup/email', <SignupWithEmail />),
       generateRoute('/profile/edit', <ProfileEdit />),
-      generateRoute('/login/email', <LoginEmail />),
+      generateRoute('/login/email', <SigninWithEmail />),
       generateRoute('/home', <Home />),
       generateRoute('/search', <Search />),
       generateRoute('/mymusic/main', <MyMusicMain />),
@@ -54,7 +54,7 @@ export const routes = [
       generateRoute('/artist/:id', <Artist />),
       generateRoute('/album/:id', <Album />),
       generateRoute('/bill/:id', <Bill />),
-      generateRoute('/bill/playlist/:id', <BillFromSpotify />)
+      // generateRoute('/bill/playlist/:id', <BillFromSpotify />)
     ]
   }
 ]

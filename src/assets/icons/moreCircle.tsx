@@ -1,17 +1,17 @@
-import React, { useState } from 'react';
+import { useState } from 'react'
 
 export const MoreCircle = () => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false)
 
   const handleMouseEnter = () => {
-    setIsHovered(true);
-  };
+    setIsHovered(true)
+  }
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
-  };
+    setIsHovered(false)
+  }
 
-  const fill = isHovered ? '#313131' : 'black';
+  const fill = isHovered ? '#313131' : 'black'
   return (
     <svg
       width="24"
@@ -22,8 +22,8 @@ export const MoreCircle = () => {
       <g clip-path="url(#clip0_863_20307)">
         <g filter="url(#filter0_d_863_20307)">
           <path
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M17 3H7V4V5H5V7H3V17H5V19H7V21H17V19H19V17H20H21V7H20H19V5H17V4V3Z"
             fill="white"
           />
@@ -31,8 +31,8 @@ export const MoreCircle = () => {
         <g filter="url(#filter1_d_863_20307)">
           <path
             fill={fill}
-            fill-rule="evenodd"
-            clip-rule="evenodd"
+            fillRule="evenodd"
+            clipRule="evenodd"
             d="M17 10L15 10L15 12L17 12L17 10ZM13 14L15 14L15 12L13 12L13 14ZM11 14L11 16L13 16L13 14L11 14ZM9 12L11 12L11 14L9 14L9 12ZM9 12L9 10L7 10L7 12L9 12Z"
           />
         </g>

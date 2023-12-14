@@ -1,45 +1,31 @@
-export const StandardButton = ({
-  type,
-  text,
-  propsClass,
+export const PixelBeatLoginButton = ({
   onClick,
-  fillColor,
-  height,
-  disabled
+  propsClass
 }: {
-  type?: any
-  text: string
-  onClick?: () => any
+  onClick?: () => void
   propsClass?: string
-  fillColor?: string
-  height?: number | string
-  disabled?: any
 }) => {
   return (
     <button
-      type={type || 'button'}
-      disabled={disabled}
-      className={
-        propsClass
-          ? `${propsClass} block relative w-full`
-          : 'block relative w-full'
-      }
+      className="relative"
+      type="button"
       onClick={onClick}>
       <svg
+        className={propsClass}
         width="100%"
-        height={height || 56}
-        viewBox="0 0 356 56"
+        height="100%"
+        viewBox="0 0 357 56"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none">
         <rect
-          width="100%"
-          height="100%"
+          width="356"
+          height="56"
           rx="19"
-          fill={disabled ? fillColor || '#C3C3C3' : fillColor || '#57FF57'}
+          fill="#FFFF57"
         />
         <rect
-          x="5.71436"
+          x="5.71484"
           y="1.9043"
           width="3.80952"
           height="3.80952"
@@ -53,7 +39,7 @@ export const StandardButton = ({
           fill="black"
         />
         <rect
-          x="1.90479"
+          x="1.90527"
           y="5.71387"
           width="1.90476"
           height="5.71429"
@@ -68,7 +54,7 @@ export const StandardButton = ({
         <rect
           width="3.80952"
           height="3.80952"
-          transform="matrix(-1 0 0 1 350.81 1.9043)"
+          transform="matrix(-1 0 0 1 350.809 1.9043)"
           fill="black"
         />
         <rect
@@ -80,17 +66,17 @@ export const StandardButton = ({
         <rect
           width="1.90476"
           height="5.71429"
-          transform="matrix(-1 0 0 1 354.619 5.71387)"
+          transform="matrix(-1 0 0 1 354.618 5.71387)"
           fill="black"
         />
         <rect
           width="3.80952"
           height="1.90476"
-          transform="matrix(-1 0 0 1 356.524 9.52344)"
+          transform="matrix(-1 0 0 1 356.523 9.52344)"
           fill="black"
         />
         <rect
-          x="5.71436"
+          x="5.71484"
           y="50.2852"
           width="3.80952"
           height="3.80952"
@@ -106,7 +92,7 @@ export const StandardButton = ({
         <rect
           width="1.90476"
           height="5.71429"
-          transform="matrix(1 0 0 -1 1.90479 50.2852)"
+          transform="matrix(1 0 0 -1 1.90527 50.2852)"
           fill="black"
         />
         <rect
@@ -118,7 +104,7 @@ export const StandardButton = ({
         <rect
           width="3.80952"
           height="3.80952"
-          transform="matrix(-1 0 0 1 350.81 50.2852)"
+          transform="matrix(-1 0 0 1 350.809 50.2852)"
           fill="black"
         />
         <rect
@@ -128,19 +114,19 @@ export const StandardButton = ({
           fill="black"
         />
         <rect
-          x="354.619"
+          x="354.618"
           y="50.2852"
           width="1.90476"
           height="5.71429"
-          transform="rotate(180 354.619 50.2852)"
+          transform="rotate(180 354.618 50.2852)"
           fill="black"
         />
         <rect
-          x="356.524"
+          x="356.523"
           y="46.4756"
           width="3.80952"
           height="1.90476"
-          transform="rotate(180 356.524 46.4756)"
+          transform="rotate(180 356.523 46.4756)"
           fill="black"
         />
         <rect
@@ -165,13 +151,23 @@ export const StandardButton = ({
         <rect
           width="3.80952"
           height="33.1429"
-          transform="matrix(-1 0 0 1 356.524 11.4287)"
+          transform="matrix(-1 0 0 1 356.523 11.4287)"
+          fill="black"
+        />
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M45.5 20H24V37.2H45.5V20ZM26.15 35.05V22.15H43.35V35.05H26.15ZM30.45 24.3002H28.3V26.4502H30.45L30.45 28.6002H32.6V30.7502H36.9L36.9 28.6002H39.05L39.05 26.4502H41.2V24.3002H39.05V26.4502H36.9V28.6002H32.6V26.4502H30.45V24.3002Z"
           fill="black"
         />
       </svg>
-      <span className="absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-40%] w-full text-mainBlack">
-        {text}
-      </span>
+      <p
+        className="text-mainBlack absolute 
+                    left-[50%] translate-x-[-50%]
+                    desktop:top-15
+                    mobile:top-17">
+        이메일로 시작하기
+      </p>
     </button>
   )
 }
