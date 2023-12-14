@@ -28,7 +28,7 @@ export const TopTrackItem = ({ tracks }) => {
               loading="lazy"
               className="absolute w-48 h-48 left-10 top-9"
             />
-            <StandardVertex propsClass="absolute w-48 h-48 left-10 top-9" />
+            <StandardVertex propsClass="text-black absolute w-48 h-48 left-10 top-9" />
             <p className="absolute top-20 left-59 desktop:left-62 w-30 text-center">
               {idx + 1}
             </p>

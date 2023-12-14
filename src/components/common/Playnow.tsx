@@ -49,7 +49,7 @@ export const Playnow = ({
       } absolute w-390 desktop:w-[720px] bg-mainBlack left-[50%] translate-x-[-50%] top-0 h-[100vh] pt-10`}>
       <Header
         type="playnow"
-        onClick={closeModal}
+        onClickRightButton={closeModal}
       />
       <div className="flex flex-col h-[calc(100vh-360px)] pt-16 justify-between">
         {/* 앨범이미지 */}
@@ -58,7 +58,7 @@ export const Playnow = ({
             src={currentTrack!.album.images[0].url || defaultAlbumImg}
             alt={currentTrack!.album.name}
           />
-          <StandardVertex propsClass="min-w-224 w-[36.2vh] aspect-square absolute top-0" />
+          <StandardVertex propsClass="min-w-224 w-[36.2vh] aspect-square absolute top-0 text-black" />
         </div>
 
         <div className="w-[calc(100%-20px)] px-20 desktop:px-60 mx-auto overflow-x-hidden">

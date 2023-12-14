@@ -10,7 +10,9 @@ export const ArtistImage = ({ artist_info }) => {
         artist_info.map(artist => (
           <div key={artist.id}>
             <div className="flex justify-center relative">
-              <StandardVertex propsClass={`absolute ${imageSizeClass}`} />
+              <StandardVertex
+                propsClass={`absolute text-black ${imageSizeClass}`}
+              />
 
               <img
                 loading="lazy"
