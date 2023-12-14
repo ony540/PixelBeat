@@ -1,4 +1,4 @@
-import { MenuIcon, MoreButton } from '@/assets'
+import { MenuIcon, MoreIcon } from '@/assets'
 import { useModal } from '@/hooks'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -29,7 +29,7 @@ export const SearchResultTrackItem = ({ tracks }: { tracks?: any }) => {
   }
 
   const handlePortal = () => {
-    openModal('')
+    openModal()
   }
 
   return (
@@ -41,13 +41,13 @@ export const SearchResultTrackItem = ({ tracks }: { tracks?: any }) => {
                     desktop:top-5 desktop:left-80">
         음악
       </h1>
-      <div className="relative desktop:px-3 mobile:px-1">
+      <div className="relative desktop:px-3 mobile:px-1 mt-4">
         {tracks &&
           tracks.items.slice(0, visibleTracks).map(item => (
             <div
               className="relative"
               key={item.id}>
-              <div className="border-1 my-4 flex items-center gap-10 ">
+              <div className="border-1 border-b-0 flex items-center gap-10 ">
                 <img
                   onClick={() => navigate(`/album/${item.album.id}`)}
                   className="mobile:w-50 mobile:h-51 mr-4 
@@ -64,7 +64,12 @@ export const SearchResultTrackItem = ({ tracks }: { tracks?: any }) => {
                     {item.artists[0].name}
                   </span>
                 </div>
-                <MoreButton onClick={handlePortal} />
+                <button
+                  type="button"
+                  onClick={handlePortal}
+                  className="absolute right-10">
+                  <MoreIcon />
+                </button>
               </div>
             </div>
           ))}

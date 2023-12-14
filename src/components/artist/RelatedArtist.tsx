@@ -18,9 +18,9 @@ export const RelatedArtist = ({ artist_relatedArtistracks }) => {
             {artist_relatedArtistracks &&
               artist_relatedArtistracks.artists.map(item => (
                 <div
-                  className="my-4 mx-2 flex flex-col items-center mobile:w-150 mobile:h-176"
+                  className="mt-6 mr-8 flex flex-col items-center mobile:w-150 mobile:h-176"
                   key={item.id}>
-                  <div className="mobile:w-150 mobile:h-156 border-1 overflow-y-hidden">
+                  <div className="mobile:w-150 mobile:h-156 border-[1.4px] border-b-0 overflow-y-hidden">
                     <img
                       loading="lazy"
                       className="mobile:w-150 mobile:h-156"
