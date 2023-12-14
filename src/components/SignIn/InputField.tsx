@@ -29,7 +29,7 @@ export const InputField = ({ type, name, id, placeholder, value, onChange }) => 
           type="button"
           className=" absolute right-10 top-66 text-gray-500"
           onClick={togglePasswordHidden}>
-          {isPasswordHidden ? <Eye /> : <CloseEye />}
+          {isPasswordHidden ? <CloseEye /> : <Eye />}
         </button>
       )}
     </div>

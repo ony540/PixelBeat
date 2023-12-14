@@ -28,7 +28,7 @@ const ProfileHeader = ({ onClick }: HeaderProps) => {
       <button onClick={onClick} type='button' className='rotate-90 ml-18 mt-6'>
         <ArrowDown fill='black' />
       </button>
-      <button className='relative top-0 right-15'>
+      <button onClick={onClick} type='button' className='relative top-0 right-15'>
         <MoreButton fill='black' />
       </button>
     </header>
