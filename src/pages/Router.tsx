@@ -54,7 +54,6 @@ export const routes = [
       generateRoute('/mymusic/bill', <MyMusicBill />),
       generateRoute('/artist/:id', <Artist />),
       generateRoute('/album/:id', <Album />),
-      generateRoute('/bill/:id', <Bill />),
       generateRoute('/profile/:id/profile', <Profile />),
       generateRoute('/profile/:id/profilelike', <MyProfileLike />),
       generateRoute('/bill/:id', <Bill />),
