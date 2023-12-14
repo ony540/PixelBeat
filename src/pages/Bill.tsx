@@ -1,9 +1,14 @@
 import { useNavigate, useParams } from 'react-router-dom'
 import { Clock } from '@/assets'
-import { BillGraph, BillItem, StandardButton } from '@/components'
+import {
+  BillButtonListSection,
+  BillGraph,
+  BillItem,
+  StandardButton
+} from '@/components'
 import barcodeImg from '@/assets/imgs/barcode.png'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
-import { formatDateTime, shareData } from '@/utils'
+import { formatDate, shareData } from '@/utils'
 import { useNowPlayStore } from '@/zustand'
 import { PlayBar } from '@/components/common/PlayBar'
 import { Track, TrackList } from '@/types'
@@ -14,7 +19,7 @@ import Portal from '@/utils/portal'
 
 export const Bill = () => {
   const { id: currentPath } = useParams<string>()
-  const navigate = useNavigate()
+
   const setNowPlayList = useNowPlayStore(state => state.setNowPlayList)
   const currentTrack = useNowPlayStore(state => state.currentTrack)
   const setCurrentTrack = useNowPlayStore(state => state.setCurrentTrack)
@@ -33,10 +38,6 @@ export const Bill = () => {
 
   const handleClickPreviewPlayButton = (track: Track) => {
     setCurrentTrack(track)
-  }
-
-  const handleClickToLoginButton = () => {
-    navigate('/entry')
   }
 
   const handleClickShareButton = () => {
@@ -88,7 +89,7 @@ export const Bill = () => {
           <section className="bill-bottom-section">
             <div className=" mx-16 py-8 border-y-2 border-dashed border-mainBlack text-14">
               <time className="block w-full text-left">
-                {formatDateTime(data?.created_at!)}
+                {formatDate(data?.created_at!)}
               </time>
               <div className="flex justify-between w-full">
                 <p>www.pixelBeat.com</p>
@@ -103,18 +104,7 @@ export const Bill = () => {
             className="mx-auto mt-24 mb-5"
           />
         </div>
-        <section className="button-section w-356 mx-auto text-20">
-          <StandardButton
-            text={'다른 영수증 구경하기'}
-            onClick={handleClickToLoginButton}
-          />
-          <StandardButton
-            text={'공유하기'}
-            onClick={handleClickShareButton}
-            fillColor="#FFFF57"
-            propsClass="mx-auto mt-12 mb-42"
-          />
-        </section>
+        <BillButtonListSection />
         <Portal>{currentTrack && <PlayBar propsClass="bottom-0" />}</Portal>
       </>
     )

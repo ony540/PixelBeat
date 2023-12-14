@@ -33,28 +33,28 @@ export const StandardVertex = ({
             y="-0.697266"
             width="1.28542"
             height="3.91006"
-            fill={fillColor || 'black'}
+            fill={fillColor || 'currentColor'}
           />
           <rect
             x="-1"
             y="-1"
             width="4"
             height="3"
-            fill={fillColor || 'black'}
+            fill={fillColor || 'currentColor'}
           />
           <rect
             x="-0.714355"
             y="0.607422"
             width="1.28542"
             height="3.91006"
-            fill={fillColor || 'black'}
+            fill={fillColor || 'currentColor'}
           />
           <rect
             x="-2"
             y="3.21289"
             width="2.57084"
             height="1.30335"
-            fill={fillColor || 'black'}
+            fill={fillColor || 'currentColor'}
           />
           <rect
             x="47"
@@ -62,7 +62,7 @@ export const StandardVertex = ({
             width="3"
             height="3"
             transform="rotate(-180 47 50)"
-            fill={fillColor || 'black'}
+            fill={fillColor || 'currentColor'}
           />
           <rect
             x="48"
@@ -70,7 +70,7 @@ export const StandardVertex = ({
             width="2"
             height="5"
             transform="rotate(-180 48 49)"
-            fill={fillColor || 'black'}
+            fill={fillColor || 'currentColor'}
           />
           <rect
             x="49.9102"
@@ -78,7 +78,7 @@ export const StandardVertex = ({
             width="1.28542"
             height="3.91006"
             transform="rotate(90 49.9102 1)"
-            fill={fillColor || 'black'}
+            fill={fillColor || 'currentColor'}
           />
           <rect
             x="49"
@@ -86,7 +86,7 @@ export const StandardVertex = ({
             width="3"
             height="2"
             transform="rotate(90 49 1)"
-            fill={fillColor || 'black'}
+            fill={fillColor || 'currentColor'}
           />
           <rect
             x="50"
@@ -94,7 +94,7 @@ export const StandardVertex = ({
             width="2"
             height="5"
             transform="rotate(90 50 -1)"
-            fill={fillColor || 'black'}
+            fill={fillColor || 'currentColor'}
           />
           <rect
             x="46.3032"
@@ -102,7 +102,7 @@ export const StandardVertex = ({
             width="2.57084"
             height="1.30335"
             transform="rotate(90 46.3032 -2)"
-            fill={fillColor || 'black'}
+            fill={fillColor || 'currentColor'}
           />
           <rect
             x="-2"
@@ -110,7 +110,7 @@ export const StandardVertex = ({
             width="3"
             height="3"
             transform="rotate(-90 -2 46)"
-            fill={fillColor || 'black'}
+            fill={fillColor || 'currentColor'}
           />
           <rect
             x="-1"
@@ -118,14 +118,14 @@ export const StandardVertex = ({
             width="1"
             height="4"
             transform="rotate(-90 -1 47)"
-            fill={fillColor || 'black'}
+            fill={fillColor || 'currentColor'}
           />
           <rect
             y="48"
             width="1"
             height="4"
             transform="rotate(-90 0 48)"
-            fill={fillColor || 'black'}
+            fill={fillColor || 'currentColor'}
           />
         </g>
       </svg>

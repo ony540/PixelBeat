@@ -1,8 +1,6 @@
-export const MoreButton = ({ onClick }: { onClick?: () => void }) => {
+export const MoreIcon = ({ fill }: { onClick?: () => void; fill?: string }) => {
   return (
     <svg
-      onClick={onClick}
-      className="absolute right-10 cursor-pointer"
       width="24"
       height="24"
       viewBox="0 0 24 24"
@@ -14,7 +12,7 @@ export const MoreButton = ({ onClick }: { onClick?: () => void }) => {
         width="3"
         height="3"
         transform="rotate(90 14 5)"
-        fill="white"
+        fill={fill || 'white'}
       />
       <rect
         x="14"
@@ -22,7 +20,7 @@ export const MoreButton = ({ onClick }: { onClick?: () => void }) => {
         width="3"
         height="3"
         transform="rotate(90 14 11)"
-        fill="white"
+        fill={fill || 'white'}
       />
       <rect
         x="14"
@@ -30,7 +28,7 @@ export const MoreButton = ({ onClick }: { onClick?: () => void }) => {
         width="3"
         height="3"
         transform="rotate(90 14 17)"
-        fill="white"
+        fill={fill || 'white'}
       />
     </svg>
   )
