@@ -37,7 +37,7 @@ export const AlbumArtistInfo = ({ album_data }) => {
       key={id}>
       <div className="flex justify-center relative">
         <StandardVertex
-          propsClass={`absolute ${mobileImageSize} ${desktopImageSize}`}
+          propsClass={`absolute text-black ${mobileImageSize} ${desktopImageSize}`}
         />
         <img
           className={` ${mobileImageSize} ${desktopImageSize}`}
