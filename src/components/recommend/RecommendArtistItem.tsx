@@ -1,4 +1,4 @@
-import { StandardPixelBorder, StandardVertex } from '..'
+import { StandardPixelBorder, StandardVertex } from "@/assets";
 
 export const RecommendArtistItem = ({ artist, isSelected, onClick }) => (
   <div

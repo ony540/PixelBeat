@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { InputSection } from './InputSection'
 import { useNavigate } from 'react-router-dom'
 import { StandardButton } from '@/components'
+import { signinUser } from '@/api/supabase/pixelbeatAuthApis'
 
 export const SignInForm = () => {
   const navigate = useNavigate()
@@ -10,8 +11,14 @@ export const SignInForm = () => {
     password: ''
   })
 
+  const { email, password } = formState
+
   const handleSignIn = async e => {
     e.preventDefault()
+    const res = await signinUser(email, password)
+    if (res) {
+      navigate('/home') // 추후 수정 필요
+    }
   }
 
   const handleInput = e => {

@@ -1,27 +1,30 @@
-import { ChangeEvent, useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { StandardButton } from '@/components'
 import defaultImage from '../../assets/imgs/Profile.png'
 import { ImageUploadForm, ProfileInputField } from '.'
+import { updateProfile, uploadImageToStorage } from '@/api'
+import { useUserSession } from '@/hooks'
+const IMAGE_PATH = import.meta.env.VITE_SUPABASE_STORAGE_URL
 
 export const ProfileForm = () => {
+  const userId = useUserSession()
   const navigate = useNavigate()
-  const [selectedImage, setSelectedImage] = useState(defaultImage)
+  const [selectedImage, setSelectedImage] = useState<any>(defaultImage)
   const [formState, setFormState] = useState({
     userName: '',
     userIntroduction: ''
   })
+
   const [validationErrors, setValidationErrors] = useState({
     userName: ''
   })
 
-  const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-
+  const handleImageChange = (file: Blob) => {
     if (file) {
-      setSelectedImage(URL.createObjectURL(file))
+      setSelectedImage(file)
     } else {
-      setSelectedImage(defaultImage)
+      setSelectedImage(null)
     }
   }
 
@@ -48,8 +51,21 @@ export const ProfileForm = () => {
     return isEmpty || isValidationError
   }
 
-  const makeProfile = () => {
-    navigate('/login/email')
+  const editProfile = async () => {
+    const getBucketUrl = await uploadImageToStorage(selectedImage, userId)
+    const bucketUrl = `${IMAGE_PATH}${getBucketUrl}`
+
+    if (bucketUrl && userId) {
+      const updateRes = await updateProfile(
+        formState.userName.trim(),
+        formState.userIntroduction.trim(),
+        bucketUrl,
+        userId
+      )
+      if (updateRes) {
+        navigate('/home')
+      }
+    }
   }
 
   return (
@@ -60,6 +76,7 @@ export const ProfileForm = () => {
         onChange={handleImageChange}
         selectedImage={selectedImage}
       />
+
       <ProfileInputField
         name={'userName'}
         label="닉네임"
@@ -77,6 +94,7 @@ export const ProfileForm = () => {
       />
 
       <StandardButton
+        onClick={editProfile}
         type="submit"
         propsClass="mx-auto mt-22 w-full
                     mobile:h-56 

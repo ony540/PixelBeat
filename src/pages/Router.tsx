@@ -18,6 +18,7 @@ import {
   Album,
   RecommendEntry,
   Entry,
+  SignupGreeting,
   BillFromSpotify
 } from '@/pages'
 
@@ -40,12 +41,14 @@ export const routes = [
     element: <Layout />,
     errorElement: <ErrorComponent />,
     children: [
+      // generateRoute('/', <RecommendEntry />),
       generateRoute('/recommend', <RecommendEntry />),
       generateRoute('/recommend/:id', <Recommend />),
       generateRoute('/entry', <Entry />),
       generateRoute('/signup/email', <SignupWithEmail />),
+      generateRoute('/signin/email', <SigninWithEmail />),
+      generateRoute('/greeting', <SignupGreeting />),
       generateRoute('/profile/edit', <ProfileEdit />),
-      generateRoute('/login/email', <SigninWithEmail />),
       generateRoute('/home', <Home />),
       generateRoute('/search', <Search />),
       generateRoute('/mymusic/main', <MyMusicMain />),
