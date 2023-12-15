@@ -1,6 +1,12 @@
-import { BillHeart, MyBill, Heart, FullHeart } from '@/assets'
+import {
+  MyProfileBillBtn,
+  FullHeart,
+  MiniBill,
+  Heart,
+} from '@/assets'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { StandardVertex } from '..'
 
 export const MyProfileBill = () => {
   const navigate = useNavigate()
@@ -25,89 +31,67 @@ export const MyProfileBill = () => {
   return (
     <div className="desktop:px-60 pt-24">
       <div className="flex flex-row ml-20">
-        <button onClick={goToMyBill}>
-          <MyBill />
-        </button>
-        <button onClick={goToLike}>
-          <BillHeart />
-        </button>
+        <div
+          onClick={goToMyBill}
+          className="cursor-pointer relative flex">
+          <MyProfileBillBtn
+            type="submit"
+            propsClass="flex flex-row"
+            width={140}
+            height={35}
+            textColor="black"
+            text={'내 영수증'}
+            fillColor1={'white'}
+            fillColor2={'white'}
+            textPadding={15}
+          />
+          <div className="absolute top-10 left-12">
+            <MiniBill fillColor="black" />
+          </div>
+        </div>
+        <div
+          onClick={goToLike}
+          className="cursor-pointer relative flex">
+          <MyProfileBillBtn
+            type="submit"
+            propsClass=""
+            height={35}
+            textColor="mainWhite"
+            text={'좋아요 영수증'}
+            fillColor1={'black'}
+          />
+          <div className=' absolute top-11 left-14'>
+            <Heart fillColor='white'/>
+          </div>
+        </div>
       </div>
       <div className="mx-20 border h-auto flex flex-wrap">
         <div className="profileBill ml-78 bg-mainWhite w-162 mb-10 mt-30 text-mainBlack text-center leading-tight">
           <h1
-              className="text-14 w-140 m-auto text-center"
-              style={{
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                display: '-webkit-box',
-                WebkitBoxOrient: 'vertical',
-                WebkitLineClamp: 2
-              }}>
-              빵빵이의 영수증 #1
-            </h1>{' '}
-          {/* 좋아요한 영수증이나 나의 영수증 */}
-          <img
-            className="bg-mainGray w-124 h-124 mx-19 mt-8"
-            src=""
-            alt=""
-          />
+            className="text-14 w-140 h-30 m-auto text-center"
+            style={{
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              display: '-webkit-box',
+              WebkitBoxOrient: 'vertical',
+              WebkitLineClamp: 2,
+              maxHeight: '2rem'
+            }}>
+            빵빵이의 영수증
+          </h1>{' '}
+          <div className="flex-col mobile:w-124 mobile:h-124 flex-shrink-0 bg-mainGray relative mx-19 mt-8">
+            <StandardVertex propsClass={`absolute`} />
+            <img
+              loading="lazy"
+              className={`w-124 h-124`}
+              src=""
+              alt=""
+            />
+          </div>
           <div className="flex justify-between h-26 leading-25 border-mainBlack border-y mx-11 mt-12 border-dashed text-12 text-start">
             <div>8곡 • 10:38</div>{' '}
-            {/* 플리에 들어있는곡 수 + 곡들의 시간 총합 */}
             <button onClick={() => toggleLike(0)}>
-              {likes[0] ? <FullHeart /> : <Heart />}
-            </button>
-          </div>
-        </div>
-        <div className="profileBill ml-78 bg-mainWhite w-162 mb-10 mt-30 text-mainBlack text-center leading-tight">
-          <h1
-              className="text-14 w-140 m-auto text-center"
-              style={{
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                display: '-webkit-box',
-                WebkitBoxOrient: 'vertical',
-                WebkitLineClamp: 2
-              }}>
-              누군가의 영수증 #1
-            </h1>{' '}
-          {/* 좋아요한 영수증이나 나의 영수증 */}
-          <img
-            className="bg-mainGray w-124 h-124 mx-19 mt-8"
-            src=""
-            alt=""
-          />
-          <div className="flex justify-between h-26 leading-25 border-mainBlack border-y mx-11 mt-12 border-dashed text-12 text-start">
-            <div>8곡 • 10:38</div>{' '}
-            {/* 플리에 들어있는곡 수 + 곡들의 시간 총합 */}
-            <button onClick={() => toggleLike(1)}>
-              {likes[1] ? <FullHeart /> : <Heart />}
-            </button>
-          </div>
-        </div>
-        <div className="profileBill ml-78 bg-mainWhite w-162 mb-10 mt-30 text-mainBlack text-center leading-tight">
-          <h1
-              className="text-14 w-140 m-auto text-center"
-              style={{
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                display: '-webkit-box',
-                WebkitBoxOrient: 'vertical',
-                WebkitLineClamp: 2
-              }}>
-              가나다라마바사아자차카타파하의 영수증 #1
-            </h1>{' '}
-          {/* 좋아요한 영수증이나 나의 영수증 */}
-          <img
-            className="bg-mainGray w-124 h-124 mx-19 mt-8"
-            src=""
-            alt=""
-          />
-          <div className="flex justify-between h-26 leading-25 border-mainBlack border-y mx-11 mt-12 border-dashed text-12 text-start">
-            <div>8곡 • 10:38</div>{' '}
-            {/* 플리에 들어있는곡 수 + 곡들의 시간 총합 */}
-            <button onClick={() => toggleLike(2)}>
-              {likes[2] ? <FullHeart /> : <Heart />}
+              <FullHeart />
             </button>
           </div>
         </div>
