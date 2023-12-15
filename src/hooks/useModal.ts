@@ -36,6 +36,7 @@ export const useModal = () => {
     isShow,
     isVisible,
     modalType,
+    setModalType,
     openModal,
     closeModal
   }
