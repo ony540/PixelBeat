@@ -1,14 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
 import { StandardPixelBorder } from '..'
 import { SearchIcon } from '@/assets'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { RecentSearchList } from '.'
 
 export const SearchBar = () => {
   const navigate = useNavigate()
-  const [toggleInput, setToggleInput] = useState(false)
-  const [input, setInput] = useState('')
-  const [recentSearchToggle, setRecentSearchToggle] = useState<boolean>(false)
+  const { search } = useLocation()
+  const queryParams = new URLSearchParams(search)
+  const q = queryParams.get('q')
+  const [input, setInput] = useState<string>(q ? q : '')
+  const [toggleInput, setToggleInput] = useState<boolean>(true)
+  const [recentSearchToggle, setRecentSearchToggle] = useState<boolean>(
+    search ? false : true
+  )
 
   const handleRecentSearchToggle = () => {
     setRecentSearchToggle(!recentSearchToggle)
@@ -36,19 +41,21 @@ export const SearchBar = () => {
       pathname: '/search',
       search: `?q=${query}`
     })
-    setInput('')
-    setToggleInput(false)
+  }
+
+  const storeRecentSearchInput = (input: string) => {
+    const storedRecentSearchItem = localStorage.getItem('recent') as string
+    const parseString =
+      JSON.parse(storedRecentSearchItem).filter(item => item !== input) || []
+    const updatedSearchList = [input, ...parseString].slice(0, 6)
+    localStorage.setItem('recent', JSON.stringify([...updatedSearchList]))
   }
 
   const handleSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       if (!input) return
       handleNavigateToResults(input)
-
-      const storedRecentSearchItem = localStorage.getItem('recent') as string
-      const parseString = JSON.parse(storedRecentSearchItem) || []
-      const updatedSearchList = [...parseString, input].sort((a, b) => b - a)
-      localStorage.setItem('recent', JSON.stringify([...updatedSearchList]))
+      storeRecentSearchInput(input)
       setRecentSearchToggle(false)
     }
   }
@@ -66,16 +73,24 @@ export const SearchBar = () => {
       />
       {toggleInput && (
         <input
+          value={input}
           onClick={handleRecentSearchToggle}
           onKeyDown={handleSearch}
           onChange={onChangeInput}
           ref={inputRef}
+          placeholder="어떤 것을 듣고 싶으세요?"
           type="text"
           className="absolute w-[70%] mobile:top-30 mobile:left-20 h-30 outline-none bg-mainBlack text-mainWhite"
         />
       )}
 
-      {recentSearchToggle && <RecentSearchList />}
+      {recentSearchToggle && (
+        <RecentSearchList
+          onClickRecentSearchToggle={handleRecentSearchToggle}
+          storeRecentSearchInput={storeRecentSearchInput}
+          setInput={setInput}
+        />
+      )}
     </div>
   )
 }
