@@ -2,7 +2,6 @@ import { CirclePlaySmall, StandardVertex } from '@/assets'
 import { Track } from '@/types'
 import { msToMinutesAndSeconds } from '@/utils'
 import { useNavigate } from 'react-router-dom'
-import { StandardVertex } from '@/assets'
 import defaultAlbumImg from '@/assets/imgs/default_album_artist.png'
 import { useNowPlayStore } from '@/zustand'
 
