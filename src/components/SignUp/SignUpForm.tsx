@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 import { SignupInputField, StandardButton } from '@/components'
+import { signUpSupabaseWithEmail } from '@/api/supabase/pixelbeatAuthApis'
+import { useNavigate } from 'react-router-dom'
 
 export const SignUpForm = () => {
   const navigate = useNavigate()
@@ -64,7 +65,10 @@ export const SignUpForm = () => {
   }
 
   const MakeProFile = async () => {
-    // navigate('/profile/edit')
+    const res = await signUpSupabaseWithEmail(email, password)
+    if (res?.user) {
+      navigate('/greeting')
+    }
   }
 
   const failMessageEmail = () => {

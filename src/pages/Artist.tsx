@@ -62,8 +62,6 @@ export const Artist = () => {
           propsClass={currentTrack ? 'mb-160' : ''}
         />
         <NavBar />
-
-        <Portal>{modalType !== 'playnow' && <BottomSheet />}</Portal>
       </div>
     )
   }

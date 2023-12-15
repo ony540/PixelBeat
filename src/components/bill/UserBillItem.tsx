@@ -1,4 +1,4 @@
-import { CirclePlaySmall } from '@/assets'
+import { CirclePlaySmall, StandardVertex } from '@/assets'
 import { Track } from '@/types'
 import { msToMinutesAndSeconds } from '@/utils'
 import { useNavigate } from 'react-router-dom'

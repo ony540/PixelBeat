@@ -11,7 +11,7 @@ export const SearchBar = () => {
   const [input, setInput] = useState<string>(q ? q : '')
   const [toggleInput, setToggleInput] = useState<boolean>(true)
   const [recentSearchToggle, setRecentSearchToggle] = useState<boolean>(
-    search ? false : true
+    search ? true : false
   )
 
   const handleRecentSearchToggle = () => {
@@ -43,7 +43,10 @@ export const SearchBar = () => {
   }
 
   const storeRecentSearchInput = (input: string) => {
-    const storedRecentSearchItem = localStorage.getItem('recent') as string
+    const storedRecentSearchItem = (localStorage.getItem('recent') as string)
+      ? (localStorage.getItem('recent') as string)
+      : localStorage.setItem('recent', JSON.stringify([]))
+
     const parseString =
       JSON.parse(storedRecentSearchItem).filter(item => item !== input) || []
     const updatedSearchList = [input, ...parseString].slice(0, 6)

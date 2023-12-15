@@ -5,8 +5,6 @@ export * from './Clock'
 export * from './CircleAdd'
 export * from './play'
 export * from "./PixelBorder";
-export * from "./PixelBeatLoginButton";
-export * from "./SpotifyLoginButton";
 export * from "./SpotifyHover";
 export * from "./Eye";
 export * from "./CloseEye";
@@ -21,3 +19,5 @@ export * from './BottomSheetTop'
 export * from './ImageUploadButton'
 export * from './StandardVertex'
 export * from './StandardPixelBorder'
+export * from './StandardPixelBorder'
+export * from './StandardVertex'

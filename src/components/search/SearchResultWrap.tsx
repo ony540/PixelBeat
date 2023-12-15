@@ -7,8 +7,6 @@ import {
 import { searchItem } from '@/api'
 import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
-import { BottomSheet } from '..'
-import Portal from '@/utils/portal'
 import { Album, Artist, Track } from '@/types'
 
 export interface SearchedData {
@@ -57,10 +55,6 @@ export const SearchResultWrap = () => {
           <SearchResultAlbum albums={data.albums} />
         </div>
       )}
-
-      <Portal>
-        <BottomSheet />
-      </Portal>
     </>
   )
 }
