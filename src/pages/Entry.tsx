@@ -1,9 +1,6 @@
 import { signInWithSpotify } from '@/api'
-import {
-  PixelBeatLoginButton,
-  SpotifyLoginButton,
-  SpotifyHover
-} from '@/assets'
+import { SpotifyHover } from '@/assets'
+import { PixelBeatLoginButton, SpotifyLoginButton } from '@/components'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 

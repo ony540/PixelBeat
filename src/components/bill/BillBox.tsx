@@ -1,5 +1,5 @@
 import { UserBillItem } from '.'
-import { CircleAdd } from '@/assets'
+import { CircleAdd, StandardVertex } from '@/assets'
 import {
   formatDate,
   getAllTracksDuration,
@@ -7,7 +7,6 @@ import {
 } from '@/utils'
 import defaultAlbumImg from '@/assets/imgs/default_album_artist.png'
 import barcodeImg from '@/assets/imgs/barcode.png'
-import { StandardVertex } from '@/components'
 
 export const BillBox = ({ data }) => {
   const { name, owner, images, tracks } = data

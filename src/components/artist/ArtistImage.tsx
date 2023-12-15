@@ -1,4 +1,4 @@
-import { StandardVertex } from '..'
+import { StandardVertex } from '@/assets'
 import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 
 export const ArtistImage = ({ artist_info }) => {

@@ -4,10 +4,11 @@ import {
   NextPlay,
   PrevPlay,
   SoundOff,
-  SoundOn
+  SoundOn,
+  StandardVertex
 } from '@/assets'
 import { MusicList } from '@/assets/icons/play/MusicList'
-import { Header, ProgressBar, StandardVertex } from '@/components'
+import { Header, ProgressBar } from '@/components'
 import { useModal } from '@/hooks/useModal'
 import { useNowPlayStore } from '@/zustand'
 import { useState } from 'react'

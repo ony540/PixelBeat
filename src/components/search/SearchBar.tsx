@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { StandardPixelBorder } from '..'
-import { SearchIcon } from '@/assets'
+import { SearchIcon, StandardPixelBorder } from '@/assets'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { RecentSearchList } from '.'
 

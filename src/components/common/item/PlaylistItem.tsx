@@ -4,7 +4,6 @@ import { useModal } from '@/hooks'
 import Portal from '@/utils/portal'
 import { useNavigate } from 'react-router-dom'
 import { BottomSheet } from '..'
-import { useEffect } from 'react'
 
 export const PlaylistItem = ({ data }: any) => {
   const navigate = useNavigate()
@@ -49,7 +48,6 @@ export const PlaylistItem = ({ data }: any) => {
         </div>
       </li>
       <Portal>
-        {/* <BottomSheet onClick={e => handleClickLModalItem(e, data.filter(item)=> item.preview_url)} /> */}
         <BottomSheet onClick={handleClickLModalItem} />
       </Portal>
     </>
