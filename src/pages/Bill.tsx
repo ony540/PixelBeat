@@ -10,12 +10,10 @@ import barcodeImg from '@/assets/imgs/barcode.png'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
 import { formatDate, shareData } from '@/utils'
 import { useNowPlayStore } from '@/zustand'
-import { PlayBar } from '@/components/common/PlayBar'
 import { Track, TrackList } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { getBill } from '@/api'
 import { useEffect } from 'react'
-import Portal from '@/utils/portal'
 
 export const Bill = () => {
   const { id: currentPath } = useParams<string>()
@@ -104,8 +102,7 @@ export const Bill = () => {
             className="mx-auto mt-24 mb-5"
           />
         </div>
-        <BillButtonListSection />
-        <Portal>{currentTrack && <PlayBar propsClass="bottom-0" />}</Portal>
+        <BillButtonListSection propsClass={currentTrack ? 'mb-100' : ''} />
       </>
     )
   }

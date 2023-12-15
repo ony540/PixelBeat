@@ -41,11 +41,6 @@ export const BillFromSpotify = () => {
         propsClass={`mb-90 ${currentTrack && 'mb-150'}`}
       />
       <NavBar />
-      <Portal>
-        {currentTrack && (
-          <PlayBar propsClass="bottom-66 border-b border-mainGray" />
-        )}
-      </Portal>
     </>
   )
 }
