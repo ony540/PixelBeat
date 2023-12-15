@@ -1,5 +1,5 @@
 import { getAllTracksDuration, msToMinutesAndSeconds } from '@/utils'
-import { StandardVertex } from '..'
+import { StandardVertex } from '@/assets'
 import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 import { useNavigate } from 'react-router-dom'
 

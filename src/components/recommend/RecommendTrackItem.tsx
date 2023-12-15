@@ -1,4 +1,4 @@
-import { StandardPixelBorder, StandardVertex } from '..'
+import { StandardPixelBorder, StandardVertex } from '@/assets'
 
 export const RecommendTrackItem = ({ id, onClick, track, isSelected }) => (
   <div

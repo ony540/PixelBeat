@@ -1,5 +1,5 @@
-import { ProgressBar, StandardVertex } from '.'
-import { NextPlay, Pause, Play, PrevPlay } from '@/assets'
+import { ProgressBar } from '.'
+import { NextPlay, Pause, Play, PrevPlay, StandardVertex } from '@/assets'
 import { useModal, usePlayAndPausePreview } from '@/hooks'
 import Portal from '@/utils/portal'
 import { useNowPlayStore } from '@/zustand/nowPlayStore'

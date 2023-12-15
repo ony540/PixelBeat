@@ -7,7 +7,7 @@ import {
 } from '@/utils'
 import defaultAlbumImg from '@/assets/imgs/default_album_artist.png'
 import barcodeImg from '@/assets/imgs/barcode.png'
-import { StandardVertex } from '@/components'
+import { StandardVertex } from '@/assets'
 
 export const BillBox = ({ data }) => {
   const { name, owner, images, tracks } = data
