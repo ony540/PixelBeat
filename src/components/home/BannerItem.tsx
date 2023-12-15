@@ -6,10 +6,6 @@ import { CirclePlay, RectangleVertax } from '@/assets'
 export const BannerItem = ({ result }) => {
   const navigate = useNavigate()
 
-  // useEffect(() => {
-  //   console.log(result)
-  // }, [result])
-
   const { id, name, images } = result.data || {
     id: '',
     name: '',
