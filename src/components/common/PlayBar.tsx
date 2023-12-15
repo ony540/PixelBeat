@@ -11,7 +11,9 @@ import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
   const navigate = useNavigate()
   const isPlaying = useNowPlayStore(state => state.isPlaying)
+
   const currentTrack = useNowPlayStore(state => state.currentTrack)
+
   const { name, album, artists, preview_url } = currentTrack || {
     name: '',
     album: { images: [{ url: '' }] },
@@ -19,6 +21,7 @@ export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
     duration_ms: 0,
     preview_url: ''
   }
+
   const {
     playAndPauseNowPlay,
     clickPrevButton,
@@ -27,9 +30,9 @@ export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
     intervalIdRef
   } = usePlayAndPausePreview()
 
-  const { openModal } = useModal()
+  const { openModal, modalType } = useModal()
   const handleClickPlayBar = () => {
-    openModal()
+    openModal('playnow')
   }
 
   const handleClickPrevButton = (e: React.MouseEvent<HTMLSpanElement>) => {
@@ -61,6 +64,7 @@ export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
 
   useEffect(() => {
     playAndPauseNowPlay()
+
     return () => {
       clearInterval(intervalIdRef.current!)
     }
@@ -84,7 +88,7 @@ export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
             onClick={handleClickAlbum}
             className="relative mr-8 cursor-pointer shrink-0">
             <img
-              src={album.images[2].url || defaultAlbumImg}
+              src={album.images[2] ? album.images[2].url : defaultAlbumImg}
               alt={album.name}
               className="w-48 h-48"
             />
@@ -136,12 +140,14 @@ export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
         </div>
       </aside>
       <Portal>
-        <Playnow
-          audioRef={audioRef}
-          playAndPauseNowPlay={playAndPauseNowPlay}
-          clickNextButton={clickNextButton}
-          clickPrevButton={clickPrevButton}
-        />
+        {modalType === 'playnow' && (
+          <Playnow
+            audioRef={audioRef}
+            playAndPauseNowPlay={playAndPauseNowPlay}
+            clickNextButton={clickNextButton}
+            clickPrevButton={clickPrevButton}
+          />
+        )}
       </Portal>
     </>
   )

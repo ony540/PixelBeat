@@ -1,20 +1,11 @@
 import { useState } from 'react'
-import { MenuIcon, MoreIcon } from '@/assets'
-import { useNavigate } from 'react-router-dom'
-import { useModal } from '@/hooks'
-import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
+import { MenuIcon } from '@/assets'
+import { TrackItem } from '..'
 
 export const ArtistTopTrack = ({ artist_topTracks }) => {
-  const { openModal } = useModal()
-  const navigate = useNavigate()
   const [visibleTracks, setVisibleTracks] = useState(5)
-
   const loadMore = () => {
     setVisibleTracks(prevVisibleTracks => prevVisibleTracks + 5)
-  }
-
-  const handleBottomSheet = () => {
-    openModal('')
   }
 
   return (
@@ -24,40 +15,18 @@ export const ArtistTopTrack = ({ artist_topTracks }) => {
         인기 트랙
       </h1>
       <div className="relative desktop:pl-3 mobile:px-1 mt-6">
-        <div className="border-b-1">
+        <ul className="border-b-1">
           {artist_topTracks &&
             artist_topTracks.slice(0, visibleTracks).map(item => (
-              <div
-                className="border-1 border-b-0 flex items-center gap-10"
-                key={item.id}>
-                <img
-                  loading="lazy"
-                  onClick={() => navigate(`/album/${item.album.id}`)}
-                  className="mobile:w-50 mobile:h-51 mr-4 desktop:w-65 desktop:h-66 cursor-pointer"
-                  src={item.album.images[1].url || defaultAlbumImg}
-                  alt={`${item.name}.img`}
-                />
-                <button
-                  type="button"
-                  className="absolute right-10"
-                  onClick={handleBottomSheet}>
-                  <MoreIcon />
-                </button>
-                <div className="flex flex-col overflow-hidden">
-                  <span
-                    className={
-                      item.name.length > 30 ? 'text-flow-on-hover' : ''
-                    }>
-                    {item.name}
-                  </span>
-                  <span>{item.artists[0].name}</span>
-                </div>
-              </div>
+              <TrackItem
+                data={item}
+                key={item.id}
+              />
             ))}
-        </div>
+        </ul>
         {visibleTracks < artist_topTracks.length && (
           <button
-            className="border-1 w-full hover:underline"
+            className="border-1 border-t-0 w-full hover:underline"
             onClick={loadMore}>
             더보기
           </button>

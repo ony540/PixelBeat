@@ -2,14 +2,18 @@ import { Xbutton } from '@/assets'
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export const RecentSearchList = () => {
+interface RecentSearchListProps {
+  onClickRecentSearchToggle: () => void
+  setInput: (query: string) => void
+  storeRecentSearchInput: (input: string) => void
+}
+
+export const RecentSearchList = ({
+  onClickRecentSearchToggle,
+  setInput,
+  storeRecentSearchInput
+}: RecentSearchListProps) => {
   const navigate = useNavigate()
-  const handleNavigateToResults = (query: string) => {
-    navigate({
-      pathname: '/search',
-      search: `?q=${query}`
-    })
-  }
   const [decodedRecentSearchList, setDecodedRecentSearchList] = useState<
     string[]
   >([])
@@ -22,8 +26,17 @@ export const RecentSearchList = () => {
     setDecodedRecentSearchList(decodedList)
   }, [])
 
+  const handleNavigateToResults = (query: string) => {
+    navigate({
+      pathname: '/search',
+      search: `?q=${query}`
+    })
+    setInput(query)
+    storeRecentSearchInput(query)
+    onClickRecentSearchToggle()
+  }
+
   const handleDeleteSearchQuery = (event, index: number) => {
-     // 클릭 이벤트 전파 차단 (~li) 
     event.stopPropagation()
 
     const updatedQueries = [...decodedRecentSearchList]

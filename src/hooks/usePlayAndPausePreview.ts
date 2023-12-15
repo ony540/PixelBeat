@@ -61,7 +61,7 @@ export const usePlayAndPausePreview = () => {
     audioRef.current!.load()
 
     audioRef.current!.addEventListener('canplay', function () {
-      audioRef.current!.play()
+      playMusic()
     })
   }
 
