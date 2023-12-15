@@ -8,7 +8,7 @@ interface GenreItemProps {
   isSelected: boolean
 }
 
-export const GenreItem = ({ item, onClick, isSelected }: GenreItemProps) => (
+export const RecommendGenreItem = ({ item, onClick, isSelected }: GenreItemProps) => (
   <div
     onClick={() => onClick(GENRE_CATEGORY[item])}
     className={`cursor-pointer ${isSelected ? 'selected-item' : ''}`}>

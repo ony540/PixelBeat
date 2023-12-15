@@ -1,6 +1,6 @@
 import { StandardPixelBorder, StandardVertex } from '..'
 
-export const TrackItem = ({ id, onClick, track, isSelected }) => (
+export const RecommendTrackItem = ({ id, onClick, track, isSelected }) => (
   <div
     key={id}
     className="relative mb-20 cursor-pointer"
@@ -14,7 +14,7 @@ export const TrackItem = ({ id, onClick, track, isSelected }) => (
 
     {/* SVG */}
     <StandardVertex
-      propsClass={`w-48 h-48 absolute top-16 mobile:left-32 desktop:left-62`}
+      propsClass={`text-black w-48 h-48 absolute top-16 mobile:left-32 desktop:left-62`}
     />
     <StandardPixelBorder
       propsClass={`px-20 ${isSelected ? 'selected-item' : ''}`}

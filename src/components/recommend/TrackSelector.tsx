@@ -1,6 +1,6 @@
 import { getArtistTopTracks } from '@/api'
 import { useRecommendStore } from '@/zustand'
-import { TrackItem } from '..'
+import { RecommendTrackItem } from '..'
 import { useQuery } from '@tanstack/react-query'
 
 export const TrackSelector = () => {
@@ -34,7 +34,7 @@ export const TrackSelector = () => {
       </h2>
       {tracks &&
         tracks.map((track: any) => (
-          <TrackItem
+          <RecommendTrackItem
             key={track.id}
             id={track.id}
             track={track}

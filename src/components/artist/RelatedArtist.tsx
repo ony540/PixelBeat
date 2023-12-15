@@ -1,44 +1,41 @@
 import { MenuIcon } from '@/assets'
-import { useNavigate } from 'react-router-dom'
-import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
+import { ArtistItem } from '../common/item/ArtistItem'
+import { useSwipe } from '@/hooks'
 
-export const RelatedArtist = ({ artist_relatedArtistracks }) => {
-  const navigate = useNavigate()
+export const RelatedArtist = ({ artist_relatedArtistracks, propsClass }) => {
+  const {
+    isDrag,
+    scrollRef,
+    onDragStart: handleDragStart,
+    onDragMove: handleDragMove,
+    onDragEnd: handleDragEnd
+  } = useSwipe()
 
   return (
-    <div className="mobile:px-20 desktop:px-60 mt-27 relative mb-80">
+    <div
+      className={`mobile:px-20 desktop:px-60 mt-27 relative mb-80 ${propsClass}`}>
       <MenuIcon />
       <h1 className="absolute text-mainBlack mobile:top-4 mobile:left-60 desktop:top-5 desktop:left-130">
         관련 가수
       </h1>
 
       <div className="relative desktop:px-3 mobile:px-1">
-        <div className="overflow-x-auto">
-          <div className="flex">
-            {artist_relatedArtistracks &&
-              artist_relatedArtistracks.artists.map(item => (
-                <div
-                  className="my-4 mx-2 flex flex-col items-center mobile:w-150 mobile:h-176"
-                  key={item.id}>
-                  <div className="mobile:w-150 mobile:h-156 border-1 overflow-y-hidden">
-                    <img
-                      loading="lazy"
-                      className="mobile:w-150 mobile:h-156"
-                      src={item.images[1].url || defaultAlbumImg}
-                      alt={`${item.name}.img`}
-                    />
-                  </div>
-                  <div
-                    className="bg-mainGray whitespace-nowrap w-full  text-center text-mainBlack cursor-pointer hover:underline"
-                    onClick={() => navigate(`/artist/${item.id}`)}>
-                    {item.name.length >= 10
-                      ? item.name.slice(0, 7) + '...'
-                      : item.name}
-                  </div>
-                </div>
-              ))}
-          </div>
-        </div>
+        <ul
+          ref={scrollRef}
+          onMouseDown={handleDragStart}
+          onMouseMove={handleDragMove}
+          onMouseUp={handleDragEnd}
+          onMouseLeave={handleDragEnd}
+          className="overflow-x-auto flex">
+          {artist_relatedArtistracks &&
+            artist_relatedArtistracks.artists.map(item => (
+              <ArtistItem
+                data={item}
+                key={item.id}
+                isDrag={isDrag}
+              />
+            ))}
+        </ul>
       </div>
     </div>
   )

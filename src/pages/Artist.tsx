@@ -7,12 +7,16 @@ import {
 import { BottomSheet, ErrorComponent, Header, NavBar } from '@/components'
 import { ArtistImage, ArtistTopTrack, RelatedArtist } from '@/components/artist'
 import ArtistAlbumList from '@/components/artist/ArtistAlbumList'
+import { useModal } from '@/hooks'
 import Portal from '@/utils/portal'
+import { useNowPlayStore } from '@/zustand'
 import { useQueries } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 export const Artist = () => {
   const { id: artist_id } = useParams()
+  const currentTrack = useNowPlayStore(state => state.currentTrack)
+  const { modalType } = useModal()
 
   const results = useQueries({
     queries: [
@@ -49,16 +53,15 @@ export const Artist = () => {
 
     return (
       <div>
-        <Header />
+        <Header type="artist" />
         <ArtistImage artist_info={results[0].data} />
         <ArtistAlbumList artist_albums={results[1].data} />
         <ArtistTopTrack artist_topTracks={results[2].data} />
-        <RelatedArtist artist_relatedArtistracks={results[3].data} />
+        <RelatedArtist
+          artist_relatedArtistracks={results[3].data}
+          propsClass={currentTrack ? 'mb-160' : ''}
+        />
         <NavBar />
-
-        <Portal>
-          <BottomSheet />
-        </Portal>
       </div>
     )
   }

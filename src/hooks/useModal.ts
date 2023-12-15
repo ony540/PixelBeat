@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { useCallback } from 'react'
 
 export const useModal = () => {
-  const { isShow, setIsShow, setModalType } = useModalStore()
+  const { isShow, setIsShow, modalType, setModalType } = useModalStore()
   const [isVisible, setIsVisible] = useState<boolean>(false)
 
   const openModal = useCallback(
@@ -35,6 +35,8 @@ export const useModal = () => {
   return {
     isShow,
     isVisible,
+    modalType,
+    setModalType,
     openModal,
     closeModal
   }
