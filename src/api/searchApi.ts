@@ -14,10 +14,12 @@ export const searchItem = async (
       }
     )
     const data = response.data
-    const { artists, tracks } = data
+    const { artists, tracks, playlists, albums } = data
     return {
       artists,
-      tracks
+      tracks,
+      playlists,
+      albums
     } as SearchedData
   } catch (error) {
     console.error(error)
