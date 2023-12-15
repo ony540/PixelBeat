@@ -227,6 +227,36 @@
   animation: fadeOutOpacity 0.4s ease-in;
 }
 
+@keyframes fadeOutPlaynow {
+  0% {
+    left: 50%;
+    transform: translateY(0) translateX(-50%);
+  }
+  100% {
+    left: 50%;
+    transform: translateY(100vh) translateX(-50%);
+  }
+}
+
+@keyframes fadeInPlaynow {
+  0% {
+    left: 50%;
+    transform: translateY(100vh) translateX(-50%);
+  }
+  100% {
+    left: 50%;
+    transform: translateY(0) translateX(-50%);
+  }
+}
+
+.open-playnow {
+  animation: fadeInPlaynow 0.3s ease-in;
+}
+
+.closing-playnow {
+  animation: fadeOutPlaynow 0.3s ease-in;
+}
+
 .profile {
   display: block;
   content: '';
