@@ -53,7 +53,7 @@ export const Artist = () => {
 
     return (
       <div>
-        <Header />
+        <Header type="artist" />
         <ArtistImage artist_info={results[0].data} />
         <ArtistAlbumList artist_albums={results[1].data} />
         <ArtistTopTrack artist_topTracks={results[2].data} />
