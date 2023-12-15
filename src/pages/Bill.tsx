@@ -1,14 +1,9 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Clock } from '@/assets'
-import {
-  BillButtonListSection,
-  BillGraph,
-  BillItem,
-  StandardButton
-} from '@/components'
+import { BillButtonListSection, BillGraph, BillItem } from '@/components'
 import barcodeImg from '@/assets/imgs/barcode.png'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
-import { formatDate, shareData } from '@/utils'
+import { formatDate } from '@/utils'
 import { useNowPlayStore } from '@/zustand'
 import { Track, TrackList } from '@/types'
 import { useQuery } from '@tanstack/react-query'
@@ -36,12 +31,6 @@ export const Bill = () => {
 
   const handleClickPreviewPlayButton = (track: Track) => {
     setCurrentTrack(track)
-  }
-
-  const handleClickShareButton = () => {
-    // 배포 후 수정(data타입으로 수정)
-    const shareLink = 'YOUR_SHARE_LINK'
-    shareData({ url: shareLink })
   }
 
   if (isLoading) return <>loading...</>

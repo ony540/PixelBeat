@@ -13,13 +13,14 @@ export const BillButtonListSection = ({
   const navigate = useNavigate()
   const setCurrentTrack = useNowPlayStore(state => state.setCurrentTrack)
   const setNowPlayList = useNowPlayStore(state => state.setNowPlayList)
+  const nowPlayTracks = useNowPlayStore(state => state.tracks)
 
   const handleClickPlayAllTrackButton = () => {
-    const nowPlayTracks = data.tracks.items
+    const billTracks = data.tracks.items
       .map(item => item.track)
       .filter(track => track.preview_url)
-    setNowPlayList(nowPlayTracks)
-    setCurrentTrack(nowPlayTracks[0])
+    setNowPlayList([...nowPlayTracks, billTracks])
+    setCurrentTrack(billTracks[0])
   }
 
   const handleClickToLoginButton = () => {
