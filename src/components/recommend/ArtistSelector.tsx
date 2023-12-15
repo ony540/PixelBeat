@@ -1,7 +1,7 @@
 import { getArtistId, getArtistInfo } from '@/api'
 import { useRecommendStore } from '@/zustand'
 import { useEffect, useState } from 'react'
-import { ArtistItem } from '..'
+import { RecommendArtistItem } from '..'
 import { useQuery } from '@tanstack/react-query'
 
 export const ArtistSelector = () => {
@@ -67,7 +67,7 @@ export const ArtistSelector = () => {
       </h2>
       {artistInfoBySpotify &&
         artistInfoBySpotify.map(artist => (
-          <ArtistItem
+          <RecommendArtistItem
             key={artist.id}
             artist={artist}
             isSelected={isArtistSelected(artist.id)}

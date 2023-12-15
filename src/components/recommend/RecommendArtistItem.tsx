@@ -1,6 +1,6 @@
 import { StandardPixelBorder, StandardVertex } from '..'
 
-export const ArtistItem = ({ artist, isSelected, onClick }) => (
+export const RecommendArtistItem = ({ artist, isSelected, onClick }) => (
   <div
     key={artist.id}
     className="mb-20"
