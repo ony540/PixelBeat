@@ -1,14 +1,17 @@
 import { getAllTracksDuration, msToMinutesAndSeconds } from '@/utils'
 import { StandardVertex } from '..'
 import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
+import { useNavigate } from 'react-router-dom'
 
 export const AlbumArtistInfo = ({ album_data }) => {
-  if (!album_data) {
-    return null
-  }
+  const navigate = useNavigate()
 
   const { id, name, artists, release_date, total_tracks, images, tracks } =
     album_data
+
+  const handleClickAritst = (id: string) => {
+    navigate(`/artist/${id}`)
+  }
 
   const allTrackDuration = getAllTracksDuration({ tracks: tracks.items })
   const { minutes, seconds } = msToMinutesAndSeconds(allTrackDuration)
@@ -35,12 +38,21 @@ export const AlbumArtistInfo = ({ album_data }) => {
           className={`absolute
                       mobile:text-40 mobile:top-10
                       desktop:top-10 desktop:left-0 desktop:text-60
-                     ${name.length >= 20 ? 'text-flow-on-hover' : ''}`}>
+                     ${name.length >= 15 ? 'text-flow-on-hover' : ''}`}>
           {name}
         </h1>
         <h2 className="absolute mobile:text-14 mobile:top-70 desktop:left-0 desktop:text-24 desktop:top-90">
           <p>
-            {artists[0].name} • {release_date.split('-')[0]} • {total_tracks}곡,
+            {artists.map((artist, idx) => (
+              <span
+                key={idx}
+                className="cursor-pointer hover:underline"
+                onClick={() => handleClickAritst(artist.id)}>
+                {artist.name}
+                {idx < artists.length - 1 && ', '}
+              </span>
+            ))}{' '}
+            • {release_date.split('-')[0]} • {total_tracks}곡,
             {` ${minutes}분 ${seconds}초`}
           </p>
         </h2>
@@ -48,3 +60,5 @@ export const AlbumArtistInfo = ({ album_data }) => {
     </div>
   )
 }
+
+AlbumArtistInfo.__isStatic = true

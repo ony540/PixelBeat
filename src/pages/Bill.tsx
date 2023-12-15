@@ -1,21 +1,14 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { Clock } from '@/assets'
-import {
-  BillButtonListSection,
-  BillGraph,
-  BillItem,
-  StandardButton
-} from '@/components'
+import { BillButtonListSection, BillGraph, BillItem } from '@/components'
 import barcodeImg from '@/assets/imgs/barcode.png'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
-import { formatDate, shareData } from '@/utils'
+import { formatDate } from '@/utils'
 import { useNowPlayStore } from '@/zustand'
-import { PlayBar } from '@/components/common/PlayBar'
 import { Track, TrackList } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { getBill } from '@/api'
 import { useEffect } from 'react'
-import Portal from '@/utils/portal'
 
 export const Bill = () => {
   const { id: currentPath } = useParams<string>()
@@ -38,12 +31,6 @@ export const Bill = () => {
 
   const handleClickPreviewPlayButton = (track: Track) => {
     setCurrentTrack(track)
-  }
-
-  const handleClickShareButton = () => {
-    // 배포 후 수정(data타입으로 수정)
-    const shareLink = 'YOUR_SHARE_LINK'
-    shareData({ url: shareLink })
   }
 
   if (isLoading) return <>loading...</>
@@ -104,8 +91,7 @@ export const Bill = () => {
             className="mx-auto mt-24 mb-5"
           />
         </div>
-        <BillButtonListSection />
-        <Portal>{currentTrack && <PlayBar propsClass="bottom-0" />}</Portal>
+        <BillButtonListSection propsClass={currentTrack ? 'mb-100' : ''} />
       </>
     )
   }

@@ -1,6 +1,4 @@
 import { UserBillItem } from '.'
-import { Track } from '@/types'
-import { useNowPlayStore } from '@/zustand'
 import { CircleAdd } from '@/assets'
 import {
   formatDate,
@@ -13,11 +11,6 @@ import { StandardVertex } from '@/components'
 
 export const BillBox = ({ data }) => {
   const { name, owner, images, tracks } = data
-
-  const setCurrentTrack = useNowPlayStore(state => state.setCurrentTrack)
-  const handleClickPreviewPlayButton = (track: Track) => {
-    setCurrentTrack(track)
-  }
 
   //음악서랍에 저장
   const handleClickAddtoMusicShelfButton = () => {}
@@ -84,7 +77,6 @@ export const BillBox = ({ data }) => {
               key={item.track.id}
               trackNumber={idx}
               track={item.track}
-              onClickPlayButton={() => handleClickPreviewPlayButton(item.track)}
             />
           ))}
         </ul>

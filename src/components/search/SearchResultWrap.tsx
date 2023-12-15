@@ -1,14 +1,21 @@
-import { SearchResultTrackItem, SearchResultArtistItem } from '.'
+import {
+  SearchResultTrack,
+  SearchResultArtist,
+  SearchResultPlaylist,
+  SearchResultAlbum
+} from '.'
 import { searchItem } from '@/api'
 import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { BottomSheet } from '..'
 import Portal from '@/utils/portal'
-import { Artist, Track } from '@/types'
+import { Album, Artist, Track } from '@/types'
 
 export interface SearchedData {
   tracks: Track[]
-  artists: Artist
+  artists: Artist[]
+  playlists: any
+  albums: Album[]
 }
 export const SearchResultWrap = () => {
   const [query] = useSearchParams()
@@ -30,13 +37,24 @@ export const SearchResultWrap = () => {
       {isLoading && <p>로딩중...</p>}
       {data && (
         <div className="relative mt-58">
-          <SearchResultTrackItem tracks={data?.tracks} />
+          <SearchResultTrack tracks={data?.tracks} />
         </div>
       )}
 
       {data && (
         <div className="relative mt-28">
-          <SearchResultArtistItem artists={data.artists} />
+          <SearchResultArtist artists={data.artists} />
+        </div>
+      )}
+      {data && (
+        <div className="relative mt-28">
+          <SearchResultPlaylist playlists={data.playlists} />
+        </div>
+      )}
+
+      {data && (
+        <div className="relative mt-28 mb-100">
+          <SearchResultAlbum albums={data.albums} />
         </div>
       )}
 

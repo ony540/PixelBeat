@@ -1,6 +1,6 @@
 import { StandardPixelBorder, StandardVertex } from '..'
 
-export const TrackItem = ({ id, onClick, track, isSelected }) => (
+export const RecommendTrackItem = ({ id, onClick, track, isSelected }) => (
   <div
     key={id}
     className="relative mb-20 cursor-pointer"

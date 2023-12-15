@@ -33,6 +33,7 @@ export default {
         bgGray: '#E6E6E6',
         mainGray: '#C3C3C3',
         mainGray200: '#9C9C9C',
+        mainGray300: '#313131',
         mainBlackOpacity: '#00000099'
       },
       screens: {
