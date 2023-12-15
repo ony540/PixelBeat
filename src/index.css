@@ -169,6 +169,24 @@
   bottom: -15px;
   transform: rotate(180deg);
 }
+.profileBill:before,
+.profileBill:after {
+  display: block;
+  content: '';
+  position: relative;
+  width: 100%;
+  background: url('./assets/imgs/ProfileBill.png') center / contain;
+  height: 17px;
+  background-repeat: no-repeat;
+}
+.profileBill:before {
+  top: -5px;
+  height: 17px;
+}
+.profileBill:after {
+  bottom: -5px;
+  transform: rotate(180deg);
+}
 
 /* 포탈 관련 스타일링 */
 @keyframes fadeOut {
@@ -333,6 +351,18 @@
     width: 150px;
     font-size: 16px;
   }
+  .profileBill {
+    margin-left: 6px;
+    margin-right: 6px;
+    background-repeat: no-repeat;
+  }
+  .headerArrow {
+    margin-left: -40px;
+  }
+  .headerMore {
+    right: -52px;
+    top: -8px;
+  }
 }
 
 @media screen and (max-width: 390px) {
@@ -361,6 +391,17 @@
   .musicTitle {
     width: 150px;
     font-size: 14px;
+  }
+  .profileBill {
+    margin-left: 6px;
+    margin-right: 6px;
+  }
+  .headerArrow {
+    margin-left: -40px;
+  }
+  .headerMore {
+    right: -52px;
+    top: -8px;
   }
 }
 

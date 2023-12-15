@@ -21,8 +21,8 @@ export const StandardButton = ({
       disabled={disabled}
       className={
         propsClass
-          ? `${propsClass} block relative w-full`
-          : 'block relative w-full'
+          ? `${propsClass} block relative`
+          : 'block relative'
       }
       onClick={onClick}>
       <svg

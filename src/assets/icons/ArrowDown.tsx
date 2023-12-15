@@ -13,5 +13,5 @@ export const ArrowDown = ({ fill }: { fill?: string }) => {
         fill={fill || 'white'}
       />
     </svg>
-  )
-}
+  );
+};

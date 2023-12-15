@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
 import { RouteObject } from 'react-router-dom'
-import { ErrorComponent } from '@/components'
+import { ErrorComponent, MyProfileLike } from '@/components'
 import { ReactNode } from 'react'
 import {
   Layout,
@@ -19,7 +19,8 @@ import {
   RecommendEntry,
   Entry,
   SignupGreeting,
-  BillFromSpotify
+  BillFromSpotify,
+  Profile
 } from '@/pages'
 
 const generateRoute = (
@@ -56,6 +57,8 @@ export const routes = [
       generateRoute('/mymusic/bill', <MyMusicBill />),
       generateRoute('/artist/:id', <Artist />),
       generateRoute('/album/:id', <Album />),
+      generateRoute('/profile/:id/profile', <Profile />),
+      generateRoute('/profile/:id/profilelike', <MyProfileLike />),
       generateRoute('/bill/:id', <Bill />),
       generateRoute('/bill/playlist/:id', <BillFromSpotify />)
     ]

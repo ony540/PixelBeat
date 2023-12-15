@@ -11,10 +11,13 @@ export * from "./CloseEye";
 export * from "./moreCircle";
 export * from './home'
 export * from './Xbutton'
+export * from './profile'
 export * from './ArrowDown'
 export * from './RectangleVertax'
 export * from './MoreIcon'
 export * from './BottomSheetTop'
 export * from './ImageUploadButton'
+export * from './StandardVertex'
+export * from './StandardPixelBorder'
 export * from './StandardPixelBorder'
 export * from './StandardVertex'

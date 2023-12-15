@@ -1,4 +1,4 @@
-import { CirclePlaySmall, StandardPixelBorder, StandardVertex } from '@/assets'
+import { StandardPixelBorder, StandardVertex, CirclePlaySmall } from '@/assets'
 import { Track } from '@/types'
 import { useNowPlayStore } from '@/zustand'
 import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
