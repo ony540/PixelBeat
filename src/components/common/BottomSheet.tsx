@@ -1,12 +1,16 @@
 import { BottomSheetTop } from '@/assets'
+import { BOTTOMSHEET_TYPE } from '@/constants'
 import { useModal } from '@/hooks'
 
-export const BottomSheet = () => {
-  const { isVisible, closeModal, isShow } = useModal()
+export const BottomSheet = ({ onClick }) => {
+  const { isVisible, closeModal, modalType, isShow } = useModal()
 
-  if (!isVisible) {
-    return null
+// modalType === 'myBillList'일 때 쥬스탠드에서 관리하고 있는  내 ownplaylist들고오기
+//ownplaylist에 저장할때 id랑 이름 객체 배열로 저장하기
+  if(modalType === 'myBillList'){
   }
+  
+  if (!isVisible) return null
 
   return (
     <div
@@ -25,22 +29,26 @@ export const BottomSheet = () => {
       <div
         className={`${
           isShow ? 'open' : 'closing'
-        } relative desktop:mt-[40vh] mobile:mt-[55vh]`}>
+        }  absolute bottom-0 bg-mainWhite desktop:rounded-t-[56px] rounded-t-[30px] `}>
         <BottomSheetTop onClick={closeModal} />
         <div
-          className="fixed h-screen w-full bg-mainWhite 
-                     ">
-          <section className="text-section ">
-            <div className="flex flex-col justify-start">
-              <p
-                className={` text-mainBlack hover:bg-mainBlack hover:text-mainWhite w-full
-                              mobile:px-20 
-                              desktop:px-60 py-8 `}
-                onClick={e => e.stopPropagation()}>
-                음악 영수증에 추가하기
-              </p>
-            </div>
-          </section>
+          className=" w-full 
+                    ">
+          <ul className="text-section mb-40 ">
+            {BOTTOMSHEET_TYPE[modalType!] &&
+              BOTTOMSHEET_TYPE[modalType!].map((item, idx) => (
+                <li key={idx}>
+                  <button
+                    type="button"
+                    className={` text-mainBlack hover:bg-mainBlack hover:text-mainWhite text-left w-full
+                  mobile:px-20 
+                  desktop:px-60 p-12 `}
+                    onClick={onClick}>
+                    {item}
+                  </button>
+                </li>
+              ))}
+          </ul>
         </div>
       </div>
     </div>

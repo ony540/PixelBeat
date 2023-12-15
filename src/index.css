@@ -216,7 +216,7 @@
 }
 
 .portal-background {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .portal-background-open {
@@ -356,92 +356,6 @@
   appearance: none;
   background: transparent;
   cursor: pointer;
-}
-
-/* 포탈 관련 스타일링 */
-@keyframes fadeOut {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(100vh);
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    transform: translateY(100vh);
-  }
-  100% {
-    transform: translateY(0);
-  }
-}
-
-.open {
-  animation: fadeIn 0.3s ease-in;
-}
-
-.closing {
-  animation: fadeOut 0.4s ease-in;
-}
-
-@keyframes fadeInOpacity {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOutOpacity {
-  0% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-.portal-background {
-  background-color: rgba(0, 0, 0, 0.6);
-}
-
-.portal-background-open {
-  animation: fadeInOpacity 0.3s ease-in;
-}
-
-.portal-background-closing {
-  animation: fadeOutOpacity 0.4s ease-in;
-}
-
-@keyframes fadeOutPlaynow {
-  0% {
-    left: 50%;
-    transform: translateY(0) translateX(-50%);
-  }
-  100% {
-    left: 50%;
-    transform: translateY(100vh) translateX(-50%);
-  }
-}
-
-@keyframes fadeInPlaynow {
-  0% {
-    left: 50%;
-    transform: translateY(100vh) translateX(-50%);
-  }
-  100% {
-    left: 50%;
-    transform: translateY(0) translateX(-50%);
-  }
-}
-
-.open-playnow {
-  animation: fadeInPlaynow 0.3s ease-in;
-}
-
-.closing-playnow {
-  animation: fadeOutPlaynow 0.3s ease-in;
 }
 
 .playnowCircle {
