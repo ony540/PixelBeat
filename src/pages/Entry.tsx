@@ -1,3 +1,4 @@
+import { signInWithSpotify } from '@/api'
 import {
   PixelBeatLoginButton,
   SpotifyLoginButton,
@@ -14,12 +15,16 @@ export const Entry = () => {
     setIsHovered(!isHovered)
   }
 
-  const moveToSignup = () => {
+  const moveToSignupWithPixelBeat = () => {
     navigate('/signup/email')
   }
 
-  const moveToPixelBeat = () => {
-    navigate('/login/email')
+  const moveToPixelBeatWithPixelBeat = async () => {
+    navigate('/signin/email')
+  }
+
+  const handlesSignInWithSpotify = async () => {
+    await signInWithSpotify()
   }
 
   return (
@@ -29,6 +34,7 @@ export const Entry = () => {
       <div className="h-[40vh]"></div>
       <div className="relative flex flex-col gap-8 items-center">
         <SpotifyLoginButton
+          onClick={handlesSignInWithSpotify}
           onMouseEnter={handleHover}
           onMouseLeave={handleHover}
           propsClass={'mobile:w-356 mobile:h-56 desktop:w-[500px] desktop:h-60'}
@@ -37,14 +43,14 @@ export const Entry = () => {
           {isHovered && <SpotifyHover />}
         </div>
         <PixelBeatLoginButton
-          onClick={moveToPixelBeat}
+          onClick={moveToPixelBeatWithPixelBeat}
           propsClass={'mobile:w-356 mobile:h-56 desktop:w-[500px] desktop:h-60'}
         />
       </div>
 
       <div className="flex justify-center pb-10">
         <button
-          onClick={moveToSignup}
+          onClick={moveToSignupWithPixelBeat}
           className="pr-12 text-16">
           이메일로 회원가입
         </button>

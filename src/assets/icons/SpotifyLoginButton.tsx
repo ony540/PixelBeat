@@ -1,14 +1,17 @@
 export const SpotifyLoginButton = ({
   propsClass,
   onMouseEnter,
-  onMouseLeave
+  onMouseLeave,
+  onClick
 }: {
+  onClick?: () => void
   propsClass?: string
   onMouseEnter?: () => void
   onMouseLeave?: () => void
 }) => {
   return (
     <button
+      onClick={onClick}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       type="button"

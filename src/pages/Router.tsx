@@ -17,7 +17,8 @@ import {
   Artist,
   Album,
   RecommendEntry,
-  Entry
+  Entry,
+  SignupGreeting
 } from '@/pages'
 // import { BillFromSpotify } from './BillFromSpotify'
 
@@ -40,12 +41,14 @@ export const routes = [
     element: <Layout />,
     errorElement: <ErrorComponent />,
     children: [
+      // generateRoute('/', <RecommendEntry />),
       generateRoute('/recommend', <RecommendEntry />),
       generateRoute('/recommend/:id', <Recommend />),
       generateRoute('/entry', <Entry />),
       generateRoute('/signup/email', <SignupWithEmail />),
+      generateRoute('/signin/email', <SigninWithEmail />),
+      generateRoute('/greeting', <SignupGreeting />),
       generateRoute('/profile/edit', <ProfileEdit />),
-      generateRoute('/login/email', <SigninWithEmail />),
       generateRoute('/home', <Home />),
       generateRoute('/search', <Search />),
       generateRoute('/mymusic/main', <MyMusicMain />),
@@ -53,7 +56,7 @@ export const routes = [
       generateRoute('/mymusic/bill', <MyMusicBill />),
       generateRoute('/artist/:id', <Artist />),
       generateRoute('/album/:id', <Album />),
-      generateRoute('/bill/:id', <Bill />),
+      generateRoute('/bill/:id', <Bill />)
       // generateRoute('/bill/playlist/:id', <BillFromSpotify />)
     ]
   }
