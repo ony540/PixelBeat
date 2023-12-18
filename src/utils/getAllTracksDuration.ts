@@ -1,6 +1,6 @@
 export const getAllTracksDuration = ({
   tracks,
-  isPlaylist
+  isPlaylist = false
 }: {
   tracks: any
   isPlaylist?: boolean

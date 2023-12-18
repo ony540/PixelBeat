@@ -1,9 +1,8 @@
-import { NowPlayList, Track, user_id } from '@/types'
+import { NowPlayList, Track } from '@/types'
 import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
 const initialStore: NowPlayList = {
-  owner: undefined,
   tracks: [],
   currentTrack: null,
   isPlaying: false,
@@ -11,13 +10,12 @@ const initialStore: NowPlayList = {
 }
 
 type NowPlayStore = {
-  owner?: user_id | undefined
   tracks: Track[]
   currentTrack: Track | null
   isPlaying: boolean
   playingPosition: number
 
-  setOwner: (userId: string) => void
+  setNowPlayStore: (nowPlayList: any) => void
   setCurrentTrack: (track: Track) => void
   toggleIsPlaying: () => void
   setPlayingPosition: (playingPositon: any) => void
@@ -29,11 +27,13 @@ type NowPlayStore = {
 
 export const nowPlayStore = set => ({
   ...initialStore,
-  //owner 지정
-  setOwner: (userId: string) =>
+  //전체 상태 지정
+  setNowPlayStore: (nowPlayList: any) =>
     set(state => ({
       ...state,
-      owner: userId
+      tracks: nowPlayList.tracks,
+      currentTrack: nowPlayList.currentTrack,
+      playingPosition: nowPlayList.playingPosition
     })),
 
   //현재 재생트랙 지정
