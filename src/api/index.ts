@@ -1,4 +1,4 @@
-export * from './getNonMemberToken'
+export * from './getNoneMemberToken'
 export * from './searchApi'
 export * from './albumApi'
 export * from './artistApi'

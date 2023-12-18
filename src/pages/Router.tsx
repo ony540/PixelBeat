@@ -1,68 +1,44 @@
-import { createBrowserRouter } from 'react-router-dom'
-import { RouteObject } from 'react-router-dom'
-import { ErrorComponent, MyProfileLike } from '@/components'
-import { ReactNode } from 'react'
+import React from 'react'
 import {
-  Layout,
-  Recommend,
-  Bill,
-  Home,
-  SigninWithEmail,
-  SignupWithEmail,
-  ProfileEdit,
-  MyMusicMain,
-  MyMusicBill,
-  MyMusicBillId,
-  Search,
-  Artist,
-  Album,
-  RecommendEntry,
-  Entry,
-  SignupGreeting,
-  BillFromSpotify,
-  Profile
-} from '@/pages'
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route
+} from 'react-router-dom'
 
-const generateRoute = (
-  path: string,
-  component: ReactNode,
-  children?: RouteObject[]
-): RouteObject => {
-  return {
-    path: path,
-    element: component,
-    errorElement: <ErrorComponent />,
-    children: children
+import { routeConfig, ROUTES } from '@/constants'
+import Layout from './Layout'
+import Recommend from './Page-Recommend'
+import { loadTokenAndCheckExpiration } from '@/utils'
+
+const LazyRoutes = ROUTES.map(route => {
+  const { index, path } = routeConfig[route] || {
+    index: false,
+    path: route.toLowerCase()
   }
-}
 
-export const routes = [
-  {
-    path: '/',
-    element: <Layout />,
-    errorElement: <ErrorComponent />,
-    children: [
-      // generateRoute('/', <RecommendEntry />),
-      generateRoute('/recommend', <RecommendEntry />),
-      generateRoute('/recommend/:id', <Recommend />),
-      generateRoute('/entry', <Entry />),
-      generateRoute('/signup/email', <SignupWithEmail />),
-      generateRoute('/signin/email', <SigninWithEmail />),
-      generateRoute('/greeting', <SignupGreeting />),
-      generateRoute('/profile/edit', <ProfileEdit />),
-      generateRoute('/home', <Home />),
-      generateRoute('/search', <Search />),
-      generateRoute('/mymusic/main', <MyMusicMain />),
-      generateRoute('/mymusic/bill/:billid', <MyMusicBillId />),
-      generateRoute('/mymusic/bill', <MyMusicBill />),
-      generateRoute('/artist/:id', <Artist />),
-      generateRoute('/album/:id', <Album />),
-      generateRoute('/profile/:id/profile', <Profile />),
-      generateRoute('/profile/:id/profilelike', <MyProfileLike />),
-      generateRoute('/bill/:id', <Bill />),
-      generateRoute('/bill/playlist/:id', <BillFromSpotify />)
-    ]
-  }
-]
+  const LazyComponent = React.lazy(() => import(`./Page-${route}.tsx`))
 
-export const router = createBrowserRouter(routes)
+  return (
+    <Route
+      key={route}
+      index={index}
+      path={path}
+      element={<LazyComponent />}
+    />
+  )
+})
+
+export const router: any = createBrowserRouter(
+  createRoutesFromElements(
+    <Route
+      path="/"
+      element={<Layout />}
+      loader={() => loadTokenAndCheckExpiration()}>
+      {LazyRoutes}
+      <Route
+        path="recommend"
+        element={<Recommend />}
+      />
+    </Route>
+  )
+)

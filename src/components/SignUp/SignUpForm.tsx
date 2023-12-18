@@ -67,7 +67,7 @@ export const SignUpForm = () => {
   const MakeProFile = async () => {
     const res = await signUpSupabaseWithEmail(email, password)
     if (res?.user) {
-      navigate('/greeting')
+      navigate('/signupgreeting')
     }
   }
 

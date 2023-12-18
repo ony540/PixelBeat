@@ -6,7 +6,7 @@ export const getRecommendations = async (artists, genre, tracks) => {
       `/recommendations?limit=8&market=KR&seed_artists=${artists}&seed_genres=${genre}&seed_tracks=${tracks}`,
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('non-member-token')}`
+          Authorization: `Bearer ${localStorage.getItem('none-member-token')}`
         }
       }
     )

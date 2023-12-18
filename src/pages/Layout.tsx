@@ -1,16 +1,19 @@
 import { PlayBar } from '@/components'
 import Portal from '@/utils/portal'
 import { useNowPlayStore } from '@/zustand'
+import { Suspense } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 
-export const Layout = () => {
+const Layout = () => {
   const currentTrack = useNowPlayStore(state => state.currentTrack)
   const { pathname } = useLocation()
   const isNonUserBill = /^\/bill\/[^/]+$/.test(pathname)
 
   return (
     <div className="layout-screen-width outline outline-mainGreen">
-      <Outlet />
+      <Suspense fallback={<></>}>
+        <Outlet />
+      </Suspense>
       <Portal>
         {currentTrack && (
           <PlayBar
@@ -23,3 +26,5 @@ export const Layout = () => {
     </div>
   )
 }
+
+export default Layout

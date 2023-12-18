@@ -1,9 +1,11 @@
 import { MusicList } from '@/components'
 
-export const MyMusicMain = () => {
+const MyMusicMain = () => {
   return (
     <div className="flex justify-center">
       <MusicList />
     </div>
   )
 }
+
+export default MyMusicMain

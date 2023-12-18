@@ -1,10 +1,11 @@
 import { SignInForm } from '@/components'
 import { useNavigate } from 'react-router'
 
-export const SigninWithEmail = () => {
+const SigninWithEmail = () => {
   const navigate = useNavigate()
+
   const moveToSignup = () => {
-    navigate('/signup/email')
+    navigate('/signupwithemail')
   }
   const moveToBack = () => {
     navigate(-1)
@@ -35,3 +36,5 @@ export const SigninWithEmail = () => {
     </div>
   )
 }
+
+export default SigninWithEmail

@@ -5,7 +5,7 @@ import { useNowPlayStore } from '@/zustand'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
-export const BillFromSpotify = () => {
+const BillFromSpotify = () => {
   const { id: playlistId } = useParams()
   const { data, isLoading } = useQuery({
     queryKey: ['playlistFromSpotify', playlistId],
@@ -38,3 +38,5 @@ export const BillFromSpotify = () => {
     </>
   )
 }
+
+export default BillFromSpotify

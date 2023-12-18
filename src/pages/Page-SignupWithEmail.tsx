@@ -1,7 +1,7 @@
 import { SignUpForm } from '@/components/SignUp'
 import { useNavigate } from 'react-router-dom'
 
-export const SignupWithEmail = () => {
+const SignupWithEmail = () => {
   const navigate = useNavigate()
   const Login = () => {
     navigate('/login/email')
@@ -33,3 +33,5 @@ export const SignupWithEmail = () => {
     </div>
   )
 }
+
+export default SignupWithEmail

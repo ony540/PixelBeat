@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query'
 
 import { useParams } from 'react-router-dom'
 
-export const Album = () => {
+const Album = () => {
   const { id: albumId } = useParams()
   const { data, isLoading } = useQuery({
     queryKey: ['album', albumId],
@@ -42,3 +42,4 @@ export const Album = () => {
     </>
   )
 }
+export default Album

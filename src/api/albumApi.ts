@@ -4,7 +4,7 @@ export const getAlbum = async (album_id: string) => {
   try {
     const response = await baseInstance(`albums/${album_id}/?market=KR`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('non-member-token')}`
+        Authorization: `Bearer ${localStorage.getItem('none-member-token')}`
       }
     })
     const data = response.data
