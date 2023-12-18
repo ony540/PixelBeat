@@ -11,10 +11,10 @@ export const NAV_BAR_TEXT = [
   },
   {
     icon: MyPlaylistIcon,
-    path: '/home'
+    path: '/mymusic/playnow'
   },
   {
     icon: ProfileIcon,
-    path: '/home'
+    path: '/profile'
   }
 ]
