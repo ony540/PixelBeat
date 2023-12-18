@@ -6,12 +6,16 @@ import {
   TrackSelector,
   initialAnalysisObject
 } from '@/components'
-import { useRecommendStore } from '@/zustand'
+import { useRecommendStore, useUserStore } from '@/zustand'
 import { useNavigate, useParams } from 'react-router-dom'
 import { TrackAnalysis } from '@/types'
 import { useQuery } from '@tanstack/react-query'
-import { getRandomArray } from '@/utils'
-import { getRecommendations, getTracksAudioFeatures } from '@/api'
+import { getRandomArray, getRandomColor } from '@/utils'
+import {
+  updateOwnTracklist,
+  getRecommendations,
+  getTracksAudioFeatures
+} from '@/api'
 import { uploadBill } from '@/api'
 
 type ValidParams = 'genre' | 'artist' | 'track'
@@ -23,6 +27,11 @@ export const Recommend = () => {
   const { id: currentPath = 'genre' } = useParams<string>()
   const initialStore = useRecommendStore(state => state.initialStore)
   const { artist, genre, track } = initialStore
+  const setResultBillId = useRecommendStore(state => state.setResultBillId)
+  const resetRecommendStore = useRecommendStore(
+    state => state.resetRecommendStore
+  )
+  const userInfo = useUserStore(state => state.userInfo)
 
   if (!isValidParamsId(currentPath)) {
     return <ErrorComponent />
@@ -79,11 +88,35 @@ export const Recommend = () => {
             value / recommendedTracks.length
           ])
         ) as unknown as TrackAnalysis
+
+        //슈퍼베이스에 업로드
+        const isLoggedIn = !!userInfo.id
         const uploadTrackListToSupabaseId = await uploadBill({
           tracklist: recommendedTracks,
-          analysis: averageAnalysis
+          analysis: averageAnalysis,
+          owner: isLoggedIn
+            ? { userId: userInfo.id, username: userInfo.username }
+            : null,
+          color: isLoggedIn ? getRandomColor() : '#57FF57',
+          name: isLoggedIn
+            ? `${userInfo.username}의 음악영수증 #${
+                userInfo.own_tracklist.length + 1
+              }`
+            : null
         })
+        resetRecommendStore()
 
+        if (isLoggedIn) {
+          await updateOwnTracklist(
+            userInfo.own_tracklist,
+            uploadTrackListToSupabaseId,
+            userInfo.id
+          )
+          navigate(`/bill/${uploadTrackListToSupabaseId}/${userInfo.id}`)
+          return uploadTrackListToSupabaseId
+        }
+
+        setResultBillId(uploadTrackListToSupabaseId)
         navigate(`/bill/${uploadTrackListToSupabaseId}`)
         return uploadTrackListToSupabaseId
       }
@@ -106,11 +139,12 @@ export const Recommend = () => {
       {currentPath === 'genre' && <GenreSelector />}
       {currentPath === 'artist' && <ArtistSelector />}
       {currentPath === 'track' && <TrackSelector />}
-      <div className="sticky bottom-0 mx-auto my-0 text-22 px-10 py-10 bg-black ">
+      <div className="sticky bottom-0 mx-auto my-0 text-22 px-10 py-10 bg-black">
         <StandardButton
           height={70}
           text={renderButtonText()}
           onClick={() => handleNextButtonClick(currentPath)}
+          propsClass="w-full"
           disabled={isButtonDisabled}
         />
       </div>

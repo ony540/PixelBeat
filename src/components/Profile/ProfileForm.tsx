@@ -3,8 +3,16 @@ import { useNavigate } from 'react-router-dom'
 import { StandardButton } from '@/components'
 import defaultImage from '../../assets/imgs/Profile.png'
 import { ImageUploadForm, ProfileInputField } from '.'
-import { updateProfile, uploadImageToStorage } from '@/api'
+import {
+  updateOwnTracklist,
+  updateBill,
+  updateProfile,
+  uploadImageToStorage
+} from '@/api'
 import { useUserSession } from '@/hooks'
+import { useRecommendStore } from '@/zustand'
+import { getRandomColor } from '@/utils'
+import { UserMin } from '@/types'
 const IMAGE_PATH = import.meta.env.VITE_SUPABASE_STORAGE_URL
 
 export const ProfileForm = () => {
@@ -15,6 +23,7 @@ export const ProfileForm = () => {
     userName: '',
     userIntroduction: ''
   })
+  const initialStore = useRecommendStore(state => state.initialStore)
 
   const [validationErrors, setValidationErrors] = useState({
     userName: ''
@@ -56,12 +65,31 @@ export const ProfileForm = () => {
     const bucketUrl = `${IMAGE_PATH}${getBucketUrl}`
 
     if (bucketUrl && userId) {
+      //provider가 스포티파이면 프리미엄인지 확인 후 업데이트
       const updateRes = await updateProfile(
         formState.userName.trim(),
         formState.userIntroduction.trim(),
         bucketUrl,
         userId
       )
+
+      //zustand에 bill있으면 owner추가
+      if (initialStore.resultBillId) {
+        const minOwnerInfo: UserMin = {
+          userId,
+          username: formState.userName.trim()
+        }
+
+        await updateBill(
+          initialStore.resultBillId,
+          minOwnerInfo,
+          getRandomColor(),
+          `${minOwnerInfo.username}의 음악영수증 #1`
+        )
+        await updateOwnTracklist([], initialStore.resultBillId,userId)
+        await updateOwnTracklist([], initialStore.resultBillId,userId)
+      }
+
       if (updateRes) {
         navigate('/home')
       }
