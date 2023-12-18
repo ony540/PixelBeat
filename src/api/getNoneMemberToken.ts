@@ -9,13 +9,14 @@ const requestData = {
   client_secret: SPOTIFY_CLIENT_SECRET
 }
 
-export const getNonMemberToken = async () => {
+export const getNoneMemberToken = async () => {
   try {
     const response = await tokenInstance.post(
       'token',
       new URLSearchParams(requestData)
     )
     const data = await response.data
+    console.log(data)
     return data.access_token
   } catch (error: any) {
     console.error(error)

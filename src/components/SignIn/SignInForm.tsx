@@ -16,8 +16,15 @@ export const SignInForm = () => {
   const handleSignIn = async e => {
     e.preventDefault()
     const res = await signinUser(email, password)
-    if (res) {
-      navigate('/home') // 추후 수정 필요
+    if (!res?.user) {
+      alert(
+        '로그인 정보가 올바르지 않습니다. 아이디와 비밀번호를 다시 확인해 주세요. '
+      )
+      return
+    }
+
+    if (res.user) {
+      navigate('/home')
     }
   }
 

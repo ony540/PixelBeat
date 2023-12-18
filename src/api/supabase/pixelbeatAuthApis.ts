@@ -17,15 +17,14 @@ export const signUpSupabaseWithEmail = async (
     if (error) {
       console.error('Sign-up error:', error.message)
 
-      return null
+      return error
     }
 
     // 성공 시 사용자 정보(data)를 반환
     return data
   } catch (error: any) {
     console.error('Unexpected error during sign-up:', error.message)
-    // 예상치 못한 에러가 발생했을 때 어떤 값을 반환할지 정해야 함
-    return null // 또는 다른 값을 반환
+    throw new error(error)
   }
 }
 

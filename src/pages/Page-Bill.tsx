@@ -9,19 +9,20 @@ import {
 import barcodeImg from '@/assets/imgs/barcode.png'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
 import { formatDate } from '@/utils'
-import { useNowPlayStore } from '@/zustand'
+import { useNowPlayStore, useUserStore } from '@/zustand'
 import { TrackList } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { getBill } from '@/api'
 import { useEffect } from 'react'
-import { useUserInfo } from '@/hooks/useUserInfo'
+import { useUserInfo } from '@/hooks'
 
-export const Bill = () => {
+const Bill = () => {
+  const { isLoading: isUserInfoLoading } = useUserInfo()
   const { id: currentPath } = useParams<string>()
   const setNowPlayList = useNowPlayStore(state => state.setNowPlayList)
   const currentTrack = useNowPlayStore(state => state.currentTrack)
 
-  const { profile } = useUserInfo()
+  const userInfo = useUserStore(state => state.userInfo)
 
   const { data, isLoading } = useQuery<TrackList | Error, Error, TrackList>({
     queryKey: ['bill', currentPath],
@@ -30,12 +31,12 @@ export const Bill = () => {
   })
 
   useEffect(() => {
-    if (data && !profile.id) {
+    if (data && !userInfo.id) {
       setNowPlayList(data.tracks.filter(track => track.preview_url))
     }
   }, [data])
 
-  if (isLoading) return <>loading...</>
+  if (isLoading || isUserInfoLoading) return <>loading...</>
 
   {
     return (
@@ -95,10 +96,12 @@ export const Bill = () => {
         </div>
         <BillButtonListSection
           propsClass={currentTrack ? 'mb-100' : ''}
-          profile={profile}
+          profile={userInfo}
         />
-        {profile.id && <NavBar />}
+        {userInfo.id && <NavBar />}
       </>
     )
   }
 }
+
+export default Bill

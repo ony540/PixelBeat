@@ -11,7 +11,7 @@ import { useNowPlayStore } from '@/zustand'
 import { useQueries } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
-export const Artist = () => {
+const Artist = () => {
   const { id: artist_id } = useParams()
   const currentTrack = useNowPlayStore(state => state.currentTrack)
 
@@ -65,3 +65,5 @@ export const Artist = () => {
 
   return renderComponents()
 }
+
+export default Artist

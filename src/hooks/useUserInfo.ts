@@ -9,7 +9,7 @@ export const useUserInfo = () => {
   const setUserInfo = useUserStore(state => state.setUserInfo)
   const setNowPlayStore = useNowPlayStore(state => state.setNowPlayStore)
 
-  const { data: profile, isLoading } = useQuery({
+  const { data: userInfo, isLoading } = useQuery({
     queryKey: ['profiles from supabase', userId],
     queryFn: async () => {
       const profile = await getProfile(userId)
@@ -20,5 +20,5 @@ export const useUserInfo = () => {
     enabled: !!userId
   })
 
-  return { profile, isLoading }
+  return { userInfo, isLoading }
 }

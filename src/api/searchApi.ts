@@ -9,7 +9,7 @@ export const searchItem = async (
       `search?q=${query}&type=artist,album,playlist,track`,
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('non-member-token')}`
+          Authorization: `Bearer ${localStorage.getItem('none-member-token')}`
         }
       }
     )

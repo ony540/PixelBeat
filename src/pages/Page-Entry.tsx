@@ -4,7 +4,7 @@ import { PixelBeatLoginButton, SpotifyLoginButton } from '@/components'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-export const Entry = () => {
+const Entry = () => {
   const navigate = useNavigate()
   const [isHovered, setIsHovered] = useState(false)
 
@@ -13,11 +13,11 @@ export const Entry = () => {
   }
 
   const moveToSignupWithPixelBeat = () => {
-    navigate('/signup/email')
+    navigate('/signupwithemail')
   }
 
   const moveToPixelBeatWithPixelBeat = async () => {
-    navigate('/signin/email')
+    navigate('/signinwithemail')
   }
 
   const handlesSignInWithSpotify = async () => {
@@ -26,6 +26,7 @@ export const Entry = () => {
 
   return (
     <div className="mobile:px-20 desktop:px-60">
+      {/* <button onClick={getRefreshToken}>리프레시</button> */}
       <h1 className="text-center pt-100 text-28">Pixel Beat</h1>
 
       <div className="h-[40vh]"></div>
@@ -56,3 +57,5 @@ export const Entry = () => {
     </div>
   )
 }
+
+export default Entry

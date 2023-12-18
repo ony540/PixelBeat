@@ -1,24 +1,17 @@
-import { getNonMemberToken } from '@/api'
 import { StandardButton } from '@/components'
 import { BUTTON_TEXT, RECEIPT_TEXT } from '@/constants'
-import { useEffect } from 'react'
+import { useUserInfo } from '@/hooks'
 import { useNavigate } from 'react-router-dom'
 
-export const RecommendEntry = () => {
+const RecommendEntry = () => {
   const navigate = useNavigate()
+  const { isLoading: isUserInfoLoading } = useUserInfo()
 
   const moveToRecomend = () => {
     navigate('/recommend/genre')
   }
 
-  useEffect(() => {
-    const nonMember = async () => {
-      const res: string = await getNonMemberToken()
-      localStorage.setItem('non-member-token', res)
-    }
-    nonMember()
-  }, [])
-
+  if (isUserInfoLoading) return <>로딩중</>
   return (
     <div className="flex flex-col items-center">
       <h1 className=" text-6xl mt-24">{RECEIPT_TEXT.TITLE}</h1>
@@ -31,3 +24,5 @@ export const RecommendEntry = () => {
     </div>
   )
 }
+
+export default RecommendEntry

@@ -19,10 +19,11 @@ import {
 import { uploadBill } from '@/api'
 
 type ValidParams = 'genre' | 'artist' | 'track'
+
 const isValidParamsId = (id: string): boolean =>
   ['genre', 'artist', 'track'].includes(id as ValidParams)
 
-export const Recommend = () => {
+const Recommend = () => {
   const navigate = useNavigate()
   const { id: currentPath = 'genre' } = useParams<string>()
   const initialStore = useRecommendStore(state => state.initialStore)
@@ -151,3 +152,5 @@ export const Recommend = () => {
     </div>
   )
 }
+
+export default Recommend

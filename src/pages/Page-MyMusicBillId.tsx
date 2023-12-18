@@ -1,8 +1,10 @@
 import { MusicBillId } from '@/components'
-export const MyMusicBillId = () => {
+const MyMusicBillId = () => {
   return (
     <div className="flex justify-center ">
       <MusicBillId />
     </div>
   )
 }
+
+export default MyMusicBillId

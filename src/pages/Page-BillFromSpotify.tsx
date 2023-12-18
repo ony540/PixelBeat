@@ -1,11 +1,13 @@
 import { getPlaylistFromSpotify } from '@/api'
 import { BillBox, Header, NavBar } from '@/components'
 import { BillButtonListSection } from '@/components/bill/BillButtonListSection'
+import { useUserInfo } from '@/hooks'
 import { useNowPlayStore, useUserStore } from '@/zustand'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
-export const BillFromSpotify = () => {
+const BillFromSpotify = () => {
+  const { isLoading: isUserInfoLoading } = useUserInfo()
   const { id: playlistId } = useParams()
   const { data, isLoading } = useQuery({
     queryKey: ['playlistFromSpotify', playlistId],
@@ -14,7 +16,7 @@ export const BillFromSpotify = () => {
   const currentTrack = useNowPlayStore(state => state.currentTrack)
   const userInfo = useUserStore(state => state.userInfo)
 
-  if (isLoading) return <>loading..</>
+  if (isLoading || isUserInfoLoading) return <>loading..</>
 
   return (
     <>
@@ -36,3 +38,5 @@ export const BillFromSpotify = () => {
     </>
   )
 }
+
+export default BillFromSpotify

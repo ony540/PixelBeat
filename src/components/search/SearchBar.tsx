@@ -48,7 +48,7 @@ export const SearchBar = () => {
       : localStorage.setItem('recent', JSON.stringify([]))
 
     const parseString =
-      JSON.parse(storedRecentSearchItem).filter(item => item !== input) || []
+      JSON.parse(storedRecentSearchItem as string).filter(item => item !== input) || []
     const updatedSearchList = [input, ...parseString].slice(0, 6)
     localStorage.setItem('recent', JSON.stringify([...updatedSearchList]))
   }
@@ -73,6 +73,7 @@ export const SearchBar = () => {
         isAbsolute={true}
         onClick={handleInputToggle}
       />
+
       {toggleInput && (
         <input
           value={input}

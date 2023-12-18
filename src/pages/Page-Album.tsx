@@ -2,12 +2,14 @@ import { getAlbum } from '@/api'
 import { Header, NavBar, StandardButton } from '@/components'
 import { AlbumList } from '@/components/album'
 import { AlbumArtistInfo } from '@/components/album/AlbumArtistInfo'
+import { useUserInfo } from '@/hooks'
 import { useNowPlayStore } from '@/zustand'
 import { useQuery } from '@tanstack/react-query'
 
 import { useParams } from 'react-router-dom'
 
-export const Album = () => {
+const Album = () => {
+  const { isLoading: isUserInfoLoading } = useUserInfo()
   const { id: albumId } = useParams()
   const { data, isLoading } = useQuery({
     queryKey: ['album', albumId],
@@ -26,7 +28,7 @@ export const Album = () => {
     setCurrentTrack(billTracks[0])
   }
 
-  if (isLoading) return <>loading..</>
+  if (isLoading || isUserInfoLoading) return <>loading..</>
   return (
     <>
       <Header type="album" />
@@ -41,3 +43,4 @@ export const Album = () => {
     </>
   )
 }
+export default Album

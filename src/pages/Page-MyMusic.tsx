@@ -6,13 +6,15 @@ type ValidParams = 'playnow' | 'bill'
 const isValidParamsId = (id: string): boolean =>
   ['playnow', 'bill'].includes(id as ValidParams)
 
-export const MyMusic = () => {
+const MyMusic = () => {
+  const { isLoading: isUserInfoLoading } = useUserInfo()
   const { id: currentPath = 'playnow' } = useParams<string>()
-  const {} = useUserInfo()
+  console.log(currentPath)
 
   if (!isValidParamsId(currentPath)) {
     return <ErrorComponent />
   }
+  if (isUserInfoLoading) return <>로딩중</>
   return (
     <>
       <div className="px-20 desktop:px-60">
@@ -23,3 +25,5 @@ export const MyMusic = () => {
     </>
   )
 }
+
+export default MyMusic
