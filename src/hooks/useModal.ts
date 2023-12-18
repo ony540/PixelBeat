@@ -14,7 +14,10 @@ export const useModal = () => {
     [setModalType, setIsShow]
   )
 
-  const closeModal = useCallback(() => setIsShow(false), [setIsShow])
+  const closeModal = useCallback(() => {
+    setIsShow(false)
+    setModalType('')
+  }, [setIsShow])
 
   useEffect(() => {
     let modalTimer

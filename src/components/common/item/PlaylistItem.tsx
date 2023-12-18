@@ -7,7 +7,7 @@ import { BottomSheet } from '..'
 
 export const PlaylistItem = ({ data }: any) => {
   const navigate = useNavigate()
-  const { openModal } = useModal()
+  const { openModal, modalType } = useModal()
 
   const handleClickMoreButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
@@ -48,7 +48,9 @@ export const PlaylistItem = ({ data }: any) => {
         </div>
       </li>
       <Portal>
-        <BottomSheet onClick={handleClickLModalItem} />
+        {modalType === 'playlistMore' && (
+          <BottomSheet onClick={handleClickLModalItem} />
+        )}
       </Portal>
     </>
   )

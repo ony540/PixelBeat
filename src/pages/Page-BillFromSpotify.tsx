@@ -1,30 +1,28 @@
 import { getPlaylistFromSpotify } from '@/api'
 import { BillBox, Header, NavBar } from '@/components'
 import { BillButtonListSection } from '@/components/bill/BillButtonListSection'
-import { useNowPlayStore } from '@/zustand'
+import { useUserInfo } from '@/hooks'
+import { useNowPlayStore, useUserStore } from '@/zustand'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 const BillFromSpotify = () => {
+  const { isLoading: isUserInfoLoading } = useUserInfo()
   const { id: playlistId } = useParams()
   const { data, isLoading } = useQuery({
     queryKey: ['playlistFromSpotify', playlistId],
     queryFn: () => getPlaylistFromSpotify(playlistId as string)
   })
   const currentTrack = useNowPlayStore(state => state.currentTrack)
+  const userInfo = useUserStore(state => state.userInfo)
 
-  const handleClickMoreButton = () => {
-    // 다른사람이면 -> 공유하기 바텀시트
-    // 본인빌지면 -> 수정하기 바텀시트
-  }
-
-  if (isLoading) return <>loading..</>
+  if (isLoading || isUserInfoLoading) return <>loading..</>
 
   return (
     <>
       <Header
         type="bill"
-        onClickRightButton={handleClickMoreButton}
+        isNoneMore
       />
       <div className="w-390 desktop:w-[720px] h-52 bg-mainGreen pt-6">
         <div className="w-376 bg-[#282828] h-20 rounded-[10px] mx-auto"></div>
@@ -32,7 +30,9 @@ const BillFromSpotify = () => {
       <BillBox data={data} />
       <BillButtonListSection
         data={data}
-        propsClass={`mb-90 ${currentTrack && 'mb-180'}`}
+        propsClass={currentTrack ? 'mb-180' : 'mb-90'}
+        profile={userInfo}
+        isFromSpotify
       />
       <NavBar />
     </>

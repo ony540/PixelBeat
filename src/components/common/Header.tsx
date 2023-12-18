@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 type HeaderProps = {
   onClickLeftButton?: () => void
   onClickRightButton?: () => void
+  isNoneMore?: boolean
 }
 
 const HomeHeader = () => {
@@ -26,7 +27,8 @@ const PlayNowHeader = ({ onClickRightButton }: HeaderProps) => {
 
 const BgGreenHeader = ({
   onClickLeftButton,
-  onClickRightButton
+  onClickRightButton,
+  isNoneMore
 }: HeaderProps) => {
   return (
     <header className="flex bg-mainGreen h-55 relative px-20 desktop:px-60 items-center justify-between">
@@ -36,9 +38,11 @@ const BgGreenHeader = ({
         className="rotate-90">
         <ArrowDown fill="black" />
       </button>
-      <button onClick={onClickRightButton}>
-        <MoreIcon fill="black" />
-      </button>
+      {!isNoneMore && (
+        <button onClick={onClickRightButton}>
+          <MoreIcon fill="black" />
+        </button>
+      )}
     </header>
   )
 }
@@ -58,10 +62,11 @@ const BgBlackHeader = ({ onClickLeftButton }: HeaderProps) => {
 
 export const Header = ({
   type = 'home',
-  onClickLeftButton,
+  isNoneMore,
   onClickRightButton
 }: {
   type?: string
+  isNoneMore?: boolean
   onClickLeftButton?: () => void
   onClickRightButton?: () => void
 }) => {
@@ -83,6 +88,7 @@ export const Header = ({
         <BgGreenHeader
           onClickLeftButton={handleClickBackButton}
           onClickRightButton={onClickRightButton}
+          isNoneMore={isNoneMore}
         />
       )
     default:

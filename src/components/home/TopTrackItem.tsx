@@ -3,6 +3,7 @@ import { Track } from '@/types'
 import { useNowPlayStore } from '@/zustand'
 import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 import { useNavigate } from 'react-router-dom'
+import { useSwipe } from '@/hooks'
 
 export const TopTrackItem = ({ tracks }) => {
   const navigate = useNavigate()
@@ -19,8 +20,22 @@ export const TopTrackItem = ({ tracks }) => {
     navigate(`/artist/${id}`)
   }
 
+  const {
+    isDrag,
+    scrollRef,
+    onDragStart: handleDragStart,
+    onDragMove: handleDragMove,
+    onDragEnd: handleDragEnd
+  } = useSwipe()
+
   return (
-    <ul className="top-track-grid overflow-y-hidden h-295 mb-100 mt-16">
+    <ul
+      ref={scrollRef}
+      onMouseDown={handleDragStart}
+      onMouseMove={handleDragMove}
+      onMouseUp={handleDragEnd}
+      onMouseLeave={handleDragEnd}
+      className="top-track-grid overflow-y-hidden h-295 mb-100 mt-16">
       {tracks &&
         tracks.map((item, idx) => (
           <li
@@ -29,7 +44,9 @@ export const TopTrackItem = ({ tracks }) => {
             <StandardPixelBorder isHeight={66} />
             <div
               className="w-48 h-48 absolute left-10 top-9  cursor-pointer"
-              onClick={() => handleClickAlbum(item.track.album.id)}>
+              onClick={() => {
+                if (!isDrag) handleClickAlbum(item.track.album.id)
+              }}>
               <img
                 src={
                   item.track.album
@@ -58,7 +75,9 @@ export const TopTrackItem = ({ tracks }) => {
                   <span
                     key={idx}
                     className="cursor-pointer hover:underline"
-                    onClick={() => handleClickAritst(artist.id)}>
+                    onClick={() => {
+                      if (!isDrag) handleClickAritst(artist.id)
+                    }}>
                     {artist.name}
                     {idx < item.track.artists.length - 1 && ', '}
                   </span>
@@ -68,7 +87,9 @@ export const TopTrackItem = ({ tracks }) => {
             {item.track.preview_url && (
               <button
                 className="absolute top-20 right-18 "
-                onClick={() => handleClickPlayButton(item.track)}>
+                onClick={() => {
+                  if (!isDrag) handleClickPlayButton(item.track)
+                }}>
                 <CirclePlaySmall
                   isWhite
                   isBig

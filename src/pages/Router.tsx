@@ -4,9 +4,8 @@ import {
   createRoutesFromElements,
   Route
 } from 'react-router-dom'
-
 import { routeConfig, ROUTES } from '@/constants'
-import Layout from './Layout'
+import Wrapper from './Wrapper'
 import Recommend from './Page-Recommend'
 import { loadTokenAndCheckExpiration } from '@/utils'
 
@@ -32,7 +31,7 @@ export const router: any = createBrowserRouter(
   createRoutesFromElements(
     <Route
       path="/"
-      element={<Layout />}
+      element={<Wrapper />}
       loader={() => loadTokenAndCheckExpiration()}>
       {LazyRoutes}
       <Route

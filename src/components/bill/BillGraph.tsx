@@ -29,7 +29,7 @@ export const initialAnalysisObject: TrackAnalysis = {
   tempo: 0
 }
 
-export const BillGraph = ({ analysisList }) => {
+export const BillGraph = ({ analysisList, color, isSmall = false }) => {
   const chartRef = useRef<HTMLCanvasElement | null>(null)
 
   if (!analysisList) {
@@ -61,8 +61,8 @@ export const BillGraph = ({ analysisList }) => {
                 ? analysisList['valence']
                 : analysisList[key]
           ),
-          backgroundColor: 'rgba(87, 255, 87, 0.85)',
-          borderColor: '#57FF57',
+          backgroundColor: `${color}d9`,
+          borderColor: color,
           borderWidth: 1,
           strokeColor: '#000',
           pointRadius: 0
@@ -74,7 +74,7 @@ export const BillGraph = ({ analysisList }) => {
     const chartInstance = new ChartJS(ctx, {
       type: 'radar',
       data: data,
-      options: BillChartOption
+      options: BillChartOption(isSmall)
     })
 
     return () => {

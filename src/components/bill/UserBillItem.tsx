@@ -3,7 +3,9 @@ import { Track } from '@/types'
 import { msToMinutesAndSeconds } from '@/utils'
 import { useNavigate } from 'react-router-dom'
 import defaultAlbumImg from '@/assets/imgs/default_album_artist.png'
-import { useNowPlayStore } from '@/zustand'
+import { useNowPlayStore, useUserStore } from '@/zustand'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { addCurrentTrackTable } from '@/api'
 
 export const UserBillItem = ({
   track,
@@ -16,11 +18,36 @@ export const UserBillItem = ({
   const { minutes, seconds } = msToMinutesAndSeconds(track.duration_ms)
 
   const setCurrentTrack = useNowPlayStore(state => state.setCurrentTrack)
+  const setIsPlaying = useNowPlayStore(state => state.setIsPlaying)
   const addTrackToNowPlay = useNowPlayStore(state => state.addTrackToNowPlay)
 
+  const userInfo = useUserStore(state => state.userInfo)
+  const queryClient = useQueryClient()
+
+  const addCurrentTrackTableMutation = useMutation({
+    mutationFn: addCurrentTrackTable,
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ['profiles from supabase', userInfo.id]
+      })
+      console.log(userInfo)
+    },
+    onError(error) {
+      console.log(error)
+    }
+  })
+
   const handleClickPreviewPlayButton = (track: Track) => {
-    addTrackToNowPlay(track)
     setCurrentTrack(track)
+    addTrackToNowPlay(track)
+    setIsPlaying(true)
+    if (userInfo.id) {
+      addCurrentTrackTableMutation.mutateAsync({
+        prevNowPlayTracklist: userInfo.nowplay_tracklist,
+        track,
+        userId: userInfo.id
+      })
+    }
   }
 
   const handleClickAritst = (id: string) => {

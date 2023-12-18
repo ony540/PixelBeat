@@ -30,7 +30,7 @@ export const signInWithSpotify = async () => {
     return data
   } catch (error) {
     console.error(error)
-    return null
+    throw error
   }
 }
 

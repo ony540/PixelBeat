@@ -2,12 +2,14 @@ import { getAlbum } from '@/api'
 import { Header, NavBar, StandardButton } from '@/components'
 import { AlbumList } from '@/components/album'
 import { AlbumArtistInfo } from '@/components/album/AlbumArtistInfo'
+import { useUserInfo } from '@/hooks'
 import { useNowPlayStore } from '@/zustand'
 import { useQuery } from '@tanstack/react-query'
 
 import { useParams } from 'react-router-dom'
 
 const Album = () => {
+  const { isLoading: isUserInfoLoading } = useUserInfo()
   const { id: albumId } = useParams()
   const { data, isLoading } = useQuery({
     queryKey: ['album', albumId],
@@ -26,17 +28,16 @@ const Album = () => {
     setCurrentTrack(billTracks[0])
   }
 
-  if (isLoading) return <>loading..</>
+  if (isLoading || isUserInfoLoading) return <>loading..</>
   return (
     <>
       <Header type="album" />
       <AlbumArtistInfo album_data={data} />
       <AlbumList album_list={data} />
-
       <StandardButton
         text={'전체 재생하기'}
         onClick={handleClickPlayAllTrackButton}
-        propsClass="mt-20 mb-160 mobile:px-14 desktop:px-52"
+        propsClass="w-full mt-20 mb-160 mobile:px-14 desktop:px-52"
       />
       <NavBar />
     </>

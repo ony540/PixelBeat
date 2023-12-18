@@ -1,6 +1,6 @@
 export * from './Banner'
 export * from './BannerItem'
 export * from './SimilarUserList'
-export * from './SimilarUser'
+export * from './SimilarUserBill'
 export * from './TopTrackList'
 export * from './TopTrackItem'

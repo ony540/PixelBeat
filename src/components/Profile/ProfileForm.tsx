@@ -2,11 +2,13 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { StandardButton } from '@/components'
 import Profile from '@/assets/imgs/Profile.png'
-import { updateProfile, uploadImageToStorage } from '@/api'
+import { updateBill, updateOwnTracklist, updateProfile, uploadImageToStorage } from '@/api'
 import { ImageUploadForm, ProfileInputField } from '@/components/Profile'
 import { useUserSession } from '@/hooks'
 import imageCompression from 'browser-image-compression'
-
+import { useRecommendStore } from '@/zustand'
+import { getRandomColor } from '@/utils'
+import { UserMin } from '@/types'
 const IMAGE_PATH = import.meta.env.VITE_SUPABASE_STORAGE_URL
 export const ProfileForm = () => {
   const userId = useUserSession()
@@ -16,6 +18,7 @@ export const ProfileForm = () => {
     userName: '',
     userIntroduction: ''
   })
+  const initialStore = useRecommendStore(state => state.initialStore)
 
   const [validationErrors, setValidationErrors] = useState({
     userName: ''
@@ -74,6 +77,23 @@ export const ProfileForm = () => {
         updatedImagePath,
         userId
       )
+
+      //zustand에 bill있으면 owner추가
+      if (initialStore.resultBillId) {
+        const minOwnerInfo: UserMin = {
+          userId,
+          username: formState.userName.trim()
+        }
+
+        await updateBill(
+          initialStore.resultBillId,
+          minOwnerInfo,
+          getRandomColor(),
+          `${minOwnerInfo.username}의 음악영수증 #1`
+        )
+        await updateOwnTracklist([], initialStore.resultBillId,userId)
+        await updateOwnTracklist([], initialStore.resultBillId,userId)
+      }
 
       if (updateRes) {
         alert('프로필 정상 변경 완료')
