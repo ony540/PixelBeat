@@ -1,4 +1,6 @@
 export * from './client'
-export * from './tableAccessApis'
+export * from './playlistTableAccessApis'
 export * from './SpotifyAuthApis'
 export * from './pixelbeatAuthApis'
+export * from './profilesTableAccessApis'
+export * from './signInTableAccessApis'

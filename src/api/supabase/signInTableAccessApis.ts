@@ -1,59 +1,13 @@
-// genre_artist_id_table 접근 관련 api
-import { TrackList } from '@/types'
 import { supabase } from '.'
 
-export const getArtistId = async (genres: string[]) => {
-  try {
-    const { data } = await supabase
-      .from('genre_artist_id_table')
-      .select('*')
-      .in('genre', genres)
-    return data
-  } catch (error) {
-    console.error('Error in getArtistId:', error)
-    return error
-  }
-}
-
-export const uploadBill = async ({ tracklist, analysis }) => {
-  try {
-    const { data } = await supabase
-      .from('tracks_table')
-      .insert([
-        {
-          tracks: tracklist,
-          analysis: analysis
-        }
-      ])
-      .select()
-    return data![0].id
-  } catch (error) {
-    console.error('Error in uploadBill:', error)
-    return error
-  }
-}
-
-export const getBill = async (billId: string): Promise<TrackList | Error> => {
-  try {
-    const { data } = await supabase
-      .from('tracks_table')
-      .select('*')
-      .eq('id', billId)
-    return data![0] as TrackList
-  } catch (error) {
-    console.error('Error in getBill:', error)
-    return error as Error
-  }
-}
-
-/** 이하 -- Storage/user_profile_img / profiles (table) 접근 API -- */
+/** Storage/user_profile_img / profiles (table) 접근 API -- */
 
 // Supabase Storage에 이미지를 업로드하는 함수
 export const uploadImageToStorage = async (imageFile, userId) => {
   try {
     const { data, error } = await supabase.storage
       .from('user_profile_img')
-      .upload(`${userId}/profile_image` , imageFile, {
+      .upload(`${userId}/profile_image`, imageFile, {
         cacheControl: '3600',
         contentType: 'image/*'
       })
