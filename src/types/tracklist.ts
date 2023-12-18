@@ -4,20 +4,21 @@ export type tracklist_id = string
 
 //추천영수증
 export interface TrackList {
+  name?: string
   id: tracklist_id
   tracks: Track[]
   created_at: Date
   owner?: UserMin
   likes?: number
   analysis?: TrackAnalysis
+  color?: string
 }
 
 //현재재생목록
 export interface NowPlayList {
-  owner?: user_id | undefined
   tracks: Track[]
   currentTrack: Track | null
-  isPlaying: boolean
+  isPlaying?: boolean
   playingPosition: number
 }
 

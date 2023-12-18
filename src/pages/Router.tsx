@@ -10,8 +10,6 @@ import {
   SigninWithEmail,
   SignupWithEmail,
   ProfileEdit,
-  MyMusicMain,
-  MyMusicBill,
   MyMusicBillId,
   Search,
   Artist,
@@ -20,7 +18,9 @@ import {
   Entry,
   SignupGreeting,
   BillFromSpotify,
-  Profile
+  Profile,
+  BillHasOwner,
+  MyMusic
 } from '@/pages'
 
 const generateRoute = (
@@ -52,15 +52,15 @@ export const routes = [
       generateRoute('/profile/edit', <ProfileEdit />),
       generateRoute('/home', <Home />),
       generateRoute('/search', <Search />),
-      generateRoute('/mymusic/main', <MyMusicMain />),
+      generateRoute('/mymusic/:id', <MyMusic />),
       generateRoute('/mymusic/bill/:billid', <MyMusicBillId />),
-      generateRoute('/mymusic/bill', <MyMusicBill />),
       generateRoute('/artist/:id', <Artist />),
       generateRoute('/album/:id', <Album />),
-      generateRoute('/profile/:id/profile', <Profile />),
-      generateRoute('/profile/:id/profilelike', <MyProfileLike />),
+      generateRoute('/profile', <Profile />),
+      generateRoute('/profile/:id', <MyProfileLike />),
       generateRoute('/bill/:id', <Bill />),
-      generateRoute('/bill/playlist/:id', <BillFromSpotify />)
+      generateRoute('/bill/playlist/:id', <BillFromSpotify />),
+      generateRoute('/bill/:id/:userid', <BillHasOwner />)
     ]
   }
 ]
