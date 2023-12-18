@@ -1,12 +1,12 @@
 import { PlayBar } from '@/components'
+import { useUserSession } from '@/hooks'
 import Portal from '@/utils/portal'
-import { useNowPlayStore } from '@/zustand'
-import { Outlet, useLocation } from 'react-router-dom'
+import { useNowPlayStore, } from '@/zustand'
+import { Outlet } from 'react-router-dom'
 
 export const Layout = () => {
+  const userId = useUserSession()
   const currentTrack = useNowPlayStore(state => state.currentTrack)
-  const { pathname } = useLocation()
-  const isNonUserBill = /^\/bill\/[^/]+$/.test(pathname)
 
   return (
     <div className="layout-screen-width outline outline-mainGreen">
@@ -15,7 +15,7 @@ export const Layout = () => {
         {currentTrack && (
           <PlayBar
             propsClass={
-              isNonUserBill ? 'bottom-0' : 'bottom-66 border-b border-mainGray'
+              userId ? 'bottom-66 border-b border-mainGray' : 'bottom-0'
             }
           />
         )}

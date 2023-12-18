@@ -32,11 +32,10 @@ export const Album = () => {
       <Header type="album" />
       <AlbumArtistInfo album_data={data} />
       <AlbumList album_list={data} />
-
       <StandardButton
         text={'전체 재생하기'}
         onClick={handleClickPlayAllTrackButton}
-        propsClass="mt-20 mb-160 mobile:px-14 desktop:px-52"
+        propsClass="w-full mt-20 mb-160 mobile:px-14 desktop:px-52"
       />
       <NavBar />
     </>

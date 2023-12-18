@@ -4,11 +4,9 @@ import {
   getArtistTopTracks,
   getRelatedArtists
 } from '@/api'
-import { BottomSheet, ErrorComponent, Header, NavBar } from '@/components'
+import { ErrorComponent, Header, NavBar } from '@/components'
 import { ArtistImage, ArtistTopTrack, RelatedArtist } from '@/components/artist'
 import ArtistAlbumList from '@/components/artist/ArtistAlbumList'
-import { useModal } from '@/hooks'
-import Portal from '@/utils/portal'
 import { useNowPlayStore } from '@/zustand'
 import { useQueries } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
@@ -16,7 +14,6 @@ import { useParams } from 'react-router-dom'
 export const Artist = () => {
   const { id: artist_id } = useParams()
   const currentTrack = useNowPlayStore(state => state.currentTrack)
-  const { modalType } = useModal()
 
   const results = useQueries({
     queries: [
