@@ -1,21 +1,27 @@
 import { useParams } from 'react-router-dom'
 import { Clock } from '@/assets'
-import { BillButtonListSection, BillGraph, BillItem } from '@/components'
+import {
+  BillButtonListSection,
+  BillGraph,
+  BillItem,
+  NavBar
+} from '@/components'
 import barcodeImg from '@/assets/imgs/barcode.png'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
 import { formatDate } from '@/utils'
 import { useNowPlayStore } from '@/zustand'
-import { Track, TrackList } from '@/types'
+import { TrackList } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { getBill } from '@/api'
 import { useEffect } from 'react'
+import { useUserInfo } from '@/hooks/useUserInfo'
 
 export const Bill = () => {
   const { id: currentPath } = useParams<string>()
-
   const setNowPlayList = useNowPlayStore(state => state.setNowPlayList)
   const currentTrack = useNowPlayStore(state => state.currentTrack)
-  const setCurrentTrack = useNowPlayStore(state => state.setCurrentTrack)
+
+  const { profile } = useUserInfo()
 
   const { data, isLoading } = useQuery<TrackList | Error, Error, TrackList>({
     queryKey: ['bill', currentPath],
@@ -24,14 +30,10 @@ export const Bill = () => {
   })
 
   useEffect(() => {
-    if (data) {
+    if (data && !profile.id) {
       setNowPlayList(data.tracks.filter(track => track.preview_url))
     }
   }, [data])
-
-  const handleClickPreviewPlayButton = (track: Track) => {
-    setCurrentTrack(track)
-  }
 
   if (isLoading) return <>loading...</>
 
@@ -43,7 +45,10 @@ export const Bill = () => {
           <div
             className="my-0 mx-auto w-270 mt-[-20px] mb-[-18px] bg-no-repeat bg-[55.6%_54%] bg-[length:136px]"
             style={{ backgroundImage: `url(${graphBgImg})` }}>
-            <BillGraph analysisList={data?.analysis} />
+            <BillGraph
+              analysisList={data?.analysis}
+              color={data?.color}
+            />
           </div>
 
           <div className="flex justify-between items-center mx-16 text-16 border-y-2 border-dashed border-mainBlack h-34 ">
@@ -65,9 +70,6 @@ export const Bill = () => {
                     key={track.id}
                     trackNumber={idx}
                     track={track}
-                    onClickPlayButton={() =>
-                      handleClickPreviewPlayButton(track)
-                    }
                   />
                 ))}
             </ul>
@@ -91,7 +93,11 @@ export const Bill = () => {
             className="mx-auto mt-24 mb-5"
           />
         </div>
-        <BillButtonListSection propsClass={currentTrack ? 'mb-100' : ''} />
+        <BillButtonListSection
+          propsClass={currentTrack ? 'mb-100' : ''}
+          profile={profile}
+        />
+        {profile.id && <NavBar />}
       </>
     )
   }
