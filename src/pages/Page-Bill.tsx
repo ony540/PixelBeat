@@ -10,7 +10,7 @@ import { useQuery } from '@tanstack/react-query'
 import { getBill } from '@/api'
 import { useEffect } from 'react'
 
-export const Bill = () => {
+const Bill = () => {
   const { id: currentPath } = useParams<string>()
 
   const setNowPlayList = useNowPlayStore(state => state.setNowPlayList)
@@ -96,3 +96,5 @@ export const Bill = () => {
     )
   }
 }
+
+export default Bill

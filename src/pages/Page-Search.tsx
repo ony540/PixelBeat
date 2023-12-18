@@ -2,7 +2,7 @@ import { NavBar } from '@/components'
 import { SearchBar, SearchResultWrap } from '@/components/search'
 import { useNowPlayStore } from '@/zustand'
 
-export const Search = () => {
+const Search = () => {
   const currentTrack = useNowPlayStore(state => state.currentTrack)
 
   return (
@@ -19,3 +19,5 @@ export const Search = () => {
     </>
   )
 }
+
+export default Search

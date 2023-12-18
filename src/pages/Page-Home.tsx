@@ -1,7 +1,7 @@
 import { Header, NavBar } from '@/components'
 import { Banner, SimilarUserList, TopTrackList } from '@/components/home'
 
-export const Home = () => {
+const Home = () => {
   return (
     <div className="relative h-screen overflow-y-auto">
       <Header />
@@ -12,3 +12,4 @@ export const Home = () => {
     </div>
   )
 }
+export default Home

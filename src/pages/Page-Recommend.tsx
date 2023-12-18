@@ -15,10 +15,11 @@ import { getRecommendations, getTracksAudioFeatures } from '@/api'
 import { uploadBill } from '@/api'
 
 type ValidParams = 'genre' | 'artist' | 'track'
+
 const isValidParamsId = (id: string): boolean =>
   ['genre', 'artist', 'track'].includes(id as ValidParams)
 
-export const Recommend = () => {
+const Recommend = () => {
   const navigate = useNavigate()
   const { id: currentPath = 'genre' } = useParams<string>()
   const initialStore = useRecommendStore(state => state.initialStore)
@@ -106,14 +107,17 @@ export const Recommend = () => {
       {currentPath === 'genre' && <GenreSelector />}
       {currentPath === 'artist' && <ArtistSelector />}
       {currentPath === 'track' && <TrackSelector />}
-      <div className="sticky bottom-0 mx-auto my-0 text-22 px-10 py-10 bg-black ">
+      <div className="sticky bottom-0 mx-auto my-0 text-22 px-10 py-10 bg-black">
         <StandardButton
           height={70}
           text={renderButtonText()}
           onClick={() => handleNextButtonClick(currentPath)}
           disabled={isButtonDisabled}
+          propsClass="w-full"
         />
       </div>
     </div>
   )
 }
+
+export default Recommend

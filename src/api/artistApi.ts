@@ -4,7 +4,7 @@ export const getArtistInfo = async (artist_id: any) => {
   try {
     const response = await baseInstance(`artists?ids=${artist_id}`, {
       headers: {
-        Authorization: `Bearer ${localStorage.getItem('non-member-token')}`
+        Authorization: `Bearer ${localStorage.getItem('none-member-token')}`
       }
     })
     const data = response.data
@@ -21,7 +21,7 @@ export const getArtistTopTracks = async (artist_id: any) => {
       `artists/${artist_id}/top-tracks?market=KR`,
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('non-member-token')}`
+          Authorization: `Bearer ${localStorage.getItem('none-member-token')}`
         }
       }
     )
@@ -39,7 +39,7 @@ export const getArtistAlbums = async (artist_id: string) => {
       `artists/${artist_id}/albums?market=KR`,
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('non-member-token')}`
+          Authorization: `Bearer ${localStorage.getItem('none-member-token')}`
         }
       }
     )
@@ -58,7 +58,7 @@ export const getRelatedArtists = async (artist_id: string) => {
       `artists/${artist_id}/related-artists`,
       {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem('non-member-token')}`
+          Authorization: `Bearer ${localStorage.getItem('none-member-token')}`
         }
       }
     )

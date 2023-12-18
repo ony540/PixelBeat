@@ -1,6 +1,6 @@
 import axios, { AxiosInstance } from 'axios'
 
-// non-member token 호출시 사용할 Instance
+// none-member token 호출시 사용할 Instance
 export const tokenInstance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_SPOTIFY_ACCOUNT_URL
 })

@@ -1,16 +1,17 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { StandardButton } from '@/components'
-import defaultImage from '../../assets/imgs/Profile.png'
-import { ImageUploadForm, ProfileInputField } from '.'
+import Profile from '@/assets/imgs/Profile.png'
 import { updateProfile, uploadImageToStorage } from '@/api'
+import { ImageUploadForm, ProfileInputField } from '@/components/Profile'
 import { useUserSession } from '@/hooks'
-const IMAGE_PATH = import.meta.env.VITE_SUPABASE_STORAGE_URL
+import imageCompression from 'browser-image-compression'
 
+const IMAGE_PATH = import.meta.env.VITE_SUPABASE_STORAGE_URL
 export const ProfileForm = () => {
   const userId = useUserSession()
   const navigate = useNavigate()
-  const [selectedImage, setSelectedImage] = useState<any>(defaultImage)
+  const [selectedImage, setSelectedImage] = useState<any>(Profile)
   const [formState, setFormState] = useState({
     userName: '',
     userIntroduction: ''
@@ -20,11 +21,18 @@ export const ProfileForm = () => {
     userName: ''
   })
 
-  const handleImageChange = (file: Blob) => {
-    if (file) {
-      setSelectedImage(file)
-    } else {
-      setSelectedImage(null)
+  const handleImageChange = async (file: File) => {
+    const options = {
+      maxSizeMB: 0.5,
+      maxWidthOrHeight: 1024
+    }
+
+    try {
+      const compressedFile = await imageCompression(file, options)
+      const selected = compressedFile.size < file.size ? compressedFile : file
+      setSelectedImage(selected)
+    } catch (error) {
+      console.log(error)
     }
   }
 
@@ -52,19 +60,27 @@ export const ProfileForm = () => {
   }
 
   const editProfile = async () => {
-    const getBucketUrl = await uploadImageToStorage(selectedImage, userId)
-    const bucketUrl = `${IMAGE_PATH}${getBucketUrl}`
+    try {
+      const imageUploadResultUrl = await uploadImageToStorage(
+        selectedImage,
+        userId
+      )
 
-    if (bucketUrl && userId) {
+      const updatedImagePath = `${IMAGE_PATH}${imageUploadResultUrl}`
+
       const updateRes = await updateProfile(
         formState.userName.trim(),
         formState.userIntroduction.trim(),
-        bucketUrl,
+        updatedImagePath,
         userId
       )
+
       if (updateRes) {
+        alert('프로필 정상 변경 완료')
         navigate('/home')
       }
+    } catch (error) {
+      console.error('프로필 업데이트 중 오류 발생:', error)
     }
   }
 
