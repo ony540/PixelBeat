@@ -11,7 +11,6 @@ import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
   const navigate = useNavigate()
   const isPlaying = useNowPlayStore(state => state.isPlaying)
-
   const currentTrack = useNowPlayStore(state => state.currentTrack)
 
   const { name, album, artists, preview_url } = currentTrack || {
@@ -63,8 +62,9 @@ export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
   }
 
   useEffect(() => {
-    playAndPauseNowPlay()
-
+    if (isPlaying) {
+      playAndPauseNowPlay()
+    }
     return () => {
       clearInterval(intervalIdRef.current!)
     }

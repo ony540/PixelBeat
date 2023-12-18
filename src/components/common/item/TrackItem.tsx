@@ -10,7 +10,7 @@ import { BottomSheet } from '..'
 export const TrackItem = ({ data }: any) => {
   const navigate = useNavigate()
 
-  const { openModal, closeModal, setModalType } = useModal()
+  const { openModal, closeModal, modalType, setModalType } = useModal()
   const setCurrentTrack = useNowPlayStore(state => state.setCurrentTrack)
   const addTrackToNowPlay = useNowPlayStore(state => state.addTrackToNowPlay)
 
@@ -87,7 +87,10 @@ export const TrackItem = ({ data }: any) => {
         </button>
       </li>
       <Portal>
-        <BottomSheet onClick={e => handleClickLModalItem(e, data)} />
+        {modalType === 'trackMore' ||
+          (modalType === 'myBillList' && (
+            <BottomSheet onClick={e => handleClickLModalItem(e, data)} />
+          ))}
       </Portal>
     </>
   )
