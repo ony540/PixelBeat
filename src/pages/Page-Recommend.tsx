@@ -9,7 +9,7 @@ import {
 import { useRecommendStore, useUserStore } from '@/zustand'
 import { useNavigate, useParams } from 'react-router-dom'
 import { TrackAnalysis } from '@/types'
-import { useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery } from '@tanstack/react-query'
 import { getRandomArray, getRandomColor } from '@/utils'
 import {
   updateOwnTracklist,
@@ -29,10 +29,7 @@ const Recommend = () => {
   const { id: currentPath = 'genre' } = useParams<string>()
   const initialStore = useRecommendStore(state => state.initialStore)
   const { artist, genre, track } = initialStore
-  const setResultBillId = useRecommendStore(state => state.setResultBillId)
-  const resetRecommendStore = useRecommendStore(
-    state => state.resetRecommendStore
-  )
+
   const userInfo = useUserStore(state => state.userInfo)
 
   if (!isValidParamsId(currentPath)) {
@@ -68,6 +65,19 @@ const Recommend = () => {
     enabled: false
   })
 
+  const isLoggedIn = !!userInfo.id
+  const updloadBillMutation = useMutation({
+    mutationFn: uploadBill,
+    async onSuccess(data) {
+      if (isLoggedIn) {
+        await updateOwnTracklist(userInfo.own_tracklist, data, userInfo.id)
+        navigate(`/bill/${data}/${userInfo.id}`)
+      } else {
+        navigate(`/bill/${data}`)
+      }
+    }
+  })
+
   const { isLoading: isUploadingTrackList } = useQuery({
     queryKey: ['uploadTrackListToSupabase'],
     queryFn: async () => {
@@ -83,6 +93,7 @@ const Recommend = () => {
         },
         { ...initialAnalysisObject }
       )
+
       if (reduceAnalysisList) {
         const averageAnalysis: TrackAnalysis = Object.fromEntries(
           Object.entries(reduceAnalysisList).map(([key, value]) => [
@@ -92,8 +103,7 @@ const Recommend = () => {
         ) as unknown as TrackAnalysis
 
         //슈퍼베이스에 업로드
-        const isLoggedIn = !!userInfo.id
-        const uploadTrackListToSupabaseId = await uploadBill({
+        updloadBillMutation.mutateAsync({
           tracklist: recommendedTracks,
           analysis: averageAnalysis,
           owner: isLoggedIn
@@ -106,25 +116,15 @@ const Recommend = () => {
               }`
             : null
         })
-        resetRecommendStore()
 
-        if (isLoggedIn) {
-          await updateOwnTracklist(
-            userInfo.own_tracklist,
-            uploadTrackListToSupabaseId,
-            userInfo.id
-          )
-          navigate(`/bill/${uploadTrackListToSupabaseId}/${userInfo.id}`)
-          return uploadTrackListToSupabaseId
-        }
-
-        setResultBillId(uploadTrackListToSupabaseId)
-        navigate(`/bill/${uploadTrackListToSupabaseId}`)
-        return uploadTrackListToSupabaseId
+        return {}
       }
+      return null
     },
     enabled: !!recommendedTracks
   })
+
+  console.log(updloadBillMutation.isPending)
 
   const renderButtonText = () =>
     currentPath === 'genre' || currentPath === 'artist' ? '다 음' : '완 료'
@@ -134,7 +134,11 @@ const Recommend = () => {
     (currentPath === 'artist' && initialStore.artist.length === 0) ||
     (currentPath === 'track' && initialStore.track.length === 0)
 
-  if (isRecommendedTracksLoading || isUploadingTrackList)
+  if (
+    isRecommendedTracksLoading ||
+    isUploadingTrackList ||
+    updloadBillMutation.isPending
+  )
     return <Spinner text={'추천 영수증 생성 중...'} />
 
   return (

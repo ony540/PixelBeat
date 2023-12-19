@@ -3,15 +3,10 @@ import defaultAlbumImg from '@/assets/imgs/default_album_artist.png'
 import { MoreIcon, StandardVertex } from '@/assets'
 import { useModal } from '@/hooks'
 import { useNowPlayStore, useUserStore } from '@/zustand'
-import { setCurrentTrackTable, setPlayingPositionTable } from '@/api'
+import { setCurrentTrackAndPositionTable } from '@/api'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-export const MusicListItem = ({
-  track,
-  index,
-  setSelectedTrack,
-  isSelected
-}) => {
+export const MusicListItem = ({ track, setSelectedTrack, isSelected }) => {
   const navigate = useNavigate()
   const { name, artists, album } = track
   const { openModal } = useModal()
@@ -20,9 +15,9 @@ export const MusicListItem = ({
   const userInfo = useUserStore(state => state.userInfo)
   const queryClient = useQueryClient()
 
-  //현재 음악 설정
-  const setCurrentTrackTableMutation = useMutation({
-    mutationFn: setCurrentTrackTable,
+  //현재 음악 설정 및 재생
+  const setCurrentTrackAndPositionTableMutation = useMutation({
+    mutationFn: setCurrentTrackAndPositionTable,
     onSuccess() {
       queryClient.invalidateQueries({
         queryKey: ['profiles from supabase', userInfo.id]
@@ -36,11 +31,12 @@ export const MusicListItem = ({
   const handleClickTrack = () => {
     setCurrentTrack(track)
     setIsPlaying(true)
-    // setCurrentTrackTableMutation.mutateAsync({
-    //   prevNowPlayTracklist: userInfo.nowplay_tracklist,
-    //   track,
-    //   userId: userInfo.id
-    // })
+    setCurrentTrackAndPositionTableMutation.mutateAsync({
+      prevNowPlayTracklist: userInfo.nowplay_tracklist,
+      track,
+      playingPosition: 0,
+      userId: userInfo.id
+    })
   }
 
   const handleClickAlbum = (
@@ -54,12 +50,12 @@ export const MusicListItem = ({
   const handleClickMoreButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
     openModal('myNowPlayTrackMore')
-    setSelectedTrack({ track, trackIndex: index })
+    setSelectedTrack(track)
   }
 
   return (
     <li
-      className="group flex justify-between items-center border-b-1 w-full h-62 hover:bg-mainGray300"
+      className="group flex justify-between items-center border-b-1 w-full h-62 hover:bg-mainGray300 cursor-pointer"
       onClick={handleClickTrack}>
       <div className="flex">
         <div
@@ -76,7 +72,7 @@ export const MusicListItem = ({
           className={`flex flex-col text-18 leading-15 mt-18 ${
             isSelected && 'text-mainGreen'
           }`}>
-          <h3 className="musicTitle truncate w-150">{name}</h3>
+          <h3 className="text-14 desktop:text-16 truncate w-230 ">{name}</h3>
           <p className="text-14 text-start">
             {artists.map((artist, idx) => (
               <span key={idx}>

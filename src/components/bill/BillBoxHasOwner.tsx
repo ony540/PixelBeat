@@ -19,14 +19,15 @@ import {
   updateBillLikes,
   updateLikedTracklist
 } from '@/api'
+import { useUserStore } from '@/zustand'
 
-export const BillBoxHasOwner = ({ data, profile }) => {
+export const BillBoxHasOwner = ({ data }) => {
   const navigate = useNavigate()
   const { name, owner, created_at, tracks, analysis, color, id, likes } = data
+  const userInfo = useUserStore(state => state.userInfo)
   const [isHearted, setIsHearted] = useState(
-    profile.liked_tracklist.includes(id)
+    userInfo.liked_tracklist.includes(id)
   )
-
   const queryClient = useQueryClient()
 
   //좋아요
@@ -34,7 +35,7 @@ export const BillBoxHasOwner = ({ data, profile }) => {
     mutationFn: updateLikedTracklist,
     onSuccess() {
       queryClient.invalidateQueries({
-        queryKey: ['profiles from supabase', profile.id]
+        queryKey: ['profiles from supabase', userInfo.id]
       })
     },
     onError(error) {
@@ -47,7 +48,7 @@ export const BillBoxHasOwner = ({ data, profile }) => {
     mutationFn: updateBillLikes,
     onSuccess() {
       queryClient.invalidateQueries({
-        queryKey: ['bill', id, profile.id]
+        queryKey: ['bill', id, userInfo.id]
       })
     },
     onError(error) {
@@ -60,7 +61,7 @@ export const BillBoxHasOwner = ({ data, profile }) => {
     mutationFn: addSavedTracklist,
     onSuccess() {
       queryClient.invalidateQueries({
-        queryKey: ['profiles from supabase', profile.id]
+        queryKey: ['profiles from supabase', userInfo.id]
       })
     },
     onError(error) {
@@ -70,39 +71,40 @@ export const BillBoxHasOwner = ({ data, profile }) => {
 
   //좋아요 버튼 누르기
   const handleClickHeartButton = () => {
-    if (!profile.id) {
+    if (!userInfo.id) {
       navigate('/entry')
       return
     }
 
     setIsHearted(prevIsHearted => !prevIsHearted)
+
     likeCountBillMutation.mutateAsync({
       prevLikes: likes,
       billId: id,
       isAdd: !isHearted
     })
     likeBillMutation.mutateAsync({
-      prevLikedTracklist: profile.liked_tracklist,
+      prevLikedTracklist: userInfo.liked_tracklist,
       billId: id,
-      userId: profile.id
+      userId: userInfo.id
     })
   }
 
   //음악서랍에 저장 버튼 누르기
   const handleClickAddtoMusicShelfButton = () => {
-    if (!profile.id) {
+    if (!userInfo.id) {
       navigate('/entry')
       return
     }
 
-    if (!profile.saved_tracklist.includes(id)) {
+    if (userInfo.saved_tracklist.includes(id)) {
       saveBillMutation.mutateAsync({
-        prevSavedTracklist: profile.saved_tracklist,
+        prevSavedTracklist: userInfo.saved_tracklist,
         billId: id,
-        userId: profile.id
+        userId: userInfo.id
       })
     } else {
-      //useConfirm으로 추후 수정
+      //Confirm으로 추후 수정
       alert('이미 저장된 영수증 입니다')
     }
   }
@@ -137,12 +139,14 @@ export const BillBoxHasOwner = ({ data, profile }) => {
             isHearted={isHearted}
             propsClass="mr-12"
           />
-          <button
-            type="button"
-            className="mr-12"
-            onClick={handleClickAddtoMusicShelfButton}>
-            <CircleAdd />
-          </button>
+          {!userInfo.own_tracklist.includes(id) && (
+            <button
+              type="button"
+              className="mr-12"
+              onClick={handleClickAddtoMusicShelfButton}>
+              <CircleAdd />
+            </button>
+          )}
         </div>
       </div>
 

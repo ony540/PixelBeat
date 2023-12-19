@@ -6,7 +6,7 @@ import { useNowPlayStore } from '@/zustand/nowPlayStore'
 import { useEffect } from 'react'
 import { Playnow } from './Playnow'
 import { useNavigate } from 'react-router-dom'
-import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
+import defaultAlbumImg from '@/assets/imgs/default_album_artist.png'
 
 export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
   const navigate = useNavigate()
@@ -62,6 +62,7 @@ export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
   }
 
   useEffect(() => {
+    const { isPlaying } = useNowPlayStore.getState()
     if (isPlaying) {
       playAndPauseNowPlay()
     }

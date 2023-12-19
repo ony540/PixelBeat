@@ -14,13 +14,21 @@ export const getArtistId = async (genres: string[]) => {
   }
 }
 
+export interface UploadBillInterface {
+  tracklist: string[]
+  analysis: Object
+  owner: Object | null
+  color: string
+  name: string | null
+}
+
 export const uploadBill = async ({
   tracklist,
   analysis,
   owner,
   color,
   name
-}) => {
+}: UploadBillInterface) => {
   try {
     const { data } = await supabase
       .from('tracks_table')
@@ -49,6 +57,19 @@ export const updateBill = async (billId, ownerInfo, color, name) => {
       .eq('id', billId)
       .select()
     return data
+  } catch (error) {
+    console.error('빌지 업데이트 중 오류 발생:', error)
+    throw error
+  }
+}
+
+export const deleteBill = async billId => {
+  try {
+    const { error } = await supabase
+      .from('tracks_table')
+      .delete()
+      .eq('id', billId)
+    return error
   } catch (error) {
     console.error('빌지 업데이트 중 오류 발생:', error)
     throw error

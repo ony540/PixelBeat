@@ -13,7 +13,7 @@ const PrivateRoute = ({
 }): React.ReactElement => {
   const navigate = useNavigate()
   const isLoggedUser = getUserId()
-  const { userInfo, error } = useUserInfo()
+  const { error } = useUserInfo()
 
   if (error) {
     console.error('private route:', error)

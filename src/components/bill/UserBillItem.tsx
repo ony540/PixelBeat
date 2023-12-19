@@ -20,16 +20,20 @@ export const UserBillItem = ({
   const setCurrentTrack = useNowPlayStore(state => state.setCurrentTrack)
   const setIsPlaying = useNowPlayStore(state => state.setIsPlaying)
   const addTrackToNowPlay = useNowPlayStore(state => state.addTrackToNowPlay)
-
+  const setNowPlayStore = useNowPlayStore(state => state.setNowPlayStore)
   const userInfo = useUserStore(state => state.userInfo)
+  const setUserInfo = useUserStore(state => state.setUserInfo)
   const queryClient = useQueryClient()
 
   const addCurrentTrackTableMutation = useMutation({
     mutationFn: addCurrentTrackTable,
-    onSuccess() {
+    onSuccess(data) {
       queryClient.invalidateQueries({
         queryKey: ['profiles from supabase', userInfo.id]
       })
+
+      setUserInfo(data)
+      setNowPlayStore(data.nowplay_tracklist)
     },
     onError(error) {
       console.log(error)
@@ -40,6 +44,7 @@ export const UserBillItem = ({
     setCurrentTrack(track)
     addTrackToNowPlay(track)
     setIsPlaying(true)
+    //로그인 유저 db update
     if (userInfo.id) {
       addCurrentTrackTableMutation.mutateAsync({
         prevNowPlayTracklist: userInfo.nowplay_tracklist,
@@ -75,7 +80,7 @@ export const UserBillItem = ({
           <StandardVertex propsClass="h-36 absolute top-0 text-mainWhite group-hover:text-bgGray" />
         </div>
 
-        <div className="leading-[1.2] inline-block w-154 overflow-hidden ">
+        <div className="leading-[1.2] inline-block w-154 overflow-hidden truncate">
           <div
             className={`${
               track.name.length >= 22 ? 'text-flow-on-hover' : ''
@@ -86,7 +91,7 @@ export const UserBillItem = ({
             className={`${
               track.artists.length >= 2
                 ? 'text-flow-on-hover self-end text-14'
-                : 'self-end text-14'
+                : 'self-end text-14 '
             }`}>
             {track.artists.map((artist, idx) => (
               <span

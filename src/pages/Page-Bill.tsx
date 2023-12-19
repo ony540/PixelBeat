@@ -9,20 +9,20 @@ import {
 import barcodeImg from '@/assets/imgs/barcode.png'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
 import { formatDate } from '@/utils'
-import { useNowPlayStore, useUserStore } from '@/zustand'
+import { useNowPlayStore, useRecommendStore, useUserStore } from '@/zustand'
 import { TrackList } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { getBill } from '@/api'
 import { useEffect } from 'react'
-import { useUserInfo } from '@/hooks'
 
 const Bill = () => {
-  const { isLoading: isUserInfoLoading } = useUserInfo()
   const { id: currentPath } = useParams<string>()
   const setNowPlayList = useNowPlayStore(state => state.setNowPlayList)
   const currentTrack = useNowPlayStore(state => state.currentTrack)
-
   const userInfo = useUserStore(state => state.userInfo)
+  const resetRecommendStore = useRecommendStore(
+    state => state.resetRecommendStore
+  )
 
   const { data, isLoading } = useQuery<TrackList | Error, Error, TrackList>({
     queryKey: ['bill', currentPath],
@@ -31,12 +31,13 @@ const Bill = () => {
   })
 
   useEffect(() => {
+    resetRecommendStore()
     if (data && !userInfo.id) {
       setNowPlayList(data.tracks.filter(track => track.preview_url))
     }
   }, [data])
 
-  if (isLoading || isUserInfoLoading) return <Spinner />
+  if (isLoading) return <Spinner />
 
   {
     return (
@@ -94,10 +95,7 @@ const Bill = () => {
             className="mx-auto mt-24 mb-5"
           />
         </div>
-        <BillButtonListSection
-          propsClass={currentTrack ? 'mb-100' : ''}
-          profile={userInfo}
-        />
+        <BillButtonListSection propsClass={currentTrack ? 'mb-100' : ''} />
         {userInfo.id && <NavBar />}
       </>
     )

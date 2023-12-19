@@ -1,46 +1,38 @@
 import { shareData } from '@/utils'
 import { StandardButton } from '..'
-import { useNowPlayStore } from '@/zustand'
+import { useNowPlayStore, useUserStore } from '@/zustand'
 import { useNavigate } from 'react-router-dom'
-import { addCurrentTrackTable, addNowPlayTracklistTable } from '@/api'
+import { addNowPlayTracklistAndPlaySongTable } from '@/api'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { User } from '@/types'
 
 export const BillButtonListSection = ({
   data,
   propsClass,
-  isFromSpotify,
-  profile
+  isFromSpotify
 }: {
   data?: any
-  profile: User
   propsClass?: string
   isFromSpotify?: boolean
 }) => {
   const navigate = useNavigate()
   const setCurrentTrack = useNowPlayStore(state => state.setCurrentTrack)
   const setNowPlayList = useNowPlayStore(state => state.setNowPlayList)
+  const setNowPlayStore = useNowPlayStore(state => state.setNowPlayStore)
   const nowPlayTracks = useNowPlayStore(state => state.tracks)
+  const setIsPlaying = useNowPlayStore(state => state.setIsPlaying)
+  const userInfo = useUserStore(state => state.userInfo)
+  const setUserInfo = useUserStore(state => state.setUserInfo)
   const queryClient = useQueryClient()
 
-  const addNowPlayTracklistTableMutation = useMutation({
-    mutationFn: addNowPlayTracklistTable,
-    onSuccess() {
+  //전체 재생
+  const addNowPlayTracklistAndPlaySongTableMutation = useMutation({
+    mutationFn: addNowPlayTracklistAndPlaySongTable,
+    onSuccess(data) {
       queryClient.invalidateQueries({
-        queryKey: ['profiles from supabase', profile.id]
+        queryKey: ['profiles from supabase', userInfo.id]
       })
-    },
-    onError(error) {
-      console.log(error)
-    }
-  })
-
-  const addCurrentTrackTableMutation = useMutation({
-    mutationFn: addCurrentTrackTable,
-    onSuccess() {
-      queryClient.invalidateQueries({
-        queryKey: ['profiles from supabase', profile.id]
-      })
+      setUserInfo(data)
+      setNowPlayStore(data.nowplay_tracklist)
     },
     onError(error) {
       console.log(error)
@@ -53,21 +45,23 @@ export const BillButtonListSection = ({
           .map(item => item.track)
           .filter(track => track.preview_url)
       : data.tracks.filter(track => track.preview_url)
+    setIsPlaying(true)
 
-    setNowPlayList([...nowPlayTracks, billTracks])
+    const newNowPlayTracklist = [
+      ...billTracks,
+      ...nowPlayTracks.filter(
+        item => billTracks.findIndex(t => t.id === item.id) !== -1
+      )
+    ]
+    setNowPlayList(newNowPlayTracklist)
     setCurrentTrack(billTracks[0])
 
     //로그인 유저면 db 업데이트
-    if (profile.id) {
-      addNowPlayTracklistTableMutation.mutateAsync({
-        prevNowPlayTracklist: profile.nowplay_tracklist,
+    if (userInfo.id) {
+      addNowPlayTracklistAndPlaySongTableMutation.mutateAsync({
+        prevNowPlayTracklist: userInfo.nowplay_tracklist,
         tracks: billTracks,
-        userId: profile.id
-      })
-      addCurrentTrackTableMutation.mutateAsync({
-        prevNowPlayTracklist: profile.nowplay_tracklist,
-        track: billTracks[0],
-        userId: profile.id
+        userId: userInfo.id
       })
     }
   }
