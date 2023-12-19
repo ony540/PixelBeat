@@ -3,13 +3,22 @@ import { useRecommendStore } from '@/zustand'
 import { RecommendTrackItem } from '..'
 import { useQuery } from '@tanstack/react-query'
 import { Spinner } from '@/assets'
+import { useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const TrackSelector = () => {
+  const navigate = useNavigate()
   const initialStore = useRecommendStore(state => state.initialStore)
   const artistIdStore = initialStore.artist
   const TrackIdStore = initialStore.track
   const selectTrack = useRecommendStore(state => state.selectTrack)
   const isSelectedTrack = (trackId: string) => TrackIdStore.includes(trackId)
+
+  useEffect(() => {
+    if (initialStore.artist.length === 0) {
+      navigate('/recommend/genre')
+    }
+  }, [])
 
   const { data: tracks, isLoading } = useQuery({
     queryKey: ['artistTracks', artistIdStore],
@@ -23,7 +32,7 @@ export const TrackSelector = () => {
     enabled: !!artistIdStore
   })
 
-  if (isLoading) return <Spinner text={'트랙 리스트 불러오는 중...'}/>
+  if (isLoading) return <Spinner text={'트랙 리스트 불러오는 중...'} />
 
   return (
     <div>

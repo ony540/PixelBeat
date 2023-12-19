@@ -30,7 +30,6 @@ export const UserBillItem = ({
       queryClient.invalidateQueries({
         queryKey: ['profiles from supabase', userInfo.id]
       })
-      console.log(userInfo)
     },
     onError(error) {
       console.log(error)

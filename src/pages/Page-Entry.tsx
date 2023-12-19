@@ -1,8 +1,13 @@
 import { signInWithSpotify } from '@/api'
-import { SpotifyHover } from '@/assets'
-import { PixelBeatLoginButton, SpotifyLoginButton } from '@/components'
+import { SpotifyHover, VisitorIcon } from '@/assets'
+import {
+  PixelBeatLoginButton,
+  SpotifyLoginButton,
+  StandardButton
+} from '@/components'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import Logo from '@/assets/imgs/Logo.png'
 
 const Entry = () => {
   const navigate = useNavigate()
@@ -16,8 +21,12 @@ const Entry = () => {
     navigate('/signupwithemail')
   }
 
-  const moveToPixelBeatWithPixelBeat = async () => {
+  const moveToPixelBeatWithPixelBeat = () => {
     navigate('/signinwithemail')
+  }
+
+  const moveToHome = () => {
+    navigate('/home')
   }
 
   const handlesSignInWithSpotify = async () => {
@@ -26,10 +35,15 @@ const Entry = () => {
 
   return (
     <div className="mobile:px-20 desktop:px-60">
-      {/* <button onClick={getRefreshToken}>리프레시</button> */}
-      <h1 className="text-center pt-100 text-28">Pixel Beat</h1>
+      <img
+        className="mx-auto 
+        mobile:w-280 mobile:mt-[20vh]
+        desktop:w-500 desktop:mt-[12vh]"
+        src={Logo}
+        alt="logo image"
+      />
 
-      <div className="h-[40vh]"></div>
+      <div className="desktop:h-[18vh] mobile:h-[20vh]" />
       <div className="relative flex flex-col gap-8 items-center">
         <SpotifyLoginButton
           onClick={handlesSignInWithSpotify}
@@ -44,9 +58,21 @@ const Entry = () => {
           onClick={moveToPixelBeatWithPixelBeat}
           propsClass={'mobile:w-356 mobile:h-56 desktop:w-[500px] desktop:h-60'}
         />
+        <div
+          className="relative"
+          onClick={moveToHome}>
+          <VisitorIcon />
+          <StandardButton
+            propsClass={
+              'mobile:w-356 mobile:h-56 desktop:w-[500px] desktop:h-60 text-mainBlack'
+            }
+            fillColor="white"
+            text="비회원으로 구경하기"
+          />
+        </div>
       </div>
 
-      <div className="flex justify-center pb-10">
+      <div className="flex justify-center pb-10 mt-16">
         <button
           onClick={moveToSignupWithPixelBeat}
           className="pr-12 text-16">

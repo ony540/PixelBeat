@@ -16,7 +16,6 @@ export const getNoneMemberToken = async () => {
       new URLSearchParams(requestData)
     )
     const data = await response.data
-    console.log(data)
     return data.access_token
   } catch (error: any) {
     console.error(error)

@@ -39,7 +39,6 @@ export const signinUser = async (email: string, password: string) => {
       console.error('Sign-up error:', error.message)
     }
 
-    console.log('User signed up successfully:', data)
     return data
   } catch (error: any) {
     console.error('Unexpected error during sign-up:', error.message)

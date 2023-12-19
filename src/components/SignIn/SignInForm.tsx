@@ -1,25 +1,29 @@
 import { useState } from 'react'
 import { InputSection } from './InputSection'
 import { useNavigate } from 'react-router-dom'
-import { StandardButton } from '@/components'
+import { ConfirmModal, StandardButton } from '@/components'
 import { signinUser } from '@/api/supabase/pixelbeatAuthApis'
+import Portal from '@/utils/portal'
 
 export const SignInForm = () => {
   const navigate = useNavigate()
+  const [loginError, setLoginError] = useState(false)
   const [formState, setFormState] = useState({
     email: '',
     password: ''
   })
+
+  const handleErrorModal = () => {
+    setLoginError(!loginError)
+  }
 
   const { email, password } = formState
 
   const handleSignIn = async e => {
     e.preventDefault()
     const res = await signinUser(email, password)
-    if (!res?.user) {
-      alert(
-        '로그인 정보가 올바르지 않습니다. 아이디와 비밀번호를 다시 확인해 주세요. '
-      )
+    if (!res.user) {
+      setLoginError(!loginError)
       return
     }
 
@@ -55,6 +59,15 @@ export const SignInForm = () => {
           fillColor={isSubmitDisabled() ? '' : '#57FF57'}
         />
       </form>
+
+      {loginError && (
+        <Portal>
+          <ConfirmModal
+            onConfirmClick={handleErrorModal}
+            isLoginPage={true}
+          />
+        </Portal>
+      )}
     </div>
   )
 }
