@@ -1,4 +1,4 @@
-import { SmallButton } from '@/assets'
+import { SmallButton } from "."
 
 export const ConfirmModal = ({
   onConfirmClick,

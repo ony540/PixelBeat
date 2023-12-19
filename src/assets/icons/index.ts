@@ -4,11 +4,11 @@ export * from './PixelBorder'
 export * from './Clock'
 export * from './CircleAdd'
 export * from './play'
-export * from "./PixelBorder";
-export * from "./SpotifyHover";
-export * from "./Eye";
-export * from "./CloseEye";
-export * from "./moreCircle";
+export * from './PixelBorder'
+export * from './SpotifyHover'
+export * from './Eye'
+export * from './CloseEye'
+export * from './moreCircle'
 export * from './home'
 export * from './Xbutton'
 export * from './profile'
@@ -24,4 +24,3 @@ export * from './StandardVertex'
 export * from './SmallBillSide'
 export * from './Spinner'
 export * from './VisitorIcon'
-export * from './SmallButton'

@@ -135,8 +135,7 @@ const Recommend = () => {
     (currentPath === 'track' && initialStore.track.length === 0)
 
   if (
-    isRecommendedTracksLoading ||
-    isUploadingTrackList ||
+    (isRecommendedTracksLoading || isUploadingTrackList) &&
     updloadBillMutation.isPending
   )
     return <Spinner text={'추천 영수증 생성 중...'} />
