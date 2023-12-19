@@ -1,14 +1,24 @@
 import { SignUpForm } from '@/components/SignUp'
+import { getUserId } from '@/utils'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const SignupWithEmail = () => {
   const navigate = useNavigate()
+  const isLoggedInUser = getUserId()
   const Login = () => {
     navigate('/login/email')
   }
   const goBack = () => {
     navigate(-1)
   }
+
+  useEffect(() => {
+    if (isLoggedInUser) {
+      navigate('/entry')
+    }
+  }, [isLoggedInUser, navigate])
+
   return (
     <div className="mobile:px-20 desktop:px-60">
       <h1 className="my-56 text-center text-24">이메일로 회원가입</h1>

@@ -4,8 +4,10 @@ import { useEffect, useState } from 'react'
 import { RecommendArtistItem } from '..'
 import { useQuery } from '@tanstack/react-query'
 import { Spinner } from '@/assets'
+import { useNavigate } from 'react-router-dom'
 
 export const ArtistSelector = () => {
+  const navigate = useNavigate()
   const selectArtist = useRecommendStore(state => state.selectArtist)
   const initialStore = useRecommendStore(state => state.initialStore)
   const genreStore = initialStore.genre
@@ -14,7 +16,12 @@ export const ArtistSelector = () => {
   const isArtistSelected = (artistId: string) =>
     artistIdStore.includes(artistId)
 
-  //Supabase로부터 아티스트 ID 가져오기
+  useEffect(() => {
+    if (initialStore.genre.length === 0) {
+      navigate('/recommend/genre')
+    }
+  }, [])
+
   const {
     data: artistIdsfromSupabase,
     isLoading: isartistIdsfromSupabaseLoading

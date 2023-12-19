@@ -23,22 +23,20 @@ export const ROUTES = [
 export const routeConfig: {
   [key: string]: LazyRouteType
 } = {
-  RecommendEntry: { index: true, path: '/', authentication: false },
-  Search: { index: false, path: '/Search', authentication: true },
-  Recommend: { index: false, path: 'recommend/:id', authentication: false },
-  MyMusic: { index: false, path: 'MyMusic/:id', authentication: true },
+  RecommendEntry: { index: true, path: '/' },
+  Recommend: { index: false, path: 'recommend/:id' },
+  Search: { index: false, path: '/search' },
+  MyMusic: { index: false, path: 'mymusic/:id', authentication: true },
   Profile: { index: false, path: 'profile/:id', authentication: true },
-  Bill: { index: false, path: 'Bill/:id', authentication: false },
+  Bill: { index: false, path: 'bill/:id' },
   BillHasOwner: {
     index: false,
-    path: 'Bill/:id/:userid',
-    authentication: false
+    path: 'bill/:id/:userid'
   },
   BillFromSpotify: {
     index: false,
-    path: 'bill/playlist/:id',
-    authentication: false
+    path: 'bill/playlist/:id'
   },
-  Album: { index: false, path: 'Album/:id', authentication: false },
-  Artist: { index: false, path: 'Artist/:id', authentication: false }
+  Album: { index: false, path: 'album/:id' },
+  Artist: { index: false, path: 'artist/:id' }
 }

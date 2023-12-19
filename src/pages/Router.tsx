@@ -7,9 +7,9 @@ import {
 import { routeConfig, ROUTES } from '@/constants'
 import Wrapper from './Wrapper'
 import { loadTokenAndCheckExpiration } from '@/utils'
-import Recommend from './Page-Recommend'
 import PrivateRoute from './PrivateRoute'
 import PublicRoute from './PublicRoute'
+import { ErrorComponent } from '@/components'
 
 const LazyRoutes = ROUTES.map(route => {
   const { index, path, authentication } = routeConfig[route] || {
@@ -42,12 +42,10 @@ export const router: any = createBrowserRouter(
     <Route
       path="/"
       element={<Wrapper />}
-      loader={() => loadTokenAndCheckExpiration()}>
+      errorElement={<ErrorComponent />}
+      loader={() => loadTokenAndCheckExpiration()}
+      >
       {LazyRoutes}
-      <Route
-        path="recommend"
-        element={<Recommend />}
-      />
     </Route>
   )
 )

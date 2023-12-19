@@ -14,5 +14,5 @@ export const loadTokenAndCheckExpiration = async () => {
     localStorage.setItem('none-member-token-expiration', expireTime.toString())
   }
 
-  return null
+  return storedToken
 }

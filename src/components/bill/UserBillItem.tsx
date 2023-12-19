@@ -31,6 +31,7 @@ export const UserBillItem = ({
       queryClient.invalidateQueries({
         queryKey: ['profiles from supabase', userInfo.id]
       })
+
       setUserInfo(data)
       setNowPlayStore(data.nowplay_tracklist)
     },

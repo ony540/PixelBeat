@@ -5,7 +5,8 @@ export const StandardButton = ({
   onClick,
   fillColor,
   height,
-  disabled
+  disabled,
+  isAbsolute
 }: {
   type?: any
   text: string
@@ -14,6 +15,7 @@ export const StandardButton = ({
   fillColor?: string
   height?: number | string
   disabled?: any
+  isAbsolute?: string
 }) => {
   return (
     <button
@@ -21,7 +23,7 @@ export const StandardButton = ({
       disabled={disabled}
       className={
         propsClass
-          ? `${propsClass} block relative`
+          ? `${propsClass} block ${isAbsolute || 'relative'}`
           : 'block relative'
       }
       onClick={onClick}>

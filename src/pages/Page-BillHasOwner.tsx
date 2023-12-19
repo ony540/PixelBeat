@@ -5,8 +5,9 @@ import { BillButtonListSection } from '@/components/bill/BillButtonListSection'
 import { useModal } from '@/hooks'
 import { TrackList } from '@/types'
 import Portal from '@/utils/portal'
-import { useNowPlayStore, useUserStore } from '@/zustand'
+import { useNowPlayStore, useRecommendStore, useUserStore } from '@/zustand'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 
 const BillHasOwner = () => {
@@ -16,6 +17,13 @@ const BillHasOwner = () => {
   const currentTrack = useNowPlayStore(state => state.currentTrack)
   const queryClient = useQueryClient()
   const navigate = useNavigate()
+  const resetRecommendStore = useRecommendStore(
+    state => state.resetRecommendStore
+  )
+
+  useEffect(() => {
+    resetRecommendStore()
+  }, [])
 
   const { data, isLoading } = useQuery<TrackList | Error, Error, TrackList>({
     queryKey: ['bill', playlistId, userId],

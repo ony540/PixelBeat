@@ -9,7 +9,7 @@ import {
 import barcodeImg from '@/assets/imgs/barcode.png'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
 import { formatDate } from '@/utils'
-import { useNowPlayStore, useUserStore } from '@/zustand'
+import { useNowPlayStore, useRecommendStore, useUserStore } from '@/zustand'
 import { TrackList } from '@/types'
 import { useQuery } from '@tanstack/react-query'
 import { getBill } from '@/api'
@@ -20,6 +20,9 @@ const Bill = () => {
   const setNowPlayList = useNowPlayStore(state => state.setNowPlayList)
   const currentTrack = useNowPlayStore(state => state.currentTrack)
   const userInfo = useUserStore(state => state.userInfo)
+  const resetRecommendStore = useRecommendStore(
+    state => state.resetRecommendStore
+  )
 
   const { data, isLoading } = useQuery<TrackList | Error, Error, TrackList>({
     queryKey: ['bill', currentPath],
@@ -28,6 +31,7 @@ const Bill = () => {
   })
 
   useEffect(() => {
+    resetRecommendStore()
     if (data && !userInfo.id) {
       setNowPlayList(data.tracks.filter(track => track.preview_url))
     }

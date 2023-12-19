@@ -166,7 +166,7 @@ export const PixelBeatLoginButton = ({
                     left-[50%] translate-x-[-50%]
                     desktop:top-15
                     mobile:top-17">
-        이메일로 시작하기
+        이메일 로그인
       </p>
     </button>
   )

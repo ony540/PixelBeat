@@ -61,7 +61,6 @@ export const fetchImageDirectFromStorage = async userId => {
       .from('user_profile_img')
       .getPublicUrl(`${userId}`)
 
-    console.log(data)
     return data
   } catch (error) {
     console.error('이미지 업로드 중 오류 발생:', error)

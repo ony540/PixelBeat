@@ -1,15 +1,25 @@
 import { SignInForm } from '@/components'
+import { getUserId } from '@/utils'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router'
 
 const SigninWithEmail = () => {
   const navigate = useNavigate()
+  const isLoggedInUser = !!getUserId()
 
   const moveToSignup = () => {
     navigate('/signupwithemail')
   }
+
   const moveToBack = () => {
     navigate(-1)
   }
+
+  useEffect(() => {
+    if (isLoggedInUser) {
+      navigate('/home')
+    }
+  }, [isLoggedInUser, navigate])
 
   return (
     <div>

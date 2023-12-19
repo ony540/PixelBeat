@@ -14,13 +14,21 @@ export const getArtistId = async (genres: string[]) => {
   }
 }
 
+export interface UploadBillInterface {
+  tracklist: string[]
+  analysis: Object
+  owner: Object | null
+  color: string
+  name: string | null
+}
+
 export const uploadBill = async ({
   tracklist,
   analysis,
   owner,
   color,
   name
-}) => {
+}: UploadBillInterface) => {
   try {
     const { data } = await supabase
       .from('tracks_table')
