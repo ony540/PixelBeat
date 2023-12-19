@@ -2,22 +2,19 @@ import { getPlaylistFromSpotify } from '@/api'
 import { Spinner } from '@/assets'
 import { BillBox, Header, NavBar } from '@/components'
 import { BillButtonListSection } from '@/components/bill/BillButtonListSection'
-import { useUserInfo } from '@/hooks'
-import { useNowPlayStore, useUserStore } from '@/zustand'
+import { useNowPlayStore } from '@/zustand'
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 
 const BillFromSpotify = () => {
-  const { isLoading: isUserInfoLoading } = useUserInfo()
   const { id: playlistId } = useParams()
   const { data, isLoading } = useQuery({
     queryKey: ['playlistFromSpotify', playlistId],
     queryFn: () => getPlaylistFromSpotify(playlistId as string)
   })
   const currentTrack = useNowPlayStore(state => state.currentTrack)
-  const userInfo = useUserStore(state => state.userInfo)
 
-  if (isLoading || isUserInfoLoading) return <Spinner />
+  if (isLoading) return <Spinner />
 
   return (
     <>
@@ -32,7 +29,6 @@ const BillFromSpotify = () => {
       <BillButtonListSection
         data={data}
         propsClass={currentTrack ? 'mb-180' : 'mb-90'}
-        profile={userInfo}
         isFromSpotify
       />
       <NavBar />
