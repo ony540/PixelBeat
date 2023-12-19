@@ -319,9 +319,6 @@
 .more {
   background: url(./assets/imgs/more.png) center / contain;
 }
-.listMenu {
-  background: url(./assets/imgs/listmenu.png) center / contain;
-}
 
 @media screen and (min-width: 390px) and (max-width: 720px) {
   .inputText {
@@ -339,20 +336,13 @@
   .moreCircle {
     left: 120px;
   }
-  .listMenu {
-    left: 66px;
-    z-index: 1;
-  }
   .musicList {
     z-index: 2;
   }
   .musicListGreen {
     z-index: 2;
   }
-  .musicTitle {
-    width: 150px;
-    font-size: 16px;
-  }
+
   .profileBill {
     margin-left: 6px;
     margin-right: 6px;
@@ -390,10 +380,7 @@
   .musicListGreen {
     z-index: 2;
   }
-  .musicTitle {
-    width: 150px;
-    font-size: 14px;
-  }
+
   .profileBill {
     margin-left: 6px;
     margin-right: 6px;
