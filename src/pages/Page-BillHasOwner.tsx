@@ -49,7 +49,6 @@ const BillHasOwner = () => {
       <BillButtonListSection
         data={data}
         propsClass={currentTrack ? 'mb-180' : 'mb-90'}
-        profile={userInfo}
       />
       <NavBar />
       <Portal>
