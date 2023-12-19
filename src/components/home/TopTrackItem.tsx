@@ -1,16 +1,49 @@
 import { StandardPixelBorder, StandardVertex, CirclePlaySmall } from '@/assets'
 import { Track } from '@/types'
-import { useNowPlayStore } from '@/zustand'
+import { useNowPlayStore, useUserStore } from '@/zustand'
 import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 import { useNavigate } from 'react-router-dom'
 import { useSwipe } from '@/hooks'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { addCurrentTrackTable } from '@/api'
 
 export const TopTrackItem = ({ tracks }) => {
   const navigate = useNavigate()
   const setCurrentTrack = useNowPlayStore(state => state.setCurrentTrack)
+  const addTrackToNowPlay = useNowPlayStore(state => state.addTrackToNowPlay)
+  const setIsPlaying = useNowPlayStore(state => state.setIsPlaying)
+  const setNowPlayStore = useNowPlayStore(state => state.setNowPlayStore)
+  const userInfo = useUserStore(state => state.userInfo)
+  const setUserInfo = useUserStore(state => state.setUserInfo)
+  const queryClient = useQueryClient()
+
+  //현재재생목록에 추가 및 지금 재생
+  const addCurrentTrackTableMutation = useMutation({
+    mutationFn: addCurrentTrackTable,
+    onSuccess(data) {
+      queryClient.invalidateQueries({
+        queryKey: ['profiles from supabase', userInfo.id]
+      })
+      setUserInfo(data)
+      setNowPlayStore(data.nowplay_tracklist)
+    },
+    onError(error) {
+      console.log(error)
+    }
+  })
 
   const handleClickPlayButton = (track: Track) => {
     setCurrentTrack(track)
+    addTrackToNowPlay(track)
+    setIsPlaying(true)
+    //로그인 유저 db update
+    if (userInfo.id) {
+      addCurrentTrackTableMutation.mutateAsync({
+        prevNowPlayTracklist: userInfo.nowplay_tracklist,
+        track,
+        userId: userInfo.id
+      })
+    }
   }
   const handleClickAlbum = (id: string) => {
     navigate(`/album/${id}`)
@@ -35,7 +68,7 @@ export const TopTrackItem = ({ tracks }) => {
       onMouseMove={handleDragMove}
       onMouseUp={handleDragEnd}
       onMouseLeave={handleDragEnd}
-      className="top-track-grid overflow-y-hidden h-295 mb-100 mt-16">
+      className="top-track-grid overflow-y-hidden h-295 mb-180 mt-16">
       {tracks &&
         tracks.map((item, idx) => (
           <li

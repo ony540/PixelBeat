@@ -16,17 +16,20 @@ export const BillItem = ({
   const setCurrentTrack = useNowPlayStore(state => state.setCurrentTrack)
   const setIsPlaying = useNowPlayStore(state => state.setIsPlaying)
   const addTrackToNowPlay = useNowPlayStore(state => state.addTrackToNowPlay)
-
+  const setNowPlayStore = useNowPlayStore(state => state.setNowPlayStore)
   const userInfo = useUserStore(state => state.userInfo)
+  const setUserInfo = useUserStore(state => state.setUserInfo)
   const queryClient = useQueryClient()
 
+  //현재재생목록에 추가 및 지금 재생
   const addCurrentTrackTableMutation = useMutation({
     mutationFn: addCurrentTrackTable,
-    onSuccess() {
+    onSuccess(data) {
       queryClient.invalidateQueries({
         queryKey: ['profiles from supabase', userInfo.id]
       })
-      console.log(userInfo)
+      setUserInfo(data)
+      setNowPlayStore(data.nowplay_tracklist)
     },
     onError(error) {
       console.log(error)
@@ -37,6 +40,7 @@ export const BillItem = ({
     setCurrentTrack(track)
     addTrackToNowPlay(track)
     setIsPlaying(true)
+    //로그인 유저 db update
     if (userInfo.id) {
       addCurrentTrackTableMutation.mutateAsync({
         prevNowPlayTracklist: userInfo.nowplay_tracklist,
@@ -52,7 +56,7 @@ export const BillItem = ({
         <span className="ml-8 mr-22">
           {String(trackNumber + 1).padStart(2, '0')}
         </span>
-        <div className="leading-[1.2] inline-block w-194 overflow-hidden ">
+        <div className="leading-[1.2] inline-block w-194 overflow-hidden truncate">
           <div
             className={`${
               track.name.length >= 28 ? 'text-flow-on-hover' : ''
