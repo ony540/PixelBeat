@@ -10,7 +10,7 @@ const PrivateRoute = ({
   LazyComponent?: any
 }): React.ReactElement => {
   const isLoggedUser = getUserId()
-  const { userInfo, error } = useUserInfo()
+  const { error } = useUserInfo()
 
   if (error) {
     console.error('private route:', error)

@@ -1,4 +1,4 @@
-import { UserMin, user_id } from './user'
+import { UserMin, } from './user'
 
 export type tracklist_id = string
 

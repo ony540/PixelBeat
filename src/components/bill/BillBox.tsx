@@ -7,20 +7,49 @@ import {
 } from '@/utils'
 import defaultAlbumImg from '@/assets/imgs/default_album_artist.png'
 import barcodeImg from '@/assets/imgs/barcode.png'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { addSavedTracklist } from '@/api'
+import { useUserStore } from '@/zustand'
+import { useNavigate } from 'react-router-dom'
 
 export const BillBox = ({ data }) => {
-  const { name, owner, images, tracks } = data
+  const navigate = useNavigate()
+  const { name, owner, images, tracks, id } = data
+  const userInfo = useUserStore(state => state.userInfo)
+  const queryClient = useQueryClient()
+
+  //음악 서랍 저장
+  const saveBillMutation = useMutation({
+    mutationFn: addSavedTracklist,
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ['profiles from supabase', userInfo.id]
+      })
+    },
+    onError(error) {
+      console.log(error)
+    }
+  })
 
   //음악서랍에 저장
-  const handleClickAddtoMusicShelfButton = () => {}
+  const handleClickAddtoMusicShelfButton = () => {
+    if (!userInfo.id) {
+      navigate('/entry')
+      return
+    }
+
+    saveBillMutation.mutateAsync({
+      prevSavedTracklist: userInfo.saved_tracklist,
+      billId: id,
+      userId: userInfo.id
+    })
+  }
 
   const allTrackDuration = getAllTracksDuration({
     tracks: tracks.items,
     isPlaylist: true
   })
   const { minutes, seconds } = msToMinutesAndSeconds(allTrackDuration)
-
-  if (!data) return <>loading</>
 
   return (
     <div className="bg-white w-354 text-mainBlack text-center mx-auto mt-[-24px] mb-50 bill-background-side">

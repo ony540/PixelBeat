@@ -7,6 +7,7 @@ import { BANNER_DATA } from '@/constants'
 import { BannerItem } from '.'
 import { ErrorComponent } from '..'
 import { Spinner } from '@/assets'
+import { ToRecommendBannerItem } from './ToRecommendBannerItem'
 
 export const Banner = () => {
   const queryResults = useQueries({
@@ -33,6 +34,7 @@ export const Banner = () => {
   return (
     <div className="mobile:px-23 desktop:px-60 relative">
       <Slider {...settings}>
+        <ToRecommendBannerItem/>
         {queryResults.map((result, idx) => (
           <BannerItem
             key={idx}

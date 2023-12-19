@@ -11,9 +11,8 @@ export const useUserSession = () => {
           data: { session }
         } = await supabase.auth.getSession()
         setUserId(session!.user.id)
-      } catch (error: any) {
-        return null
-      }
+      } catch (error) {}
+      return null
     }
 
     fetchUserSession()

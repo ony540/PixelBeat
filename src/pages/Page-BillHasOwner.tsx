@@ -1,17 +1,21 @@
-import { getBill } from '@/api'
+import { deleteBill, getBill } from '@/api'
 import { Spinner } from '@/assets'
 import { BillBoxHasOwner, BottomSheet, Header, NavBar } from '@/components'
 import { BillButtonListSection } from '@/components/bill/BillButtonListSection'
-import { useModal, useUserInfo } from '@/hooks'
+import { useModal } from '@/hooks'
 import { TrackList } from '@/types'
 import Portal from '@/utils/portal'
 import { useNowPlayStore, useUserStore } from '@/zustand'
-import { useQuery } from '@tanstack/react-query'
-import { useParams } from 'react-router-dom'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const BillHasOwner = () => {
-  const { isLoading: isUserInfoLoading } = useUserInfo()
+  const userInfo = useUserStore(state => state.userInfo)
   const { id: playlistId, userid: userId } = useParams<string>()
+  const { openModal, modalType, closeModal } = useModal()
+  const currentTrack = useNowPlayStore(state => state.currentTrack)
+  const queryClient = useQueryClient()
+  const navigate = useNavigate()
 
   const { data, isLoading } = useQuery<TrackList | Error, Error, TrackList>({
     queryKey: ['bill', playlistId, userId],
@@ -19,18 +23,36 @@ const BillHasOwner = () => {
     enabled: !!playlistId
   })
 
-  const { openModal, modalType } = useModal()
-  const currentTrack = useNowPlayStore(state => state.currentTrack)
-  const userInfo = useUserStore(state => state.userInfo)
+  const deleteBillMutation = useMutation({
+    mutationFn: deleteBill,
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ['profiles from supabase', userId]
+      })
+      navigate('/home')
+      closeModal()
+    },
+    onError(error) {
+      console.log(error)
+    }
+  })
 
   const handleClickMoreButton = () => {
     openModal('myBillMore')
   }
 
-  //수정하기, 삭제하기 기능
-  const handleClickModalButton = () => {}
+  // 수정하기 기능 추가 예정
+  const handleClickModalButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    switch (e.currentTarget.innerText) {
+      case '삭제하기':
+        deleteBillMutation.mutateAsync(playlistId)
+        break
+      default:
+        return
+    }
+  }
 
-  if (isLoading || isUserInfoLoading) return <Spinner />
+  if (isLoading) return <Spinner />
 
   return (
     <>
@@ -42,14 +64,10 @@ const BillHasOwner = () => {
       <div className="w-390 desktop:w-[720px] h-52 bg-mainGreen pt-6">
         <div className="w-376 bg-[#282828] h-20 rounded-[10px] mx-auto"></div>
       </div>
-      <BillBoxHasOwner
-        data={data}
-        profile={userInfo}
-      />
+      <BillBoxHasOwner data={data} />
       <BillButtonListSection
         data={data}
         propsClass={currentTrack ? 'mb-180' : 'mb-90'}
-        profile={userInfo}
       />
       <NavBar />
       <Portal>

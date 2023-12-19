@@ -7,7 +7,7 @@ import { useModal } from '@/hooks'
 import { useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { deleteTrackToNowPlayTable } from '@/api'
-import { Track } from '@/types'
+import { ArrowDown } from '@/assets'
 
 export const MusicList = () => {
   const navigate = useNavigate()
@@ -15,10 +15,7 @@ export const MusicList = () => {
   const nowPlaylist = useUserStore(state => state.userInfo.nowplay_tracklist)
   const currentTrack = useNowPlayStore(state => state.currentTrack)
   const { modalType, closeModal } = useModal()
-  const [selectedTrack, setSelectedTrack] = useState<any>({
-    track: {},
-    trackIndex: null
-  })
+  const [selectedTrack, setSelectedTrack] = useState<any>()
   const queryClient = useQueryClient()
 
   const goToMusicRepo = () => {
@@ -42,18 +39,15 @@ export const MusicList = () => {
       case '삭제하기':
         deleteTrackToNowPlayTableMutation.mutateAsync({
           prevNowPlayTracklist: nowPlaylist,
-          track: selectedTrack.track as Track,
-          trackIndex: selectedTrack.trackIndex as unknown as number,
+          track: selectedTrack,
           userId
         })
         break
       case '가수 정보 보기':
-        navigate(`artist/${selectedTrack.track.artists[0].id}`)
+        navigate(`/artist/${selectedTrack.artists[0].id}`)
         break
       case '앨범 정보 보기':
-        navigate(`album/${selectedTrack.track.album.id}`)
-        break
-      case '내 음악영수증에 추가하기':
+        navigate(`/album/${selectedTrack.album.id}`)
         break
       default:
         return
@@ -77,16 +71,17 @@ export const MusicList = () => {
           </div>
           <button
             onClick={() => navigate(-1)}
-            className="listMenu w-24 h-24 bg-no-repeat"></button>
+            className="w-24 h-24">
+            <ArrowDown />
+          </button>
         </section>
-        <ul className="mx-auto w-full border">
-          {[...nowPlaylist.tracks].reverse().map((track, idx) => (
+        <ul className="mx-auto w-full border min-h-[80vh] mb-140">
+          {nowPlaylist.tracks.map((track, idx) => (
             <MusicListItem
               track={track}
-              index={idx}
               key={track.id + idx}
               setSelectedTrack={setSelectedTrack}
-              isSelected={currentTrack === track}
+              isSelected={currentTrack?.id == track.id}
             />
           ))}
         </ul>

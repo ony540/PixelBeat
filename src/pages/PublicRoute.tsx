@@ -1,7 +1,7 @@
 import { useUserInfo } from '@/hooks'
 
 const PublicRoute = ({ LazyComponent }): React.ReactElement => {
-  const { userInfo } = useUserInfo()
+ useUserInfo()
 
   return <LazyComponent />
 }
