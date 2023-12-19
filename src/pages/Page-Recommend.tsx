@@ -17,6 +17,7 @@ import {
   getTracksAudioFeatures
 } from '@/api'
 import { uploadBill } from '@/api'
+import { Spinner } from '@/assets'
 
 type ValidParams = 'genre' | 'artist' | 'track'
 
@@ -133,7 +134,8 @@ const Recommend = () => {
     (currentPath === 'artist' && initialStore.artist.length === 0) ||
     (currentPath === 'track' && initialStore.track.length === 0)
 
-  if (isRecommendedTracksLoading || isUploadingTrackList) return <h1>로딩중</h1>
+  if (isRecommendedTracksLoading || isUploadingTrackList)
+    return <Spinner text={'추천 영수증 생성 중...'} />
 
   return (
     <div className="desktop:px-60">

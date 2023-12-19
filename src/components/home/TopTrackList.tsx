@@ -1,4 +1,4 @@
-import { MenuIcon } from '@/assets'
+import { MenuIcon, Spinner } from '@/assets'
 import { TopTrackItem } from './TopTrackItem'
 import { useQuery } from '@tanstack/react-query'
 import { getPlaylistFromSpotify } from '@/api'
@@ -10,7 +10,7 @@ export const TopTrackList = () => {
     queryFn: () => getPlaylistFromSpotify(TOP_50),
     staleTime: 1000 * 60 * 60 * 24
   })
-  if (isLoading) return <>loading</>
+  if (isLoading) return <Spinner />
 
   return (
     <div className="mobile:px-20 desktop:px-60 mt-53 relative">

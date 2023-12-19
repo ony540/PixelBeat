@@ -1,16 +1,4 @@
-import { useState } from 'react'
-
-export const MoreCircle = () => {
-  const [isHovered, setIsHovered] = useState(false)
-
-  const handleMouseEnter = () => {
-    setIsHovered(true)
-  }
-
-  const handleMouseLeave = () => {
-    setIsHovered(false)
-  }
-
+export const MoreCircle = ({ isHovered }: { isHovered?: boolean }) => {
   const fill = isHovered ? '#313131' : 'black'
   return (
     <svg

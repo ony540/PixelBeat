@@ -15,7 +15,9 @@ export const NavBar = () => {
         {NAV_BAR_TEXT.map(({ icon: IconComponent, path }, idx) => (
           <div
             className={`cursor-pointer ${
-              location.pathname === path ? 'selected-item' : ''
+              location.pathname.split('/')[1] === path.split('/')[1]
+                ? 'selected-item'
+                : ''
             }`}
             key={path + idx}
             onClick={() => handleIconClick(path)}>

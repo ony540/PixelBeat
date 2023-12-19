@@ -1,56 +1,52 @@
 import { MyProfileBillBtn, MiniBill, Heart } from '@/assets'
-import { useNavigate } from 'react-router-dom'
 import { SmallBill } from '.'
+import { useNavigate } from 'react-router-dom'
 
-export const MyProfileBill = () => {
+export const MyBillList = () => {
   const navigate = useNavigate()
-  const goToLike = () => {
-    navigate('/profile/:id/profilelike')
-  }
-  const goToMyBill = () => {
-    navigate('/profile/:id/profile')
+  const moveToLike = () => {
+    navigate('/profile/like')
   }
 
   return (
-    <div className="desktop:px-60 pt-24">
-      <div className="flex flex-row ml-20">
-        <div
-          onClick={goToMyBill}
-          className="cursor-pointer relative flex">
+    <div className="mobile:px-20 desktop:px-60 pt-24 h-screen">
+      <div className="flex flex-row">
+        <div className="cursor-pointer relative flex">
           <MyProfileBillBtn
             type="submit"
-            propsClass="flex flex-row"
             width={140}
             height={35}
             textColor="black"
             text={'내 영수증'}
             fillColor1={'white'}
-            fillColor2={'white'}
-            textPadding={15}
           />
           <div className="absolute top-10 left-12">
             <MiniBill fillColor="black" />
           </div>
         </div>
+
         <div
-          onClick={goToLike}
+          onClick={moveToLike}
           className="cursor-pointer relative flex">
           <MyProfileBillBtn
             type="submit"
-            propsClass=""
             height={35}
             textColor="mainWhite"
             text={'좋아요 영수증'}
             fillColor1={'black'}
           />
-          <div className=" absolute top-11 left-14">
+          <div className="absolute top-11 left-14">
             <Heart fillColor="white" />
           </div>
         </div>
       </div>
-      <div className="mx-20 border h-auto flex flex-wrap">
-        <SmallBill />
-        <SmallBill />
+
+      <div
+        className="border-1 h-auto pb-40 grid min-h-[500px]
+                   grid-cols-2 grid-auto-rows-auto justify-center 
+                   mobile:gap-10 mobile:px-10 
+                   desktop:gap-40 desktop:px-30
+                   ">
         <SmallBill />
         <SmallBill />
         <SmallBill />

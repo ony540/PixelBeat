@@ -1,4 +1,4 @@
-import { MenuIcon } from '@/assets'
+import { MenuIcon, Spinner } from '@/assets'
 import { SimilarUserBill } from '.'
 import { useSwipe } from '@/hooks'
 import { useQuery } from '@tanstack/react-query'
@@ -19,7 +19,7 @@ export const SimilarUserList = () => {
     queryFn: getRelatedBill
   })
 
-  if (isLoading) return <>loading</>
+  if (isLoading) return <Spinner />
 
   return (
     <div className="mobile:px-20 desktop:px-60 mt-53 relative">

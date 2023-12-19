@@ -9,6 +9,7 @@ export const tokenInstance: AxiosInstance = axios.create({
 export const baseInstance: AxiosInstance = axios.create({
   baseURL: import.meta.env.VITE_SPOTIFY_BASE_URL,
   headers: {
-    'Content-Type': 'application/x-www-form-urlencoded'
+    'Content-Type': 'application/x-www-form-urlencoded',
+    Authorization: `Bearer ${localStorage.getItem('none-member-token')}`
   }
 })

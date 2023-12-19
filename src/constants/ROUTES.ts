@@ -17,22 +17,28 @@ export const ROUTES = [
   'MyMusic',
   'Album',
   'Artist',
-  'Profile',
-  // 'Profile/:id/profilelike',
-  // 'Profile/:id/profile',
   'Bill'
-  // 'Bill/:id',
-  // 'Bill/playlist/:id'
 ]
 
-export const routeConfig: { [key: string]: LazyRouteType } = {
-  RecommendEntry: { index: true, path: '/' },
-  Recommend: { index: false, path: 'recommend/:id' },
-  MyMusic: { index: false, path: 'MyMusic/:id' },
-  Bill: { index: false, path: 'Bill/:id' },
-  BillHasOwner: { index: false, path: 'Bill/:id/:userid' },
-  BillFromSpotify: { index: false, path: 'bill/playlist/:id' },
-  Profile: { index: false, path: 'Profile/:id' },
-  Album: { index: false, path: 'Album/:id' },
-  Artist: { index: false, path: 'Artist/:id' }
+export const routeConfig: {
+  [key: string]: LazyRouteType
+} = {
+  RecommendEntry: { index: true, path: '/', authentication: false },
+  Search: { index: false, path: '/Search', authentication: true },
+  Recommend: { index: false, path: 'recommend/:id', authentication: false },
+  MyMusic: { index: false, path: 'MyMusic/:id', authentication: true },
+  Profile: { index: false, path: 'profile/:id', authentication: true },
+  Bill: { index: false, path: 'Bill/:id', authentication: false },
+  BillHasOwner: {
+    index: false,
+    path: 'Bill/:id/:userid',
+    authentication: false
+  },
+  BillFromSpotify: {
+    index: false,
+    path: 'bill/playlist/:id',
+    authentication: false
+  },
+  Album: { index: false, path: 'Album/:id', authentication: false },
+  Artist: { index: false, path: 'Artist/:id', authentication: false }
 }

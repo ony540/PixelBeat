@@ -8,6 +8,7 @@ import { searchItem } from '@/api'
 import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { Album, Artist, Track } from '@/types'
+import { Spinner } from '@/assets'
 
 export interface SearchedData {
   tracks: Track[]
@@ -32,7 +33,7 @@ export const SearchResultWrap = () => {
 
   return (
     <>
-      {isLoading && <p>로딩중...</p>}
+      {isLoading && <Spinner text={'검색결과 불러오는 중...'} />}
       {data && (
         <div className="relative mt-58">
           <SearchResultTrack tracks={data?.tracks} />

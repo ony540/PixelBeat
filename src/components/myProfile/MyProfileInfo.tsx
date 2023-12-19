@@ -1,21 +1,24 @@
+import { useUserStore } from '@/zustand'
+import Proifile from '@/assets/imgs/Profile.png'
 export const MyProfileInfo = () => {
+  const userInfo = useUserStore(state => state.userInfo)
+
   return (
-    <>
-      <div className="bg-mainGreen h-119 w-full flex desktop:px-60">
-        <img
-          className="w-90 h-90 mt-5 ml-40 bg-mainGray"
-          src=""
-          alt=":id의 프로필사진"
-        />
-        <div className="mt-17 ml-16 text-mainBlack">
-          <div className="text-20">닉네임</div>{' '}
-          {/* :id  닉네임 들어가면 됩니다. */}
-          <div className="text-16">이메일</div>{' '}
-          {/* :id  Email들어가면 됩니다. */}
-          <div className="text-16">자기소개</div>{' '}
-          {/* :id  자기소개 들어가면 됩니다. */}
-        </div>
+    <div
+      className="bg-mainGreen w-full h-119 flex items-center 
+                  desktop:px-60 
+                  mobile:px-20">
+      <img
+        className="w-90 h-90 ml-10"
+        src={userInfo.avatar_url || Proifile}
+        alt={userInfo.username || 'profile image'}
+      />
+      <div className="ml-16 text-mainBlack">
+        <p className="text-20">{userInfo.username}</p>
+        <p className="text-16">
+          {userInfo.introduce || '작성된 자기소개가 없습니다.'}
+        </p>
       </div>
-    </>
+    </div>
   )
 }

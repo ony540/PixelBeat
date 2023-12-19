@@ -1,3 +1,4 @@
+import { Spinner } from '@/assets'
 import { ErrorComponent, MusicBill, MusicList, NavBar } from '@/components'
 import { useUserInfo } from '@/hooks'
 import { useParams } from 'react-router-dom'
@@ -9,12 +10,12 @@ const isValidParamsId = (id: string): boolean =>
 const MyMusic = () => {
   const { isLoading: isUserInfoLoading } = useUserInfo()
   const { id: currentPath = 'playnow' } = useParams<string>()
-  console.log(currentPath)
 
   if (!isValidParamsId(currentPath)) {
     return <ErrorComponent />
   }
-  if (isUserInfoLoading) return <>로딩중</>
+  if (isUserInfoLoading) return <Spinner />
+
   return (
     <>
       <div className="px-20 desktop:px-60">

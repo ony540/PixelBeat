@@ -1,6 +1,6 @@
 export const getUserId = () => {
-  const userId = localStorage.getItem('sb-lcguqnvrxihpbvrcoouo-auth-token')
-  if (!userId) return
-  const ParstData = JSON.parse(userId)
-  return ParstData.user.id
+  const userIdData = localStorage.getItem('sb-lcguqnvrxihpbvrcoouo-auth-token')
+  if (!userIdData) return null
+  const parsedData = JSON.parse(userIdData)
+  return parsedData.user.id || null
 }
