@@ -1,4 +1,4 @@
 export * from './MyProfileInfo'
-export * from './MyProfileBill'
-export * from './MyProfileLike'
+export * from './MyBillList'
+export * from './MyLikeBillList'
 export * from './SmallBill'

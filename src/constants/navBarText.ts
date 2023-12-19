@@ -15,6 +15,6 @@ export const NAV_BAR_TEXT = [
   },
   {
     icon: ProfileIcon,
-    path: '/profile'
+    path: `/profile/me`
   }
 ]

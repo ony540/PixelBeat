@@ -6,6 +6,7 @@ import 'slick-carousel/slick/slick-theme.css'
 import { BANNER_DATA } from '@/constants'
 import { BannerItem } from '.'
 import { ErrorComponent } from '..'
+import { Spinner } from '@/assets'
 
 export const Banner = () => {
   const queryResults = useQueries({
@@ -23,7 +24,7 @@ export const Banner = () => {
   const isError = queryResults.some(result => result.isError)
 
   if (isLoading) {
-    return <h1>로딩중...</h1>
+    return <Spinner />
   }
   if (isError) {
     return <ErrorComponent />

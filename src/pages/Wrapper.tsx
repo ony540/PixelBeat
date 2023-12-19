@@ -1,5 +1,5 @@
+import { Spinner } from '@/assets'
 import { PlayBar } from '@/components'
-import { useUserInfo } from '@/hooks'
 import Portal from '@/utils/portal'
 import { useNowPlayStore, useUserStore } from '@/zustand'
 import { Suspense } from 'react'
@@ -11,7 +11,7 @@ export const Wrapper = () => {
 
   return (
     <div className="layout-screen-width outline outline-mainGreen">
-      <Suspense fallback={<></>}>
+      <Suspense fallback={<Spinner />}>
         <Outlet />
         <Portal>
           {currentTrack && (

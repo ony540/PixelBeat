@@ -1,5 +1,5 @@
 import { useParams } from 'react-router-dom'
-import { Clock } from '@/assets'
+import { Clock, Spinner } from '@/assets'
 import {
   BillButtonListSection,
   BillGraph,
@@ -36,7 +36,7 @@ const Bill = () => {
     }
   }, [data])
 
-  if (isLoading || isUserInfoLoading) return <>loading...</>
+  if (isLoading || isUserInfoLoading) return <Spinner />
 
   {
     return (

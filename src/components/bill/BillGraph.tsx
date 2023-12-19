@@ -11,6 +11,7 @@ import { MAX_BPM, MIN_BPM } from '@/constants'
 import { useEffect, useRef } from 'react'
 import { BillChartOption } from '.'
 import { TrackAnalysis } from '@/types'
+import { Spinner } from '@/assets'
 
 ChartJS.register(
   RadialLinearScale,
@@ -33,7 +34,7 @@ export const BillGraph = ({ analysisList, color, isSmall = false }) => {
   const chartRef = useRef<HTMLCanvasElement | null>(null)
 
   if (!analysisList) {
-    return <p>Loading...</p>
+    return <Spinner />
   }
 
   useEffect(() => {

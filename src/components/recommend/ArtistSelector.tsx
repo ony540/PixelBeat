@@ -3,6 +3,7 @@ import { useRecommendStore } from '@/zustand'
 import { useEffect, useState } from 'react'
 import { RecommendArtistItem } from '..'
 import { useQuery } from '@tanstack/react-query'
+import { Spinner } from '@/assets'
 
 export const ArtistSelector = () => {
   const selectArtist = useRecommendStore(state => state.selectArtist)
@@ -55,7 +56,7 @@ export const ArtistSelector = () => {
   }, [artistIdsfromSupabase])
 
   if (isartistIdsfromSupabaseLoading || !artistInfoBySpotify)
-    return <div className="mx-auto my-0 w-[330px]">loading...</div>
+    return <Spinner text={'가수 리스트 불러오는중...'} />
 
   return (
     <div>

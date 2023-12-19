@@ -6,12 +6,7 @@ export const searchItem = async (
 ): Promise<SearchedData | Error> => {
   try {
     const response = await baseInstance(
-      `search?q=${query}&type=artist,album,playlist,track`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('none-member-token')}`
-        }
-      }
+      `search?q=${query}&type=artist,album,playlist,track`
     )
     const data = response.data
     const { artists, tracks, playlists, albums } = data

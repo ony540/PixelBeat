@@ -2,6 +2,7 @@ import { getArtistTopTracks } from '@/api'
 import { useRecommendStore } from '@/zustand'
 import { RecommendTrackItem } from '..'
 import { useQuery } from '@tanstack/react-query'
+import { Spinner } from '@/assets'
 
 export const TrackSelector = () => {
   const initialStore = useRecommendStore(state => state.initialStore)
@@ -22,7 +23,7 @@ export const TrackSelector = () => {
     enabled: !!artistIdStore
   })
 
-  if (isLoading) return <>loading...</>
+  if (isLoading) return <Spinner text={'트랙 리스트 불러오는 중...'}/>
 
   return (
     <div>

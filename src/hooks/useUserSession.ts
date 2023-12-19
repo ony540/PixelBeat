@@ -12,7 +12,7 @@ export const useUserSession = () => {
         } = await supabase.auth.getSession()
         setUserId(session!.user.id)
       } catch (error: any) {
-        console.error('Error fetching user session:', error.message)
+        return null
       }
     }
 

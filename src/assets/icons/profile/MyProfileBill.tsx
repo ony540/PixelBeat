@@ -36,8 +36,7 @@ export const MyProfileBillBtn = ({
         viewBox="0 0 171 36"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        preserveAspectRatio="none"
-        >
+        preserveAspectRatio="none">
         <mask
           id="path-1-inside-1_1345_20885"
           fill="white">
@@ -61,7 +60,7 @@ export const MyProfileBillBtn = ({
       </svg>
       <span
         className="text-18 absolute top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-40%] pl-6 w-full"
-        style={{ color: textColor || 'black', paddingLeft: textPadding || 18}}>
+        style={{ color: textColor || 'black', paddingLeft: textPadding || 18 }}>
         {text}
       </span>
     </button>

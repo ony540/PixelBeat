@@ -1,4 +1,5 @@
 import { getBill } from '@/api'
+import { Spinner } from '@/assets'
 import { BillBoxHasOwner, BottomSheet, Header, NavBar } from '@/components'
 import { BillButtonListSection } from '@/components/bill/BillButtonListSection'
 import { useModal, useUserInfo } from '@/hooks'
@@ -29,7 +30,7 @@ const BillHasOwner = () => {
   //수정하기, 삭제하기 기능
   const handleClickModalButton = () => {}
 
-  if (isLoading || isUserInfoLoading) return <>loading..</>
+  if (isLoading || isUserInfoLoading) return <Spinner />
 
   return (
     <>

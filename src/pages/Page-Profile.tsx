@@ -1,11 +1,31 @@
-import { MyProfileInfo, MyProfileBill, Header, NavBar } from '@/components'
+import {
+  MyProfileInfo,
+  MyBillList,
+  Header,
+  NavBar,
+  MyLikeBillList
+} from '@/components'
+import { Navigate, useParams } from 'react-router-dom'
 
 const Profile = () => {
+  const { id: currentPath } = useParams()
+
+  if (currentPath !== 'me' && currentPath !== 'like') {
+    return <Navigate to="/profile/me" />
+  }
+
+  const renderContents = (id: string) => {
+    return {
+      me: <MyBillList />,
+      like: <MyLikeBillList />
+    }[id]
+  }
+
   return (
-    <div className="pb-80">
+    <div>
       <Header type="profile" />
       <MyProfileInfo />
-      <MyProfileBill />
+      {renderContents(currentPath)}
       <NavBar />
     </div>
   )

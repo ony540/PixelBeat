@@ -1,4 +1,5 @@
 import { getPlaylistFromSpotify } from '@/api'
+import { Spinner } from '@/assets'
 import { BillBox, Header, NavBar } from '@/components'
 import { BillButtonListSection } from '@/components/bill/BillButtonListSection'
 import { useUserInfo } from '@/hooks'
@@ -16,7 +17,7 @@ const BillFromSpotify = () => {
   const currentTrack = useNowPlayStore(state => state.currentTrack)
   const userInfo = useUserStore(state => state.userInfo)
 
-  if (isLoading || isUserInfoLoading) return <>loading..</>
+  if (isLoading || isUserInfoLoading) return <Spinner />
 
   return (
     <>

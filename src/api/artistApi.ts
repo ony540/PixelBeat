@@ -2,11 +2,7 @@ import { baseInstance } from './axios'
 
 export const getArtistInfo = async (artist_id: any) => {
   try {
-    const response = await baseInstance(`artists?ids=${artist_id}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem('none-member-token')}`
-      }
-    })
+    const response = await baseInstance(`artists?ids=${artist_id}`)
     const data = response.data
     const { artists } = data
     return artists
@@ -18,12 +14,7 @@ export const getArtistInfo = async (artist_id: any) => {
 export const getArtistTopTracks = async (artist_id: any) => {
   try {
     const response = await baseInstance(
-      `artists/${artist_id}/top-tracks?market=KR`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('none-member-token')}`
-        }
-      }
+      `artists/${artist_id}/top-tracks?market=KR`
     )
     const data = response.data
     const { tracks } = data
@@ -35,14 +26,7 @@ export const getArtistTopTracks = async (artist_id: any) => {
 
 export const getArtistAlbums = async (artist_id: string) => {
   try {
-    const response = await baseInstance(
-      `artists/${artist_id}/albums?market=KR`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('none-member-token')}`
-        }
-      }
-    )
+    const response = await baseInstance(`artists/${artist_id}/albums?market=KR`)
     const data = response.data
     const albumList = data.items
     return { albumList }
@@ -54,14 +38,7 @@ export const getArtistAlbums = async (artist_id: string) => {
 
 export const getRelatedArtists = async (artist_id: string) => {
   try {
-    const response = await baseInstance(
-      `artists/${artist_id}/related-artists`,
-      {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('none-member-token')}`
-        }
-      }
-    )
+    const response = await baseInstance(`artists/${artist_id}/related-artists`)
     const data = response.data
     const artists = data.artists
     return { artists }
