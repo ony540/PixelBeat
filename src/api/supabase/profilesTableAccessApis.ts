@@ -17,6 +17,7 @@ export const getProfile = async userId => {
   }
 }
 
+//내 빌지 업데이트
 export const updateOwnTracklist = async (
   prevOwnTracklist: string[],
   billId: string,
@@ -41,6 +42,7 @@ export const updateOwnTracklist = async (
   }
 }
 
+//좋아요 영수증
 export interface LikeProps {
   prevLikedTracklist: string[]
   billId: string
@@ -71,6 +73,7 @@ export const updateLikedTracklist = async ({
   }
 }
 
+//음악서랍 관련 저장
 export interface SaveProps {
   prevSavedTracklist: string[]
   billId: string
@@ -102,24 +105,17 @@ export const addSavedTracklist = async ({
 
 export interface NowPlayTracksProps {
   prevNowPlayTracklist: NowPlayList
-  tracks: object[]
+  tracks: any[]
   userId: string
 }
 
 export interface NowPlayTrackProps {
   prevNowPlayTracklist: NowPlayList
-  track: Track | null
-  userId: string
-}
-
-export interface DeleteNowPlayTrackProps {
-  prevNowPlayTracklist: NowPlayList
   track: Track
-  trackIndex: number
   userId: string
 }
 
-//단순 재생목록에 추가
+//단순 재생목록에 추가 (아직 사용X)
 export const addNowPlayTracklistTable = async ({
   prevNowPlayTracklist,
   tracks,
@@ -131,7 +127,12 @@ export const addNowPlayTracklistTable = async ({
       .update({
         nowplay_tracklist: {
           ...prevNowPlayTracklist,
-          tracks: [...prevNowPlayTracklist.tracks, ...tracks]
+          tracks: [
+            ...tracks,
+            ...prevNowPlayTracklist.tracks.filter(
+              item => tracks.findIndex(t => t.id === item.id) !== -1
+            )
+          ]
         }
       })
       .eq('id', userId)
@@ -144,27 +145,57 @@ export const addNowPlayTracklistTable = async ({
   }
 }
 
-//재생목록에서 삭제
-export const deleteTrackToNowPlayTable = async ({
+//전체재생 (재생목록 추가 및 첫트랙 재생)
+export const addNowPlayTracklistAndPlaySongTable = async ({
   prevNowPlayTracklist,
-  track,
-  trackIndex,
+  tracks,
   userId
-}: DeleteNowPlayTrackProps): Promise<any> => {
+}: NowPlayTracksProps): Promise<any> => {
   try {
     const { data } = await supabase
       .from('profiles')
       .update({
         nowplay_tracklist: {
           ...prevNowPlayTracklist,
+          tracks: [
+            ...tracks,
+            ...prevNowPlayTracklist.tracks.filter(
+              item => tracks.findIndex(t => t.id === item.id) === -1
+            )
+          ],
+          currentTrack: tracks[0],
+          playingPosition: 0
+        }
+      })
+      .eq('id', userId)
+      .select('*')
+
+    console.log(data![0].nowplay_tracklist.tracks)
+    //로컬스토리지에 직접 넣어주기 
+
+    return data![0]
+  } catch (error) {
+    console.error('addNowPlayTracklist 중 오류 발생:', error)
+    throw error
+  }
+}
+
+//재생목록에서 삭제
+export const deleteTrackToNowPlayTable = async ({
+  prevNowPlayTracklist,
+  track,
+  userId
+}: NowPlayTrackProps): Promise<any> => {
+  try {
+    console.log(track)
+    const { data } = await supabase
+      .from('profiles')
+      .update({
+        nowplay_tracklist: {
+          ...prevNowPlayTracklist,
           tracks: prevNowPlayTracklist.tracks.filter(
-            (_, idx) => idx !== trackIndex
+            item => item.id !== track!.id
           ),
-          //이거 로직을 모르겠음... 물어봐야지
-          /**
-           * [1,3,4,2,3,5] 라는 배열에서 내가 첫번째 3을 currentTrack으로
-           * 들고있다가 첫번째 3을 선택해서 하거나.. 아니면 걍 하나만 담을 수 있게 하기
-           */
           currentTrack:
             prevNowPlayTracklist.currentTrack === track
               ? null
@@ -193,7 +224,10 @@ export const addCurrentTrackTable = async ({
       .update({
         nowplay_tracklist: {
           ...prevNowPlayTracklist,
-          tracks: [...prevNowPlayTracklist.tracks, track],
+          tracks: [
+            track,
+            ...prevNowPlayTracklist.tracks.filter(item => item.id !== track!.id)
+          ],
           currentTrack: track,
           playingPosition: 0
         }
@@ -204,6 +238,33 @@ export const addCurrentTrackTable = async ({
     return data![0]
   } catch (error) {
     console.error('addCurrentTrackTable 중 오류 발생:', error)
+    throw error
+  }
+}
+
+//재생목록 변경 및 플레이포지션 변경
+export const setCurrentTrackAndPositionTable = async ({
+  prevNowPlayTracklist,
+  track,
+  playingPosition,
+  userId
+}): Promise<any> => {
+  try {
+    const { data } = await supabase
+      .from('profiles')
+      .update({
+        nowplay_tracklist: {
+          ...prevNowPlayTracklist,
+          currentTrack: track,
+          playingPosition
+        }
+      })
+      .eq('id', userId)
+      .select()
+
+    return data![0]
+  } catch (error) {
+    console.error('setCurrentTrackTable 중 오류 발생:', error)
     throw error
   }
 }
@@ -235,6 +296,7 @@ export const setCurrentTrackTable = async ({
 
 export interface PlayingPositionProps {
   prevNowPlayTracklist: NowPlayList
+
   playingPosition: number | string
   userId: string
 }
