@@ -1,59 +1,142 @@
-import { StandardVertex, FullHeart, SmallBillSide } from '@/assets'
+import {
+  LikeCountProps,
+  LikeProps,
+  getBill,
+  updateBillLikes,
+  updateLikedTracklist
+} from '@/api'
+import { StandardVertex, SmallBillSide, Spinner } from '@/assets'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
+import { BillGraph, HeartButton } from '..'
+import graphBgImg from '@/assets/imgs/graphBackground.png'
+import { useUserStore } from '@/zustand'
+import { msToMinutesAndSeconds } from '@/utils'
 
-export const SmallBill = () => {
-  // 각각의 profileBill에 대한 좋아요 상태를 배열로 관리
-  const [likes, setLikes] = useState([false, false])
+export const SmallBill = ({
+  id,
+  onClick,
+  duration_ms,
+  track_length
+}: {
+  duration_ms?: any
+  id?: string
+  onClick?: any
+  track_length?: number
+}) => {
+  const userProfile = useUserStore(state => state.userInfo)
+  const queryClient = useQueryClient()
+  const [isHearted, setIsHearted] = useState(
+    userProfile?.liked_tracklist.includes(id!)
+  )
 
-  // 좋아요 상태를 토글하는 함수
-  const toggleLike = index => {
-    setLikes(prevLikes => {
-      const newLikes = [...prevLikes]
-      newLikes[index] = !newLikes[index]
-      return newLikes
+  const { data, isLoading }: any = useQuery({
+    queryKey: ['my-bill', id],
+    queryFn: () => getBill(id as string)
+  })
+
+  //좋아요
+  const likeBillMutation = useMutation<any[], Error, LikeProps>({
+    mutationFn: updateLikedTracklist,
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ['profiles from supabase', userProfile.id]
+      })
+    },
+    onError(error) {
+      console.log(error)
+    }
+  })
+
+  //좋아요 수 제어
+  const likeCountBillMutation = useMutation<any[], Error, LikeCountProps>({
+    mutationFn: updateBillLikes,
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ['bill', id, userProfile.id]
+      })
+    },
+    onError(error) {
+      console.log(error)
+    }
+  })
+
+  // 좋아요 버튼 누르기
+  const handleClickHeartButton = () => {
+    setIsHearted(prevIsHearted => !prevIsHearted)
+
+    likeCountBillMutation.mutateAsync({
+      prevLikes: likes,
+      billId: id!,
+      isAdd: !isHearted
+    })
+    likeBillMutation.mutateAsync({
+      prevLikedTracklist: userProfile.liked_tracklist,
+      billId: id!,
+      userId: userProfile.id
     })
   }
+  if (isLoading) return <Spinner />
+  const { name, likes, tracks } = data
+
+  const { minutes, seconds } = msToMinutesAndSeconds(Number(duration_ms))
+  console.log()
 
   return (
     <div
-      className="bg-mainWhite mt-30 relative
+      className="bg-mainWhite mt-30 relative 
       text-mainBlack text-center
         mobile:w-162 mobile:h-200 
         desktop:w-[250px] desktop:h-[300px]">
       <SmallBillSide className="absolute top-[-15px]" />
 
-      <h1
-        className=" flex flex-col mx-auto text-center overflow-hidden
-                    desktop:text-20 desktop:w-180 desktop:h-60
-                    mobile:text-14 mobile:w-140 mobile:h-36 ">
-        :id의 영수증 #1asdfasdfasdfasdfasdfasdfasdfw
-      </h1>
+      {data && (
+        <>
+          <p
+            onClick={() => onClick(id)}
+            className=" flex flex-col mx-auto text-center overflow-hidden
+                        cursor-pointer hover:underline
+                        desktop:text-20 desktop:w-180 desktop:h-60 desktop:mt-15
+                        mobile:text-14 mobile:w-140 mobile:h-38 mobile:mt-10">
+            {name || `${data?.owner?.username}의 영수증`}
+          </p>
 
-      <div
-        className="flex-col 
-      mobile:w-100 mobile:h-100 mobile:mt-10
-      desktop:w-160 desktop:h-160 desktop:mt-0
-      bg-mainGray relative mx-auto">
-        <StandardVertex propsClass={`absolute text-mainWhite`} />
-        <img
-          className="
-          w-full h-full"
-          src={''}
-          alt={''}
-        />
-      </div>
+          <div
+            className="flex-col 
+                      mobile:w-100 mobile:h-100 mobile:mt-10
+                      desktop:w-160 desktop:h-160 desktop:mt-0
+                      relative mx-auto">
+            <StandardVertex propsClass={`absolute text-mainWhite`} />
 
-      <div
-        className="flex justify-between items-center border-y border-dashed
-                  desktop:mx-25 desktop:mt-10 desktop:py-26 desktop:h-26 desktop:leading-26
-                  mobile:mx-11 mobile:mt-20 
+            <div
+              className="my-0 mx-auto bg-no-repeat bg-[43%_-10%] 
+              mobile:w-100 mobile:mt-0 mobile:bg-[length:100px]
+              desktop:w-132 desktop:mt-14 desktop:bg-[length:129px]"
+              style={{ backgroundImage: `url(${graphBgImg})` }}>
+              <BillGraph
+                analysisList={data?.analysis}
+                color={data?.color}
+                isSmall={true}
+              />
+            </div>
+          </div>
+
+          <div
+            className="flex justify-between items-center border-y border-dashed
+                  desktop:mx-25 desktop:mt-0 desktop:py-20 desktop:h-20
+                  mobile:mx-11 mobile:mt-10 
                  border-mainBlack ">
-        <p className="mobile:text-16 desktop:text-20 desktop:ml-10">
-          8곡 • 10:38
-        </p>
-        <FullHeart onClick={() => toggleLike(0)} />
-      </div>
-      <SmallBillSide className="absolute bottom-[-15px] rotate-180" />
+            <p className="mobile:text-16 desktop:text-20 desktop:ml-10 flex items-center">
+              {`${track_length}곡 • ${minutes}분 ${seconds}초`}
+            </p>
+            <HeartButton
+              isHearted={isHearted}
+              onClick={handleClickHeartButton}
+            />
+          </div>
+          <SmallBillSide className="absolute bottom-[-15px] rotate-180" />
+        </>
+      )}
     </div>
   )
 }

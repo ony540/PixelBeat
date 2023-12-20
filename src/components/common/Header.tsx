@@ -63,7 +63,8 @@ const BgBlackHeader = ({ onClickLeftButton }: HeaderProps) => {
 export const Header = ({
   type = 'home',
   isNoneMore,
-  onClickRightButton
+  onClickRightButton,
+  onClickLeftButton
 }: {
   type?: string
   isNoneMore?: boolean
@@ -83,6 +84,13 @@ export const Header = ({
     case 'artist':
       return <BgBlackHeader onClickLeftButton={handleClickBackButton} />
     case 'profile':
+      return (
+        <BgGreenHeader
+          onClickLeftButton={onClickLeftButton}
+          onClickRightButton={onClickRightButton}
+          isNoneMore={isNoneMore}
+        />
+      )
     case 'bill':
       return (
         <BgGreenHeader

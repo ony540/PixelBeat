@@ -2,7 +2,7 @@ import { BottomSheetTop } from '@/assets'
 import { BOTTOMSHEET_TYPE } from '@/constants'
 import { useModal } from '@/hooks'
 
-export const BottomSheet = ({ onClick }) => {
+export const BottomSheet = ({ onClick }: { onClick?: any }) => {
   const { isVisible, closeModal, modalType, isShow } = useModal()
 
   // modalType === 'myBillList'일 때 쥬스탠드에서 관리하고 있는  내 ownplaylist들고오기

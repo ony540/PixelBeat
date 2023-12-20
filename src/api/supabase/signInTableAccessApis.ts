@@ -2,21 +2,34 @@ import { supabase } from '.'
 
 /** Storage/user_profile_img / profiles (table) 접근 API -- */
 
-// Supabase Storage에 이미지를 업로드하는 함수
-export const uploadImageToStorage = async (imageFile, userId) => {
+/** Supabase - Storage에 이미지 업로드하는 함수 */
+export const uploadImageToStorage = async (imageFile: File, userId: string) => {
   try {
-    const { data, error } = await supabase.storage
+    const { data: uploadData, error: uploadError } = await supabase.storage
       .from('user_profile_img')
-      .upload(`${userId}/profile_image`, imageFile, {
+      .upload(`${userId}`, imageFile, {
         cacheControl: '3600',
         contentType: 'image/*'
       })
 
-    if (error) {
-      console.error(error)
-    }
+    // 409는 이미 존재할 경우
+    if (uploadError && 'statusCode' in uploadError) {
+      if (uploadError?.statusCode === ('409' as any)) {
+        const { data: updateData, error: updateError } = await supabase.storage
+          .from('user_profile_img')
+          .update(`${userId}`, imageFile, {
+            cacheControl: '3600',
+            contentType: 'image/*'
+          })
 
-    return data?.path
+        if (updateError) {
+          console.error(updateError)
+        }
+
+        return updateData?.path
+      }
+    }
+    return uploadData?.path
   } catch (error) {
     console.error('이미지 업로드 중 오류 발생:', error)
     throw error

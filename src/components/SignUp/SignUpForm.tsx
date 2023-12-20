@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { SignupInputField, StandardButton } from '@/components'
 import { signUpSupabaseWithEmail } from '@/api/supabase/pixelbeatAuthApis'
 import { useNavigate } from 'react-router-dom'
+import { Spinner } from '@/assets'
+import { useMutation } from '@tanstack/react-query'
 
 export const SignUpForm = () => {
   const navigate = useNavigate()
@@ -64,11 +66,25 @@ export const SignUpForm = () => {
     return isEmpty || hasErrors
   }
 
-  const MakeProFile = async () => {
-    const res = await signUpSupabaseWithEmail(email, password)
-    if (res?.user) {
-      navigate('/signupgreeting')
+  const { mutate: signupMutation, isPending } = useMutation({
+    mutationFn: signUpSupabaseWithEmail,
+    mutationKey: ['signup', email, password],
+    onSuccess: data => {
+      if (data?.user) {
+        navigate('/signupgreeting')
+      }
+    },
+    onError: error => {
+      console.error('회원가입 API 호출 중 에러:', error)
     }
+  })
+
+  const MakeProFile = async () => {
+    signupMutation({ email, password })
+  }
+
+  if (isPending) {
+    return <Spinner text={'회원가입 중'} />
   }
 
   const failMessageEmail = () => {

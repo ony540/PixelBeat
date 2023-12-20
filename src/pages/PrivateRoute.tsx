@@ -15,7 +15,7 @@ const PrivateRoute = ({
   const navigate = useNavigate()
   const isLoggedUser = getUserId()
   const { error } = useUserInfo()
-  const { openConfirm, isShow, closeConfirm } = useConfirm()
+  const { openConfirm, isShow, closeConfirm, confirmType } = useConfirm()
 
   if (error) {
     console.error('private route:', error)
@@ -25,19 +25,21 @@ const PrivateRoute = ({
     closeConfirm()
     navigate('/home')
   }
+
   const handleNavigateEntry = () => {
     closeConfirm()
     navigate('/entry')
   }
+
   useEffect(() => {
     if (!isLoggedUser && authentication) {
       openConfirm('loginInduce')
     }
-  }, [])
+  }, [isShow])
 
   return (
     <>
-      {isShow ? (
+      {confirmType !== 'logout' && confirmType !== 'profileEdit' && isShow ? (
         <Portal>
           <ConfirmModal
             onConfirmClick={handleNavigateEntry}
