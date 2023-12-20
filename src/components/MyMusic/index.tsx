@@ -1,4 +1,4 @@
 export * from './MusicList'
-export * from './MusicBillId'
-export * from './MusicBill'
+export * from './MusicShelf'
+export * from './MusicShelfItem'
 export * from './MusicListItem'

@@ -1,11 +1,11 @@
 import { Spinner } from '@/assets'
-import { ErrorComponent, MusicBill, MusicList, NavBar } from '@/components'
+import { ErrorComponent, MusicList, MusicShelf, NavBar } from '@/components'
 import { useUserInfo } from '@/hooks'
 import { useParams } from 'react-router-dom'
 
-type ValidParams = 'playnow' | 'bill'
+type ValidParams = 'playnow' | 'shelf'
 const isValidParamsId = (id: string): boolean =>
-  ['playnow', 'bill'].includes(id as ValidParams)
+  ['playnow', 'shelf'].includes(id as ValidParams)
 
 const MyMusic = () => {
   const { isLoading: isUserInfoLoading } = useUserInfo()
@@ -20,7 +20,7 @@ const MyMusic = () => {
     <>
       <div className="px-20 desktop:px-60">
         {currentPath === 'playnow' && <MusicList />}
-        {currentPath === 'bill' && <MusicBill />}
+        {currentPath === 'shelf' && <MusicShelf />}
       </div>
       <NavBar />
     </>

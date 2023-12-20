@@ -7,7 +7,7 @@ export const MoreCircle = ({ isHovered }: { isHovered?: boolean }) => {
       viewBox="0 0 24 24"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
-      <g clip-path="url(#clip0_863_20307)">
+      <g clipPath="url(#clip0_863_20307)">
         <g filter="url(#filter0_d_863_20307)">
           <path
             fillRule="evenodd"
@@ -33,9 +33,9 @@ export const MoreCircle = ({ isHovered }: { isHovered?: boolean }) => {
           width="26"
           height="26"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB">
+          colorInterpolationFilters="sRGB">
           <feFlood
-            flood-opacity="0"
+            floodOpacity="0"
             result="BackgroundImageFix"
           />
           <feColorMatrix
@@ -73,9 +73,9 @@ export const MoreCircle = ({ isHovered }: { isHovered?: boolean }) => {
           width="18"
           height="14"
           filterUnits="userSpaceOnUse"
-          color-interpolation-filters="sRGB">
+          colorInterpolationFilters="sRGB">
           <feFlood
-            flood-opacity="0"
+            floodOpacity="0"
             result="BackgroundImageFix"
           />
           <feColorMatrix
