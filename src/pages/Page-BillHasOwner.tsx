@@ -1,4 +1,4 @@
-import { deleteBill, getBill } from '@/api'
+import { deleteBill, getBill, updateOwnTracklist } from '@/api'
 import { Spinner } from '@/assets'
 import {
   BillBoxHasOwner,
@@ -38,8 +38,9 @@ const BillHasOwner = () => {
     enabled: !!playlistId
   })
 
-  const deleteBillMutation = useMutation({
-    mutationFn: deleteBill,
+  //프로필에서 빌지삭제
+  const updateOwnTracklistMutation = useMutation({
+    mutationFn: updateOwnTracklist,
     onSuccess() {
       queryClient.invalidateQueries({
         queryKey: ['profiles from supabase', userId]
@@ -51,6 +52,22 @@ const BillHasOwner = () => {
       console.log(error)
     }
   })
+
+  //빌지테이블에서 빌지삭제
+  const deleteBillMutation = useMutation({
+    mutationFn: deleteBill,
+    onSuccess() {
+      updateOwnTracklistMutation.mutateAsync({
+        prevOwnTracklist: userInfo.own_tracklist,
+        billId: playlistId!,
+        userId: userId!
+      })
+    },
+    onError(error) {
+      console.log(error)
+    }
+  })
+
 
   const handleClickMoreButton = () => {
     openModal('myBillMore')
