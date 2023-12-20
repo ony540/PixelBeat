@@ -69,7 +69,7 @@ export const SignUpForm = () => {
   const { mutate: signupMutation, isPending } = useMutation({
     mutationFn: signUpSupabaseWithEmail,
     mutationKey: ['signup', email, password],
-    onSuccess: data => {
+    onSuccess: (data: any) => {
       if (data?.user) {
         navigate('/signupgreeting')
       }

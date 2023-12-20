@@ -77,7 +77,7 @@ export const SmallBill = ({
     })
   }
   if (isLoading) return <Spinner />
-  const { name, likes, tracks } = data
+  const { name, likes } = data
 
   const { minutes, seconds } = msToMinutesAndSeconds(Number(duration_ms))
   console.log()

@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import { devtools } from 'zustand/middleware'
 
 type Confirm = {
   isShow: boolean
@@ -11,9 +10,7 @@ const initialStore: Confirm = {
   isShow: false
 }
 
-type ConfirmStore = {
-  isShow: boolean
-  modalType: string
+type ConfirmStore = Confirm & {
   setIsShow: (bool: boolean) => void
   setConfirmType: (confirmType: string) => void
 }
@@ -34,4 +31,4 @@ export const confirmStore = set => ({
     }))
 })
 
-export const useConfirmStore = create(devtools(confirmStore))
+export const useConfirmStore = create<ConfirmStore>(confirmStore)

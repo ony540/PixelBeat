@@ -16,7 +16,7 @@ export const ProgressBar = ({
   const handleChangePlayingPosition = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
-    setPlayingPosition(e.target.value)
+    setPlayingPosition(e.target.value as unknown as number)
     const newPosition =
       Math.round(audioRef.current?.duration! * +e.target.value) / 100
     audioRef.current!.currentTime = newPosition

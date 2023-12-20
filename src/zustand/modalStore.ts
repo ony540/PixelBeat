@@ -1,5 +1,4 @@
 import { create } from 'zustand'
-import { devtools } from 'zustand/middleware'
 
 type Modal = {
   isShow: boolean
@@ -11,9 +10,7 @@ const initialStore: Modal = {
   isShow: false
 }
 
-type ModalStore = {
-  isShow: boolean
-  modalType: string
+type ModalStore = Modal & {
   setIsShow: (bool: boolean) => void
   setModalType: (modalType: string) => void
 }
@@ -34,4 +31,4 @@ export const modalStore = set => ({
     }))
 })
 
-export const useModalStore = create(devtools(modalStore))
+export const useModalStore = create<ModalStore>(modalStore)

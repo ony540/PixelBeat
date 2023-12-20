@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { ConfirmModal, StandardButton } from '@/components'
+import {
+  ImageUploadForm,
+  ProfileInputField,
+  StandardButton
+} from '@/components'
 import Profile from '@/assets/imgs/Profile.png'
 import {
   updateBill,
@@ -8,7 +12,6 @@ import {
   updateProfile,
   uploadImageToStorage
 } from '@/api'
-import { ImageUploadForm, ProfileInputField } from '@/components/Profile'
 import { useUserInfo, useUserSession } from '@/hooks'
 import imageCompression from 'browser-image-compression'
 import { useRecommendStore } from '@/zustand'
