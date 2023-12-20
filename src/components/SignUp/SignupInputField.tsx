@@ -1,6 +1,6 @@
 import { Eye, CloseEye } from '@/assets'
 import { useRef, useState } from 'react'
-import { ValidationErrorMessage } from '.'
+import { ValidationErrorMessage } from '@/components'
 
 interface SignupInputFieldProps {
   name?: string

@@ -74,9 +74,9 @@ export const ArtistSelector = () => {
         (최대 5개)
       </h2>
       {artistInfoBySpotify &&
-        artistInfoBySpotify.map(artist => (
+        artistInfoBySpotify.map((artist, idx) => (
           <RecommendArtistItem
-            key={artist.id}
+            key={artist.id + idx}
             artist={artist}
             isSelected={isArtistSelected(artist.id)}
             onClick={selectArtist}

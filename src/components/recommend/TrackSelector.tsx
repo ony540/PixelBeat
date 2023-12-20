@@ -43,9 +43,9 @@ export const TrackSelector = () => {
         (최대 5개)
       </h2>
       {tracks &&
-        tracks.map((track: any) => (
+        tracks.map((track: any, idx) => (
           <RecommendTrackItem
-            key={track.id}
+            key={track.id + idx}
             id={track.id}
             track={track}
             onClick={selectTrack}

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { InputSection } from './InputSection'
+import { InputSection } from '@/components'
 import { useNavigate } from 'react-router-dom'
 import { ConfirmModal, StandardButton } from '@/components'
 import { signinUser } from '@/api/supabase/pixelbeatAuthApis'
