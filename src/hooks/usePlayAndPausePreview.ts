@@ -10,8 +10,6 @@ import { useUserStore } from '@/zustand'
 export const usePlayAndPausePreview = () => {
   const isPlaying = useNowPlayStore(state => state.isPlaying)
   const tracks = useNowPlayStore(state => state.tracks)
-  const currentTrack = useNowPlayStore(state => state.currentTrack)
-  const playingPosition = useNowPlayStore(state => state.playingPosition)
   const setIsPlaying = useNowPlayStore(state => state.setIsPlaying)
   const setPlayingPosition = useNowPlayStore(state => state.setPlayingPosition)
   const setCurrentTrack = useNowPlayStore(state => state.setCurrentTrack)
@@ -165,6 +163,7 @@ export const usePlayAndPausePreview = () => {
   useEffect(() => {
     if (pathname && userInfo.id) {
       const { userInfo } = useUserStore.getState()
+      const { currentTrack, playingPosition } = useNowPlayStore.getState()
 
       setCurrentTrackAndPositionTableMutation.mutateAsync({
         prevNowPlayTracklist: userInfo.nowplay_tracklist,

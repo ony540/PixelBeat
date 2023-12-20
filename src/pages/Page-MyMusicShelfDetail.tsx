@@ -36,7 +36,6 @@ const MyMusicShelfDetail = () => {
         queryFn: () => getBill(billId!)
       }
   const { data, isLoading } = useQuery(query)
-
   const deleteTrackToNowPlayTableMutation = useMutation({
     mutationFn: deleteTrackToNowPlayTable,
     onSuccess() {
@@ -79,58 +78,75 @@ const MyMusicShelfDetail = () => {
 
   if (isLoading || isUserInfoLoading)
     return <Spinner text={'음악영수증 불러오는 중...'} />
-  const trackData = isSpotify ? data.tracks.items : data.tracks
 
   return (
-    <div className="flex flex-col px-20 desktop:px-60">
-      <section className="mt-30 text-20 flex justify-between">
-        <div>
+    <>
+      <div className="flex flex-col px-20 desktop:px-60">
+        <section className="mt-30 text-20 flex justify-between">
+          <div>
+            <button
+              className="musicList w-113"
+              onClick={handelNavigatePlaynow}>
+              재생목록
+            </button>
+            <button
+              className="musicListGreen text-mainBlack w-113"
+              onClick={handelNavigateShelf}>
+              음악서랍
+            </button>
+          </div>
           <button
-            className="musicList w-113"
-            onClick={handelNavigatePlaynow}>
-            재생목록
+            onClick={() => navigate(-1)}
+            className="w-24 h-24 ">
+            <ArrowDown />
           </button>
-          <button
-            className="musicListGreen text-mainBlack w-113"
-            onClick={handelNavigateShelf}>
-            음악서랍
-          </button>
-        </div>
-        <button
-          onClick={() => navigate(-1)}
-          className="w-24 h-24 ">
-          <ArrowDown />
-        </button>
-      </section>
-      <ul className="mx-auto w-full border min-h-[80vh] mb-140">
-        <li className="group relative flex items-center justify-between pl-12 pr-16 border-b-1 w-full h-62 hover:bg-mainGray300 cursor-pointer">
-          <p className="text-16 desktop:text-18 truncate ">
-            {data.name} (
-            {isSpotify ? data.tracks.items.length : data.tracks.length})
-          </p>
-          <button
-            type="button"
-            onClick={handelNavigateShelf}>
-            <MoreCircle />
-          </button>
-        </li>
-        {trackData.map((track, idx) => (
-          <MusicListItem
-            track={track}
-            key={track.id + idx}
-            setSelectedTrack={setSelectedTrack}
-            isSelected={currentTrack?.id == track.id}
-          />
-        ))}
-      </ul>
+        </section>
+        <ul className="mx-auto w-full border min-h-[80vh] mb-140">
+          <li className="group relative flex items-center justify-between pl-12 pr-16 border-b-1 w-full h-62 hover:bg-mainGray300 cursor-pointer">
+            <p className="text-16 desktop:text-18 truncate ">
+              {data.name} (
+              {isSpotify
+                ? data.tracks.items.filter(item => item.track.preview_url)
+                    .length
+                : data.tracks.filter(item => item.preview_url).length}
+              )
+            </p>
+            <button
+              type="button"
+              onClick={handelNavigateShelf}>
+              <MoreCircle />
+            </button>
+          </li>
+          {isSpotify
+            ? data.tracks.items
+                .filter(item => item.track.preview_url)
+                .map((item, idx) => (
+                  <MusicListItem
+                    track={item.track}
+                    key={item.track.id + idx}
+                    setSelectedTrack={setSelectedTrack}
+                    isSelected={item.track.id === currentTrack?.id}
+                  />
+                ))
+            : data.tracks
+                .filter(item => item.preview_url)
+                .map((item, idx) => (
+                  <MusicListItem
+                    track={item}
+                    key={item.id + idx}
+                    setSelectedTrack={setSelectedTrack}
+                    isSelected={item.id === currentTrack?.id}
+                  />
+                ))}
+        </ul>
+      </div>
       <NavBar />
-
       <Portal>
         {modalType === 'myNowPlayTrackMore' && (
           <BottomSheet onClick={handleClickModelList} />
         )}
       </Portal>
-    </div>
+    </>
   )
 }
 

@@ -70,7 +70,11 @@ const Recommend = () => {
     mutationFn: uploadBill,
     async onSuccess(data) {
       if (isLoggedIn) {
-        await updateOwnTracklist(userInfo.own_tracklist, data, userInfo.id)
+        await updateOwnTracklist({
+          prevOwnTracklist: userInfo.own_tracklist,
+          billId: data,
+          userId: userInfo.id
+        })
         navigate(`/bill/${data}/${userInfo.id}`)
       } else {
         navigate(`/bill/${data}`)

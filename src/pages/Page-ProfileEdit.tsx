@@ -1,5 +1,4 @@
-import { ConfirmModal } from '@/components'
-import { ProfileForm } from '@/components/Profile'
+import { ProfileForm, ConfirmModal } from '@/components'
 import { useConfirm } from '@/hooks'
 import { getUserId } from '@/utils'
 import Portal from '@/utils/portal'
