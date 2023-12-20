@@ -128,8 +128,6 @@ const Recommend = () => {
     enabled: !!recommendedTracks
   })
 
-  console.log(updloadBillMutation.isPending)
-
   const renderButtonText = () =>
     currentPath === 'genre' || currentPath === 'artist' ? '다 음' : '완 료'
 

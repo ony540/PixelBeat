@@ -17,9 +17,9 @@ export const GenreSelector = () => {
         (최대 5개)
       </h2>
       <div className="genre-selector-container">
-        {FAVORITE_GENRE_TEXT.map(item => (
+        {FAVORITE_GENRE_TEXT.map((item, idx) => (
           <RecommendGenreItem
-            key={item}
+            key={item + idx}
             item={item}
             onClick={genreSelect}
             isSelected={genreStore.includes(GENRE_CATEGORY[item])}

@@ -8,7 +8,19 @@ type HeaderProps = {
 }
 
 const HomeHeader = () => {
-  return <header className="h-55 flex items-center px-20">PIXELBEAT</header>
+  const navigate = useNavigate()
+  const moveToHome = () => {
+    navigate('/home')
+  }
+  return (
+    <header className="h-55 flex items-center mobile:px-20 desktop:px-60 ">
+      <div
+        className="cursor-pointer"
+        onClick={moveToHome}>
+        PIXELBEAT
+      </div>
+    </header>
+  )
 }
 
 const PlayNowHeader = ({ onClickRightButton }: HeaderProps) => {
