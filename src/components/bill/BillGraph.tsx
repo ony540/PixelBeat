@@ -8,7 +8,7 @@ import {
   RadarController
 } from 'chart.js'
 import { MAX_BPM, MIN_BPM } from '@/constants'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { BillChartOption } from '.'
 import { TrackAnalysis } from '@/types'
 import { Spinner } from '@/assets'
@@ -32,10 +32,29 @@ export const initialAnalysisObject: TrackAnalysis = {
 
 export const BillGraph = ({ analysisList, color, isSmall = false }) => {
   const chartRef = useRef<HTMLCanvasElement | null>(null)
+  const [windowSize, setWindowSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight
+  })
 
   if (!analysisList) {
     return <Spinner />
   }
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight
+      })
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   useEffect(() => {
     if (!chartRef.current || !analysisList) return
@@ -81,7 +100,7 @@ export const BillGraph = ({ analysisList, color, isSmall = false }) => {
     return () => {
       chartInstance.destroy()
     }
-  }, [analysisList])
+  }, [analysisList, windowSize])
 
   return (
     <canvas

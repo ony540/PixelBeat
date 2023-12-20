@@ -1,6 +1,7 @@
 export const CONFIRM_TYPE = Object.freeze({
   delete: ['삭제하시겠습니까?', '삭제'],
   edit: ['수정하시겠습니까?', '수정'],
+  profileEdit: ['수정이 완료되었습니다.'],
   addOwnPlaylist: [
     `음악서랍에
   저장하시겠습니까?`,

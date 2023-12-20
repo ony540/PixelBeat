@@ -1,5 +1,5 @@
 import { useUserStore } from '@/zustand'
-import Proifile from '@/assets/imgs/Profile.png'
+import Profile from '@/assets/imgs/Profile.png'
 export const MyProfileInfo = () => {
   const userInfo = useUserStore(state => state.userInfo)
 
@@ -10,7 +10,7 @@ export const MyProfileInfo = () => {
                   mobile:px-20">
       <img
         className="w-90 h-90 ml-10"
-        src={userInfo.avatar_url || Proifile}
+        src={userInfo.avatar_url ? userInfo.avatar_url : Profile}
         alt={userInfo.username || 'profile image'}
       />
       <div className="ml-16 text-mainBlack">

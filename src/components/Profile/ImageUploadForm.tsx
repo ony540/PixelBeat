@@ -1,8 +1,16 @@
 import { ImageUploadButton } from '@/assets'
+import { useUserInfo } from '@/hooks'
 import { useEffect, useState } from 'react'
 
 export const ImageUploadForm = ({ onChange, selectedImage }) => {
   const [imagePreviewUrl, setImagePreviewUrl] = useState<string | null>(null)
+  const userProfile = useUserInfo()
+
+  useEffect(() => {
+    if (userProfile?.userInfo?.avatar_url) {
+      setImagePreviewUrl(userProfile.userInfo.avatar_url)
+    }
+  }, [userProfile.userInfo])
 
   useEffect(() => {
     if (!selectedImage) {
@@ -15,6 +23,7 @@ export const ImageUploadForm = ({ onChange, selectedImage }) => {
 
       return () => URL.revokeObjectURL(imageUrl)
     }
+    return
   }, [selectedImage])
 
   return (

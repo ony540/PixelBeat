@@ -1,5 +1,5 @@
 import { ConfirmModal } from '@/components'
-import { ProfileForm } from '@/components/profile'
+import { ProfileForm } from '@/components/Profile'
 import { useConfirm } from '@/hooks'
 import { getUserId } from '@/utils'
 import Portal from '@/utils/portal'
@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 const ProfileEdit = () => {
   const isLoggedInUser = getUserId()
   const navigate = useNavigate()
-  const { openConfirm, closeConfirm } = useConfirm()
+  const { openConfirm, isShow, closeConfirm } = useConfirm()
 
   useEffect(() => {
     if (!isLoggedInUser) {
@@ -29,9 +29,11 @@ const ProfileEdit = () => {
         나중에 언제든지 변경할 수 있습니다.
       </h2>
       <ProfileForm />
-      <Portal>
-        <ConfirmModal onConfirmClick={handleNavigateEntry} />
-      </Portal>
+      {isShow && (
+        <Portal>
+          <ConfirmModal onConfirmClick={handleNavigateEntry} />
+        </Portal>
+      )}
     </div>
   )
 }
