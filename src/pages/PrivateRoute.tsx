@@ -1,7 +1,8 @@
 import { ConfirmModal } from '@/components'
-import { useUserInfo } from '@/hooks'
+import { useConfirm, useUserInfo } from '@/hooks'
 import { getUserId } from '@/utils'
 import Portal from '@/utils/portal'
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const PrivateRoute = ({
@@ -14,30 +15,40 @@ const PrivateRoute = ({
   const navigate = useNavigate()
   const isLoggedUser = getUserId()
   const { error } = useUserInfo()
+  const { openConfirm, isShow, closeConfirm } = useConfirm()
 
   if (error) {
     console.error('private route:', error)
   }
 
   const handleNavigateHome = () => {
+    closeConfirm()
     navigate('/home')
   }
   const handleNavigateEntry = () => {
+    closeConfirm()
     navigate('/entry')
   }
+  useEffect(() => {
+    if (!isLoggedUser && authentication) {
+      openConfirm('loginInduce')
+    }
+  }, [])
 
-  if (!isLoggedUser && authentication) {
-    return (
-      <Portal>
-        <ConfirmModal
-          onConfirmClick={handleNavigateEntry}
-          onCancelClick={handleNavigateHome}
-        />
-      </Portal>
-    )
-  }
-
-  return <LazyComponent />
+  return (
+    <>
+      {isShow ? (
+        <Portal>
+          <ConfirmModal
+            onConfirmClick={handleNavigateEntry}
+            onCancelClick={handleNavigateHome}
+          />
+        </Portal>
+      ) : (
+        <LazyComponent />
+      )}
+    </>
+  )
 }
 
 export default PrivateRoute

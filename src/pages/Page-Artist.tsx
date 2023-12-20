@@ -4,6 +4,7 @@ import {
   getArtistTopTracks,
   getRelatedArtists
 } from '@/api'
+import { Spinner } from '@/assets'
 import { ErrorComponent, Header, NavBar } from '@/components'
 import { ArtistImage, ArtistTopTrack, RelatedArtist } from '@/components/artist'
 import ArtistAlbumList from '@/components/artist/ArtistAlbumList'
@@ -41,7 +42,7 @@ const Artist = () => {
 
   const renderComponents = () => {
     if (isLoading) {
-      return <h1>로딩중...</h1>
+      return <Spinner />
     }
 
     if (isError) {
@@ -56,7 +57,7 @@ const Artist = () => {
         <ArtistTopTrack artist_topTracks={results[2].data} />
         <RelatedArtist
           artist_relatedArtistracks={results[3].data}
-          propsClass={currentTrack ? 'mb-160' : ''}
+          propsClass={currentTrack ? 'mb-160' : 'mb-80'}
         />
         <NavBar />
       </div>

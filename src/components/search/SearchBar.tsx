@@ -47,8 +47,11 @@ export const SearchBar = () => {
       ? (localStorage.getItem('recent') as string)
       : localStorage.setItem('recent', JSON.stringify([]))
 
-    const parseString =
-      JSON.parse(storedRecentSearchItem as string).filter(item => item !== input) || []
+    const parseString = storedRecentSearchItem
+      ? JSON.parse(storedRecentSearchItem as string).filter(
+          item => item !== input
+        )
+      : []
     const updatedSearchList = [input, ...parseString].slice(0, 6)
     localStorage.setItem('recent', JSON.stringify([...updatedSearchList]))
   }

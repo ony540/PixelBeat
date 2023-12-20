@@ -1,18 +1,26 @@
-import { ProfileForm } from '@/components/Profile'
+import { ConfirmModal } from '@/components'
+import { ProfileForm } from '@/components/profile'
+import { useConfirm } from '@/hooks'
 import { getUserId } from '@/utils'
+import Portal from '@/utils/portal'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 const ProfileEdit = () => {
   const isLoggedInUser = getUserId()
   const navigate = useNavigate()
+  const { openConfirm, closeConfirm } = useConfirm()
 
   useEffect(() => {
     if (!isLoggedInUser) {
-      alert('로그인이 필요한 페이지 입니다.')
-      navigate('/entry')
+      openConfirm('loginInduce')
     }
   }, [isLoggedInUser, navigate])
+
+  const handleNavigateEntry = () => {
+    closeConfirm()
+    navigate('/entry')
+  }
 
   return (
     <div className="desktop:px-60 mobile:px-20">
@@ -21,6 +29,9 @@ const ProfileEdit = () => {
         나중에 언제든지 변경할 수 있습니다.
       </h2>
       <ProfileForm />
+      <Portal>
+        <ConfirmModal onConfirmClick={handleNavigateEntry} />
+      </Portal>
     </div>
   )
 }

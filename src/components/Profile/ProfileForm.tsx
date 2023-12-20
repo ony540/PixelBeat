@@ -2,8 +2,13 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { StandardButton } from '@/components'
 import Profile from '@/assets/imgs/Profile.png'
-import { updateBill, updateOwnTracklist, updateProfile, uploadImageToStorage } from '@/api'
-import { ImageUploadForm, ProfileInputField } from '@/components/Profile'
+import {
+  updateBill,
+  updateOwnTracklist,
+  updateProfile,
+  uploadImageToStorage
+} from '@/api'
+import { ImageUploadForm, ProfileInputField } from '@/components/profile'
 import { useUserSession } from '@/hooks'
 import imageCompression from 'browser-image-compression'
 import { useRecommendStore } from '@/zustand'
@@ -91,8 +96,8 @@ export const ProfileForm = () => {
           getRandomColor(),
           `${minOwnerInfo.username}의 음악영수증 #1`
         )
-        await updateOwnTracklist([], initialStore.resultBillId,userId)
-        await updateOwnTracklist([], initialStore.resultBillId,userId)
+        await updateOwnTracklist([], initialStore.resultBillId, userId)
+        await updateOwnTracklist([], initialStore.resultBillId, userId)
       }
 
       if (updateRes) {
