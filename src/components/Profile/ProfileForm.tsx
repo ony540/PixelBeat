@@ -96,8 +96,11 @@ export const ProfileForm = () => {
           getRandomColor(),
           `${minOwnerInfo.username}의 음악영수증 #1`
         )
-        await updateOwnTracklist([], initialStore.resultBillId, userId)
-        await updateOwnTracklist([], initialStore.resultBillId, userId)
+        await updateOwnTracklist({
+          prevOwnTracklist: [],
+          billId: initialStore.resultBillId,
+          userId
+        })
       }
 
       if (updateRes) {

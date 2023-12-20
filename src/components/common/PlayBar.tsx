@@ -5,13 +5,15 @@ import Portal from '@/utils/portal'
 import { useNowPlayStore } from '@/zustand/nowPlayStore'
 import { useEffect } from 'react'
 import { Playnow } from './Playnow'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import defaultAlbumImg from '@/assets/imgs/default_album_artist.png'
 
 export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
   const navigate = useNavigate()
   const isPlaying = useNowPlayStore(state => state.isPlaying)
   const currentTrack = useNowPlayStore(state => state.currentTrack)
+  const { pathname } = useLocation()
+  const isShelfDetail = pathname.includes('shelf/')
 
   const { name, album, artists, preview_url } = currentTrack || {
     name: '',
@@ -122,7 +124,7 @@ export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
             <button
               type="button"
               className="w-24 mr-10 hover:text-mainGreen"
-              onClick={handleClickPrevButton}>
+              onClick={!isShelfDetail ? handleClickPrevButton : undefined}>
               <PrevPlay />
             </button>
             <button
@@ -134,7 +136,7 @@ export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
             <button
               type="button"
               className="w-24 hover:text-mainGreen"
-              onClick={handleClickNextButton}>
+              onClick={!isShelfDetail ? handleClickNextButton : undefined}>
               <NextPlay />
             </button>
           </section>

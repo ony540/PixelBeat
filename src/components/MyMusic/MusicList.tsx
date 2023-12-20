@@ -14,6 +14,7 @@ export const MusicList = () => {
   const userId = useUserStore(state => state.userInfo.id)
   const nowPlaylist = useUserStore(state => state.userInfo.nowplay_tracklist)
   const currentTrack = useNowPlayStore(state => state.currentTrack)
+  const setCurrentTrack = useNowPlayStore(state => state.setCurrentTrack)
   const [selectedTrack, setSelectedTrack] = useState<any>()
   const { modalType, closeModal } = useModal()
   const queryClient = useQueryClient()
@@ -37,6 +38,9 @@ export const MusicList = () => {
   const handleClickModelList = (e: React.MouseEvent<HTMLButtonElement>) => {
     switch (e.currentTarget.innerText) {
       case '삭제하기':
+        if (currentTrack && currentTrack.id === selectedTrack.id) {
+          setCurrentTrack(null)
+        }
         deleteTrackToNowPlayTableMutation.mutateAsync({
           prevNowPlayTracklist: nowPlaylist,
           track: selectedTrack,
@@ -76,7 +80,7 @@ export const MusicList = () => {
           </button>
         </section>
         <ul className="mx-auto w-full border min-h-[80vh] mb-140">
-          {nowPlaylist.tracks ? (
+          {nowPlaylist.tracks.length ? (
             nowPlaylist.tracks.map((track, idx) => (
               <MusicListItem
                 track={track}
@@ -86,7 +90,7 @@ export const MusicList = () => {
               />
             ))
           ) : (
-            <li className="flex items-center border-b-1 w-full h-62">
+            <li className="text-center w-full mt-40 ">
               추가된 재생목록이 없습니다
             </li>
           )}

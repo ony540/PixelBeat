@@ -16,13 +16,17 @@ export const getProfile = async userId => {
     throw error
   }
 }
-
-//내 빌지 업데이트
-export const updateOwnTracklist = async (
-  prevOwnTracklist: string[],
-  billId: string,
+export interface OwnTracklistProps {
+  prevOwnTracklist: string[]
+  billId: string
   userId: string
-) => {
+}
+//내 빌지 업데이트
+export const updateOwnTracklist = async ({
+  prevOwnTracklist,
+  billId,
+  userId
+}: OwnTracklistProps) => {
   const isAlreadyOwned = prevOwnTracklist.includes(billId)
   try {
     const { data } = await supabase
@@ -34,7 +38,6 @@ export const updateOwnTracklist = async (
       })
       .eq('id', userId)
       .select()
-
     return data
   } catch (error) {
     console.error('updateOwnPlaylist 중 오류 발생:', error)
@@ -194,7 +197,8 @@ export const deleteTrackToNowPlayTable = async ({
             item => item.id !== track!.id
           ),
           currentTrack:
-            prevNowPlayTracklist.currentTrack === track
+            prevNowPlayTracklist.currentTrack &&
+            prevNowPlayTracklist.currentTrack!.id === track.id
               ? null
               : prevNowPlayTracklist.currentTrack
         }

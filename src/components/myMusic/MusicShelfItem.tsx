@@ -8,7 +8,9 @@ export const MusicShelfItem = ({ data }) => {
   const navigate = useNavigate()
   const { id, name } = data
   const isSpotify = !data.analysis
-  const total = isSpotify ? data.tracks.items.length : data.tracks.length
+  const total = isSpotify
+    ? data.tracks.items.filter(item => item.track.preview_url).length
+    : data.tracks.filter(item => item.preview_url).length
 
   const handleClickPlaylist = () => {
     navigate(`/mymusic/shelf/${id}`)

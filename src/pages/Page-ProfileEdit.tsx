@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom'
 const ProfileEdit = () => {
   const isLoggedInUser = getUserId()
   const navigate = useNavigate()
-  const { openConfirm, closeConfirm } = useConfirm()
+  const { openConfirm, closeConfirm, isShow } = useConfirm()
 
   useEffect(() => {
     if (!isLoggedInUser) {
@@ -30,7 +30,7 @@ const ProfileEdit = () => {
       </h2>
       <ProfileForm />
       <Portal>
-        <ConfirmModal onConfirmClick={handleNavigateEntry} />
+        {isShow && <ConfirmModal onConfirmClick={handleNavigateEntry} />}
       </Portal>
     </div>
   )

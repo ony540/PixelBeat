@@ -165,6 +165,7 @@ export const usePlayAndPausePreview = () => {
   useEffect(() => {
     if (pathname && userInfo.id) {
       const { userInfo } = useUserStore.getState()
+      const { currentTrack, playingPosition } = useNowPlayStore.getState()
 
       setCurrentTrackAndPositionTableMutation.mutateAsync({
         prevNowPlayTracklist: userInfo.nowplay_tracklist,
