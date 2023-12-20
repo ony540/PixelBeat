@@ -15,6 +15,7 @@ export const ROUTES = [
   'Home',
   'Search',
   'MyMusic',
+  'MyMusicShelfDetail',
   'Album',
   'Artist',
   'Bill'
@@ -26,7 +27,6 @@ export const routeConfig: {
   RecommendEntry: { index: true, path: '/' },
   Recommend: { index: false, path: 'recommend/:id' },
   Search: { index: false, path: '/search' },
-  MyMusic: { index: false, path: 'mymusic/:id', authentication: true },
   Profile: { index: false, path: 'profile/:id', authentication: true },
   Bill: { index: false, path: 'bill/:id' },
   BillHasOwner: {
@@ -37,6 +37,8 @@ export const routeConfig: {
     index: false,
     path: 'bill/playlist/:id'
   },
+  MyMusic: { index: false, path: 'mymusic/:id', authentication: true },
+  MyMusicShelfDetail: { index: false, path: '/mymusic/shelf/:id' },
   Album: { index: false, path: 'album/:id' },
   Artist: { index: false, path: 'artist/:id' }
 }

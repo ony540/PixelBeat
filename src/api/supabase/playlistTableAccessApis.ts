@@ -99,16 +99,16 @@ export const updateBillLikes = async ({
   }
 }
 
-export const getBill = async (billId: string): Promise<TrackList | Error> => {
+export const getBill = async (billId: string): Promise<any> => {
   try {
     const { data } = await supabase
       .from('tracks_table')
       .select('*')
       .eq('id', billId)
-    return data![0] as TrackList
+    return data![0]
   } catch (error) {
     console.error('Error in getBill:', error)
-    throw error
+    return error
   }
 }
 

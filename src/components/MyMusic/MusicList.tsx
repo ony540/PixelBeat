@@ -14,12 +14,12 @@ export const MusicList = () => {
   const userId = useUserStore(state => state.userInfo.id)
   const nowPlaylist = useUserStore(state => state.userInfo.nowplay_tracklist)
   const currentTrack = useNowPlayStore(state => state.currentTrack)
-  const { modalType, closeModal } = useModal()
   const [selectedTrack, setSelectedTrack] = useState<any>()
+  const { modalType, closeModal } = useModal()
   const queryClient = useQueryClient()
 
-  const goToMusicRepo = () => {
-    navigate('/mymusic/bill')
+  const handelNavigateShelf = () => {
+    navigate('/mymusic/shelf')
   }
 
   const deleteTrackToNowPlayTableMutation = useMutation({
@@ -65,7 +65,7 @@ export const MusicList = () => {
             </button>
             <button
               className="musicList w-113 "
-              onClick={goToMusicRepo}>
+              onClick={handelNavigateShelf}>
               음악서랍
             </button>
           </div>
@@ -76,14 +76,20 @@ export const MusicList = () => {
           </button>
         </section>
         <ul className="mx-auto w-full border min-h-[80vh] mb-140">
-          {nowPlaylist.tracks.map((track, idx) => (
-            <MusicListItem
-              track={track}
-              key={track.id + idx}
-              setSelectedTrack={setSelectedTrack}
-              isSelected={currentTrack?.id == track.id}
-            />
-          ))}
+          {nowPlaylist.tracks ? (
+            nowPlaylist.tracks.map((track, idx) => (
+              <MusicListItem
+                track={track}
+                key={track.id + idx}
+                setSelectedTrack={setSelectedTrack}
+                isSelected={currentTrack?.id == track.id}
+              />
+            ))
+          ) : (
+            <li className="flex items-center border-b-1 w-full h-62">
+              추가된 재생목록이 없습니다
+            </li>
+          )}
         </ul>
       </div>
       <Portal>
