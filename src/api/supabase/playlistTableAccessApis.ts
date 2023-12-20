@@ -111,6 +111,7 @@ export const getBill = async (billId: string): Promise<TrackList | Error> => {
     throw error
   }
 }
+
 export const getRelatedBill = async (): Promise<TrackList[]> => {
   try {
     const { data } = await supabase

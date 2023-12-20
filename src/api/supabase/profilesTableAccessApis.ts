@@ -171,7 +171,7 @@ export const addNowPlayTracklistAndPlaySongTable = async ({
       .select('*')
 
     console.log(data![0].nowplay_tracklist.tracks)
-    //로컬스토리지에 직접 넣어주기 
+    //로컬스토리지에 직접 넣어주기
 
     return data![0]
   } catch (error) {

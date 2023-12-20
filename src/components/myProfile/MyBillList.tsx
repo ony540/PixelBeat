@@ -1,11 +1,22 @@
 import { MyProfileBillBtn, MiniBill, Heart } from '@/assets'
 import { SmallBill } from '.'
 import { useNavigate } from 'react-router-dom'
+import { useUserInfo } from '@/hooks'
 
 export const MyBillList = () => {
   const navigate = useNavigate()
+
+  const userProfile = useUserInfo().userInfo
+
+  console.log(userProfile?.own_tracklist)
+
+  // getBill
   const moveToLike = () => {
     navigate('/profile/like')
+  }
+
+  const moveToBill = id => {
+    navigate(`/bill/${id}`)
   }
 
   return (
@@ -47,9 +58,15 @@ export const MyBillList = () => {
                    mobile:gap-10 mobile:px-10 
                    desktop:gap-40 desktop:px-30
                    ">
-        <SmallBill />
-        <SmallBill />
-        <SmallBill />
+        {userProfile &&
+          userProfile?.own_tracklist.map(item => (
+            <div key={item}>
+              <SmallBill
+                onClick={moveToBill}
+                id={item}
+              />
+            </div>
+          ))}
       </div>
     </div>
   )

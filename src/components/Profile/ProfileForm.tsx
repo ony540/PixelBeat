@@ -1,10 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { StandardButton } from '@/components'
 import Profile from '@/assets/imgs/Profile.png'
-import { updateBill, updateOwnTracklist, updateProfile, uploadImageToStorage } from '@/api'
+import {
+  updateBill,
+  updateOwnTracklist,
+  updateProfile,
+  uploadImageToStorage
+} from '@/api'
 import { ImageUploadForm, ProfileInputField } from '@/components/Profile'
-import { useUserSession } from '@/hooks'
+import { useUserInfo, useUserSession } from '@/hooks'
 import imageCompression from 'browser-image-compression'
 import { useRecommendStore } from '@/zustand'
 import { getRandomColor } from '@/utils'
@@ -12,17 +17,31 @@ import { UserMin } from '@/types'
 const IMAGE_PATH = import.meta.env.VITE_SUPABASE_STORAGE_URL
 export const ProfileForm = () => {
   const userId = useUserSession()
+  const userProfile = useUserInfo()
   const navigate = useNavigate()
   const [selectedImage, setSelectedImage] = useState<any>(Profile)
   const [formState, setFormState] = useState({
     userName: '',
     userIntroduction: ''
   })
-  const initialStore = useRecommendStore(state => state.initialStore)
-
   const [validationErrors, setValidationErrors] = useState({
     userName: ''
   })
+
+  useEffect(() => {
+    if (userProfile.userInfo) {
+      setFormState({
+        userName: userProfile.userInfo.username,
+        userIntroduction: userProfile.userInfo.introduce
+      })
+
+      setValidationErrors({
+        userName: userProfile.userInfo.username
+      })
+    }
+  }, [userProfile.userInfo])
+
+  const initialStore = useRecommendStore(state => state.initialStore)
 
   const handleImageChange = async (file: File) => {
     const options = {
@@ -91,8 +110,8 @@ export const ProfileForm = () => {
           getRandomColor(),
           `${minOwnerInfo.username}의 음악영수증 #1`
         )
-        await updateOwnTracklist([], initialStore.resultBillId,userId)
-        await updateOwnTracklist([], initialStore.resultBillId,userId)
+        await updateOwnTracklist([], initialStore.resultBillId, userId)
+        await updateOwnTracklist([], initialStore.resultBillId, userId)
       }
 
       if (updateRes) {
