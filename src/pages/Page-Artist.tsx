@@ -56,7 +56,7 @@ const Artist = () => {
         <ArtistTopTrack artist_topTracks={results[2].data} />
         <RelatedArtist
           artist_relatedArtistracks={results[3].data}
-          propsClass={currentTrack ? 'mb-160' : ''}
+          propsClass={currentTrack ? 'mb-160' : 'mb-80'}
         />
         <NavBar />
       </div>
