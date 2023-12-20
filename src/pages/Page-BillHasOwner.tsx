@@ -1,8 +1,14 @@
 import { deleteBill, getBill } from '@/api'
 import { Spinner } from '@/assets'
-import { BillBoxHasOwner, BottomSheet, Header, NavBar } from '@/components'
+import {
+  BillBoxHasOwner,
+  BottomSheet,
+  ConfirmModal,
+  Header,
+  NavBar
+} from '@/components'
 import { BillButtonListSection } from '@/components/bill/BillButtonListSection'
-import { useModal } from '@/hooks'
+import { useConfirm, useModal } from '@/hooks'
 import { TrackList } from '@/types'
 import Portal from '@/utils/portal'
 import { useNowPlayStore, useRecommendStore, useUserStore } from '@/zustand'
@@ -14,6 +20,7 @@ const BillHasOwner = () => {
   const userInfo = useUserStore(state => state.userInfo)
   const { id: playlistId, userid: userId } = useParams<string>()
   const { openModal, modalType, closeModal } = useModal()
+  const { openConfirm, isShow } = useConfirm()
   const currentTrack = useNowPlayStore(state => state.currentTrack)
   const queryClient = useQueryClient()
   const navigate = useNavigate()
@@ -48,12 +55,15 @@ const BillHasOwner = () => {
   const handleClickMoreButton = () => {
     openModal('myBillMore')
   }
+  const handleDeleteBill = () => {
+    deleteBillMutation.mutateAsync(playlistId)
+  }
 
   // 수정하기 기능 추가 예정
   const handleClickModalButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     switch (e.currentTarget.innerText) {
       case '삭제하기':
-        deleteBillMutation.mutateAsync(playlistId)
+        openConfirm('delete')
         break
       default:
         return
@@ -82,6 +92,7 @@ const BillHasOwner = () => {
         {modalType === 'myBillMore' && (
           <BottomSheet onClick={handleClickModalButton} />
         )}
+        {isShow && <ConfirmModal onConfirmClick={handleDeleteBill} />}
       </Portal>
     </>
   )

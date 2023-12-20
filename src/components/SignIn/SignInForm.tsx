@@ -4,18 +4,15 @@ import { useNavigate } from 'react-router-dom'
 import { ConfirmModal, StandardButton } from '@/components'
 import { signinUser } from '@/api/supabase/pixelbeatAuthApis'
 import Portal from '@/utils/portal'
+import { useConfirm } from '@/hooks'
 
 export const SignInForm = () => {
   const navigate = useNavigate()
-  const [loginError, setLoginError] = useState(false)
+  const { openConfirm, isShow } = useConfirm()
   const [formState, setFormState] = useState({
     email: '',
     password: ''
   })
-
-  const handleErrorModal = () => {
-    setLoginError(!loginError)
-  }
 
   const { email, password } = formState
 
@@ -23,7 +20,7 @@ export const SignInForm = () => {
     e.preventDefault()
     const res = await signinUser(email, password)
     if (!res.user) {
-      setLoginError(!loginError)
+      openConfirm('loginFail')
       return
     }
 
@@ -60,14 +57,7 @@ export const SignInForm = () => {
         />
       </form>
 
-      {loginError && (
-        <Portal>
-          <ConfirmModal
-            onConfirmClick={handleErrorModal}
-            isLoginPage={true}
-          />
-        </Portal>
-      )}
+      <Portal>{isShow && <ConfirmModal />}</Portal>
     </div>
   )
 }

@@ -11,17 +11,22 @@ import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { addSavedTracklist } from '@/api'
 import { useUserStore } from '@/zustand'
 import { useNavigate } from 'react-router-dom'
+import Portal from '@/utils/portal'
+import { ConfirmModal } from '..'
+import { useConfirm } from '@/hooks'
 
 export const BillBox = ({ data }) => {
   const navigate = useNavigate()
   const { name, owner, images, tracks, id } = data
   const userInfo = useUserStore(state => state.userInfo)
   const queryClient = useQueryClient()
+  const { openConfirm, isShow, confirmType, closeConfirm } = useConfirm()
 
   //음악 서랍 저장
   const saveBillMutation = useMutation({
     mutationFn: addSavedTracklist,
     onSuccess() {
+      closeConfirm()
       queryClient.invalidateQueries({
         queryKey: ['profiles from supabase', userInfo.id]
       })
@@ -34,15 +39,22 @@ export const BillBox = ({ data }) => {
   //음악서랍에 저장
   const handleClickAddtoMusicShelfButton = () => {
     if (!userInfo.id) {
-      navigate('/entry')
+      openConfirm('loginInduce')
       return
     }
+    openConfirm('addOwnPlaylist')
+  }
 
+  const handleSaveBill = () => {
     saveBillMutation.mutateAsync({
       prevSavedTracklist: userInfo.saved_tracklist,
       billId: id,
       userId: userInfo.id
     })
+  }
+  const handleNavigateEntry = () => {
+    closeConfirm()
+    navigate('/entry')
   }
 
   const allTrackDuration = getAllTracksDuration({
@@ -127,6 +139,17 @@ export const BillBox = ({ data }) => {
         alt="바코드 이미지"
         className="mx-auto mt-24 mb-5"
       />
+      <Portal>
+        {isShow && (
+          <ConfirmModal
+            onConfirmClick={
+              confirmType === 'loginInduce'
+                ? handleNavigateEntry
+                : handleSaveBill
+            }
+          />
+        )}
+      </Portal>
     </div>
   )
 }
