@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { StandardButton } from '@/components'
+import { ConfirmModal, StandardButton } from '@/components'
 import Profile from '@/assets/imgs/Profile.png'
 import {
   updateBill,
@@ -14,11 +14,13 @@ import imageCompression from 'browser-image-compression'
 import { useRecommendStore } from '@/zustand'
 import { getRandomColor } from '@/utils'
 import { UserMin } from '@/types'
+
 const IMAGE_PATH = import.meta.env.VITE_SUPABASE_STORAGE_URL
 export const ProfileForm = () => {
   const userId = useUserSession()
   const userProfile = useUserInfo()
   const navigate = useNavigate()
+
   const [selectedImage, setSelectedImage] = useState<any>(Profile)
   const [formState, setFormState] = useState({
     userName: '',
@@ -115,7 +117,6 @@ export const ProfileForm = () => {
       }
 
       if (updateRes) {
-        alert('프로필 정상 변경 완료')
         navigate('/home')
       }
     } catch (error) {
@@ -124,40 +125,42 @@ export const ProfileForm = () => {
   }
 
   return (
-    <form
-      className="flex flex-col mobile:gap-20 desktop:gap-30 mt-8 justify-center items-center"
-      onSubmit={e => e.preventDefault()}>
-      <ImageUploadForm
-        onChange={handleImageChange}
-        selectedImage={selectedImage}
-      />
+    <>
+      <form
+        className="flex flex-col mobile:gap-20 desktop:gap-30 mt-8 justify-center items-center"
+        onSubmit={e => e.preventDefault()}>
+        <ImageUploadForm
+          onChange={handleImageChange}
+          selectedImage={selectedImage}
+        />
 
-      <ProfileInputField
-        name={'userName'}
-        label="닉네임"
-        value={formState.userName}
-        placeholder="픽셀비트"
-        onChange={handleTextChange}
-        valiationCheck={validationErrors.userName}
-      />
-      <ProfileInputField
-        name={'userIntroduction'}
-        label="자기소개"
-        value={formState.userIntroduction}
-        placeholder="자기소개를 적어주세요"
-        onChange={handleTextChange}
-      />
+        <ProfileInputField
+          name={'userName'}
+          label="닉네임"
+          value={formState.userName}
+          placeholder="픽셀비트"
+          onChange={handleTextChange}
+          valiationCheck={validationErrors.userName}
+        />
+        <ProfileInputField
+          name={'userIntroduction'}
+          label="자기소개"
+          value={formState.userIntroduction}
+          placeholder="자기소개를 적어주세요"
+          onChange={handleTextChange}
+        />
 
-      <StandardButton
-        onClick={editProfile}
-        type="submit"
-        propsClass="mx-auto mt-22 w-full
+        <StandardButton
+          onClick={editProfile}
+          type="submit"
+          propsClass="mx-auto mt-22 w-full
                     mobile:h-56 
                     desktop:h-60 "
-        text={'완료'}
-        disabled={isSubmitDisabled()}
-        fillColor={isSubmitDisabled() ? '' : '#57FF57'}
-      />
-    </form>
+          text={'완료'}
+          disabled={isSubmitDisabled()}
+          fillColor={isSubmitDisabled() ? '' : '#57FF57'}
+        />
+      </form>
+    </>
   )
 }

@@ -115,12 +115,12 @@ export interface NowPlayTrackProps {
   userId: string
 }
 
-//단순 재생목록에 추가 (아직 사용X)
+//단순 재생목록에 음악 1개 추가
 export const addNowPlayTracklistTable = async ({
   prevNowPlayTracklist,
-  tracks,
+  track,
   userId
-}: NowPlayTracksProps): Promise<any> => {
+}: NowPlayTrackProps): Promise<any> => {
   try {
     const { data } = await supabase
       .from('profiles')
@@ -128,10 +128,8 @@ export const addNowPlayTracklistTable = async ({
         nowplay_tracklist: {
           ...prevNowPlayTracklist,
           tracks: [
-            ...tracks,
-            ...prevNowPlayTracklist.tracks.filter(
-              item => tracks.findIndex(t => t.id === item.id) !== -1
-            )
+            track,
+            ...prevNowPlayTracklist.tracks.filter(item => track.id !== item.id)
           ]
         }
       })
@@ -171,7 +169,6 @@ export const addNowPlayTracklistAndPlaySongTable = async ({
       .select('*')
 
     console.log(data![0].nowplay_tracklist.tracks)
-    //로컬스토리지에 직접 넣어주기
 
     return data![0]
   } catch (error) {

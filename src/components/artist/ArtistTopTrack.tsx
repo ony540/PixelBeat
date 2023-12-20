@@ -1,9 +1,49 @@
 import { useState } from 'react'
 import { MenuIcon } from '@/assets'
-import { TrackItem } from '..'
+import { BottomSheet, TrackItem } from '..'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useNowPlayStore, useUserStore } from '@/zustand'
+import Portal from '@/utils/portal'
+import { useModal } from '@/hooks'
+import { addNowPlayTracklistTable } from '@/api'
+import { Track } from '@/types'
 
 export const ArtistTopTrack = ({ artist_topTracks }) => {
   const [visibleTracks, setVisibleTracks] = useState(5)
+  const addTrackToNowPlay = useNowPlayStore(state => state.addTrackToNowPlay)
+  const queryClient = useQueryClient()
+  const userInfo = useUserStore(state => state.userInfo)
+  const [selectedTrack, setSelectedTrack] = useState<Track>()
+  const { isShow, closeModal } = useModal()
+
+  const addNowPlayTracklistTableMutation = useMutation({
+    mutationFn: addNowPlayTracklistTable,
+    onSuccess() {
+      queryClient.invalidateQueries({
+        queryKey: ['profiles from supabase', userInfo.id]
+      })
+    },
+    onError(error) {
+      console.log(error)
+    }
+  })
+
+    //재생목록에 추가하기
+    const handleClickLModalItem = track => {
+      addTrackToNowPlay(track)
+  
+      //로그인 사용자일 경우 db에 useMutation 해야함
+      if (userInfo.id) {
+        addNowPlayTracklistTableMutation.mutateAsync({
+          prevNowPlayTracklist: userInfo.nowplay_tracklist,
+          track,
+          userId: userInfo.id
+        })
+      }
+  
+      closeModal()
+    }
+
   const loadMore = () => {
     setVisibleTracks(prevVisibleTracks => prevVisibleTracks + 5)
   }
@@ -21,6 +61,7 @@ export const ArtistTopTrack = ({ artist_topTracks }) => {
               <TrackItem
                 data={item}
                 key={item.id}
+                setSelectedTrack={setSelectedTrack}
               />
             ))}
         </ul>
@@ -32,6 +73,12 @@ export const ArtistTopTrack = ({ artist_topTracks }) => {
           </button>
         )}
       </div>
+      <Portal>
+        {isShow && (
+          <BottomSheet onClick={() => handleClickLModalItem
+            (selectedTrack)} />
+        )}
+      </Portal>
     </div>
   )
 }

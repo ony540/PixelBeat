@@ -1,4 +1,4 @@
-import { SignUpForm } from '@/components/SignUp'
+import { SignUpForm } from '@/components/signUp'
 import { getUserId } from '@/utils'
 import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'

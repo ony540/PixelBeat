@@ -1,26 +1,16 @@
 import { MoreIcon } from '@/assets'
 import defaultAlbumImg from '@/assets/imgs/default_album_artist.png'
 import { useModal } from '@/hooks'
-import Portal from '@/utils/portal'
 import { useNavigate } from 'react-router-dom'
-import { BottomSheet } from '..'
 
-export const PlaylistItem = ({ data }: any) => {
+export const PlaylistItem = ({ data, setSelectedPlaylist }: any) => {
   const navigate = useNavigate()
-  const { openModal, modalType } = useModal()
+  const { openModal } = useModal()
 
   const handleClickMoreButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.stopPropagation()
     openModal('playlistMore')
-  }
-
-  const handleClickLModalItem = e => {
-    e.stopPropagation()
-    //음악서랍에 저장하기
-
-    //비로그인유저면 로그인시키기
-    navigate('/entry')
-    //로그인유저일 경우에는 useMutation 해서추가
+    setSelectedPlaylist(data)
   }
 
   return (
@@ -47,11 +37,6 @@ export const PlaylistItem = ({ data }: any) => {
           </button>
         </div>
       </li>
-      <Portal>
-        {modalType === 'playlistMore' && (
-          <BottomSheet onClick={handleClickLModalItem} />
-        )}
-      </Portal>
     </>
   )
 }

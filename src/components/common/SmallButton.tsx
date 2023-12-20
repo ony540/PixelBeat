@@ -11,10 +11,12 @@ export const SmallButton = ({
 }) => {
   return (
     <button
+      type={'button'}
       onClick={onClick}
       className={propsClass}>
       <svg
-        // className="bg-mainWhite"
+        width="100%"
+        preserveAspectRatio="none"
         viewBox="0 0 81 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg">

@@ -1,6 +1,5 @@
 import { NowPlayList, Track } from '@/types'
 import { create } from 'zustand'
-import { devtools } from 'zustand/middleware'
 
 const initialStore: NowPlayList = {
   tracks: [],
@@ -9,20 +8,16 @@ const initialStore: NowPlayList = {
   playingPosition: 0
 }
 
-type NowPlayStore = {
-  tracks: Track[]
-  currentTrack: Track | null
-  isPlaying: boolean
-  playingPosition: number
-
-  setNowPlayStore: (nowPlayList: any) => void
-  setCurrentTrack: (track: Track) => void
-  toggleIsPlaying: () => void
-  setPlayingPosition: (playingPositon: any) => void
+type NowPlayStore = NowPlayList & {
+  setNowPlayStore: (nowPlayList: NowPlayList) => void
+  setCurrentTrack: (track: Track | null) => void
+  setPlayingPosition: (playingPosition: number) => void
   addTrackToNowPlay: (track: Track) => void
   deleteTrackToNowPlay: (trackId: string) => void
   setOrderNowPlay: (tracklist: Track[]) => void
   setNowPlayList: (tracklist: Track[]) => void
+  setIsPlaying: (isPlaying: boolean) => void
+  reset: () => void
 }
 
 export const nowPlayStore = set => ({
@@ -83,10 +78,12 @@ export const nowPlayStore = set => ({
       ...state,
       tracks: tracklist
     })),
-
   reset: () => {
-    set(initialStore)
+    set(state => ({
+      ...state,
+      ...initialStore
+    }))
   }
 })
 
-export const useNowPlayStore = create(devtools(nowPlayStore))
+export const useNowPlayStore = create<NowPlayStore>(nowPlayStore)

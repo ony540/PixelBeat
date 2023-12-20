@@ -1,6 +1,6 @@
 import defaultAlbumImg from '../../assets/imgs/default_album_artist.png'
 import { useNavigate } from 'react-router-dom'
-import { CirclePlay, RectangleVertax } from '@/assets'
+import { CirclePlay, RectangleVertax, Spinner } from '@/assets'
 
 //호버하면 재생버튼 나오고 클릭하면 다 지금 재생목록에 담기면서 바 나오기
 export const BannerItem = ({ result }) => {
@@ -23,7 +23,7 @@ export const BannerItem = ({ result }) => {
     navigate(`/bill/playlist/${id}`)
   }
 
-  if (result.isLoading) return <>loading..</>
+  if (result.isLoading) return <Spinner />
 
   return (
     <div className="group relative w-344 desktop:w-full h-383 ">

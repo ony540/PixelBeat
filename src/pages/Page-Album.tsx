@@ -1,4 +1,5 @@
 import { getAlbum } from '@/api'
+import { Spinner } from '@/assets'
 import { Header, NavBar, StandardButton } from '@/components'
 import { AlbumList } from '@/components/album'
 import { AlbumArtistInfo } from '@/components/album/AlbumArtistInfo'
@@ -28,7 +29,7 @@ const Album = () => {
     setCurrentTrack(billTracks[0])
   }
 
-  if (isLoading || isUserInfoLoading) return <>loading..</>
+  if (isLoading || isUserInfoLoading) return <Spinner />
   return (
     <>
       <Header type="album" />

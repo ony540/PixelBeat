@@ -12,8 +12,7 @@ export const RelatedArtist = ({ artist_relatedArtistracks, propsClass }) => {
   } = useSwipe()
 
   return (
-    <div
-      className={`mobile:px-20 desktop:px-60 mt-27 relative mb-80 ${propsClass}`}>
+    <div className={`mobile:px-20 desktop:px-60 mt-27 relative  ${propsClass}`}>
       <MenuIcon />
       <h1 className="absolute text-mainBlack mobile:top-4 mobile:left-60 desktop:top-5 desktop:left-130">
         관련 가수

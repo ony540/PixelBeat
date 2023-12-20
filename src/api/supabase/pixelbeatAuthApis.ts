@@ -1,9 +1,6 @@
 import { supabase } from '.'
 
-export const signUpSupabaseWithEmail = async (
-  email: string,
-  password: string
-) => {
+export const signUpSupabaseWithEmail: any = async ({ email, password }) => {
   try {
     const { data, error } = await supabase.auth.signUp({
       email,
@@ -40,6 +37,21 @@ export const signinUser = async (email: string, password: string) => {
     }
 
     return data
+  } catch (error: any) {
+    console.error('Unexpected error during sign-up:', error.message)
+    return error
+  }
+}
+
+export const signOutUser = async () => {
+  try {
+    const { error } = await supabase.auth.signOut()
+
+    if (error) {
+      console.error('Sign-up error:', error.message)
+    }
+
+    return error
   } catch (error: any) {
     console.error('Unexpected error during sign-up:', error.message)
     return error

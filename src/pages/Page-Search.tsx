@@ -14,7 +14,6 @@ const Search = () => {
         <SearchBar />
         <SearchResultWrap />
       </div>
-
       <NavBar />
     </>
   )

@@ -1,15 +1,38 @@
 import { MyProfileBillBtn, MiniBill, Heart } from '@/assets'
 import { SmallBill } from '.'
 import { useNavigate } from 'react-router-dom'
+import { useQuery } from '@tanstack/react-query'
+import { getBill } from '@/api'
+import { useUserInfo } from '@/hooks'
 
 export const MyLikeBillList = () => {
   const navigate = useNavigate()
+  const userProfile = useUserInfo().userInfo
   const moteToMe = () => {
     navigate('/profile/me')
   }
 
+  const QueryBillItem = ({ id }) => {
+    const { data }: any = useQuery({
+      queryKey: ['my-bill', id],
+      queryFn: () => getBill(id as string)
+    })
+
+    const totalDuration = data?.tracks.reduce(
+      (sum, item) => sum + item.duration_ms,
+      0
+    )
+
+    return (
+      <SmallBill
+        id={id}
+        duration_ms={totalDuration}
+      />
+    )
+  }
+
   return (
-    <div className="mobile:px-20 desktop:px-60 pt-24 h-screen">
+    <div className="mobile:px-20 desktop:px-60 pt-24 min-h-[80vh] mb-[200px]">
       <div className="flex flex-row">
         <div
           onClick={moteToMe}
@@ -51,7 +74,13 @@ export const MyLikeBillList = () => {
                      mobile:gap-10 mobile:px-10
                      desktop:gap-40 desktop:px-30
                      ">
-        <SmallBill />
+        {userProfile &&
+          userProfile?.liked_tracklist.map(item => (
+            <QueryBillItem
+              key={item}
+              id={item}
+            />
+          ))}
       </div>
     </div>
   )
