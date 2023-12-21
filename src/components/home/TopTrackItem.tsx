@@ -68,15 +68,15 @@ export const TopTrackItem = ({ tracks }) => {
       onMouseMove={handleDragMove}
       onMouseUp={handleDragEnd}
       onMouseLeave={handleDragEnd}
-      className="top-track-grid overflow-y-hidden h-295 mb-180 mt-16">
+      className="top-track-grid overflow-y-hidden h-295 mb-180 mt-8">
       {tracks &&
         tracks.map((item, idx) => (
           <li
-            className="group relative h-60 w-330 desktop:h-60 desktop:w-[450px] hover:bg-"
+            className="group relative h-60 w-330 desktop:h-60 desktop:w-[450px]"
             key={item + idx}>
             <StandardPixelBorder isHeight={66} />
             <div
-              className="w-48 h-48 absolute left-10 top-9  cursor-pointer"
+              className="w-48 h-48 absolute left-10 top-9 cursor-pointer"
               onClick={() => {
                 if (!isDrag) handleClickAlbum(item.track.album.id)
               }}>

@@ -11,6 +11,9 @@ export const MyLikeBillList = () => {
   const moteToMe = () => {
     navigate('/profile/me')
   }
+  const moveToBill = (id: string) => {
+    navigate(`/bill/${id}`)
+  }
 
   const QueryBillItem = ({ id }) => {
     const { data }: any = useQuery({
@@ -26,6 +29,8 @@ export const MyLikeBillList = () => {
     return (
       <SmallBill
         id={id}
+        onClick={() => moveToBill(id)}
+        track_length={data?.tracks.length}
         duration_ms={totalDuration}
       />
     )

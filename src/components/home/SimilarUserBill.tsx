@@ -15,7 +15,7 @@ export const SimilarUserBill = ({ data, isDrag }) => {
   const handleClickUser = (event: React.MouseEvent<HTMLHeadingElement>) => {
     if (!isDrag) {
       event.stopPropagation()
-      navigate(`/profile/${owner.userId}`)
+      navigate(`/bill/${id}/${owner.userId}`)
     }
   }
 
