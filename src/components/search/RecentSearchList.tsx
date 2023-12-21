@@ -46,7 +46,7 @@ export const RecentSearchList = ({
   }
 
   return (
-    <div className="absolute top-70 z-30 p-4 rounded mobile:w-[350px] desktop:w-[600px] bg-mainBlack">
+    <div className="absolute top-70 z-30 p-4 rounded w-[350px] desktop:w-[600px] bg-mainBlack">
       <div className="text-white mb-5 pt-4 px-8">최근 검색 기록</div>
 
       {decodedRecentSearchList.length > 0 ? (
@@ -58,7 +58,7 @@ export const RecentSearchList = ({
               className="mb-1 z-30 py-4 px-8 cursor-pointer hover:search-item-hover">
               <Xbutton
                 propsClass={
-                  'absolute mobile:right-20 mobile:mt-3 mobile:w-18 mobile:h-18 desktop:w-30 desktop:h-30 hover:search-item-hover'
+                  'absolute right-20 mt-3 w-18 h-18 desktop:w-30 desktop:h-30 hover:search-item-hover'
                 }
                 deleteItem={event => handleDeleteSearchQuery(event, idx)}
               />

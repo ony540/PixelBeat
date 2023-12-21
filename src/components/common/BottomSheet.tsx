@@ -17,7 +17,7 @@ export const BottomSheet = ({ onClick }: { onClick?: any }) => {
       onClick={closeModal}
       className={`fixed top-0 h-screen
                   flex items-center justify-center portal-background
-                  mobile:w-[390px] 
+                  w-[390px] 
                   desktop:w-[720px] 
                   left-1/2 -translate-x-1/2
                   ${
@@ -41,7 +41,7 @@ export const BottomSheet = ({ onClick }: { onClick?: any }) => {
                   <button
                     type="button"
                     className={` text-mainBlack hover:bg-mainBlack hover:text-mainWhite text-left w-full
-                  mobile:px-20 
+                  px-20 
                   desktop:px-60 p-12`}
                     onClick={onClick}>
                     {item}

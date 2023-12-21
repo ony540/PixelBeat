@@ -3,7 +3,7 @@ export const VisitorIcon = () => {
     <svg
       className="absolute z-10 
       desktop:top-13 desktop:left-31 desktop:w-35 desktop:h-35
-      mobile:top-15 mobile:left-18 mobile:w-30 mobile:h-30"
+      top-15 left-18 w-30 h-30"
       viewBox="0 0 30 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">

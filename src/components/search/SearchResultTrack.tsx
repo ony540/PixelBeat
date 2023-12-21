@@ -50,9 +50,9 @@ export const SearchResultTrack = ({ tracks }: { tracks?: any }) => {
 
   if (!tracks || tracks.items.length === 0) {
     return (
-      <div className="relative mobile:mt-22 desktop:mt-50">
+      <div className="relative mt-22 desktop:mt-50">
         <MenuIcon />
-        <h2 className="absolute text-mainBlack top-3 mobile:left-50 desktop:top-15 desktop:left-100">
+        <h2 className="absolute text-mainBlack top-3 left-50 desktop:top-15 desktop:left-100">
           음악
         </h2>
         <p>No Item</p>
@@ -65,11 +65,11 @@ export const SearchResultTrack = ({ tracks }: { tracks?: any }) => {
       <MenuIcon />
       <h2
         className="absolute text-mainBlack left-40 
-                    mobile:top-4 
+                    top-4 
                     desktop:top-5 desktop:left-80">
         음악
       </h2>
-      <div className="relative desktop:px-3 mobile:px-1 mt-4">
+      <div className="relative desktop:px-3 px-1 mt-4">
         <ul className="border-b-1">
           {tracks &&
             tracks.items.slice(0, visibleTracks).map(item => (

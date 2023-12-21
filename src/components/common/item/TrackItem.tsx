@@ -71,7 +71,7 @@ export const TrackItem = ({
     <li className="border-1 border-b-0 flex datas-center gap-10 hover:bg-mainGray300 relative group">
       <img
         onClick={() => handleClickAlbum(data.album.id)}
-        className="mobile:w-50 mobile:h-51 mr-4
+        className="w-50 h-51 mr-4
                  desktop:w-65 desktop:h-66 cursor-pointer"
         src={data.album.images[1] ? data.album.images[1].url : defaultAlbumImg}
         alt={`${data.name}.img`}

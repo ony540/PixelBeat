@@ -72,7 +72,7 @@ export const TopTrackItem = ({ tracks }) => {
       {tracks &&
         tracks.map((item, idx) => (
           <li
-            className="group relative mobile:h-60 mobile:w-330 desktop:h-60 desktop:w-[450px] hover:bg-"
+            className="group relative h-60 w-330 desktop:h-60 desktop:w-[450px] hover:bg-"
             key={item + idx}>
             <StandardPixelBorder isHeight={66} />
             <div
@@ -94,7 +94,7 @@ export const TopTrackItem = ({ tracks }) => {
               {idx + 1}
             </p>
             <div
-              className={`absolute whitespace-nowrap mobile:top-12 desktop:top-10 ${
+              className={`absolute whitespace-nowrap top-12 desktop:top-10 ${
                 idx >= 9 ? 'left-105' : 'left-90 desktop:left-100'
               } w-180 desktop:w-[280px] overflow-hidden text-18 desktop:text-20 leading-[1.2]`}>
               <div

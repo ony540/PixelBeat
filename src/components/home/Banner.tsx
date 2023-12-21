@@ -32,7 +32,7 @@ export const Banner = () => {
   }
 
   return (
-    <div className="mobile:px-23 desktop:px-60 relative">
+    <div className="px-23 desktop:px-60 relative">
       <Slider {...settings}>
         <ToRecommendBannerItem/>
         {queryResults.map((result, idx) => (

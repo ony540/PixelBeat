@@ -1,5 +1,6 @@
 import { ArrowDown, MoreIcon } from '@/assets'
 import { useNavigate } from 'react-router-dom'
+import Logo from '@/assets/imgs/Logo.png'
 
 type HeaderProps = {
   onClickLeftButton?: () => void
@@ -13,12 +14,16 @@ const HomeHeader = () => {
     navigate('/home')
   }
   return (
-    <header className="h-55 flex items-center mobile:px-20 desktop:px-60 ">
-      <div
+    <header className="h-55 desktop:h-62 flex items-center px-24 desktop:px-66">
+      <h1
         className="cursor-pointer"
         onClick={moveToHome}>
-        PIXELBEAT
-      </div>
+        <img
+          className="mx-auto w-62 desktop:w-70 "
+          src={Logo}
+          alt="logo image"
+        />
+      </h1>
     </header>
   )
 }
