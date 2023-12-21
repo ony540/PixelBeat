@@ -1,10 +1,7 @@
 export const Pop = () => {
-  // const size = 65
   return (
     <svg
       className="genre-icon-size"
-      // width={size}
-      // height={size}
       viewBox="0 0 62 58"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">
