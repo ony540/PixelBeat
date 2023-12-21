@@ -10,7 +10,6 @@ export const ArtistItem = ({ data,isDrag }: any) => {
       onClick={() => {if(!isDrag) navigate(`/artist/${data.id}`)}}>
       <div className="w-150 border-[1.4px] border-b-0  h-156 overflow-y-hidden">
         <img
-          loading="lazy"
           className="w-150 h-156"
           src={data.images[1] ? data.images[1].url : defaultAlbumImg}
           alt={`${data.name}.img`}

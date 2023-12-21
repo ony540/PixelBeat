@@ -89,7 +89,6 @@ const Bill = () => {
             </div>
           </section>
           <img
-            loading="lazy"
             src={barcodeImg}
             alt="바코드 이미지"
             className="mx-auto mt-24 mb-5"

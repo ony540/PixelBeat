@@ -1,4 +1,4 @@
-import { StandardPixelBorder, StandardVertex } from "@/assets";
+import { StandardPixelBorder, StandardVertex } from '@/assets'
 
 export const RecommendTrackItem = ({ id, onClick, track, isSelected }) => (
   <div
@@ -6,7 +6,6 @@ export const RecommendTrackItem = ({ id, onClick, track, isSelected }) => (
     className="relative mb-20 cursor-pointer"
     onClick={() => onClick(track.id)}>
     <img
-      loading="lazy"
       src={track.album.images[0].url}
       alt={`${track.name} + image`}
       className="w-48 h-48 absolute top-16 left-32 desktop:left-62"

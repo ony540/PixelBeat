@@ -72,10 +72,8 @@ export const BillButtonListSection = ({
   }
 
   const handleClickShareButton = () => {
-
-    const shareLink = `https://pixel-beat-alpha.vercel.app/
-    ${pathname}`
-    const text = '내 취향에 딱 맞는 음악영수증을 발급받고 공유해보세요. PixelBeat는 사용자의 응답에 따라 추천 음악 영수증을 제공해 음악 성향을 확인하고 다양한 음악을 접해볼 수 있는 플랫폼입니다'
+    const shareLink = `https://pixel-beat-alpha.vercel.app/${pathname}`
+    const text = '내 취향에 딱 맞는 음악영수증을 발급받고 공유해보세요'
     const title = 'PixelBeat 추천 음악영수증 발급받기'
 
     shareData({ url: shareLink, text, title })
@@ -88,12 +86,13 @@ export const BillButtonListSection = ({
         onClick={
           data ? handleClickPlayAllTrackButton : handleClickToLoginButton
         }
+        propsClass="w-full"
       />
       <StandardButton
         text={'공유하기'}
         onClick={handleClickShareButton}
         fillColor="#FFFF57"
-        propsClass="mt-12 mb-42"
+        propsClass="w-full mt-12 mb-42"
       />
     </section>
   )

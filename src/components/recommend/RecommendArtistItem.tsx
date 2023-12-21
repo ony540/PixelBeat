@@ -7,7 +7,6 @@ export const RecommendArtistItem = ({ artist, isSelected, onClick }) => (
     onClick={() => onClick(artist.id)}>
     <div className="relative">
       <img
-        loading="lazy"
         src={artist.images[0].url}
         alt={artist.name}
         className="w-48 h-48 absolute top-16 left-32 desktop:left-62 cursor-pointer"
