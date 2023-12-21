@@ -76,7 +76,7 @@ export const PlayBar = ({ propsClass }: { propsClass?: string }) => {
   return (
     <>
       <aside
-        className={`w-390 desktop:w-[720px] bg-mainBlack fixed left-[50%] translate-x-[-50%] ${propsClass}`}>
+        className={`w-392 desktop:w-[720px] bg-mainBlack fixed left-[50%] translate-x-[-50%] ${propsClass}`}>
         <ProgressBar audioRef={audioRef} />
         <audio
           ref={audioRef}

@@ -10,7 +10,7 @@ export const NavBar = () => {
   }
 
   return (
-    <div className="fixed bottom-0 mobile:w-[390px] pt-19 py-23 desktop:w-[720px] bg-mainBlack h-66">
+    <div className="fixed bottom-0 pt-19 py-23 w-390 desktop:w-[718px] bg-mainBlack h-66 desktop:border-e-1">
       <nav className="flex justify-around items-center desktop:px-40">
         {NAV_BAR_TEXT.map(({ icon: IconComponent, path }, idx) => (
           <div

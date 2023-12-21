@@ -120,13 +120,6 @@
   }
 }
 
-.flex-col-container {
-  display: flex;
-  overflow-x: auto; /* Enable horizontal scrolling */
-  max-width: 100%; /* Ensure it doesn't overflow the parent container */
-  height: 176px; /* Set a fixed height for the container */
-}
-
 /* 추천 로직 아이템 선택시 */
 .selected-item {
   color: theme(colors.mainGreen);
@@ -167,26 +160,6 @@
 }
 .bill-background-side:after {
   bottom: -15px;
-  transform: rotate(180deg);
-}
-
-.profileBill:before,
-.profileBill:after {
-  display: block;
-  content: '';
-  position: relative;
-  width: 100%;
-  background: url('./assets/imgs/smallBill.png') center / cover;
-  /* background-size: 100%; */
-  height: 17px;
-  background-repeat: no-repeat;
-}
-.profileBill:before {
-  top: -5px;
-  height: 17px;
-}
-.profileBill:after {
-  bottom: -5px;
   transform: rotate(180deg);
 }
 
@@ -298,100 +271,12 @@
   top: 100px;
   left: 60px;
 }
-.inputText {
-  width: 520px;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-.loginText {
-  width: 520px;
-}
+
 .musicListGreen {
   background: url(./assets/imgs/musicListGreen.png);
 }
 .musicList {
   background: url(./assets/imgs/musicList.png);
-}
-.album {
-  background: url(./assets/imgs/album.png) center / contain;
-}
-.more {
-  background: url(./assets/imgs/more.png) center / contain;
-}
-
-@media screen and (min-width: 390px) and (max-width: 720px) {
-  .inputText {
-    width: 320px;
-  }
-  .loginText {
-    width: 320px;
-  }
-  .container {
-    width: 32s0px;
-  }
-  .more {
-    left: 64px;
-  }
-  .moreCircle {
-    left: 120px;
-  }
-  .musicList {
-    z-index: 2;
-  }
-  .musicListGreen {
-    z-index: 2;
-  }
-
-  .profileBill {
-    margin-left: 6px;
-    margin-right: 6px;
-    background-repeat: no-repeat;
-  }
-  .headerArrow {
-    margin-left: -40px;
-  }
-  .headerMore {
-    right: -52px;
-    top: -8px;
-  }
-}
-
-@media screen and (max-width: 390px) {
-  .inputText {
-    width: 320px;
-  }
-  .loginText {
-    width: 320px;
-  }
-  .container {
-    width: 320px;
-  }
-  .more {
-    left: 84px;
-  }
-  .moreCircle {
-    left: 120px;
-  }
-  .listMenu {
-    left: 66px;
-    z-index: 1;
-  }
-  .musicListGreen {
-    z-index: 2;
-  }
-
-  .profileBill {
-    margin-left: 6px;
-    margin-right: 6px;
-  }
-  .headerArrow {
-    margin-left: -40px;
-  }
-  .headerMore {
-    right: -52px;
-    top: -8px;
-  }
 }
 
 .progressbar {
@@ -421,4 +306,29 @@
 .playnowCircle {
   background: url('./assets/imgs/playnowBtnBackground.png')
     theme(colors.mainBlack) center / 226px no-repeat;
+}
+
+.topbar {
+  background: url('./assets/imgs/topbar.png') center / 724px no-repeat;
+  height: 22.5px;
+}
+@keyframes textLoop {
+  0% {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0%, 0, 0);
+  }
+  100% {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+  }
+}
+.screen-bg {
+  background: url('./assets/imgs/screenBgGreen.png') -10% top / 50% repeat;
+  background-size: 50% 340px;
+  height: 100vh;
+  width: 200vw;
+}
+
+.flow-wrap {
+  animation: textLoop 11s linear infinite;
 }
