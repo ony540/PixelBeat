@@ -7,7 +7,7 @@ export const signUpSupabaseWithEmail = async ({ email, password }: any) => {
       password,
       options: {
         // 이메일 확인시 이동될 경로 설정
-        emailRedirectTo: 'http://localhost:5173/profile/edit'
+        emailRedirectTo: 'https://pixel-beat-alpha.vercel.app/profileedit'
       }
     })
 

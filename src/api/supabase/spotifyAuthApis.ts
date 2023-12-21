@@ -12,8 +12,8 @@ export const signInWithSpotify = async () => {
       options: {
         redirectTo: `${
           isLoggedInUser
-            ? 'http://localhost:5173/home'
-            : 'http://localhost:5173/signupgreeting'
+            ? 'https://pixel-beat-alpha.vercel.app/home'
+            : 'https://pixel-beat-alpha.vercel.app/signupgreeting'
         }`,
         scopes: scope
       }
