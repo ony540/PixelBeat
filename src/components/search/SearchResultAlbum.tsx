@@ -17,7 +17,7 @@ export const SearchResultAlbum = ({ albums }) => {
         <MenuIcon />
         <h2
           className="absolute text-mainBlack left-40 
-                    mobile:top-4 
+                    top-4 
                     desktop:top-5 desktop:left-80">
           앨범
         </h2>
@@ -31,12 +31,12 @@ export const SearchResultAlbum = ({ albums }) => {
       <MenuIcon />
       <h2
         className="absolute text-mainBlack left-40 
-                    mobile:top-4 
+                    top-4 
                     desktop:top-5 desktop:left-80">
         앨범
       </h2>
       <ul
-        className="flex overflow-x-auto relative mobile:gap-8 desktop:gap-16 overflow-y-hidden mt-8"
+        className="flex overflow-x-auto relative gap-8 desktop:gap-16 overflow-y-hidden mt-8"
         ref={scrollRef}
         onMouseDown={handleDragStart}
         onMouseMove={handleDragMove}

@@ -21,7 +21,7 @@ export const PlaylistItem = ({ data, setSelectedPlaylist }: any) => {
         onClick={() => navigate(`/bill/playlist/${data.id}`)}>
         <div className="border-1 border-b-0 flex items-center gap-10 ">
           <img
-            className="mobile:w-50 mobile:h-51 mr-4 
+            className="w-50 h-51 mr-4 
                  desktop:w-65 desktop:h-66"
             src={data.images[0] ? data.images[0].url : defaultAlbumImg}
             alt={`${data.name}.img`}

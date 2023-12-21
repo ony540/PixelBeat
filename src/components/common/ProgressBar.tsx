@@ -34,9 +34,9 @@ export const ProgressBar = ({
             left: `${
               isPlayNow
                 ? playingPosition
-                : playingPosition < 98.4
+                : playingPosition < 97.8
                   ? playingPosition
-                  : 98.4
+                  : 97.8
             }%`
           }}>
           <img

@@ -86,7 +86,7 @@ export const SearchBar = () => {
           ref={inputRef}
           placeholder="어떤 것을 듣고 싶으세요?"
           type="text"
-          className="absolute w-[70%] mobile:top-30 mobile:left-20 h-30 outline-none bg-mainBlack text-mainWhite"
+          className="absolute w-[70%] top-30 left-20 h-30 outline-none bg-mainBlack text-mainWhite"
         />
       )}
 

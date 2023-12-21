@@ -16,7 +16,6 @@ export const useModal = () => {
 
   const closeModal = useCallback(() => {
     setIsShow(false)
-    setModalType('')
   }, [setIsShow])
 
   useEffect(() => {
@@ -25,7 +24,10 @@ export const useModal = () => {
     if (isShow) {
       setIsVisible(true)
     } else {
-      modalTimer = setTimeout(() => setIsVisible(false), 250)
+      modalTimer = setTimeout(() => {
+        setIsVisible(false)
+        setModalType('')
+      }, 250)
     } // 0.25초뒤에 없어짐
 
     return () => {

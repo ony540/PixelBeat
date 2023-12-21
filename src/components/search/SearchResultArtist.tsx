@@ -17,7 +17,7 @@ export const SearchResultArtist = ({ artists }) => {
         <MenuIcon />
         <h2
           className="absolute text-mainBlack left-40 
-                    mobile:top-4 
+                    top-4 
                     desktop:top-5 desktop:left-80">
           가수
         </h2>
@@ -31,12 +31,12 @@ export const SearchResultArtist = ({ artists }) => {
       <MenuIcon />
       <h2
         className="absolute text-mainBlack left-40 
-                    mobile:top-4 
+                    top-4 
                     desktop:top-5 desktop:left-80">
         가수
       </h2>
       <ul
-        className="relative desktop:px-3 mobile:px-1 overflow-x-auto flex"
+        className="relative desktop:px-3 px-1 overflow-x-auto flex"
         ref={scrollRef}
         onMouseDown={handleDragStart}
         onMouseMove={handleDragMove}

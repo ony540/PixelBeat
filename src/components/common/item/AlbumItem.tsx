@@ -10,7 +10,7 @@ export const AlbumItem = ({ data, isDrag }: any) => {
       onClick={() => {
         if (!isDrag) navigate(`/album/${data.id}`)
       }}
-      className="flex-col mobile:w-150 mobile:h-176 flex-shrink-0 bg-mainGray cursor-pointer relative group">
+      className="flex-col w-150 h-176 flex-shrink-0 bg-mainGray cursor-pointer relative group">
       <RectangleVertax />
       {data.images && data.images.length > 0 && (
         <img

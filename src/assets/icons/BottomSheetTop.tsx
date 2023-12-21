@@ -2,7 +2,7 @@ export const BottomSheetTop = ({ onClick }: { onClick?: () => void }) => {
   return (
     <div className="relative">
       <svg
-        className="mobile:w-[390px] 
+        className="w-[390px] 
         desktop:w-[720px] "
         viewBox="0 0 390 29"
         fill="white"
@@ -18,8 +18,8 @@ export const BottomSheetTop = ({ onClick }: { onClick?: () => void }) => {
         type="button"
         onClick={onClick}
         className="absolute bg-mainBlack 
-                   desktop:w-100 desktop:h-6 mobile:top-15
-                   mobile:w-50 mobile:h-4 desktop:top-30 
+                   desktop:w-100 desktop:h-6 top-15
+                   w-50 h-4 desktop:top-30 
                    left-1/2 transform -translate-x-1/2"
       />
     </div>

@@ -16,12 +16,12 @@ export const AlbumArtistInfo = ({ album_data }) => {
   const allTrackDuration = getAllTracksDuration({ tracks: tracks.items })
   const { minutes, seconds } = msToMinutesAndSeconds(allTrackDuration)
 
-  const mobileImageSize = 'mobile:w-198 mobile:h-198'
+  const mobileImageSize = 'w-198 h-198'
   const desktopImageSize = 'desktop:w-300 desktop:h-300'
 
   return (
     <div
-      className="mobile:px-20 desktop:px-60"
+      className="px-20 desktop:px-60"
       key={id}>
       <div className="flex justify-center relative">
         <StandardVertex
@@ -33,15 +33,15 @@ export const AlbumArtistInfo = ({ album_data }) => {
           alt={name + 'image'}
         />
       </div>
-      <div className="relative w-full desktop:h-120 mobile:h-90 overflow-hidden">
+      <div className="relative w-full desktop:h-120 h-90 overflow-hidden">
         <h1
           className={`absolute
-                      mobile:text-40 mobile:top-10
+                      text-40 top-10
                       desktop:top-10 desktop:left-0 desktop:text-60
                      ${name.length >= 15 ? 'text-flow-on-hover' : ''}`}>
           {name}
         </h1>
-        <h2 className="absolute mobile:text-14 mobile:top-70 desktop:left-0 desktop:text-24 desktop:top-90">
+        <h2 className="absolute text-14 top-70 desktop:left-0 desktop:text-24 desktop:top-90">
           <p>
             {artists.map((artist, idx) => (
               <span

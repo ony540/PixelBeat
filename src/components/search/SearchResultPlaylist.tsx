@@ -70,7 +70,7 @@ export const SearchResultPlaylist = ({ playlists }) => {
     return (
       <div className="relative mt-22">
         <MenuIcon />
-        <h2 className="absolute text-mainBlack top-3 mobile:left-50 desktop:top-15 desktop:left-100">
+        <h2 className="absolute text-mainBlack top-3 left-50 desktop:top-15 desktop:left-100">
           음악영수증
         </h2>
         <p>No Item</p>
@@ -81,10 +81,10 @@ export const SearchResultPlaylist = ({ playlists }) => {
   return (
     <>
       <MenuIcon />
-      <h2 className="absolute text-mainBlack mobile:top-4 left-40 desktop:top-5 desktop:left-80">
+      <h2 className="absolute text-mainBlack top-4 left-40 desktop:top-5 desktop:left-80">
         음악영수증
       </h2>
-      <div className="desktop:px-3 mobile:px-1 mt-4">
+      <div className="desktop:px-3 px-1 mt-4">
         <ul className="border-b-1">
           {playlists &&
             playlists.items.slice(0, visibleTracks).map(item => (

@@ -49,7 +49,7 @@ export const AlbumList = ({ album_list }) => {
   }
 
   return (
-    <div className="mobile:px-20 desktop:px-60 mt-20 mx-auto ">
+    <div className="px-20 desktop:px-60 mt-20 mx-auto ">
       <ul className="border-b-1 relative">
         {album_list &&
           album_list.tracks.items.map(item => (

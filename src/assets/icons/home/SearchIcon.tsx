@@ -10,7 +10,7 @@ export const SearchIcon = ({
       onClick={onClick}
       className={`cursor-pointer 
       w-24 h-24 
-      ${isAbsolute && 'absolute'} mobile:right-15 mobile:top-32 `}
+      ${isAbsolute && 'absolute'} right-15 top-32 `}
       viewBox="0 0 24 24"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg">

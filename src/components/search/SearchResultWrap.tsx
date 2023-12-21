@@ -9,6 +9,7 @@ import { useSearchParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 import { Album, Artist, Track } from '@/types'
 import { Spinner } from '@/assets'
+import { useNowPlayStore } from '@/zustand'
 
 export interface SearchedData {
   tracks: Track[]
@@ -19,6 +20,7 @@ export interface SearchedData {
 export const SearchResultWrap = () => {
   const [query] = useSearchParams()
   const queryValue = query.get('q') as string
+  const currentTrack = useNowPlayStore(state => state.currentTrack)
 
   const { isLoading, data } = useQuery<
     SearchedData | Error,
@@ -52,7 +54,8 @@ export const SearchResultWrap = () => {
       )}
 
       {data && (
-        <div className="relative mt-28 mb-100">
+        <div
+          className={`relative mt-28 ${currentTrack ? 'mb-170' : 'mb-100'} `}>
           <SearchResultAlbum albums={data.albums} />
         </div>
       )}

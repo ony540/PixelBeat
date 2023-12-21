@@ -6,12 +6,12 @@ export const ArtistItem = ({ data,isDrag }: any) => {
 
   return (
     <li
-      className="my-6 mr-8 flex flex-col datas-center mobile:w-150 mobile:h-176 cursor-pointer group"
+      className="my-6 mr-8 flex flex-col datas-center w-150 h-176 cursor-pointer group"
       onClick={() => {if(!isDrag) navigate(`/artist/${data.id}`)}}>
-      <div className="mobile:w-150 border-[1.4px] border-b-0  mobile:h-156 overflow-y-hidden">
+      <div className="w-150 border-[1.4px] border-b-0  h-156 overflow-y-hidden">
         <img
           loading="lazy"
-          className="mobile:w-150 mobile:h-156"
+          className="w-150 h-156"
           src={data.images[1] ? data.images[1].url : defaultAlbumImg}
           alt={`${data.name}.img`}
         />
