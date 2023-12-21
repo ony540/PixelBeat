@@ -1,6 +1,5 @@
 import { Spinner } from '@/assets'
 import { PlayBar } from '@/components'
-import { MatrixBackground } from '@/components/common/MatrixBackground'
 import { ScreenBackground } from '@/components/common/ScreenBackground'
 import Portal from '@/utils/portal'
 import { useNowPlayStore, useUserStore } from '@/zustand'
@@ -20,7 +19,6 @@ export const Wrapper = () => {
 
   return (
     <div>
-      {/* <MatrixBackground /> */}
       <ScreenBackground />
       <div className="layout-screen-width bg-mainBlack relative z-1 desktop:border-x-[1.8px] middle:outline  desktop:outline-none desktop:pt-[22.5px]">
         <Suspense fallback={<Spinner />}>

@@ -19,12 +19,15 @@ import { getRandomColor } from '@/utils'
 import { UserMin } from '@/types'
 
 const IMAGE_PATH = import.meta.env.VITE_SUPABASE_STORAGE_URL
+
 export const ProfileForm = () => {
   const userId = useUserSession()
   const userProfile = useUserInfo()
   const navigate = useNavigate()
 
-  const [selectedImage, setSelectedImage] = useState<any>(Profile)
+  const [uploadedImage, setUploadedImage] = useState<any>(null)
+  const displayedImage = Profile
+
   const [formState, setFormState] = useState({
     userName: '',
     userIntroduction: ''
@@ -57,9 +60,9 @@ export const ProfileForm = () => {
     try {
       const compressedFile = await imageCompression(file, options)
       const selected = compressedFile.size < file.size ? compressedFile : file
-      setSelectedImage(selected)
+      setUploadedImage(selected)
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }
 
@@ -88,12 +91,19 @@ export const ProfileForm = () => {
 
   const editProfile = async () => {
     try {
-      const imageUploadResultUrl = await uploadImageToStorage(
-        selectedImage,
-        userId
-      )
+      // 이미지가 업로드된 경우에만 업로드 수정
+      let updatedImagePath = uploadedImage ? IMAGE_PATH : displayedImage
 
-      const updatedImagePath = `${IMAGE_PATH}${imageUploadResultUrl}`
+      if (uploadedImage) {
+        const imageUploadResultUrl = await uploadImageToStorage(
+          uploadedImage,
+          userId
+        )
+        updatedImagePath += imageUploadResultUrl
+      } else {
+        // 이미지가 업로드되지 않은 경우, 기존 이미지 유지
+        updatedImagePath = displayedImage
+      }
 
       const updateRes = await updateProfile(
         formState.userName.trim(),
@@ -102,7 +112,7 @@ export const ProfileForm = () => {
         userId
       )
 
-      //zustand에 bill있으면 owner추가
+      //  zustand에 bill있으면 owner추가
       if (initialStore.resultBillId) {
         const minOwnerInfo: UserMin = {
           userId,
@@ -130,6 +140,8 @@ export const ProfileForm = () => {
     }
   }
 
+  const selectedImageToShow = uploadedImage || displayedImage
+
   return (
     <>
       <form
@@ -137,7 +149,7 @@ export const ProfileForm = () => {
         onSubmit={e => e.preventDefault()}>
         <ImageUploadForm
           onChange={handleImageChange}
-          selectedImage={selectedImage}
+          selectedImage={selectedImageToShow}
         />
 
         <ProfileInputField
