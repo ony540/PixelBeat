@@ -7,7 +7,7 @@ const SignupWithEmail = () => {
   const navigate = useNavigate()
   const isLoggedInUser = getUserId()
   const Login = () => {
-    navigate('/login/email')
+    navigate('/signinwithemail')
   }
   const goBack = () => {
     navigate(-1)
