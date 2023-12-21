@@ -1,7 +1,7 @@
 import { shareData } from '@/utils'
 import { StandardButton } from '..'
 import { useNowPlayStore, useUserStore } from '@/zustand'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { addNowPlayTracklistAndPlaySongTable } from '@/api'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
@@ -23,6 +23,7 @@ export const BillButtonListSection = ({
   const userInfo = useUserStore(state => state.userInfo)
   const setUserInfo = useUserStore(state => state.setUserInfo)
   const queryClient = useQueryClient()
+  const { pathname } = useLocation()
 
   //전체 재생
   const addNowPlayTracklistAndPlaySongTableMutation = useMutation({
@@ -71,9 +72,13 @@ export const BillButtonListSection = ({
   }
 
   const handleClickShareButton = () => {
-    // 배포 후 수정(data타입으로 수정)
-    const shareLink = 'YOUR_SHARE_LINK'
-    shareData({ url: shareLink })
+
+    const shareLink = `https://pixel-beat-alpha.vercel.app/
+    ${pathname}`
+    const text = '내 취향에 딱 맞는 음악영수증을 발급받고 공유해보세요. PixelBeat는 사용자의 응답에 따라 추천 음악 영수증을 제공해 음악 성향을 확인하고 다양한 음악을 접해볼 수 있는 플랫폼입니다'
+    const title = 'PixelBeat 추천 음악영수증 발급받기'
+
+    shareData({ url: shareLink, text, title })
   }
 
   return (
@@ -88,7 +93,7 @@ export const BillButtonListSection = ({
         text={'공유하기'}
         onClick={handleClickShareButton}
         fillColor="#FFFF57"
-        propsClass="mx-auto mt-12 mb-42"
+        propsClass="mt-12 mb-42"
       />
     </section>
   )
