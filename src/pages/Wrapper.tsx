@@ -1,6 +1,5 @@
 import { Spinner } from '@/assets'
 import { PlayBar } from '@/components'
-import { MatrixBackground } from '@/components/common/MatrixBackground'
 import { ScreenBackground } from '@/components/common/ScreenBackground'
 import Portal from '@/utils/portal'
 import { useNowPlayStore, useUserStore } from '@/zustand'
