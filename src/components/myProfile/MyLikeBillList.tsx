@@ -37,7 +37,7 @@ export const MyLikeBillList = () => {
   }
 
   return (
-    <div className="mobile:px-20 desktop:px-60 pt-24 min-h-[80vh] mb-[200px]">
+    <div className="px-20 desktop:px-60 pt-24 min-h-[80vh] mb-[200px]">
       <div className="flex flex-row">
         <div
           onClick={moteToMe}
@@ -76,7 +76,7 @@ export const MyLikeBillList = () => {
       <div
         className="border-1 h-auto pb-24 grid min-h-[500px]
                      grid-cols-2 grid-auto-rows-auto justify-center
-                     mobile:gap-10 mobile:px-10
+                     gap-10 px-10
                      desktop:gap-40 desktop:px-30
                      ">
         {userProfile &&

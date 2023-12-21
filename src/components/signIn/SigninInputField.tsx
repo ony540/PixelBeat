@@ -32,7 +32,7 @@ export const SigninInputField = ({
         placeholder={placeholder}
         onChange={onChange}
         className=" border-b-2 bg-mainBlack outline-none
-                    mobile:w-[320px] mobile:p-4
+                    w-[320px] p-4
                     desktop:w-[600px] desktop:p-6
                   focus:border-mainGreen"
       />
@@ -41,7 +41,7 @@ export const SigninInputField = ({
           type="button"
           className=" absolute right-10 
                       desktop:top-75  
-                      mobile:top-55"
+                      top-55"
           onClick={togglePasswordHidden}>
           {isPasswordHidden ? <CloseEye /> : <Eye />}
         </button>

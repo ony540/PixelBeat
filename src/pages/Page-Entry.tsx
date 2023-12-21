@@ -34,29 +34,29 @@ const Entry = () => {
   }
 
   return (
-    <div className="mobile:px-20 desktop:px-60">
+    <div className="px-20 desktop:px-60">
       <img
         className="mx-auto 
-        mobile:w-280 mobile:mt-[20vh]
+        w-280 mt-[20vh]
         desktop:w-500 desktop:mt-[12vh]"
         src={Logo}
         alt="logo image"
       />
 
-      <div className="desktop:h-[18vh] mobile:h-[20vh]" />
+      <div className="desktop:h-[18vh] h-[20vh]" />
       <div className="relative flex flex-col gap-8 items-center">
         <SpotifyLoginButton
           onClick={handlesSignInWithSpotify}
           onMouseEnter={handleHover}
           onMouseLeave={handleHover}
-          propsClass={'mobile:w-356 mobile:h-56 desktop:w-[500px] desktop:h-60'}
+          propsClass={'w-356 h-56 desktop:w-[500px] desktop:h-60'}
         />
         <div className="absolute top-[-50px]">
           {isHovered && <SpotifyHover />}
         </div>
         <PixelBeatLoginButton
           onClick={moveToPixelBeatWithPixelBeat}
-          propsClass={'mobile:w-356 mobile:h-56 desktop:w-[500px] desktop:h-60'}
+          propsClass={'w-356 h-56 desktop:w-[500px] desktop:h-60'}
         />
         <div
           className="relative"
@@ -64,7 +64,7 @@ const Entry = () => {
           <VisitorIcon />
           <StandardButton
             propsClass={
-              'mobile:w-356 mobile:h-56 desktop:w-[500px] desktop:h-60 text-mainBlack'
+              'w-356 h-56 desktop:w-[500px] desktop:h-60 text-mainBlack'
             }
             fillColor="white"
             text="비회원으로 구경하기"

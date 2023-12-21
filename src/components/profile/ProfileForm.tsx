@@ -145,7 +145,7 @@ export const ProfileForm = () => {
   return (
     <>
       <form
-        className="flex flex-col mobile:gap-20 desktop:gap-30 mt-8 justify-center items-center"
+        className="flex flex-col gap-20 desktop:gap-30 mt-8 justify-center items-center"
         onSubmit={e => e.preventDefault()}>
         <ImageUploadForm
           onChange={handleImageChange}
@@ -172,7 +172,7 @@ export const ProfileForm = () => {
           onClick={editProfile}
           type="submit"
           propsClass="mx-auto mt-22 w-full
-                    mobile:h-56 
+                    h-56 
                     desktop:h-60 "
           text={'완료'}
           disabled={isSubmitDisabled()}

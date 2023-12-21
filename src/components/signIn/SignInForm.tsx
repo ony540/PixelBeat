@@ -40,7 +40,7 @@ export const SignInForm = () => {
   const isSubmitDisabled = () => !formState.email || !formState.password
 
   return (
-    <div className="mobile:px-20 desktop:px-60">
+    <div className="px-20 desktop:px-60">
       <form onSubmit={handleSignIn}>
         <InputSection
           formState={formState}
@@ -49,7 +49,7 @@ export const SignInForm = () => {
         <StandardButton
           type="submit"
           propsClass="mx-auto mt-22 w-full
-                    mobile:h-56 
+                    h-56 
                     desktop:h-60 "
           text={'다음'}
           disabled={isSubmitDisabled()}

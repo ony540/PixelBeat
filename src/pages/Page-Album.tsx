@@ -38,7 +38,7 @@ const Album = () => {
       <StandardButton
         text={'전체 재생하기'}
         onClick={handleClickPlayAllTrackButton}
-        propsClass="w-full mt-20 mb-160 mobile:px-14 desktop:px-52"
+        propsClass="w-full mt-20 mb-160 px-14 desktop:px-52"
       />
       <NavBar />
     </>

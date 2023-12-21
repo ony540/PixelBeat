@@ -20,13 +20,13 @@ const SignupWithEmail = () => {
   }, [isLoggedInUser, navigate])
 
   return (
-    <div className="mobile:px-20 desktop:px-60">
+    <div className="px-20 desktop:px-60">
       <h1 className="my-56 text-center text-24">이메일로 회원가입</h1>
       <SignUpForm />
       <div
         className="flex justify-center
                           desktop:text-18
-                          mobile:text-14
+                          text-14
                           py-10 ">
         <button
           onClick={Login}
