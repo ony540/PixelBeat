@@ -16,7 +16,7 @@ export const AlbumItem = ({ data, isDrag }: any) => {
         <img
           loading="lazy"
           className={`w-150 h-150 cursor-pointer`}
-          src={data.images[1].url || defaultAlbumImg}
+          src={data.images[1] ? data.images[1].url : defaultAlbumImg}
           alt={`${data.name}.img`}
         />
       )}

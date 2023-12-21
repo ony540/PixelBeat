@@ -56,7 +56,11 @@ export const Playnow = ({
         {/* 앨범이미지 */}
         <div className="relative min-w-224 w-[36vh] mx-auto aspect-square">
           <img
-            src={currentTrack!.album.images[0].url || defaultAlbumImg}
+            src={
+              currentTrack!.album.images[0]
+                ? currentTrack!.album.images[0].url
+                : defaultAlbumImg
+            }
             alt={currentTrack!.album.name}
           />
           <StandardVertex propsClass="min-w-224 w-[36.2vh] aspect-square absolute top-0 text-black" />

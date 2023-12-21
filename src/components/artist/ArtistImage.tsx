@@ -17,7 +17,7 @@ export const ArtistImage = ({ artist_info }) => {
               <img
                 loading="lazy"
                 className={`${imageSizeClass}`}
-                src={artist.images[1].url || defaultAlbumImg}
+                src={artist.images[1] ? artist.images[1].url : defaultAlbumImg}
                 alt={`${artist.name}.img`}
               />
             </div>
