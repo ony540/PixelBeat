@@ -66,6 +66,7 @@ export const BillBoxHasOwner = ({ data }) => {
       queryClient.invalidateQueries({
         queryKey: ['profiles from supabase', userInfo.id]
       })
+      openConfirm('savePlayList')
     },
     onError(error) {
       console.log(error)
