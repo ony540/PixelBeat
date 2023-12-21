@@ -1,7 +1,7 @@
 export const MenuIcon = () => {
   return (
     <svg
-      className="w-350 h-30 desktop:w-full desktop:h-40"
+      className="w-full h-30 desktop:w-full desktop:h-40"
       width="350"
       height="30"
       viewBox="0 0 350 30"

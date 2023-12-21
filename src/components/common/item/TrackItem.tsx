@@ -76,7 +76,7 @@ export const TrackItem = ({
         src={data.album.images[1] ? data.album.images[1].url : defaultAlbumImg}
         alt={`${data.name}.img`}
       />
-      <div className="flex flex-col overflow-hidden justify-center w-214 desktop:w-450 leading-[1.2] desktop:text-20 truncate">
+      <div className="flex flex-col overflow-hidden justify-center w-170 mobile:w-214 desktop:w-450 leading-[1.2] desktop:text-20 truncate">
         <p className={data.name.length > 20 ? 'text-flow-on-hover' : ''}>
           {data.name}
         </p>

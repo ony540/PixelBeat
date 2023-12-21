@@ -60,7 +60,6 @@ export const MyLikeBillList = () => {
         <div className="cursor-pointer relative flex">
           <MyProfileBillBtn
             type="submit"
-            propsClass=""
             height={35}
             textColor="black"
             text={'좋아요 영수증'}
@@ -74,11 +73,11 @@ export const MyLikeBillList = () => {
       </div>
 
       <div
-        className="border-1 h-auto pb-24 grid min-h-[500px]
-                     grid-cols-2 grid-auto-rows-auto justify-center
-                     gap-10 px-10
-                     desktop:gap-40 desktop:px-30
-                     ">
+        className="border-1 h-auto pb-40 grid min-h-[500px] 
+             grid-cols-2 grid-auto-rows-auto justify-center 
+             gap-x-6 gap-y-12 px-10 items-start
+             desktop:gap-20 desktop:px-30
+             justify-items-center">
         {userProfile &&
           userProfile?.liked_tracklist.map(item => (
             <QueryBillItem

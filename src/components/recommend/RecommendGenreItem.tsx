@@ -8,16 +8,20 @@ interface GenreItemProps {
   isSelected: boolean
 }
 
-export const RecommendGenreItem = ({ item, onClick, isSelected }: GenreItemProps) => (
+export const RecommendGenreItem = ({
+  item,
+  onClick,
+  isSelected
+}: GenreItemProps) => (
   <div
     onClick={() => onClick(GENRE_CATEGORY[item])}
     className={`cursor-pointer ${isSelected ? 'selected-item' : ''}`}>
     <div className="relative">
-      <div className="absolute genre-icon-position">
+      <div className="genre-icon-position">
         {FAVORITE_GENRE_ICON_MAPPING[item]}
       </div>
+      <div className="genre-text-size">{item}</div>
       <PixelBorder />
-      <div className="absolute genre-text-size">{item}</div>
     </div>
   </div>
 )

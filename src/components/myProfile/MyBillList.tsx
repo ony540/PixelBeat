@@ -74,10 +74,10 @@ export const MyBillList = () => {
 
       <div
         className="border-1 h-auto pb-40 grid min-h-[500px] 
-                   grid-cols-2 grid-auto-rows-auto justify-center 
-                   gap-10 px-10 
-                   desktop:gap-40 desktop:px-30
-                   ">
+             grid-cols-2 grid-auto-rows-auto justify-center 
+             gap-x-6 gap-y-12 px-10 items-start
+             desktop:gap-20 desktop:px-30
+             justify-items-center">
         {userProfile &&
           userProfile?.own_tracklist.map(item => (
             <QueryBillItem

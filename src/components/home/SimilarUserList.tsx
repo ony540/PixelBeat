@@ -33,7 +33,7 @@ export const SimilarUserList = () => {
         onMouseMove={handleDragMove}
         onMouseUp={handleDragEnd}
         onMouseLeave={handleDragEnd}
-        className="flex gap-x-4 overflow-x-auto mt-6">
+        className="flex gap-x-4 overflow-x-auto mt-6 ml-1">
         {data!.map(item => (
           <SimilarUserBill
             data={item}

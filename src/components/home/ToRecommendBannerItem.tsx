@@ -12,9 +12,9 @@ export const ToRecommendBannerItem = () => {
   }
 
   return (
-    <div className="relative w-344 desktop:w-full h-383 bg-mainGreen ">
+    <div className="relative w-full h-383 bg-mainGreen ">
       <div
-        className="w-full absolute h-385 top-[-1px] 
+        className="w-inherit absolute h-385 top-[-1px] 
 ">
         <RectangleVertax height="385" />
       </div>

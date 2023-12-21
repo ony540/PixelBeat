@@ -26,7 +26,7 @@ export const BannerItem = ({ result }) => {
   if (result.isLoading) return <Spinner />
 
   return (
-    <div className="group relative w-344 desktop:w-full h-383 ">
+    <div className="group relative w-full h-383 ">
       <div
         className="w-full absolute h-385 top-[-1px] group-hover:bg-mainBlackOpacity transition-all
 ">
