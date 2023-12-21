@@ -38,7 +38,8 @@ export default {
       },
       screens: {
         mobile: '390px',
-        desktop: '720px'
+        desktop: '720px',
+        middle: { minWidth: '390px', maxWidth: '720px' }
       }
     }
   },

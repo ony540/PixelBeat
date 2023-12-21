@@ -324,11 +324,15 @@
 }
 .screen-bg {
   background: url('./assets/imgs/screenBgGreen.png') -10% top / 50% repeat;
-  background-size: 50% 340px;
+  background-size: 100% 340px;
   height: 100vh;
-  width: 200vw;
+  width: 100vw;
+  flex: 0 0 auto;
+  animation: textLoop 12s linear infinite;
 }
 
 .flow-wrap {
-  animation: textLoop 11s linear infinite;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow: hidden;
 }

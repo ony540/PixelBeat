@@ -5,26 +5,24 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
-    "declaration": true, //컴파일시 .d.ts 파일도 자동으로 함께생성 (현재쓰는 모든 타입이 정의된 파일)
+    "declaration": true,
 
-    /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "esModuleInterop": true, //기본값 - false, CommonJS에서 존재하지 않는 기본 내보내기 설정
-    "removeComments": true, //컴파일시 주석제거
+    "esModuleInterop": true,
+    "removeComments": true,
     "noImplicitAny": false,
 
-    /* Linting */
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true, //함수에서 return 빼먹으면 에러내기
+    "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": "./", // baseUrl을 기준으로 관련된 위치에 모듈 이름의 경로 매핑 목록을 나열합니다.
+    "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"],
       "pages/*": ["src/pages/*"],
