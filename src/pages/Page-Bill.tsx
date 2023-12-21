@@ -42,7 +42,7 @@ const Bill = () => {
   {
     return (
       <>
-        <div className="bg-white w-354 text-mainBlack text-center mx-auto mt-42 mb-50 bill-background-side">
+        <div className="bg-white w-354 text-mainBlack text-center mx-auto mt-42 mb-50 bill-background-side ">
           <h1 className="text-52 leading-none">PIXEL BEAT</h1>
           <div
             className="my-0 mx-auto w-270 mt-[-20px] mb-[-18px] bg-no-repeat bg-[55.6%_54%] bg-[length:136px]"
@@ -77,7 +77,7 @@ const Bill = () => {
             </ul>
           </section>
 
-          <section className="bill-bottom-section">
+          <section className="bill-bottom-section ">
             <div className=" mx-16 py-8 border-y-2 border-dashed border-mainBlack text-14">
               <time className="block w-full text-left">
                 {formatDate(data?.created_at!)}
@@ -95,7 +95,7 @@ const Bill = () => {
             className="mx-auto mt-24 mb-5"
           />
         </div>
-        <BillButtonListSection propsClass={currentTrack ? 'mb-100' : ''} />
+        <BillButtonListSection propsClass={currentTrack ? 'mb-150' : ''} />
         {userInfo.id && <NavBar />}
       </>
     )

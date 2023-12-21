@@ -13,6 +13,7 @@ export const CONFIRM_TYPE = Object.freeze({
   로그인 하시겠습니까?`,
     '확인'
   ],
+  savePlayList: ['저장이 완료되었습니다.'],
   alreadyOwnPlaylist: ['이미 저장된 영수증입니다'],
   loginFail: [
     `로그인에 실패했습니다.
