@@ -12,7 +12,7 @@ import {
   updateProfile,
   uploadImageToStorage
 } from '@/api'
-import { useUserInfo, useUserSession } from '@/hooks'
+import { useConfirm, useUserInfo, useUserSession } from '@/hooks'
 import imageCompression from 'browser-image-compression'
 import { useRecommendResultStore } from '@/zustand'
 import { getRandomColor } from '@/utils'
@@ -28,6 +28,7 @@ export const ProfileForm = () => {
   const resetRecommendResultStore = useRecommendResultStore(
     state => state.resetRecommendResultStore
   )
+  const { openConfirm } = useConfirm()
 
   const [uploadedImage, setUploadedImage] = useState<any>(null)
   const displayedImage = Profile
@@ -137,7 +138,10 @@ export const ProfileForm = () => {
       if (updateRes) {
         navigate('/home')
       }
-    } catch (error) {
+    } catch (error: any) {
+      if (error.toString().includes('duplicate')) {
+        openConfirm('alreadyUserName')
+      }
       console.error('프로필 업데이트 중 오류 발생:', error)
     }
   }
