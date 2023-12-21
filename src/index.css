@@ -309,7 +309,7 @@
 }
 
 .topbar {
-  background: url('./assets/imgs/topbar.png') center / 724px no-repeat;
+  background: url('./assets/imgs/topBar.png') center / 724px no-repeat;
   height: 22.5px;
 }
 @keyframes textLoop {
