@@ -43,10 +43,8 @@ const Entry = () => {
         alt="logo image"
       />
 
-      <div
-        className="fixed flex flex-col gap-7
-                  top-[55vh]
-                  desktop:top-[61vh] items-center">
+      <div className="h-[18vh]" />
+      <div className="relative flex flex-col gap-8 items-center">
         <SpotifyLoginButton
           onClick={handlesSignInWithSpotify}
           onMouseEnter={handleHover}

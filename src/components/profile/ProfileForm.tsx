@@ -14,7 +14,7 @@ import {
 } from '@/api'
 import { useUserInfo, useUserSession } from '@/hooks'
 import imageCompression from 'browser-image-compression'
-import { useRecommendStore } from '@/zustand'
+import { useRecommendResultStore } from '@/zustand'
 import { getRandomColor } from '@/utils'
 import { UserMin } from '@/types'
 
@@ -24,6 +24,10 @@ export const ProfileForm = () => {
   const userId = useUserSession()
   const userProfile = useUserInfo()
   const navigate = useNavigate()
+  const resultBillId = useRecommendResultStore(state => state.resultBillId)
+  const resetRecommendResultStore = useRecommendResultStore(
+    state => state.resetRecommendResultStore
+  )
 
   const [uploadedImage, setUploadedImage] = useState<any>(null)
   const displayedImage = Profile
@@ -48,8 +52,6 @@ export const ProfileForm = () => {
       })
     }
   }, [userProfile.userInfo])
-
-  const initialStore = useRecommendStore(state => state.initialStore)
 
   const handleImageChange = async (file: File) => {
     const options = {
@@ -113,23 +115,23 @@ export const ProfileForm = () => {
       )
 
       //  zustand에 bill있으면 owner추가
-      if (initialStore.resultBillId) {
+      if (resultBillId) {
         const minOwnerInfo: UserMin = {
           userId,
           username: formState.userName.trim()
         }
-
         await updateBill(
-          initialStore.resultBillId,
+          resultBillId,
           minOwnerInfo,
           getRandomColor(),
           `${minOwnerInfo.username}의 음악영수증 #1`
         )
         await updateOwnTracklist({
           prevOwnTracklist: [],
-          billId: initialStore.resultBillId,
+          billId: resultBillId,
           userId
         })
+        resetRecommendResultStore()
       }
 
       if (updateRes) {

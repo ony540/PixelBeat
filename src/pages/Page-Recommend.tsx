@@ -6,7 +6,11 @@ import {
   TrackSelector,
   initialAnalysisObject
 } from '@/components'
-import { useRecommendStore, useUserStore } from '@/zustand'
+import {
+  useRecommendResultStore,
+  useRecommendStore,
+  useUserStore
+} from '@/zustand'
 import { useNavigate, useParams } from 'react-router-dom'
 import { TrackAnalysis } from '@/types'
 import { useMutation, useQuery } from '@tanstack/react-query'
@@ -28,8 +32,11 @@ const Recommend = () => {
   const navigate = useNavigate()
   const { id: currentPath = 'genre' } = useParams<string>()
   const initialStore = useRecommendStore(state => state.initialStore)
-  const { artist, genre, track } = initialStore
+  const setResultBillId = useRecommendResultStore(
+    state => state.setResultBillId
+  )
 
+  const { artist, genre, track } = initialStore
   const userInfo = useUserStore(state => state.userInfo)
 
   if (!isValidParamsId(currentPath)) {
@@ -77,6 +84,7 @@ const Recommend = () => {
         })
         navigate(`/bill/${data}/${userInfo.id}`)
       } else {
+        setResultBillId(data)
         navigate(`/bill/${data}`)
       }
     }
