@@ -25,7 +25,7 @@ export const SimilarUserList = () => {
     <div className="px-20 desktop:px-60 mt-53 relative">
       <MenuIcon />
       <h1 className="absolute text-mainBlack top-4 left-70 desktop:top-5 desktop:left-130">
-        나와 비슷한 모양의 친구
+        인기 영수증
       </h1>
       <ul
         ref={scrollRef}

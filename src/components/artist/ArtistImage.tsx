@@ -21,11 +21,11 @@ export const ArtistImage = ({ artist_info }) => {
                 alt={`${artist.name}.img`}
               />
             </div>
-            <div className="relative w-full desktop:h-120 h-90 overflow-hidden">
+            <div className="relative w-full desktop:h-120 h-90 overflow-hidden flex items-center">
               <h1
-                className={` absolute
-                             text-40 top-10
-                             desktop:top-10 desktop:left-0 desktop:text-60
+                className={`absolute
+                            text-40 top-10
+                            desktop:top-10 desktop:left-0 desktop:text-60
                             ${
                               artist.name.length >= 20
                                 ? 'text-flow-on-hover'
@@ -34,7 +34,7 @@ export const ArtistImage = ({ artist_info }) => {
                 {artist.name}
               </h1>
 
-              <h2 className="absolutetext-14 top-70 desktop:left-0 desktop:text-24 desktop:top-90">
+              <h2 className="absolute text-14 top-70 desktop:left-0 desktop:text-24 desktop:top-90">
                 팔로워: {artist.followers.total}명
               </h2>
             </div>

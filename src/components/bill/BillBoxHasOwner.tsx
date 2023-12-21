@@ -102,13 +102,13 @@ export const BillBoxHasOwner = ({ data }) => {
     }
 
     if (userInfo.saved_tracklist.includes(id)) {
+      openConfirm('alreadyOwnPlaylist')
+    } else {
       saveBillMutation.mutateAsync({
         prevSavedTracklist: userInfo.saved_tracklist,
         billId: id,
         userId: userInfo.id
       })
-    } else {
-      openConfirm('alreadyOwnPlaylist')
     }
   }
 
