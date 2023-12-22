@@ -1,6 +1,6 @@
 import { Spinner } from '@/assets'
 import { Header, NavBar } from '@/components'
-import { Banner, SimilarUserList, TopTrackList } from '@/components/home'
+import { Banner, PopularUserList, TopTrackList } from '@/components/home'
 import { useUserInfo } from '@/hooks'
 
 const Home = () => {
@@ -12,7 +12,7 @@ const Home = () => {
     <div className="relative h-screen overflow-y-auto">
       <Header />
       <Banner />
-      <SimilarUserList />
+      <PopularUserList />
       <TopTrackList />
       <NavBar />
     </div>

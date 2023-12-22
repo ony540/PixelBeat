@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom'
 import { BillGraph } from '..'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
 
-export const SimilarUserBill = ({ data, isDrag }) => {
+export const PopularUserBill = ({ data, isDrag }) => {
   const navigate = useNavigate()
   const { owner, analysis, color, id } = data
 

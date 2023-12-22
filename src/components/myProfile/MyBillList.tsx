@@ -1,7 +1,6 @@
 import { MyProfileBillBtn, MiniBill, Heart } from '@/assets'
 import { SmallBill } from '.'
 import { useNavigate } from 'react-router-dom'
-import { useUserInfo } from '@/hooks'
 import { useQuery } from '@tanstack/react-query'
 import { getBill } from '@/api'
 import { useUserStore } from '@/zustand'
