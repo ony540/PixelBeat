@@ -32,10 +32,7 @@ export const initialAnalysisObject: TrackAnalysis = {
 
 export const BillGraph = ({ analysisList, color, isSmall = false }) => {
   const chartRef = useRef<HTMLCanvasElement | null>(null)
-  const [windowSize, setWindowSize] = useState({
-    width: window.innerWidth,
-    height: window.innerHeight
-  })
+  const [windowWidthSize, setWindowWidthSize] = useState(window.innerWidth)
 
   if (!analysisList) {
     return <Spinner />
@@ -43,14 +40,10 @@ export const BillGraph = ({ analysisList, color, isSmall = false }) => {
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight
-      })
+      setWindowWidthSize(window.innerWidth)
     }
 
     window.addEventListener('resize', handleResize)
-
     return () => {
       window.removeEventListener('resize', handleResize)
     }
@@ -100,7 +93,7 @@ export const BillGraph = ({ analysisList, color, isSmall = false }) => {
     return () => {
       chartInstance.destroy()
     }
-  }, [analysisList, windowSize])
+  }, [analysisList, windowWidthSize])
 
   return (
     <canvas

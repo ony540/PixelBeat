@@ -26,7 +26,7 @@ export const BannerItem = ({ result }) => {
   if (result.isLoading) return <Spinner />
 
   return (
-    <div className="group relative w-344 desktop:w-full h-383 ">
+    <div className="group relative w-full h-383 ">
       <div
         className="w-full absolute h-385 top-[-1px] group-hover:bg-mainBlackOpacity transition-all
 ">
@@ -34,7 +34,7 @@ export const BannerItem = ({ result }) => {
       </div>
       <img
         className={`object-cover w-full h-383`}
-        src={images[0].url || defaultAlbumImg}
+        src={images[0] ? images[0].url : defaultAlbumImg}
         alt={name + 'image'}
       />
       <h2 className="opacity-0 group-hover:opacity-100 absolute left-40 top-40 w-270 leading-[1.1] text-36">

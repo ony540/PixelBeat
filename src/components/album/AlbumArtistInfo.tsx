@@ -29,7 +29,7 @@ export const AlbumArtistInfo = ({ album_data }) => {
         />
         <img
           className={` ${mobileImageSize} ${desktopImageSize}`}
-          src={images[0].url || defaultAlbumImg}
+          src={images[0] ? images[0].url : defaultAlbumImg}
           alt={name + 'image'}
         />
       </div>

@@ -86,7 +86,6 @@ export const TopTrackItem = ({ tracks }) => {
                     ? item.track.album?.images[2]?.url
                     : defaultAlbumImg
                 }
-                loading="lazy"
               />
               <StandardVertex propsClass="text-black absolute w-48 h-48 top-0" />
             </div>

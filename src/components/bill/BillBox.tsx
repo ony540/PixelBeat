@@ -90,7 +90,6 @@ export const BillBox = ({ data }) => {
       {/* 플리 이미지  */}
       <div className="my-20 mx-auto w-180 relative">
         <img
-          loading="lazy"
           src={images[0] ? images[0].url : defaultAlbumImg}
           alt={`${name}.img`}
         />

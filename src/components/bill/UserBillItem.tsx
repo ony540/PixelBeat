@@ -72,7 +72,11 @@ export const UserBillItem = ({
           onClick={handleClickAlbum}
           className="relative mr-8 cursor-pointer w-36">
           <img
-            src={track.album.images[2].url || defaultAlbumImg}
+            src={
+              track.album.images[2]
+                ? track.album.images[2].url
+                : defaultAlbumImg
+            }
             alt={track.album.name}
             className="h-36"
           />

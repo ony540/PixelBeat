@@ -1,9 +1,9 @@
 import { ConfirmModal } from '@/components'
-import { useConfirm, useUserInfo } from '@/hooks'
+import { useConfirm, useUserInfo, useUserSession } from '@/hooks'
 import { getUserId } from '@/utils'
 import Portal from '@/utils/portal'
 import { useEffect } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const PrivateRoute = ({
   authentication,
@@ -12,8 +12,10 @@ const PrivateRoute = ({
   authentication?: boolean
   LazyComponent?: any
 }): React.ReactElement => {
+  const { pathname } = useLocation()
   const navigate = useNavigate()
-  const isLoggedUser = getUserId()
+  const isLoggedUser =
+    pathname === '/profileedit' ? useUserSession() : getUserId()
   const { error } = useUserInfo()
   const { openConfirm, isShow, closeConfirm, confirmType } = useConfirm()
 

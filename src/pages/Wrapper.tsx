@@ -5,7 +5,8 @@ import Portal from '@/utils/portal'
 import { useNowPlayStore, useUserStore } from '@/zustand'
 import { Suspense } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
-const regexShow = /^(?!\/$|\/recommend|\/entry|\/profileedit).+/
+const regexShow =
+  /^(?!\/$|\/recommend|\/entry|\/signupwithemail|\/signinwithemail|\/profileedit).+/
 
 export const Wrapper = () => {
   const userId = useUserStore(state => state.userInfo.id)

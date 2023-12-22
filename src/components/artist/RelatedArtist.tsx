@@ -12,13 +12,13 @@ export const RelatedArtist = ({ artist_relatedArtistracks, propsClass }) => {
   } = useSwipe()
 
   return (
-    <div className={`mobile:px-20 desktop:px-60 mt-27 relative  ${propsClass}`}>
+    <div className={`px-20 desktop:px-60 mt-27 relative  ${propsClass}`}>
       <MenuIcon />
-      <h1 className="absolute text-mainBlack mobile:top-4 mobile:left-60 desktop:top-5 desktop:left-130">
+      <h1 className="absolute text-mainBlack top-4 left-60 desktop:top-5 desktop:left-130">
         관련 가수
       </h1>
 
-      <div className="relative desktop:px-3 mobile:px-1">
+      <div className="relative desktop:px-3 px-1">
         <ul
           ref={scrollRef}
           onMouseDown={handleDragStart}

@@ -25,7 +25,7 @@ export const ProfileInputField = ({
     <div>
       <label
         htmlFor={name}
-        className="mobile:text-16 desktop:text-20 text-mainWhite">
+        className="text-16 desktop:text-20 text-mainWhite">
         {label}
       </label>
       <input
@@ -38,7 +38,7 @@ export const ProfileInputField = ({
         value={value}
         onChange={onChange}
         className={`border-b-2 bg-mainBlack outline-none
-                    mobile:w-[350px] mobile:p-8
+                    w-[350px] p-8
                     desktop:w-[600px] desktop:p-8
                   focus:border-mainGreen
                   ${

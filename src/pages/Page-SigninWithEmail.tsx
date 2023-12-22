@@ -28,7 +28,7 @@ const SigninWithEmail = () => {
       <section
         className="flex justify-center
                           desktop:text-18
-                          mobile:text-14
+                          text-14
                           py-10 
       ">
         <button

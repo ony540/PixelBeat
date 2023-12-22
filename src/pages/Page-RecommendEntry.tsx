@@ -7,7 +7,7 @@ import { Spinner } from '@/assets'
 
 const RecommendEntry = () => {
   const navigate = useNavigate()
-  const { isLoading: isUserInfoLoading } = useUserInfo()
+  const { userInfo, isLoading: isUserInfoLoading } = useUserInfo()
 
   const moveToRecomend = () => {
     navigate('/recommend/genre')
@@ -16,31 +16,35 @@ const RecommendEntry = () => {
     navigate('/entry')
   }
 
+  const moveToHome = () => {
+    navigate('/home')
+  }
+
   if (isUserInfoLoading) return <Spinner />
-  
+
   return (
     <div className="flex flex-col items-center">
       <img
         className="mx-auto 
-        mobile:w-280 mobile:mt-[20vh]
+        w-280 mt-[20vh]
         desktop:w-500 desktop:mt-[12vh]"
         src={Logo}
         alt="logo image"
       />
       <div
         className="fixed flex flex-col gap-7
-                  mobile:top-[55vh]
+                  top-[55vh]
                   desktop:top-[61vh]">
         <StandardButton
-          propsClass={'mobile:w-356 mobile:h-56 desktop:w-[500px] desktop:h-60'}
+          propsClass={'w-356 h-56 desktop:w-[500px] desktop:h-60'}
           text={BUTTON_TEXT.ENTRY}
           onClick={moveToRecomend}
         />
         <StandardButton
-          propsClass={'mobile:w-356 mobile:h-56 desktop:w-[500px] desktop:h-60'}
+          propsClass={'w-356 h-56 desktop:w-[500px] desktop:h-60'}
           fillColor="#FFFF57"
-          text={BUTTON_TEXT.LOGIN}
-          onClick={moveToEntry}
+          text={userInfo ? '홈으로 가기' : BUTTON_TEXT.LOGIN}
+          onClick={userInfo ? moveToHome : moveToEntry}
         />
       </div>
     </div>
