@@ -137,12 +137,7 @@ export const BillBoxHasOwner = ({ data }) => {
               ...etc
             </p>
             <p>
-              Made by{' '}
-              <span
-                className="hover:underline cursor-pointer"
-                onClick={() => navigate(`/profile/${owner.userId}`)}>
-                {owner.username}
-              </span>
+              Made by <span>{owner.username}</span>
             </p>
           </div>
           <div className="flex items-center">
@@ -206,7 +201,6 @@ export const BillBoxHasOwner = ({ data }) => {
           </div>
         </section>
         <img
-          loading="lazy"
           src={barcodeImg}
           alt="바코드 이미지"
           className="mx-auto mt-24 mb-5"

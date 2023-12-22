@@ -68,7 +68,6 @@ const BillHasOwner = () => {
     }
   })
 
-
   const handleClickMoreButton = () => {
     openModal('myBillMore')
   }
@@ -96,7 +95,7 @@ const BillHasOwner = () => {
         onClickRightButton={handleClickMoreButton}
         isNoneMore={!userInfo.id || userInfo.id !== userId}
       />
-      <div className="w-390 desktop:w-[720px] h-52 bg-mainGreen pt-6">
+      <div className="w-full h-52 bg-mainGreen pt-6">
         <div className="w-376 bg-[#282828] h-20 rounded-[10px] mx-auto"></div>
       </div>
       <BillBoxHasOwner data={data} />

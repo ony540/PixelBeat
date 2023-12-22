@@ -7,7 +7,7 @@ export const MyProfileInfo = () => {
     <div
       className="bg-mainGreen w-full h-119 flex items-center 
                   desktop:px-60 
-                  mobile:px-20">
+                  px-20">
       <img
         className="w-90 h-90 ml-10"
         src={userInfo.avatar_url ? userInfo.avatar_url : Profile}

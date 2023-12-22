@@ -12,9 +12,9 @@ import {
   updateProfile,
   uploadImageToStorage
 } from '@/api'
-import { useUserInfo, useUserSession } from '@/hooks'
+import { useConfirm, useUserInfo, useUserSession } from '@/hooks'
 import imageCompression from 'browser-image-compression'
-import { useRecommendStore } from '@/zustand'
+import { useRecommendResultStore } from '@/zustand'
 import { getRandomColor } from '@/utils'
 import { UserMin } from '@/types'
 
@@ -24,6 +24,11 @@ export const ProfileForm = () => {
   const userId = useUserSession()
   const userProfile = useUserInfo()
   const navigate = useNavigate()
+  const resultBillId = useRecommendResultStore(state => state.resultBillId)
+  const resetRecommendResultStore = useRecommendResultStore(
+    state => state.resetRecommendResultStore
+  )
+  const { openConfirm } = useConfirm()
 
   const [uploadedImage, setUploadedImage] = useState<any>(null)
   const displayedImage = Profile
@@ -48,8 +53,6 @@ export const ProfileForm = () => {
       })
     }
   }, [userProfile.userInfo])
-
-  const initialStore = useRecommendStore(state => state.initialStore)
 
   const handleImageChange = async (file: File) => {
     const options = {
@@ -113,29 +116,32 @@ export const ProfileForm = () => {
       )
 
       //  zustand에 bill있으면 owner추가
-      if (initialStore.resultBillId) {
+      if (resultBillId) {
         const minOwnerInfo: UserMin = {
           userId,
           username: formState.userName.trim()
         }
-
         await updateBill(
-          initialStore.resultBillId,
+          resultBillId,
           minOwnerInfo,
           getRandomColor(),
           `${minOwnerInfo.username}의 음악영수증 #1`
         )
         await updateOwnTracklist({
           prevOwnTracklist: [],
-          billId: initialStore.resultBillId,
+          billId: resultBillId,
           userId
         })
+        resetRecommendResultStore()
       }
 
       if (updateRes) {
         navigate('/home')
       }
-    } catch (error) {
+    } catch (error: any) {
+      if (error.toString().includes('duplicate')) {
+        openConfirm('alreadyUserName')
+      }
       console.error('프로필 업데이트 중 오류 발생:', error)
     }
   }
@@ -145,7 +151,7 @@ export const ProfileForm = () => {
   return (
     <>
       <form
-        className="flex flex-col mobile:gap-20 desktop:gap-30 mt-8 justify-center items-center"
+        className="flex flex-col gap-20 desktop:gap-30 mt-8 justify-center items-center"
         onSubmit={e => e.preventDefault()}>
         <ImageUploadForm
           onChange={handleImageChange}
@@ -172,7 +178,7 @@ export const ProfileForm = () => {
           onClick={editProfile}
           type="submit"
           propsClass="mx-auto mt-22 w-full
-                    mobile:h-56 
+                    h-56 
                     desktop:h-60 "
           text={'완료'}
           disabled={isSubmitDisabled()}

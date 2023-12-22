@@ -8,6 +8,7 @@ import {
 } from '@/components'
 import barcodeImg from '@/assets/imgs/barcode.png'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
+import LogoBlack from '@/assets/imgs/LogoBlack.png'
 import { formatDate } from '@/utils'
 import { useNowPlayStore, useRecommendStore, useUserStore } from '@/zustand'
 import { TrackList } from '@/types'
@@ -43,7 +44,23 @@ const Bill = () => {
     return (
       <>
         <div className="bg-white w-354 text-mainBlack text-center mx-auto mt-42 mb-50 bill-background-side ">
-          <h1 className="text-52 leading-none">PIXEL BEAT</h1>
+          <h1 className="mx-auto my-20 w-200">
+            <img
+              src={LogoBlack}
+              alt="logo image"
+            />
+          </h1>
+          <div className="flex flex-col justify-center pl-14 mx-16 border-y-2 border-dashed border-mainBlack h-48  text-14 text-left leading-[1.2]">
+            <p className="truncate w-200 ">
+              {data!.tracks
+                .slice(0, 2)
+                .map(
+                  (item, idx) => `${item.artists[0].name}${idx < 1 && ', '}`
+                )}
+              ...etc
+            </p>
+            <p>Made by Unknown User</p>
+          </div>
           <div
             className="my-0 mx-auto w-270 mt-[-20px] mb-[-18px] bg-no-repeat bg-[55.6%_54%] bg-[length:136px]"
             style={{ backgroundImage: `url(${graphBgImg})` }}>
@@ -89,7 +106,6 @@ const Bill = () => {
             </div>
           </section>
           <img
-            loading="lazy"
             src={barcodeImg}
             alt="바코드 이미지"
             className="mx-auto mt-24 mb-5"

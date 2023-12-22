@@ -1,10 +1,8 @@
 export const RnB = () => {
-  // const size = 60
+
   return (
     <svg
       className="genre-icon-size"
-      // width={size}
-      // height={size}
       viewBox="0 0 53 53"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">

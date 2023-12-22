@@ -66,7 +66,7 @@ export const SignupInputField: React.FC<SignupInputFieldProps> = ({
         value={value}
         onChange={onChange}
         className={`border-b-2 bg-mainBlack outline-none
-        mobile:w-[320px] mobile:p-4
+        w-[320px] p-4
         desktop:w-[600px] desktop:p-6
         ${isValid ? 'focus:border-mainGreen' : 'focus:border-mainRed'}
         
@@ -82,7 +82,7 @@ export const SignupInputField: React.FC<SignupInputFieldProps> = ({
             }
           }}
           className="absolute right-10  text-gray-500
-          mobile:top-55
+          top-55
           desktop:top-63
           ">
           {isIconHidden ? <CloseEye /> : <Eye />}

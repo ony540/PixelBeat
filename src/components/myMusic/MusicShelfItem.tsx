@@ -40,7 +40,7 @@ export const MusicShelfItem = ({ data }) => {
         )}
         <StandardVertex propsClass="h-44 absolute top-0 text-mainBlack group-hover:text-mainGray300" />
       </div>
-      <p className="text-14 desktop:text-16 truncate w-230 group-hover:underline ">
+      <p className="text-14 desktop:text-16 truncate w-230 mobile:w-270 desktop:w-500 group-hover:underline ">
         {name} ({total})
       </p>
     </li>

@@ -1,12 +1,11 @@
 import {
   LikeCountProps,
   LikeProps,
-  getBill,
   updateBillLikes,
   updateLikedTracklist
 } from '@/api'
-import { StandardVertex, SmallBillSide, Spinner } from '@/assets'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { StandardVertex, SmallBillSide } from '@/assets'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { BillGraph, HeartButton } from '..'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
@@ -16,24 +15,17 @@ import { msToMinutesAndSeconds } from '@/utils'
 export const SmallBill = ({
   id,
   onClick,
-  duration_ms,
-  track_length
+  data
 }: {
-  duration_ms?: any
   id?: string
   onClick?: any
-  track_length?: number
+  data: any
 }) => {
   const userProfile = useUserStore(state => state.userInfo)
   const queryClient = useQueryClient()
   const [isHearted, setIsHearted] = useState(
     userProfile?.liked_tracklist.includes(id!)
   )
-
-  const { data, isLoading }: any = useQuery({
-    queryKey: ['my-bill', id],
-    queryFn: () => getBill(id as string)
-  })
 
   //좋아요
   const likeBillMutation = useMutation<any[], Error, LikeProps>({
@@ -76,18 +68,20 @@ export const SmallBill = ({
       userId: userProfile.id
     })
   }
-  if (isLoading) return <Spinner />
+
   const { name, likes } = data
 
-  const { minutes, seconds } = msToMinutesAndSeconds(Number(duration_ms))
-  console.log()
+  const totalDuration = data?.tracks.reduce(
+    (sum, item) => sum + item.duration_ms,
+    0
+  )
+
+  const { minutes, seconds } = msToMinutesAndSeconds(Number(totalDuration))
 
   return (
     <div
-      className="bg-mainWhite mt-30 relative 
-      text-mainBlack text-center
-        mobile:w-162 mobile:h-200 
-        desktop:w-[250px] desktop:h-[300px]">
+      className="bg-mainWhite mt-30 relative w-150 h-200 text-center text-mainBlack 
+                desktop:w-[250px] desktop:h-[300px]">
       <SmallBillSide className="absolute top-[-15px]" />
 
       {data && (
@@ -96,21 +90,21 @@ export const SmallBill = ({
             onClick={() => onClick(id)}
             className=" flex flex-col mx-auto text-center overflow-hidden
                         cursor-pointer hover:underline
-                        desktop:text-20 desktop:w-180 desktop:h-60 desktop:mt-15
-                        mobile:text-14 mobile:w-140 mobile:h-38 mobile:mt-10">
+                        desktop:text-20 desktop:w-180 desktop:h-60 desktop:mt-15                        
+                        text-14 w-140 h-38
+                        ">
             {name || `${data?.owner?.username}의 영수증`}
           </p>
 
           <div
-            className="flex-col 
-                      mobile:w-100 mobile:h-100 mobile:mt-10
+            className="flex-col w-100 h-100 mt-10
                       desktop:w-160 desktop:h-160 desktop:mt-0
                       relative mx-auto">
             <StandardVertex propsClass={`absolute text-mainWhite`} />
 
             <div
               className="my-0 mx-auto bg-no-repeat bg-[43%_-10%] 
-              mobile:w-100 mobile:mt-0 mobile:bg-[length:100px]
+              w-100 mt-0 bg-[length:98px]
               desktop:w-132 desktop:mt-14 desktop:bg-[length:129px]"
               style={{ backgroundImage: `url(${graphBgImg})` }}>
               <BillGraph
@@ -124,10 +118,12 @@ export const SmallBill = ({
           <div
             className="flex justify-between items-center border-y border-dashed
                   desktop:mx-25 desktop:mt-0 desktop:py-20 desktop:h-20
-                  mobile:mx-11 mobile:mt-10 
+                  mx-11 mt-10 py-2
                  border-mainBlack ">
-            <p className="mobile:text-16 desktop:text-20 desktop:ml-10 flex items-center">
-              {`${track_length}곡 • ${minutes}분 ${seconds}초`}
+            <p
+              className="text-14 flex items-center
+            desktop:text-20 desktop:ml-10">
+              {`${data?.tracks.length}곡 • ${minutes}분 ${seconds}초`}
             </p>
             <HeartButton
               isHearted={isHearted}

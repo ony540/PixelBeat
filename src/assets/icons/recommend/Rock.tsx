@@ -1,10 +1,7 @@
 export const Rock = () => {
-  // const size = 60
   return (
     <svg
       className="genre-icon-size"
-      // width="37"
-      // height="48"
       viewBox="-5 0 48 50"
       fill="none"
       xmlns="http://www.w3.org/2000/svg">

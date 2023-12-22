@@ -29,7 +29,7 @@ export const ImageUploadForm = ({ onChange, selectedImage }) => {
   return (
     <div>
       <div
-        className={`relative overflow-hidden mobile:w-116 mobile:h-116 desktop:w-200 desktop:h-200`}>
+        className={`relative overflow-hidden w-116 h-116 desktop:w-200 desktop:h-200`}>
         <img
           src={imagePreviewUrl || selectedImage}
           alt="프로필 이미지 미리보기"
@@ -49,7 +49,7 @@ export const ImageUploadForm = ({ onChange, selectedImage }) => {
         <div className="relative">
           <ImageUploadButton
             propsClass="absolute cursor-pointer 
-                        mobile:h-36 mobile:top-[-20px] mobile:right-[-20px] 
+                        h-36 top-[-20px] right-[-20px] 
                         desktop:h-60 desktop:top-[-40px] desktop:right-[-30px]"
           />
         </div>

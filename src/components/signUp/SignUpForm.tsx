@@ -143,7 +143,7 @@ export const SignUpForm = () => {
       />
       <StandardButton
         propsClass="mx-auto mt-22 w-full
-          mobile:h-56 
+          h-56 
           desktop:h-60 "
         text={'다 음'}
         onClick={MakeProFile}

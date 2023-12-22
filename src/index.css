@@ -53,6 +53,10 @@
   position: absolute;
 }
 
+.w-inherit {
+  width: inherit;
+}
+
 @layer components {
   .layout-screen-width {
     @apply mx-auto h-screen overflow-y-auto;
@@ -71,7 +75,7 @@
   }
 
   .genre-icon-size {
-    @apply w-60 h-60;
+    @apply w-50 h-50;
 
     @screen mobile {
       width: 60px;
@@ -86,9 +90,10 @@
 
   .genre-icon-position {
     @apply absolute left-[50%] translate-x-[-50%];
+    position: absolute;
+    top: 30px;
 
     @screen mobile {
-      position: absolute;
       top: 30px;
     }
 
@@ -99,12 +104,14 @@
   }
 
   .genre-text-size {
-    @apply absolute left-[50%] translate-x-[-50%] whitespace-nowrap;
+    @apply absolute left-[50%] translate-x-[-50%] whitespace-nowrap bottom-4;
+
+    font-size: 16px;
 
     @screen mobile {
-      font-size: 16px;
       bottom: 15px;
     }
+
     @screen desktop {
       font-size: 28px;
       bottom: 20px;
@@ -304,12 +311,30 @@
 }
 
 .playnowCircle {
+  @apply w-full fixed flex flex-col justify-between items-center px-13  bottom-12 gap-20 py-20;
+
   background: url('./assets/imgs/playnowBtnBackground.png')
-    theme(colors.mainBlack) center / 226px no-repeat;
+    theme(colors.mainBlack) center / 200px no-repeat;
+
+  @screen mobile {
+    background-size: 226px;
+    bottom: 20px;
+    gap: 32px;
+  }
+
+  @screen desktop {
+    background-size: 226px;
+    bottom: 20px;
+    gap: 32px;
+  }
+}
+
+.playnowBtn {
+  @apply w-36 hover:text-mainGreen;
 }
 
 .topbar {
-  background: url('./assets/imgs/topbar.png') center / 724px no-repeat;
+  background: url('./assets/imgs/topBar.png') center / 724px no-repeat;
   height: 22.5px;
 }
 @keyframes textLoop {

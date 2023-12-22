@@ -6,14 +6,12 @@ export interface RecommendStoreType {
   genre: string[]
   artist: string[]
   track: string[]
-  resultBillId: string | null
 }
 
 const initialStore: RecommendStoreType = {
   genre: [],
   artist: [],
-  track: [],
-  resultBillId: null
+  track: []
 }
 
 type RecommendStore = {
@@ -21,7 +19,6 @@ type RecommendStore = {
   selectGenre: (selectedGenre: string) => void
   selectArtist: (selectedArtistId: string) => void
   selectTrack: (selectedTrackId: string) => void
-  setResultBillId: (resultBillId: string) => void
   resetRecommendStore: () => void
 }
 
@@ -72,14 +69,6 @@ export const useRecommendStore = create<RecommendStore>(set => ({
         )
       }
     })),
-  setResultBillId: (resultBillId: string) => {
-    set(state => ({
-      initialStore: {
-        ...state.initialStore,
-        resultBillId: resultBillId
-      }
-    }))
-  },
   resetRecommendStore: () => {
     set(() => ({
       initialStore: initialStore
