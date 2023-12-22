@@ -9,7 +9,7 @@ export const RectangleVertax = ({ height }: { height?: string }) => {
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="none">
       <mask
-        id="mask0_1093_20084"
+        id="mask0_1669_35829"
         style={{ maskType: 'alpha' }}
         maskUnits="userSpaceOnUse"
         x="0"
@@ -17,112 +17,35 @@ export const RectangleVertax = ({ height }: { height?: string }) => {
         width="150"
         height="176">
         <rect
+          x="0.000488281"
           width="150"
           height="176"
           fill="#D9D9D9"
         />
       </mask>
-      <g mask="url(#mask0_1093_20084)">
-        <rect
-          x="1.79395"
-          y="-3.46387"
-          width="4.01693"
-          height="11.5982"
+      <g mask="url(#mask0_1669_35829)">
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M9 -4H-3V3H-2.22021V8.13477H-6.23877V12.0008H1.79509V11.9995H1.79672V8.13431H5.81137V3H9V-4Z"
           fill="black"
         />
-        <rect
-          x="-3.00049"
-          y="-4"
-          width="12"
-          height="7"
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M144.704 -4.36328V-7.33008H140.631L140.631 0.295666H140.635L140.635 1.5692H143.758L143.758 5.38025H146.884L146.884 10.4661H152.851V11.7341H160.997V4.1084H155.977V1.5692H156.26V-4.36328L144.704 -4.36328Z"
           fill="black"
         />
-        <rect
-          x="-2.2207"
-          y="0.401367"
-          width="4.01693"
-          height="11.5982"
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M156.755 170.402L156.755 162L147.38 162L147.38 170.402L156.755 170.402ZM153.636 173.204V170.403L141.136 170.403L141.136 173.203L138 173.203L138 176.003L150.5 176.003V173.204L153.636 173.204Z"
           fill="black"
         />
-        <rect
-          x="-6.23926"
-          y="8.13477"
-          width="8.03386"
-          height="3.86606"
-          fill="black"
-        />
-        <rect
-          x="155.976"
-          y="1.56738"
-          width="3.81287"
-          height="12.2189"
-          transform="rotate(90 155.976 1.56738)"
-          fill="black"
-        />
-        <rect
-          x="153.133"
-          y="1.56738"
-          width="8.89872"
-          height="6.24998"
-          transform="rotate(90 153.133 1.56738)"
-          fill="black"
-        />
-        <rect
-          x="156.259"
-          y="-4.36328"
-          width="5.93248"
-          height="15.625"
-          transform="rotate(90 156.259 -4.36328)"
-          fill="black"
-        />
-        <rect
-          x="144.703"
-          y="-7.33008"
-          width="7.62574"
-          height="4.07296"
-          transform="rotate(90 144.703 -7.33008)"
-          fill="black"
-        />
-        <rect
-          width="8.40192"
-          height="9.37497"
-          transform="matrix(-1.20942e-07 -1 -1 1.42185e-07 156.755 170.402)"
-          fill="black"
-        />
-        <rect
-          width="2.80064"
-          height="12.5"
-          transform="matrix(-1.20942e-07 -1 -1 1.42185e-07 153.635 173.204)"
-          fill="black"
-        />
-        <rect
-          width="2.80064"
-          height="12.5"
-          transform="matrix(-1.20942e-07 -1 -1 1.42185e-07 150.5 176.004)"
-          fill="black"
-        />
-        <rect
-          x="-6.23926"
-          y="170.402"
-          width="8.40192"
-          height="9.37497"
-          transform="rotate(-90 -6.23926 170.402)"
-          fill="black"
-        />
-        <rect
-          x="-3.11963"
-          y="173.204"
-          width="2.80064"
-          height="12.5"
-          transform="rotate(-90 -3.11963 173.204)"
-          fill="black"
-        />
-        <rect
-          x="0.0161133"
-          y="176.004"
-          width="2.80064"
-          height="12.5"
-          transform="rotate(-90 0.0161133 176.004)"
+        <path
+          fillRule="evenodd"
+          clipRule="evenodd"
+          d="M-6.23877 170.402V162L3.1362 162L3.1362 170.402L-6.23877 170.402ZM-3.11914 173.204L-3.11914 170.403L9.38082 170.403V173.203L12.5166 173.203V176.003L0.0166016 176.003L0.016602 173.204L-3.11914 173.204Z"
           fill="black"
         />
       </g>
