@@ -5,6 +5,7 @@ export const ROUTES = [
   'Entry',
   'Recommend',
   'ProfileEdit',
+  'ProfileUpload',
   'BillFromSpotify',
   'BillHasOwner',
   'SigninWithEmail',

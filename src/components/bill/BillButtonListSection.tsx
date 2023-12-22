@@ -1,9 +1,11 @@
 import { shareData } from '@/utils'
-import { StandardButton } from '..'
+import { ConfirmModal, StandardButton } from '..'
 import { useNowPlayStore, useUserStore } from '@/zustand'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { addNowPlayTracklistAndPlaySongTable } from '@/api'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { useConfirm } from '@/hooks'
+import Portal from '@/utils/portal'
 
 export const BillButtonListSection = ({
   data,
@@ -24,6 +26,7 @@ export const BillButtonListSection = ({
   const setUserInfo = useUserStore(state => state.setUserInfo)
   const queryClient = useQueryClient()
   const { pathname } = useLocation()
+  const { openConfirm, isShow } = useConfirm()
 
   //전체 재생
   const addNowPlayTracklistAndPlaySongTableMutation = useMutation({
@@ -73,27 +76,43 @@ export const BillButtonListSection = ({
 
   const handleClickShareButton = () => {
     const shareLink = `https://pixel-beat-alpha.vercel.app/${pathname}`
-    const text = '내 취향에 딱 맞는 음악영수증을 발급받고 공유해보세요'
+    const text = 'PixelBeat에서 내 취향에 딱 맞는 음악영수증을 발급받기🎧'
     const title = 'PixelBeat 추천 음악영수증 발급받기'
+    shareData({ url: shareLink, text, title }, openConfirm)
+  }
 
-    shareData({ url: shareLink, text, title })
+  const handleClickRecommendButton = () => {
+    navigate('/')
   }
 
   return (
-    <section className={`button-section w-356 mx-auto text-20 ${propsClass}`}>
-      <StandardButton
-        text={data ? '전체 재생하기' : '다른 영수증 구경가기'}
-        onClick={
-          data ? handleClickPlayAllTrackButton : handleClickToLoginButton
-        }
-        propsClass="w-full"
-      />
-      <StandardButton
-        text={'공유하기'}
-        onClick={handleClickShareButton}
-        fillColor="#FFFF57"
-        propsClass="w-full mt-12 mb-42"
-      />
-    </section>
+    <>
+      <section className={`button-section w-356 mx-auto text-20 ${propsClass}`}>
+        <StandardButton
+          text={data ? '전체 재생하기' : '다른 영수증 구경가기'}
+          onClick={
+            data ? handleClickPlayAllTrackButton : handleClickToLoginButton
+          }
+          propsClass="w-full"
+        />
+        <StandardButton
+          text={'공유하기'}
+          onClick={handleClickShareButton}
+          fillColor="#FFFF57"
+          propsClass="w-full mt-12"
+        />
+        <StandardButton
+          text={'다시 추천받기'}
+          onClick={handleClickRecommendButton}
+          fillColor="#FFF"
+          propsClass="w-full mt-12 mb-42"
+        />
+      </section>
+      {isShow && (
+        <Portal>
+          <ConfirmModal />
+        </Portal>
+      )}
+    </>
   )
 }

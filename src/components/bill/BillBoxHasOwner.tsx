@@ -137,12 +137,7 @@ export const BillBoxHasOwner = ({ data }) => {
               ...etc
             </p>
             <p>
-              Made by{' '}
-              <span
-                className="hover:underline cursor-pointer"
-                onClick={() => navigate(`/profile/${owner.userId}`)}>
-                {owner.username}
-              </span>
+              Made by <span>{owner.username}</span>
             </p>
           </div>
           <div className="flex items-center">

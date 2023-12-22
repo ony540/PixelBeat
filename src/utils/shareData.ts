@@ -5,7 +5,7 @@ type SharedData = {
   files?: File[]
 }
 
-export const shareData = async (data: SharedData) => {
+export const shareData = async (data: SharedData, openConfirm) => {
   if (!!navigator.canShare) {
     await navigator.share(data)
     return
@@ -13,7 +13,7 @@ export const shareData = async (data: SharedData) => {
   try {
     navigator.clipboard
       .writeText(data.url)
-      .then(() => alert('링크가 클립보드에 복사되었습니다.'))
+      .then(() => openConfirm('shareUrlCopy'))
   } catch (error) {
     alert(error)
     console.error('복사에 실패하였습니다.', error)

@@ -15,9 +15,10 @@ export const CONFIRM_TYPE = Object.freeze({
     '확인'
   ],
   savePlayList: ['저장이 완료되었습니다.'],
-  alreadyOwnPlaylist: ['이미 저장된 영수증입니다'],
+  alreadyOwnPlaylist: ['이미 저장된 영수증입니다.'],
   loginFail: [
     `로그인에 실패했습니다.
   다시 한번 확인해주세요.`
-  ]
+  ],
+  shareUrlCopy: ['링크가 클립보드에 복사되었습니다.']
 })
