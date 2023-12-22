@@ -112,14 +112,14 @@ export const getBill = async (billId: string): Promise<any> => {
   }
 }
 
-export const getRelatedBill = async (): Promise<TrackList[]> => {
+export const getPopularBill = async (): Promise<TrackList[]> => {
   try {
     const { data } = await supabase
       .from('tracks_table')
       .select('*')
       .not('owner', 'is', null)
 
-    return data!.slice(0, 5)
+    return data!.sort((a, b) => b.likes - a.likes).slice(0, 5)
   } catch (error) {
     console.error('Error in getBill:', error)
     throw error

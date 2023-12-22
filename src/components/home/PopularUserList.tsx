@@ -1,11 +1,11 @@
 import { MenuIcon, Spinner } from '@/assets'
-import { SimilarUserBill } from '.'
+import { PopularUserBill } from '.'
 import { useSwipe } from '@/hooks'
 import { useQuery } from '@tanstack/react-query'
-import { getRelatedBill } from '@/api'
+import { getPopularBill } from '@/api'
 import { TrackList } from '@/types'
 
-export const SimilarUserList = () => {
+export const PopularUserList = () => {
   const {
     isDrag,
     scrollRef,
@@ -16,7 +16,7 @@ export const SimilarUserList = () => {
 
   const { data, isLoading } = useQuery<TrackList[], Error>({
     queryKey: ['relatedBill'],
-    queryFn: getRelatedBill
+    queryFn: getPopularBill
   })
 
   if (isLoading) return <Spinner />
@@ -35,7 +35,7 @@ export const SimilarUserList = () => {
         onMouseLeave={handleDragEnd}
         className="flex gap-x-4 overflow-x-auto mt-6 ml-1">
         {data!.map(item => (
-          <SimilarUserBill
+          <PopularUserBill
             data={item}
             isDrag={isDrag}
             key={item.id}

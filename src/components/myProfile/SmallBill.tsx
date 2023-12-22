@@ -1,12 +1,11 @@
 import {
   LikeCountProps,
   LikeProps,
-  getBill,
   updateBillLikes,
   updateLikedTracklist
 } from '@/api'
-import { StandardVertex, SmallBillSide, Spinner } from '@/assets'
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { StandardVertex, SmallBillSide } from '@/assets'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useState } from 'react'
 import { BillGraph, HeartButton } from '..'
 import graphBgImg from '@/assets/imgs/graphBackground.png'
@@ -16,24 +15,17 @@ import { msToMinutesAndSeconds } from '@/utils'
 export const SmallBill = ({
   id,
   onClick,
-  duration_ms,
-  track_length
+  data
 }: {
-  duration_ms?: any
   id?: string
   onClick?: any
-  track_length?: number
+  data: any
 }) => {
   const userProfile = useUserStore(state => state.userInfo)
   const queryClient = useQueryClient()
   const [isHearted, setIsHearted] = useState(
     userProfile?.liked_tracklist.includes(id!)
   )
-
-  const { data, isLoading }: any = useQuery({
-    queryKey: ['my-bill', id],
-    queryFn: () => getBill(id as string)
-  })
 
   //좋아요
   const likeBillMutation = useMutation<any[], Error, LikeProps>({
@@ -76,11 +68,15 @@ export const SmallBill = ({
       userId: userProfile.id
     })
   }
-  if (isLoading) return <Spinner />
+
   const { name, likes } = data
 
-  const { minutes, seconds } = msToMinutesAndSeconds(Number(duration_ms))
-  console.log()
+  const totalDuration = data?.tracks.reduce(
+    (sum, item) => sum + item.duration_ms,
+    0
+  )
+
+  const { minutes, seconds } = msToMinutesAndSeconds(Number(totalDuration))
 
   return (
     <div
@@ -108,7 +104,7 @@ export const SmallBill = ({
 
             <div
               className="my-0 mx-auto bg-no-repeat bg-[43%_-10%] 
-              w-100 mt-0 bg-length:100px] bg-[length:100px]
+              w-100 mt-0 bg-[length:98px]
               desktop:w-132 desktop:mt-14 desktop:bg-[length:129px]"
               style={{ backgroundImage: `url(${graphBgImg})` }}>
               <BillGraph
@@ -127,7 +123,7 @@ export const SmallBill = ({
             <p
               className="text-14 flex items-center
             desktop:text-20 desktop:ml-10">
-              {`${track_length}곡 • ${minutes}분 ${seconds}초`}
+              {`${data?.tracks.length}곡 • ${minutes}분 ${seconds}초`}
             </p>
             <HeartButton
               isHearted={isHearted}
