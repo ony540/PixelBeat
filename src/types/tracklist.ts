@@ -52,9 +52,10 @@ export interface Artist {
 }
 
 export interface TrackAnalysis {
-  acousticness: number
-  energy: number
-  valence: number
-  danceability: number
-  tempo: number
+  [key: string] : number
+  // acousticness: number
+  // energy: number
+  // valence: number
+  // danceability: number
+  // tempo: number
 }

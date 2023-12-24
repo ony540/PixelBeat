@@ -1,6 +1,6 @@
 import { baseInstance } from './axios'
 
-export const getTracksAudioFeatures = async (tracksId: string) => {
+export const getTracksAudioFeatures = async (tracksId: string[]) => {
   try {
     const response = await baseInstance(`audio-features?ids=${tracksId}`)
     const { audio_features } = response.data

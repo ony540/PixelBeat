@@ -28,6 +28,7 @@ export const ProfileForm = () => {
   const resetRecommendResultStore = useRecommendResultStore(
     state => state.resetRecommendResultStore
   )
+
   const { openConfirm } = useConfirm()
 
   const [uploadedImage, setUploadedImage] = useState<any>(null)

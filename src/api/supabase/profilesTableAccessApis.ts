@@ -18,8 +18,8 @@ export const getProfile = async userId => {
 }
 export interface OwnTracklistProps {
   prevOwnTracklist: string[]
-  billId: string
-  userId: string
+  billId: string | undefined
+  userId: string | undefined
 }
 //내 빌지 업데이트
 export const updateOwnTracklist = async ({
@@ -27,7 +27,7 @@ export const updateOwnTracklist = async ({
   billId,
   userId
 }: OwnTracklistProps) => {
-  const isAlreadyOwned = prevOwnTracklist.includes(billId)
+  const isAlreadyOwned = prevOwnTracklist.includes(billId!)
   try {
     const { data } = await supabase
       .from('profiles')
