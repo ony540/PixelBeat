@@ -2,7 +2,7 @@ import { getBill, getPlaylistFromSpotify } from '@/api'
 import { ArrowDown, Spinner } from '@/assets'
 import { useUserStore } from '@/zustand'
 import { useQueries } from '@tanstack/react-query'
-import {  useState } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { ErrorComponent, MusicShelfItem } from '..'
 
@@ -43,7 +43,7 @@ export const MusicShelf = () => {
   if (isError) return <ErrorComponent />
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mb-120">
       <section className="mt-30 text-20 flex justify-between">
         <div>
           <button

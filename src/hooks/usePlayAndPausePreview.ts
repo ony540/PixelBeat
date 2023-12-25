@@ -24,7 +24,7 @@ export const usePlayAndPausePreview = () => {
   const setCurrentTrackAndPositionTableMutation = useMutation({
     mutationFn: setCurrentTrackAndPositionTable,
     onSuccess() {
-      queryClient.invalidateQueries({
+      return queryClient.invalidateQueries({
         queryKey: ['profiles from supabase', userInfo.id]
       })
     },

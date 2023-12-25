@@ -101,12 +101,14 @@ export const BillButtonListSection = ({
           fillColor="#FFFF57"
           propsClass="w-full mt-12"
         />
-        <StandardButton
-          text={'다시 추천받기'}
-          onClick={handleClickRecommendButton}
-          fillColor="#FFF"
-          propsClass="w-full mt-12 mb-42"
-        />
+        {data && (
+          <StandardButton
+            text={'다시 추천받기'}
+            onClick={handleClickRecommendButton}
+            fillColor="#FFF"
+            propsClass="w-full mt-12 mb-42"
+          />
+        )}
       </section>
       {isShow && (
         <Portal>

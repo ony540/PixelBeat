@@ -19,7 +19,7 @@ const Profile = () => {
 
   const { id: currentPath } = useParams()
   const navigate = useNavigate()
-  const { openModal } = useModal()
+  const { openModal, isVisible } = useModal()
   const { openConfirm, closeConfirm, isShow } = useConfirm()
 
   if (currentPath !== 'me' && currentPath !== 'like') {
@@ -76,7 +76,7 @@ const Profile = () => {
       <NavBar />
 
       <Portal>
-        <BottomSheet onClick={handleBottomSheetContentClick} />
+        {isVisible && <BottomSheet onClick={handleBottomSheetContentClick} />}
         {isShow && (
           <ConfirmModal
             onCancelClick={closeConfirm}
