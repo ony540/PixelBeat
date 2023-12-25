@@ -15,14 +15,13 @@ const PrivateRoute = ({
   const { pathname } = useLocation()
   const navigate = useNavigate()
   const isLoggedUser =
-    pathname === '/profileedit' ? useUserSession() : getUserId()
+    pathname === '/profileupload' ? useUserSession() : getUserId()
   const { error } = useUserInfo()
   const { openConfirm, isShow, closeConfirm, confirmType } = useConfirm()
 
   if (error) {
     console.error('private route:', error)
   }
-
   const handleNavigateHome = () => {
     closeConfirm()
     navigate('/home')
