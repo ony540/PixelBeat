@@ -42,11 +42,9 @@ const Album = () => {
   })
 
   const handleClickPlayAllTrackButton = () => {
-    const billTracks = data.tracks.items
-      .map(item => item.track)
-      .filter(track => track.preview_url)
+    const billTracks = data.tracks.filter(track => track.preview_url)
     setIsPlaying(true)
-    
+
     const newNowPlayTracklist = [
       ...billTracks,
       ...nowPlayTracks.filter(
