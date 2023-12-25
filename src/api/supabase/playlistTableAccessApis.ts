@@ -1,4 +1,4 @@
-import { TrackList } from '@/types'
+import { Track, TrackList } from '@/types'
 import { supabase } from '.'
 
 export const getArtistId = async (genres: string[]) => {
@@ -15,7 +15,7 @@ export const getArtistId = async (genres: string[]) => {
 }
 
 export interface UploadBillInterface {
-  tracklist: string[]
+  tracklist: Track[]
   analysis: Object
   owner: Object | null
   color: string
