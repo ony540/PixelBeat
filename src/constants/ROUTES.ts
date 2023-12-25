@@ -29,6 +29,7 @@ export const routeConfig: {
   Recommend: { index: false, path: 'recommend/:id' },
   Search: { index: false, path: '/search' },
   Profile: { index: false, path: 'profile/:id', authentication: true },
+  ProfileEdit: { index: false, path: 'profileedit', authentication: true },
   Bill: { index: false, path: 'bill/:id' },
   BillHasOwner: {
     index: false,
