@@ -101,7 +101,7 @@ export const BillButtonListSection = ({
           fillColor="#FFFF57"
           propsClass="w-full mt-12"
         />
-        {data && (
+        {!data && (
           <StandardButton
             text={'다시 추천받기'}
             onClick={handleClickRecommendButton}
